@@ -6,7 +6,7 @@ on:
       limit:
         description: 'Maximum unmatched players to check (0 = all)'
         required: false
-        default: '200'
+        default: '10'
   schedule:
     - cron: '10 6 * * 1'
   push:
@@ -34,10 +34,14 @@ jobs:
           python-version: '3.12'
       - name: Test Sorare matching
         run: python -m unittest discover -s tests -p 'test_sorare.py' -v
+      - name: Check API key and Sorare GraphQL query
+        env:
+          SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
+        run: python scripts/update_sorare.py --check
       - name: Match player identities
         env:
           SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
-          MATCH_LIMIT: ${{ inputs.limit || '200' }}
+          MATCH_LIMIT: ${{ github.event_name == 'schedule' && '200' || (inputs.limit || '10') }}
         run: python scripts/update_sorare.py --limit "$MATCH_LIMIT"
       - name: Summarize the results
         run: |
