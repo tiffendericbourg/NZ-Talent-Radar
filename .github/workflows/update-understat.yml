@@ -1,0 +1,69 @@
+name: Build Understat shot maps
+
+on:
+  workflow_dispatch:
+    inputs:
+      fetch:
+        description: 'Opt-in Understat website fetch (requires permission + robots approval)'
+        type: boolean
+        required: false
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_understat.py'
+      - 'scripts/discover_understat.py'
+      - 'data/understat/verified_players.csv'
+      - 'tests/test_understat.py'
+      - '.github/workflows/update-understat.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: understat-import
+  cancel-in-progress: false
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test shot parser and sourcing rules
+        run: python -m unittest discover -s tests -p 'test_understat.py' -v
+      - name: Import verified player shots
+        env:
+          FETCH_ALLOWED: ${{ inputs.fetch && 'true' || 'false' }}
+        run: |
+          if [ "$FETCH_ALLOWED" = "true" ]; then
+            python scripts/update_understat.py --fetch --max-players 3
+          else
+            python scripts/update_understat.py
+          fi
+      - name: Show verified coverage
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          data = json.loads(Path('public/data/understat_shots.json').read_text())
+          c = data['coverage']
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write('## Understat shot-map collection\n\n')
+              out.write(f"- Verified IDs: **{c['verified_players']}**\n")
+              out.write(f"- Players with imported shots: **{c['players_with_exports']}**\n")
+              out.write(f"- Shot X/Y events: **{c['shots']}**\n")
+              out.write('\nNo permission or verified mapping = no remote scraping.\n')
+          PY
+      - name: Commit permitted processed data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/understat_shots.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh verified Understat shot events'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
