@@ -59,6 +59,16 @@ Run offline tests with `python -m unittest discover -s tests -p 'test_sorare.py'
 
 A first live Sorare API pass has succeeded. The remaining database is scanned in incremental batches; some footballers have no Sorare listing. No scores or performance statistics are integrated at this stage.
 
+## Sorare manual identity audit — 21 October 2026
+
+A comparison of the 11 previously uncertain Sorare candidates identified **7 additional identities** and **4 unrelated homonyms**. The saved Sorare match count is now **24 confirmed**, **4 explicitly rejected**, and **0 awaiting manual review** across the 1,111-player snapshot.
+
+Decisions and evidence are maintained in `data/sorare/identity_reviews.csv`, which is reapplied by `scripts/update_sorare.py` on each run. Rejected candidates do not become profile links. Historic Wikidata clubs are not treated as identity contradictions when the name, birth date and career match.
+
+Approved: Bill Tuiloma, Elijah Just, Joe Bell, Luke Brooke-Smith, Matthew Garbett, Michael Boxall, Tyler Boyd. Rejected: Ethan Galbraith (Northern Irish homonym), George Campbell (US defender), Julius Beck (Danish namesake), Oliver Whyte (Scottish Olly Whyte).
+
+**Source discrepancy corrected:** Luke Brooke-Smith's birth date is **2008-06-06**, documented by Friends of Football NZ and Sorare, rather than Wikidata's 2008-06-08. The correction is also recorded in `data/manual_players.csv` so the next Wikidata refresh does not reintroduce it. Sorare names, slugs, the reasons for approval/rejection and supporting links are preserved in the published match report.
+
 ## Spatial scouting and Understat
 
 The **Statistics** page and player profile **Performance** cards are now wired to static JSON:
