@@ -72,7 +72,7 @@ export function ScoutingDashboard({ players, sorare, understat }) {
     </div>
     {sorare && <div className="scout-audit">
       <div><span className="eyebrow">SORARE / MATCHING AUDIT</span><h2>Who needs a second look?</h2>
-        <p>{sorare.checked_so_far ?? sorare.matches?.length ?? 0} players checked · {sorare.confirmed ?? 0} confirmed · {sorare.needs_review ?? 0} to review</p></div>
+        <p>{sorare.checked_so_far ?? sorare.matches?.length ?? 0} players checked · {sorare.confirmed ?? 0} confirmed · {sorare.rejected ?? 0} false matches excluded · {sorare.needs_review ?? 0} to review</p></div>
       {Array.isArray(sorare.matches) && sorare.matches.some(r => r.status === 'needs_review')
         ? <div className="scout-review-list">{sorare.matches.filter(r => r.status === 'needs_review').slice(0, 15).map(r =>
           <div key={r.player_id} className="scout-review-row">
@@ -133,7 +133,7 @@ export function PlayerPerformance({ player, sorare, understat }) {
     </div>}
     {record && record.shots?.length ? <><h3 className="shot-map-title">Shot locations · Understat X/Y</h3><ShotMap shots={record.shots}/><p className="scout-footnote">Shot coordinates are normalised (0–1) with attack towards the right. Period: all imported Understat matches, not necessarily the player's entire career. <a href={record.source_url} target="_blank" rel="noreferrer">Source ↗</a></p></>
       : <p className="scout-empty">No verified Understat shots for this player yet. Missing statistics are never treated as zero.</p>}
-    <div className="scout-links"><span>Sorare: <strong>{linked ? 'Verified identity' : match?.status === 'needs_review' ? 'Needs review' : match?.status === 'not_found' ? 'Not found' : 'Not checked'}</strong></span>
+    <div className="scout-links"><span>Sorare: <strong>{linked ? 'Verified identity' : match?.status === 'needs_review' ? 'Needs review' : match?.status === 'not_found' ? 'Not found' : match?.status === 'rejected' ? 'Wrong homonym excluded' : 'Not checked'}</strong></span>
       {linked && <a href={'https://sorare.com/football/players/' + encodeURIComponent(linked)} target="_blank" rel="noreferrer">View Sorare profile ↗</a>}
     </div>
   </section>
