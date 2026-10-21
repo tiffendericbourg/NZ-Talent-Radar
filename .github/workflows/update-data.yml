@@ -40,16 +40,16 @@ jobs:
           status = os.environ.get("COLLECTION_OUTCOME", "unknown")
           print(f"Collection step: {status} | Total players: {len(players)}")
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
-              out.write(f"## NZ Talent Radar — player collection\\n\\n")
-              out.write(f"- Collection step: **{status}**\\n")
-              out.write(f"- Player profiles in snapshot: **{len(players)}**\\n")
+              out.write(f"## NZ Talent Radar — player collection\n\n")
+              out.write(f"- Collection step: **{status}**\n")
+              out.write(f"- Player profiles in snapshot: **{len(players)}**\n")
               if status == "success":
                   for key in ("fetched_wikidata_players", "new_players", "under_23",
                               "women", "abroad_with_known_club", "with_club", "with_birth_date"):
-                      out.write(f"- {key.replace('_', ' ').title()}: **{report.get(key, '?')}**\\n")
-                  out.write(f"- Failed discovery queries: **{report.get('failed_queries', [])}**\\n")
+                      out.write(f"- {key.replace('_', ' ').title()}: **{report.get(key, '?')}**\n")
+                  out.write(f"- Failed discovery queries: **{report.get('failed_queries', [])}**\n")
               else:
-                  out.write("- Existing snapshot retained; check the collector logs.\\n")
+                  out.write("- Existing snapshot retained; check the collector logs.\n")
           PY
           if [ "$COLLECTION_OUTCOME" != "success" ]; then
             echo '::warning::Wikidata collection failed; publishing the existing snapshot.'
