@@ -1,0 +1,12 @@
+player_id,sorare_slug,decision,reason,evidence_url
+"wd:Q5728588","bill-tuiloma","confirmed","Full name and DOB match; Sorare career includes Charlotte FC then Wellington Phoenix","https://sorare.com/football/players/bill-tuiloma/history"
+"wd:Q64031850","elijah-henry-just","confirmed","Full name and DOB match; historical AC Horsens tenure listed in Sorare career","https://sorare.com/football/players/elijah-henry-just/history"
+"wd:Q17030311","ethan-stuart-william-galbraith","rejected","Different DOB and national football association: Northern Ireland 2001 vs NZ 1991","https://www.irishfa.com/ifa-international/squads/northern-ireland-senior-men/ethan-galbraith"
+"wd:Q5537639","george-campbell","rejected","Sorare candidate American defender born 2001; NZ record is former forward without that birth","https://www.wba.co.uk/player/487"
+"wd:Q64433070","joe-bell","confirmed","Full name and DOB match; Viking career and Brondby tenure documented","https://sorare.com/football/players/joe-bell/history"
+"wd:Q6309673","julius-beck","rejected","Sorare candidate Danish U20 midfielder born 2005; NZ player is historical international in 1967","https://sorare.com/football/players/julius-beck/history"
+"wd:Q132200431","luke-brooke-smith","confirmed","NZ career and full name align; independent NZ timeline confirms 2008-06-06, correcting Wikidata 2008-06-08","https://www.friendsoffootballnz.com/2025/02/24/feature-luke-brooke-smiths-journey-from-juniors-to-phoenix-record-breaker/"
+"wd:Q96091702","matthew-garbett","confirmed","Full name and DOB match; Sorare career includes NAC Breda then Peterborough","https://sorare.com/football/players/matthew-garbett/history"
+"wd:Q524730","michael-boxall","confirmed","Full name DOB and Minnesota United club all align","https://sorare.com/football/players/michael-boxall/history"
+"wd:Q110897902","olly-whyte","rejected","Sorare candidate Scottish born 2006; NZ Oliver Whyte born 2000 is a different player","https://www.motherwellfc.co.uk/player/olly-whyte/"
+"wd:Q7859955","tyler-boyd","confirmed","Full name and DOB match; Sorare career lists NZ and US national teams","https://sorare.com/football/players/tyler-boyd/history"
