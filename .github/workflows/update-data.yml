@@ -22,13 +22,43 @@ jobs:
           python-version: '3.12'
       - name: Test importer
         run: python -m unittest discover -s tests -v
-      - name: Refresh Wikidata, retaining last snapshot on failure
-        run: python scripts/update_players.py || echo '::warning::Wikidata unavailable; using committed data.'
+      - name: Collect players from Wikidata
+        id: collection
+        continue-on-error: true
+        run: python scripts/update_players.py
+      - name: Report collection results
+        if: always()
+        env:
+          COLLECTION_OUTCOME: ${{ steps.collection.outcome }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          players = json.loads(Path("public/data/players.json").read_text(encoding="utf-8"))["players"]
+          report_path = Path("public/data/collection_report.json")
+          report = json.loads(report_path.read_text(encoding="utf-8")) if report_path.exists() else {}
+          status = os.environ.get("COLLECTION_OUTCOME", "unknown")
+          print(f"Collection step: {status} | Total players: {len(players)}")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
+              out.write(f"## NZ Talent Radar — player collection\\n\\n")
+              out.write(f"- Collection step: **{status}**\\n")
+              out.write(f"- Player profiles in snapshot: **{len(players)}**\\n")
+              if status == "success":
+                  for key in ("fetched_wikidata_players", "new_players", "under_23",
+                              "women", "abroad_with_known_club", "with_club", "with_birth_date"):
+                      out.write(f"- {key.replace('_', ' ').title()}: **{report.get(key, '?')}**\\n")
+                  out.write(f"- Failed discovery queries: **{report.get('failed_queries', [])}**\\n")
+              else:
+                  out.write("- Existing snapshot retained; check the collector logs.\\n")
+          PY
+          if [ "$COLLECTION_OUTCOME" != "success" ]; then
+            echo '::warning::Wikidata collection failed; publishing the existing snapshot.'
+          fi
       - name: Commit data
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/data/players.json
+          git add -A public/data
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh player catalogue'
             git push
