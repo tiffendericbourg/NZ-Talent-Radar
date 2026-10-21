@@ -50,6 +50,30 @@ class UnderstatTests(unittest.TestCase):
             self.assertEqual(found[0]["understat_id"], "1234")
             self.assertEqual(found[0]["status"], "needs_review")
 
+    def test_understat_embedded_json_shots(self):
+        # Source-page format: shotsData = JSON.parse('escaped json')
+        encoded = json.dumps(self.shots).replace('"', r'\x22')
+        html = "<script>var shotsData = JSON.parse('" + encoded + "');</script>"
+        shots = source.parse_shots(html)
+        self.assertEqual(len(shots), 2)
+        self.assertEqual(shots[0]["X"], "0.90")
+
+    def test_existing_data_survives_empty_mapping(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            players = root / "players.json"
+            players.write_text('{"players":[]}', encoding="utf-8")
+            mapping = root / "map.csv"
+            mapping.write_text("player_id,understat_id,status,evidence_url\n", encoding="utf-8")
+            output = root / "existing.json"
+            prior = {"players": {"wd:Q7": {"understat_id": "123", "shots": [{"x": 0.3}]}}}
+            output.write_text(json.dumps(prior), encoding="utf-8")
+            with patch.object(source, "PLAYERS", players), patch.object(source, "MAPPING", mapping), patch.object(
+                source, "OUTPUT", output
+            ):
+                result = source.run()
+            self.assertEqual(result, prior)
+
     def test_drops_invalid_or_other_players(self):
         corrupt = self.shots + [
             {"id": "3", "player_id": "999", "X": "0.9", "Y": "0.3", "xG": "0.5"},
