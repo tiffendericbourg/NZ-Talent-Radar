@@ -175,9 +175,13 @@ def run():
     for entity in people.values():
         for prop in ("P27", "P413", "P21", "P1532"):
             refs.update(ids(entity, prop))
-        for prop in ("P19", "P54"):
-            places_and_teams.update(ids(entity, prop))
-    # Keep reference requests small: only places and teams need their own claims.
+        places_and_teams.update(ids(entity, "P19"))
+        # Historical teams with a documented end date do not need an API lookup.
+        for membership in claims(entity, "P54"):
+            club = club_from_claims([membership], today)
+            if club:
+                places_and_teams.add(club)
+    # Fetch only places and plausible current teams with claims.
     related = entities_for(places_and_teams, props="labels|claims")
     for entity in related.values():
         for prop in ("P17", "P118"):
