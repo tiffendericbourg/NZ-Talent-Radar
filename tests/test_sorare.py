@@ -13,6 +13,7 @@ class SorareTests(unittest.TestCase):
         self.wood = {"id": "wd:Q74548", "name": "Chris Wood",
                      "birth_date": "1991-12-07", "club": None, "sorare_slug": None}
         # The repository's real audited decisions must not affect tiny test fixtures.
+        self.real_load_reviews = sorare.load_reviews
         self.reviews_patcher = patch.object(sorare, "load_reviews", return_value={})
         self.reviews_patcher.start()
         self.addCleanup(self.reviews_patcher.stop)
@@ -285,7 +286,7 @@ class SorareTests(unittest.TestCase):
             )
             with patch.object(sorare, "REVIEWS_FILE", path):
                 with self.assertRaises(ValueError):
-                    sorare.load_reviews()
+                    self.real_load_reviews()
 
 
 
