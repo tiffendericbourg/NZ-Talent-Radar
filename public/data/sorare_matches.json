@@ -1,12 +1,15 @@
 {
   "generated_at": "2026-10-21",
   "source": "Sorare football GraphQL",
-  "scanned": 881,
+  "scanned": 1083,
+  "batch_interrupted": false,
+  "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
   "confirmed": 24,
   "already_matched": 0,
   "needs_review": 0,
+  "rejected": 4,
   "not_found": 1083,
   "matches": [
     {
@@ -10056,8 +10059,5 @@
       "sorare_birth_date": null,
       "sorare_club": null
     }
-  ],
-  "rejected": 4,
-  "reviewed_players": 11,
-  "manual_review_date": "2026-10-21"
+  ]
 }
