@@ -6,30 +6,44 @@ import sys
 import time
 from datetime import date
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "public/data/players.json"
 MANUAL = ROOT / "data/manual_players.csv"
-HEADERS = {"User-Agent": "NZTalentRadar/1.0 (github.com/tiffendericbourg/NZ-Talent-Radar)", "Accept": "application/json"}
+HEADERS = {"User-Agent": "NZTalentRadar/1.1 (https://github.com/tiffendericbourg/NZ-Talent-Radar)", "Accept": "application/json"}
+# Separate targeted queries to avoid a slow, expensive SPARQL UNION.
+# Occupation Q937857 includes women's and men's association football.
 QUERIES = [
     "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P27 wd:Q664. }",
     "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P1532 wd:Q664. }",
+    "SELECT DISTINCT ?person WHERE { VALUES ?team { wd:Q175315 wd:Q503755 } ?person wdt:P106 wd:Q937857; wdt:P54 ?team. }",
+    "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P19 wd:Q664. }",
     "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P19 ?place. ?place wdt:P17 wd:Q664. }",
+    "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P19 ?place. ?place wdt:P131/wdt:P17 wd:Q664. }",
 ]
 NZ_TEAMS = {"Q175315", "Q503755"}
 
 def request(url, params):
+    """Fetch public JSON with retry/backoff for temporary Wikimedia errors."""
     full_url = url + "?" + urlencode(params)
     for attempt in range(3):
         try:
             with urlopen(Request(full_url, headers=HEADERS), timeout=60) as response:
                 return json.load(response)
-        except Exception:
+        except HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                raise
+            retry = error.headers.get("Retry-After", "")
+            delay = min(max(int(retry), 1), 90) if retry.isdigit() else (5 * (attempt + 1))
+            print(f"Wikimedia HTTP {error.code}; retry in {delay}s")
+            time.sleep(delay)
+        except (URLError, TimeoutError, ValueError):
             if attempt == 2:
                 raise
-            time.sleep(2 ** attempt + 1)
+            time.sleep(3 * (attempt + 1))
 
 def claims(entity, property_id):
     return [row for row in entity.get("claims", {}).get(property_id, []) if row.get("rank") != "deprecated"]
@@ -62,25 +76,47 @@ def age_on(born, today):
     except ValueError:
         return None
 
-def club_from_claims(memberships):
+def qualifier_date(qualifiers, prop):
+    """Wikidata can provide year- or month-precision dates."""
+    for statement in qualifiers.get(prop, []):
+        value = statement.get("datavalue", {}).get("value", {})
+        if isinstance(value, dict):
+            raw = value.get("time", "")
+            if re.match(r"^\\+\\d{4}-\\d{2}-\\d{2}T", raw):
+                return raw[1:11]
+    return None
+
+def club_from_claims(memberships, today=None):
+    """Only accept one unambiguously ongoing team with a known start date.
+
+    Old, undated memberships are NOT assumed current. National teams are excluded.
+    A missing club is more useful than an incorrect overseas-club count.
+    """
+    today = today or date.today()
     possible = set()
     for claim in memberships:
         club = item_id(claim)
         qualifiers = claim.get("qualifiers", {})
-        if club and club not in NZ_TEAMS and "P580" in qualifiers and "P582" not in qualifiers:
+        start = qualifier_date(qualifiers, "P580")
+        end = qualifier_date(qualifiers, "P582")
+        if club and club not in NZ_TEAMS and start and start <= today.isoformat() and (
+            not end or end >= today.isoformat()
+        ) and not ("P582" in qualifiers and not end):
             possible.add(club)
     return next(iter(possible)) if len(possible) == 1 else None
 
-def entities_for(qids):
+def entities_for(qids, props="labels"):
+    """Request labels for most references; claims only when we need them."""
     result = {}
-    for index in range(0, len(qids), 35):
-        group = sorted(qids)[index:index + 35]
+    ordered = sorted(qids)
+    for index in range(0, len(ordered), 40):
+        group = ordered[index:index + 40]
         payload = request("https://www.wikidata.org/w/api.php", {
             "action": "wbgetentities", "ids": "|".join(group),
-            "props": "labels|claims", "languages": "en", "format": "json",
+            "props": props, "languages": "en", "format": "json", "maxlag": "5",
         })
         result.update(payload.get("entities", {}))
-        time.sleep(0.1)
+        time.sleep(0.2)
     return result
 
 def overlay_manual(by_id, rows, today):
@@ -115,23 +151,27 @@ def run():
     for number, query in enumerate(QUERIES, 1):
         payload = request("https://query.wikidata.org/sparql", {"query": query, "format": "json"})
         discovered.update(row["person"]["value"].rsplit("/", 1)[-1] for row in payload["results"]["bindings"])
-        print(f"Discovery {number}/3: {len(discovered)} unique IDs")
+        print(f"Discovery {number}/{len(QUERIES)}: {len(discovered)} unique IDs")
     discovered = {qid for qid in discovered if re.fullmatch(r"Q\d+", qid)}
     if not discovered:
         raise RuntimeError("No Wikidata players found")
-    people = entities_for(discovered)
+    people = entities_for(discovered, props="labels|claims")
     if any(q not in people or "missing" in people[q] for q in discovered):
         raise RuntimeError("Some player details were missing")
-    refs = set()
+    refs = set(NZ_TEAMS) | {"Q664"}
+    places_and_teams = set()
     for entity in people.values():
-        for prop in ("P27", "P19", "P413", "P21", "P54"):
+        for prop in ("P27", "P413", "P21", "P1532"):
             refs.update(ids(entity, prop))
-    related = entities_for(refs)
-    extra = set()
+        for prop in ("P19", "P54"):
+            places_and_teams.update(ids(entity, prop))
+    # Keep reference requests small: only places and teams need their own claims.
+    related = entities_for(places_and_teams, props="labels|claims")
     for entity in related.values():
         for prop in ("P17", "P118"):
-            extra.update(ids(entity, prop))
-    related.update(entities_for(extra - set(related)))
+            refs.update(ids(entity, prop))
+    related.update(entities_for(refs - set(related)))
+
     result = dict(old)
     for qid, entity in people.items():
         citizenship = ids(entity, "P27")
@@ -139,7 +179,7 @@ def run():
         nz_team = next((q for q in teams if q in NZ_TEAMS), None)
         birthplace = next(iter(ids(entity, "P19")), None)
         birth_country = next(iter(ids(related.get(birthplace, {}), "P17")), None)
-        club = club_from_claims(claims(entity, "P54"))
+        club = club_from_claims(claims(entity, "P54"), today)
         club_country = next(iter(ids(related.get(club, {}), "P17")), None)
         league = next(iter(ids(related.get(club, {}), "P118")), None)
         sex = next(iter(ids(entity, "P21")), None)
@@ -148,7 +188,8 @@ def run():
         result[key] = {
             "id": key, "name": label(people, qid) or qid, "birth_date": born,
             "age": age_on(born, today),
-            "nationalities": [label(related, c) or c for c in citizenship],
+            "nationalities": [label(related, c) for c in citizenship if label(related, c)],
+            "country_for_sport": [label(related, c) for c in ids(entity, "P1532") if label(related, c)],
             "birth_country": label(related, birth_country),
             "position": label(related, next(iter(ids(entity, "P413")), None)),
             "club": label(related, club), "club_country": label(related, club_country),
@@ -163,6 +204,7 @@ def run():
     overlay_manual(result, manual, today)
     records = sorted(result.values(), key=lambda p: (p.get("name", "").lower(), p["id"]))
     snapshot = {"generated_at": today.isoformat(), "source": "Wikidata + manual review", "players": records}
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     temp = OUTPUT.with_suffix(".json.tmp")
     temp.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temp.replace(OUTPUT)
