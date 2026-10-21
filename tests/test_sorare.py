@@ -101,5 +101,33 @@ class SorareTests(unittest.TestCase):
             self.assertNotIn("not-a-real-key", report.read_text())
 
 
+    def test_incremental_second_run_checks_next_player(self):
+        with tempfile.TemporaryDirectory() as folder:
+            p = Path(folder) / "players.json"
+            report = Path(folder) / "matches.json"
+            p.write_text(json.dumps({"players": [
+                {**self.wood}, {"id": "wd:Q2", "name": "Player Two",
+                                 "birth_date": "2001-01-01", "sorare_slug": None},
+            ]}), encoding="utf-8")
+
+            def not_found(player, key):
+                return {"status": "not_found", "candidate": None}
+
+            with patch.object(sorare, "PLAYERS_FILE", p), patch.object(
+                sorare, "MATCHES_FILE", report
+            ), patch.object(sorare, "lookup_player", side_effect=not_found) as lookup, patch.dict(
+                sorare.os.environ, {"SORARE_API_KEY": "test-only"}
+            ):
+                sorare.run(limit=1)
+                self.assertEqual(lookup.call_count, 1)
+                sorare.run(limit=1)
+                self.assertEqual(lookup.call_count, 2)
+
+            output = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual(output["checked_so_far"], 2)
+            self.assertEqual(output["remaining"], 0)
+            self.assertEqual(output["not_found"], 2)
+
+
 if __name__ == "__main__":
     unittest.main()
