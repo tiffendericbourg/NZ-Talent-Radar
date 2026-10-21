@@ -3194,7 +3194,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q5728588",
-      "sorare_slug": null,
+      "sorare_slug": "bill-tuiloma",
       "sources": [
         "https://www.wikidata.org/wiki/Q5728588"
       ],
@@ -7041,7 +7041,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q64031850",
-      "sorare_slug": null,
+      "sorare_slug": "elijah-henry-just",
       "sources": [
         "https://www.wikidata.org/wiki/Q64031850"
       ],
@@ -12601,7 +12601,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q64433070",
-      "sorare_slug": null,
+      "sorare_slug": "joe-bell",
       "sources": [
         "https://www.wikidata.org/wiki/Q64433070"
       ],
@@ -16285,7 +16285,7 @@
     {
       "id": "wd:Q132200431",
       "name": "Luke Brooke-Smith",
-      "birth_date": "2008-06-08",
+      "birth_date": "2008-06-06",
       "age": 18,
       "nationalities": [
         "New Zealand"
@@ -16302,9 +16302,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q132200431",
-      "sorare_slug": null,
+      "sorare_slug": "luke-brooke-smith",
       "sources": [
-        "https://www.wikidata.org/wiki/Q132200431"
+        "https://www.wikidata.org/wiki/Q132200431",
+        "https://www.friendsoffootballnz.com/2025/02/24/feature-luke-brooke-smiths-journey-from-juniors-to-phoenix-record-breaker/"
       ],
       "updated_at": "2026-10-21"
     },
@@ -17587,7 +17588,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q96091702",
-      "sorare_slug": null,
+      "sorare_slug": "matthew-garbett",
       "sources": [
         "https://www.wikidata.org/wiki/Q96091702"
       ],
@@ -18128,7 +18129,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q524730",
-      "sorare_slug": null,
+      "sorare_slug": "michael-boxall",
       "sources": [
         "https://www.wikidata.org/wiki/Q524730"
       ],
@@ -26456,7 +26457,7 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q7859955",
-      "sorare_slug": null,
+      "sorare_slug": "tyler-boyd",
       "sources": [
         "https://www.wikidata.org/wiki/Q7859955"
       ],
