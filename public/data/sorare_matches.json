@@ -1,12 +1,12 @@
 {
   "generated_at": "2026-10-21",
   "source": "Sorare football GraphQL",
-  "scanned": 200,
-  "checked_so_far": 200,
-  "remaining": 911,
+  "scanned": 10,
+  "checked_so_far": 210,
+  "remaining": 901,
   "confirmed": 4,
   "already_matched": 0,
-  "needs_review": 196,
+  "needs_review": 206,
   "not_found": 0,
   "matches": [
     {
@@ -1808,6 +1808,96 @@
       "sorare_name": "Clint Leemans",
       "sorare_birth_date": "1995-09-15",
       "sorare_club": "BV De Graafschap"
+    },
+    {
+      "player_id": "wd:Q5134519",
+      "name": "Clive Campbell",
+      "status": "needs_review",
+      "sorare_slug": "william-cole-campbell",
+      "sorare_name": "Cole Campbell",
+      "sorare_birth_date": "2006-02-20",
+      "sorare_club": "SV 07 Elversberg"
+    },
+    {
+      "player_id": "wd:Q1108004",
+      "name": "Cole Peverley",
+      "status": "needs_review",
+      "sorare_slug": "cole-henry-19990715",
+      "sorare_name": "Cole Henry",
+      "sorare_birth_date": "1999-07-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q1107994",
+      "name": "Cole Tinkler",
+      "status": "needs_review",
+      "sorare_slug": "cole-henry-19990715",
+      "sorare_name": "Cole Henry",
+      "sorare_birth_date": "1999-07-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q5145276",
+      "name": "Colin Latimour",
+      "status": "needs_review",
+      "sorare_slug": "colin-castleton-20000525",
+      "sorare_name": "Colin Castleton",
+      "sorare_birth_date": "2000-05-25",
+      "sorare_club": "Orlando Magic"
+    },
+    {
+      "player_id": "wd:Q17306319",
+      "name": "Colin Murphy",
+      "status": "needs_review",
+      "sorare_slug": "chris-murphy-19980605",
+      "sorare_name": "Chris Murphy",
+      "sorare_birth_date": "1998-06-05",
+      "sorare_club": "Chicago White Sox"
+    },
+    {
+      "player_id": "wd:Q5145561",
+      "name": "Colin Shaw",
+      "status": "needs_review",
+      "sorare_slug": "bradley-collins",
+      "sorare_name": "Bradley Collins",
+      "sorare_birth_date": "1997-02-18",
+      "sorare_club": "Bristol City FC"
+    },
+    {
+      "player_id": "wd:Q10438818",
+      "name": "Colin Tuaa",
+      "status": "needs_review",
+      "sorare_slug": "colin-dagba",
+      "sorare_name": "Colin Dagba",
+      "sorare_birth_date": "1998-09-09",
+      "sorare_club": "Carrarese Calcio"
+    },
+    {
+      "player_id": "wd:Q5145647",
+      "name": "Colin Walker",
+      "status": "needs_review",
+      "sorare_slug": "sam-walker",
+      "sorare_name": "Samuel Walker",
+      "sorare_birth_date": "1991-10-02",
+      "sorare_club": "Watford FC"
+    },
+    {
+      "player_id": "wd:Q131606798",
+      "name": "Conor Tracey",
+      "status": "needs_review",
+      "sorare_slug": "connor-metcalfe",
+      "sorare_name": "Connor Metcalfe",
+      "sorare_birth_date": "1999-11-05",
+      "sorare_club": "FC St. Pauli"
+    },
+    {
+      "player_id": "wd:Q131535554",
+      "name": "Corban Piper",
+      "status": "needs_review",
+      "sorare_slug": "corbin-carroll-20000821",
+      "sorare_name": "Corbin Carroll",
+      "sorare_birth_date": "2000-08-21",
+      "sorare_club": "Arizona Diamondbacks"
     }
   ]
 }
