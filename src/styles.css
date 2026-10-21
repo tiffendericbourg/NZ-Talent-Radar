@@ -52,3 +52,12 @@
 .scout-review-row span{color:#9eae9d}
 .scout-review-row a{color:#bce99c}
 @media(max-width:650px){.scout-review-row{grid-template-columns:1fr;gap:5px;padding:13px}}
+
+
+.scout-season-table{margin-top:25px;max-width:760px;border:1px solid #35513a;background:#17281c;border-radius:7px;padding:20px}
+.scout-season-table h3{font-family:'Space Grotesk',sans-serif;font-size:17px;margin-bottom:20px}
+.scout-season-head,.scout-season-row{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:8px;padding:10px 4px;border-bottom:1px solid #35503b;text-align:right}
+.scout-season-head span:first-child,.scout-season-row strong{text-align:left}
+.scout-season-head{color:#8ea994;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.scout-season-row{color:#d4e7d4;font-size:13px}
+.scout-season-row:last-child{border-bottom:0}
