@@ -176,5 +176,42 @@ class SorareTests(unittest.TestCase):
             self.assertEqual(output["not_found"], 2)
 
 
+    def test_fuzzy_search_does_not_create_false_review(self):
+        """A random Sorare hit must not be recommended for another NZ player."""
+        results = [{"slug": "aaron-anselmino", "displayName": "Aarón Anselmino",
+                    "birthDate": "2005-04-29", "sport": "FOOTBALL"}]
+        player = {**self.wood, "name": "Aaran Lines"}
+        outcome = sorare.lookup_player(player, "test", request_func=lambda *args: results)
+        self.assertEqual(outcome, {"status": "not_found", "candidate": None})
+
+    def test_exact_name_with_wrong_birth_is_review_only(self):
+        results = [{"slug": "chris-wood", "displayName": "Chris Wood",
+                    "birthDate": "2000-12-07", "sport": "FOOTBALL"}]
+        outcome = sorare.lookup_player(self.wood, "test", request_func=lambda *args: results)
+        self.assertEqual(outcome["status"], "needs_review")
+
+    def test_existing_false_fuzzy_hits_are_cleaned(self):
+        with tempfile.TemporaryDirectory() as folder:
+            p = Path(folder) / "players.json"
+            report = Path(folder) / "matches.json"
+            player = {**self.wood, "name": "Aaran Lines"}
+            p.write_text(json.dumps({"players": [player]}), encoding="utf-8")
+            report.write_text(json.dumps({"matches": [{
+                "player_id": player["id"], "name": "Aaran Lines",
+                "status": "needs_review", "sorare_slug": "aaron-anselmino",
+                "sorare_name": "Aarón Anselmino",
+                "sorare_birth_date": "2005-04-29", "sorare_club": "Chelsea"
+            }]}), encoding="utf-8")
+            with patch.object(sorare, "PLAYERS_FILE", p), patch.object(
+                sorare, "MATCHES_FILE", report
+            ), patch.dict(sorare.os.environ, {"SORARE_API_KEY": "fake-test"}), patch.object(
+                sorare, "lookup_player", return_value={"status": "not_found", "candidate": None}
+            ):
+                sorare.run(limit=1)
+            result = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual(result["not_found"], 1)
+            self.assertEqual(result["matches"][0]["sorare_slug"], None)
+
+
 if __name__ == "__main__":
     unittest.main()
