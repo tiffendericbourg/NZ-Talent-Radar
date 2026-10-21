@@ -2,12 +2,12 @@
   "generated_at": "2026-10-21",
   "source": "Sorare football GraphQL",
   "scanned": 10,
-  "checked_so_far": 220,
-  "remaining": 891,
+  "checked_so_far": 230,
+  "remaining": 881,
   "confirmed": 4,
   "already_matched": 0,
   "needs_review": 1,
-  "not_found": 215,
+  "not_found": 225,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -1983,6 +1983,96 @@
     {
       "player_id": "wd:Q18347008",
       "name": "Daisy Cleverley",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q2078144",
+      "name": "Dakota Lucas",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q64031859",
+      "name": "Dalton Wilkins",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q5213766",
+      "name": "Dan Jones",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q3701369",
+      "name": "Dan Keat",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q66363064",
+      "name": "Dan Morgan",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q5214751",
+      "name": "Dana Humby",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q28748016",
+      "name": "Dane Ingham",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q64285274",
+      "name": "Dane Schnell",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q136788277",
+      "name": "Daniel Edwards",
+      "status": "not_found",
+      "sorare_slug": null,
+      "sorare_name": null,
+      "sorare_birth_date": null,
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q1160541",
+      "name": "Daniel Ellensohn",
       "status": "not_found",
       "sorare_slug": null,
       "sorare_name": null,
