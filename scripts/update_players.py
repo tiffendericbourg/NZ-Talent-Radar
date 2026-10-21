@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "public/data/players.json"
 MANUAL = ROOT / "data/manual_players.csv"
+REPORT = ROOT / "public/data/collection_report.json"
 HEADERS = {"User-Agent": "NZTalentRadar/1.1 (https://github.com/tiffendericbourg/NZ-Talent-Radar)", "Accept": "application/json"}
 # Separate targeted queries to avoid a slow, expensive SPARQL UNION.
 # Occupation Q937857 includes women's and men's association football.
@@ -160,16 +161,31 @@ def run():
     with MANUAL.open(newline="", encoding="utf-8-sig") as file:
         manual = list(csv.DictReader(file))
     discovered = set()
+    failed_queries = []
+    query_counts = []
     for number, query in enumerate(QUERIES, 1):
-        payload = request("https://query.wikidata.org/sparql", {"query": query, "format": "json"})
-        discovered.update(row["person"]["value"].rsplit("/", 1)[-1] for row in payload["results"]["bindings"])
-        print(f"Discovery {number}/{len(QUERIES)}: {len(discovered)} unique IDs")
-    discovered = {qid for qid in discovered if re.fullmatch(r"Q\d+", qid)}
-    if not discovered:
-        raise RuntimeError("No Wikidata players found")
+        try:
+            payload = request("https://query.wikidata.org/sparql", {"query": query, "format": "json"})
+            ids_found = {row["person"]["value"].rsplit("/", 1)[-1]
+                         for row in payload["results"]["bindings"]}
+            ids_found = {qid for qid in ids_found if re.fullmatch(r"Q\d+", qid)}
+            discovered.update(ids_found)
+            query_counts.append(len(ids_found))
+            print(f"Discovery {number}/{len(QUERIES)}: {len(ids_found)} hits, {len(discovered)} unique")
+        except (HTTPError, URLError, TimeoutError, ValueError, KeyError) as error:
+            failed_queries.append(number)
+            query_counts.append(None)
+            print(f"WARNING: Discovery query {number} failed: {error}", file=sys.stderr)
+    if len(discovered) < 5:
+        raise RuntimeError("Insufficient results from Wikidata; keeping existing data")
     people = entities_for(discovered, props="labels|claims")
-    if any(q not in people or "missing" in people[q] for q in discovered):
-        raise RuntimeError("Some player details were missing")
+    missing = [q for q in discovered if q not in people or "missing" in people[q]]
+    if missing:
+        print(f"WARNING: {len(missing)} Wikidata IDs unavailable, keeping previous records if any")
+        for q in missing:
+            people.pop(q, None)
+    if len(people) < 5:
+        raise RuntimeError("Too few Wikidata player records; keeping existing data")
     refs = set(NZ_TEAMS) | {"Q664"}
     places_and_teams = set()
     for entity in people.values():
@@ -220,12 +236,42 @@ def run():
     overlay_manual(result, manual, today)
     records = sorted(result.values(), key=lambda p: (p.get("name", "").lower(), p["id"]))
     snapshot = {"generated_at": today.isoformat(), "source": "Wikidata + manual review", "players": records}
+    report = {
+        "generated_at": today.isoformat(),
+        "discovery_queries": len(QUERIES),
+        "query_hits": query_counts,
+        "failed_queries": failed_queries,
+        "discovered_wikidata_ids": len(discovered),
+        "fetched_wikidata_players": len(people),
+        "missing_wikidata_entities": len(missing),
+        "total_players": len(records),
+        "new_players": len(set(result) - set(old)),
+        "manual_rows": len(manual),
+        "with_birth_date": sum(bool(p.get("birth_date")) for p in records),
+        "with_position": sum(bool(p.get("position")) for p in records),
+        "with_club": sum(bool(p.get("club")) for p in records),
+        "women": sum(p.get("gender") == "Women" for p in records),
+        "men": sum(p.get("gender") == "Men" for p in records),
+        "under_23": sum(p.get("age") is not None and p["age"] < 23 for p in records),
+        "abroad_with_known_club": sum(
+            bool(p.get("club")) and bool(p.get("club_country"))
+            and p["club_country"] != "New Zealand" for p in records),
+        "potential_to_verify": sum(
+            p.get("eligibility_status") == "potential_to_verify" for p in records),
+    }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    # Write the player file last: any failed download leaves the previous one untouched.
+    report_tmp = REPORT.with_suffix(".json.tmp")
+    report_tmp.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    report_tmp.replace(REPORT)
     temp = OUTPUT.with_suffix(".json.tmp")
     temp.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temp.replace(OUTPUT)
-    print(f"Total: {len(records)} | New: {len(set(result)-set(old))} | Refreshed: {len(people)}")
-    print(f"Known club: {sum(bool(p.get('club')) for p in records)} | Missing birthday: {sum(not p.get('birth_date') for p in records)}")
+    print(f"Total: {len(records)} | New: {report['new_players']} | Refreshed: {len(people)}")
+    print(f"Under 23: {report['under_23']} | Abroad (club known): {report['abroad_with_known_club']}")
+    print(f"Women: {report['women']} | Known club: {report['with_club']} | Missing birthday: {len(records) - report['with_birth_date']}")
+    if failed_queries:
+        print(f"PARTIAL DISCOVERY: failed queries {failed_queries}", file=sys.stderr)
 
 if __name__ == "__main__":
     try:
