@@ -18,15 +18,23 @@ python scripts/update_players.py
 The Python script needs an internet connection to Wikidata; the website uses only the published JSON file.
 
 ## How the data works
-- `scripts/update_players.py` discovers players on Wikidata using NZ citizenship, sporting nationality, or a NZ birthplace.
-- Public Wikidata entity data supplies available birth dates, positions, team memberships, and source IDs.
-- `data/manual_players.csv` holds manual additions and corrections. Filled CSV cells override Wikidata; a matching Wikidata QID preserves stable IDs.
+- `scripts/update_players.py` uses six targeted Wikidata queries: New Zealand citizenship, sporting nationality, senior national team membership, and birthplaces (country/cities/one administrative level). The same search includes women's and men's footballers.
+- Wikidata entity data supplies birth dates, positions, team memberships, country for sport, citizenship, and source IDs. Related locations and club names are loaded separately so we avoid downloading thousands of historical team records.
+- A club is shown only when a dated, unambiguous membership is available. Historical or national teams are never treated as clubs when identifiable. Missing values stay empty; the website does not guess.
+- `data/manual_players.csv` holds manual additions and corrections. Filled CSV cells override Wikidata; matching Wikidata IDs preserve stable identities. A player without a QID is merged only when full name and exact birth date match one Wikidata player.
 - `public/data/players.json` holds the snapshot consumed by React.
-- If Wikidata is unavailable, **the existing snapshot is preserved**. No fake statistics are generated.
+- On timeouts or rate limits, requests are retried carefully. If the update fails, **the existing JSON is preserved**; a partial or empty download is never published. No fake statistics are generated.
+- The offline tests (`python -m unittest discover -s tests -v`) cover CSV corrections, duplicate detection, conservative club selection, failed requests, and JSON generation.
 
 There are three research categories: `confirmed_international` (documented NZ senior national side), `nz_nationality` (documented NZ citizenship) and `potential_to_verify` (possible NZ connection). **These are not legal FIFA eligibility determinations.** Missing data remain blank. Club memberships can be incomplete or outdated.
 
 The initial source-linked catalogue contains seven real players, including men and women. Weekly runs should expand this automatically; the initial data are not exhaustive.
+
+## How to add or correct a player
+
+Open `data/manual_players.csv` and add one row. Use the Wikidata ID (for example, `Q74548`) if known. Otherwise, provide a consistent `manual_id`. Only fill values you have verified and include a public `source_url`. `nationalities` can contain multiple values separated by `|`. Leave unknown fields empty.
+
+Do not mark a person as `confirmed_international` solely on birthplace or citizenship. Current club and international eligibility should be checked against primary football sources when possible. The first Wikidata import has not been independently certified as exhaustive.
 
 ## GitHub Pages
 In repository **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. Run **Actions → Update data and deploy → Run workflow** or push to `main`. The workflow also runs every Monday at 05:20 UTC, builds the static site, and deploys it with GitHub's official Pages actions.
