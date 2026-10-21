@@ -1,0 +1,1813 @@
+{
+  "generated_at": "2026-10-21",
+  "source": "Sorare football GraphQL",
+  "scanned": 200,
+  "checked_so_far": 200,
+  "remaining": 911,
+  "confirmed": 4,
+  "already_matched": 0,
+  "needs_review": 196,
+  "not_found": 0,
+  "matches": [
+    {
+      "player_id": "wd:Q301037",
+      "name": "Aaran Lines",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q301865",
+      "name": "Aaron Clapham",
+      "status": "needs_review",
+      "sorare_slug": "aaron-ashby-19980524",
+      "sorare_name": "Aaron Ashby",
+      "sorare_birth_date": "1998-05-24",
+      "sorare_club": "Milwaukee Brewers"
+    },
+    {
+      "player_id": "wd:Q22097756",
+      "name": "Aaron Collins",
+      "status": "needs_review",
+      "sorare_slug": "aaron-brown-2005-07-22",
+      "sorare_name": "Aaron Brown",
+      "sorare_birth_date": "2005-07-22",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q302684",
+      "name": "Aaron Scott",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q4664441",
+      "name": "Abby Allan",
+      "status": "needs_review",
+      "sorare_slug": "bobby-allain",
+      "sorare_name": "Bobby Allain",
+      "sorare_birth_date": "1991-11-28",
+      "sorare_club": "Grenoble Foot 38"
+    },
+    {
+      "player_id": "wd:Q306882",
+      "name": "Abby Erceg",
+      "status": "needs_review",
+      "sorare_slug": "abner-vinicius-da-silva-santos",
+      "sorare_name": "Abner",
+      "sorare_birth_date": "2000-05-27",
+      "sorare_club": "Olympique Lyonnais"
+    },
+    {
+      "player_id": "wd:Q97762502",
+      "name": "Abigail Roper",
+      "status": "needs_review",
+      "sorare_slug": "abdelkabir-abqar",
+      "sorare_name": "A. Abqar",
+      "sorare_birth_date": "1999-03-10",
+      "sorare_club": "Getafe CF"
+    },
+    {
+      "player_id": "wd:Q131785405",
+      "name": "Adam Bell",
+      "status": "needs_review",
+      "sorare_slug": "adam-abdelilah-guram",
+      "sorare_name": "Adam Huram",
+      "sorare_birth_date": "2009-03-13",
+      "sorare_club": "HNK Hajduk Split"
+    },
+    {
+      "player_id": "wd:Q5684101",
+      "name": "Adam Cowan",
+      "status": "needs_review",
+      "sorare_slug": "adam-aznou-ben-cheikh",
+      "sorare_name": "Adam Aznou",
+      "sorare_birth_date": "2006-06-02",
+      "sorare_club": "Málaga CF"
+    },
+    {
+      "player_id": "wd:Q3816328",
+      "name": "Adam Highfield",
+      "status": "needs_review",
+      "sorare_slug": "adam-gabriel",
+      "sorare_name": "Adam Gabriel",
+      "sorare_birth_date": "2001-05-28",
+      "sorare_club": "FC Viktoria Plzeň"
+    },
+    {
+      "player_id": "wd:Q2699932",
+      "name": "Adam McGeorge",
+      "status": "needs_review",
+      "sorare_slug": "adam-cimber-19900815",
+      "sorare_name": "Adam Cimber",
+      "sorare_birth_date": "1990-08-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q24239357",
+      "name": "Adam Mitchell",
+      "status": "needs_review",
+      "sorare_slug": "adam-cimber-19900815",
+      "sorare_name": "Adam Cimber",
+      "sorare_birth_date": "1990-08-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4679627",
+      "name": "Adam Proudlock",
+      "status": "needs_review",
+      "sorare_slug": "jason-adam-19910804",
+      "sorare_name": "Jason Adam",
+      "sorare_birth_date": "1991-08-04",
+      "sorare_club": "San Diego Padres"
+    },
+    {
+      "player_id": "wd:Q948038",
+      "name": "Adam Thomas",
+      "status": "needs_review",
+      "sorare_slug": "adam-abdelilah-guram",
+      "sorare_name": "Adam Huram",
+      "sorare_birth_date": "2009-03-13",
+      "sorare_club": "HNK Hajduk Split"
+    },
+    {
+      "player_id": "wd:Q131754973",
+      "name": "Adama Coulibaly",
+      "status": "needs_review",
+      "sorare_slug": "adam-cimber-19900815",
+      "sorare_name": "Adam Cimber",
+      "sorare_birth_date": "1990-08-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q3605617",
+      "name": "Adrian Elrick",
+      "status": "needs_review",
+      "sorare_slug": "adi-nalic",
+      "sorare_name": "Adi Nalić",
+      "sorare_birth_date": "1997-12-01",
+      "sorare_club": "SCS CFR 1907 Cluj"
+    },
+    {
+      "player_id": "wd:Q4685431",
+      "name": "Adrian Webster",
+      "status": "needs_review",
+      "sorare_slug": "adam-webster",
+      "sorare_name": "Adam Webster",
+      "sorare_birth_date": "1995-01-04",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4685683",
+      "name": "Adrienne Bain",
+      "status": "needs_review",
+      "sorare_slug": "adrian-dieguez-grande",
+      "sorare_name": "Adrián Diéguez",
+      "sorare_birth_date": "1996-02-04",
+      "sorare_club": "RKS Radomiak Radom"
+    },
+    {
+      "player_id": "wd:Q123137079",
+      "name": "Aidan Carey",
+      "status": "needs_review",
+      "sorare_slug": "aidan-harris",
+      "sorare_name": "Aidan Harris",
+      "sorare_birth_date": "2006-12-16",
+      "sorare_club": "Newcastle United FC"
+    },
+    {
+      "player_id": "wd:Q27855547",
+      "name": "Aimee Phillips",
+      "status": "needs_review",
+      "sorare_slug": "keiran-phillips",
+      "sorare_name": "Kieran Phillips",
+      "sorare_birth_date": "2000-02-18",
+      "sorare_club": "Ross County FC"
+    },
+    {
+      "player_id": "wd:Q4707238",
+      "name": "Alan Marley",
+      "status": "needs_review",
+      "sorare_slug": "alan-aguerre",
+      "sorare_name": "Alan Aguerre",
+      "sorare_birth_date": "1990-08-23",
+      "sorare_club": "CA Central Córdoba de Santiago del Estero"
+    },
+    {
+      "player_id": "wd:Q4707553",
+      "name": "Alan Preston",
+      "status": "needs_review",
+      "sorare_slug": "alan-agustin-velasco",
+      "sorare_name": "Alan Velasco",
+      "sorare_birth_date": "2002-07-27",
+      "sorare_club": "CA Boca Juniors"
+    },
+    {
+      "player_id": "wd:Q4707857",
+      "name": "Alan Stroud",
+      "status": "needs_review",
+      "sorare_slug": "alan-browne",
+      "sorare_name": "Alan Browne",
+      "sorare_birth_date": "1995-04-15",
+      "sorare_club": "Sunderland AFC"
+    },
+    {
+      "player_id": "wd:Q4707956",
+      "name": "Alan Vest",
+      "status": "needs_review",
+      "sorare_slug": "alan-agustin-velasco",
+      "sorare_name": "Alan Velasco",
+      "sorare_birth_date": "2002-07-27",
+      "sorare_club": "CA Boca Juniors"
+    },
+    {
+      "player_id": "wd:Q4708060",
+      "name": "Alan Wilkinson",
+      "status": "needs_review",
+      "sorare_slug": "alan-de-souza-guimaraes",
+      "sorare_name": "Alan",
+      "sorare_birth_date": "2000-03-08",
+      "sorare_club": "Vitória Guimarães SC"
+    },
+    {
+      "player_id": "wd:Q16733912",
+      "name": "Albert Oti",
+      "status": "needs_review",
+      "sorare_slug": "albert-frank-millgramm",
+      "sorare_name": "Albert Millgramm",
+      "sorare_birth_date": "2004-11-12",
+      "sorare_club": "SC Paderborn 07"
+    },
+    {
+      "player_id": "wd:Q132176782",
+      "name": "Alby Kelly-Heald",
+      "status": "needs_review",
+      "sorare_slug": "albin-ekdal",
+      "sorare_name": "Albin Ekdal",
+      "sorare_birth_date": "1989-07-28",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4716776",
+      "name": "Alex Caldwell",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-calvo-mata",
+      "sorare_name": "Álex Calvo",
+      "sorare_birth_date": "2004-02-20",
+      "sorare_club": "FC Andorra"
+    },
+    {
+      "player_id": "wd:Q4716891",
+      "name": "Alex Davis",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-calvo-mata",
+      "sorare_name": "Álex Calvo",
+      "sorare_birth_date": "2004-02-20",
+      "sorare_club": "FC Andorra"
+    },
+    {
+      "player_id": "wd:Q2761720",
+      "name": "Alex Feneridis",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-centelles-plaza",
+      "sorare_name": "Álex Centelles",
+      "sorare_birth_date": "1999-08-30",
+      "sorare_club": "PFC Levski Sofia"
+    },
+    {
+      "player_id": "wd:Q110616470",
+      "name": "Alex Greive",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-berenguer-remiro",
+      "sorare_name": "Álex Berenguer",
+      "sorare_birth_date": "1995-07-04",
+      "sorare_club": "Athletic Club"
+    },
+    {
+      "player_id": "wd:Q4717337",
+      "name": "Alex Laing",
+      "status": "needs_review",
+      "sorare_slug": "alex-lange-19951002",
+      "sorare_name": "Alex Lange",
+      "sorare_birth_date": "1995-10-02",
+      "sorare_club": "Kansas City Royals"
+    },
+    {
+      "player_id": "wd:Q21066711",
+      "name": "Alex McGregor",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-fernandez-iglesias",
+      "sorare_name": "Álex",
+      "sorare_birth_date": "1992-10-15",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4717491",
+      "name": "Alex Metzger",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-berenguer-remiro",
+      "sorare_name": "Álex Berenguer",
+      "sorare_birth_date": "1995-07-04",
+      "sorare_club": "Athletic Club"
+    },
+    {
+      "player_id": "wd:Q16215968",
+      "name": "Alex Napa",
+      "status": "needs_review",
+      "sorare_slug": "aleix-garcia-serrano",
+      "sorare_name": "Aleix García",
+      "sorare_birth_date": "1997-06-28",
+      "sorare_club": "Bayer 04 Leverkusen"
+    },
+    {
+      "player_id": "wd:Q107558242",
+      "name": "Alex Paulsen",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-baena-rodriguez",
+      "sorare_name": "Álex Baena",
+      "sorare_birth_date": "2001-07-20",
+      "sorare_club": "Atlético de Madrid"
+    },
+    {
+      "player_id": "wd:Q16239766",
+      "name": "Alex Rufer",
+      "status": "confirmed",
+      "sorare_slug": "alex-arthur-rufer",
+      "sorare_name": "Alex Rufer",
+      "sorare_birth_date": "1996-06-12",
+      "sorare_club": "Wellington Phoenix FC"
+    },
+    {
+      "player_id": "wd:Q4717801",
+      "name": "Alex Smith",
+      "status": "needs_review",
+      "sorare_slug": "alex-smithies",
+      "sorare_name": "Alex Smithies",
+      "sorare_birth_date": "1990-03-05",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4717838",
+      "name": "Alex Stenhouse",
+      "status": "needs_review",
+      "sorare_slug": "ajibola-alese",
+      "sorare_name": "Ajibola Alese",
+      "sorare_birth_date": "2001-01-17",
+      "sorare_club": "Sunderland Under 21"
+    },
+    {
+      "player_id": "wd:Q4717853",
+      "name": "Alex Sutherland",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-bernal-carreras",
+      "sorare_name": "Álex Bernal",
+      "sorare_birth_date": "1991-03-03",
+      "sorare_club": "Real Club Recreativo de Huelva"
+    },
+    {
+      "player_id": "wd:Q4721758",
+      "name": "Alf Smith",
+      "status": "needs_review",
+      "sorare_slug": "alex-smithies",
+      "sorare_name": "Alex Smithies",
+      "sorare_birth_date": "1990-03-05",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4721762",
+      "name": "Alf Stamp",
+      "status": "needs_review",
+      "sorare_slug": "alan-sosa-2003-05-05",
+      "sorare_name": "Alan Sosa",
+      "sorare_birth_date": "2003-05-05",
+      "sorare_club": "CA Aldosivi"
+    },
+    {
+      "player_id": "wd:Q131554281",
+      "name": "Alfie Rogers",
+      "status": "needs_review",
+      "sorare_slug": "alfie-bavidge",
+      "sorare_name": "Alfie Bavidge",
+      "sorare_birth_date": "2006-04-11",
+      "sorare_club": "Inverness Caledonian Thistle FC"
+    },
+    {
+      "player_id": "wd:Q4725149",
+      "name": "Ali Riley",
+      "status": "needs_review",
+      "sorare_slug": "ali-houary-jeddoub",
+      "sorare_name": "Ali Houary",
+      "sorare_birth_date": "2005-08-05",
+      "sorare_club": "Elche CF"
+    },
+    {
+      "player_id": "wd:Q4727084",
+      "name": "Alison Grant",
+      "status": "needs_review",
+      "sorare_slug": "alisson-de-almeida-santos",
+      "sorare_name": "Alisson Santos",
+      "sorare_birth_date": "2002-09-27",
+      "sorare_club": "SSC Napoli"
+    },
+    {
+      "player_id": "wd:Q4727250",
+      "name": "Alisse Robertson",
+      "status": "needs_review",
+      "sorare_slug": "alessio-besio",
+      "sorare_name": "Alessio Besio",
+      "sorare_birth_date": "2004-03-18",
+      "sorare_club": "VfL Wolfsburg"
+    },
+    {
+      "player_id": "wd:Q4727277",
+      "name": "Alistair Elder",
+      "status": "needs_review",
+      "sorare_slug": "alisa-randell",
+      "sorare_name": "D. Randell",
+      "sorare_birth_date": "2007-08-25",
+      "sorare_club": "Minnesota United"
+    },
+    {
+      "player_id": "wd:Q3612329",
+      "name": "Allan Boath",
+      "status": "needs_review",
+      "sorare_slug": "alban-lafont",
+      "sorare_name": "Alban Lafont",
+      "sorare_birth_date": "1999-01-23",
+      "sorare_club": "Amed Sportif Faaliyetler Kulübü"
+    },
+    {
+      "player_id": "wd:Q4730517",
+      "name": "Allan Carville",
+      "status": "needs_review",
+      "sorare_slug": "alan-marinelli",
+      "sorare_name": "Alan Marinelli",
+      "sorare_birth_date": "1999-04-07",
+      "sorare_club": "1. FC Slovácko"
+    },
+    {
+      "player_id": "wd:Q4730624",
+      "name": "Allan Gilgrist",
+      "status": "needs_review",
+      "sorare_slug": "allan-andrade-elias",
+      "sorare_name": "Allan",
+      "sorare_birth_date": "2004-04-19",
+      "sorare_club": "Manchester City FC"
+    },
+    {
+      "player_id": "wd:Q4730734",
+      "name": "Allan Jones",
+      "status": "needs_review",
+      "sorare_slug": "alan-browne",
+      "sorare_name": "Alan Browne",
+      "sorare_birth_date": "1995-04-15",
+      "sorare_club": "Sunderland AFC"
+    },
+    {
+      "player_id": "wd:Q3816095",
+      "name": "Allan Pearce",
+      "status": "needs_review",
+      "sorare_slug": "alan-jhosue-cervantes-martin-del-campo",
+      "sorare_name": "Alan Cervantes",
+      "sorare_birth_date": "1998-01-17",
+      "sorare_club": "Club América"
+    },
+    {
+      "player_id": "wd:Q4730979",
+      "name": "Allan Smith",
+      "status": "needs_review",
+      "sorare_slug": "aaron-nesmith-19991016",
+      "sorare_name": "Aaron Nesmith",
+      "sorare_birth_date": "1999-10-16",
+      "sorare_club": "Indiana Pacers"
+    },
+    {
+      "player_id": "wd:Q97744058",
+      "name": "Ally Green",
+      "status": "needs_review",
+      "sorare_slug": "a-j-green-19990927",
+      "sorare_name": "AJ Green",
+      "sorare_birth_date": "1999-09-27",
+      "sorare_club": "Milwaukee Bucks"
+    },
+    {
+      "player_id": "wd:Q4737491",
+      "name": "Alun Evans",
+      "status": "needs_review",
+      "sorare_slug": "logan-evans-20010605",
+      "sorare_name": "Logan Evans",
+      "sorare_birth_date": "2001-06-05",
+      "sorare_club": "Seattle Mariners"
+    },
+    {
+      "player_id": "wd:Q138637005",
+      "name": "Alyssa Whinham",
+      "status": "needs_review",
+      "sorare_slug": "alysson-cristian-oliveira-silva",
+      "sorare_name": "Alysson",
+      "sorare_birth_date": "2002-09-26",
+      "sorare_club": "Leixões SC"
+    },
+    {
+      "player_id": "wd:Q4739599",
+      "name": "Amanda Crawford",
+      "status": "needs_review",
+      "sorare_slug": "richard-aman",
+      "sorare_name": "Richard Aman",
+      "sorare_birth_date": "2004-03-16",
+      "sorare_club": "Loudoun United FC"
+    },
+    {
+      "player_id": "wd:Q437866",
+      "name": "Amber Hearn",
+      "status": "needs_review",
+      "sorare_slug": "aamet-jose-calderon-tello",
+      "sorare_name": "Aamet Calderón",
+      "sorare_birth_date": "1998-07-01",
+      "sorare_club": "Club Atlético Grau"
+    },
+    {
+      "player_id": "wd:Q97760426",
+      "name": "Amelia Abbott",
+      "status": "needs_review",
+      "sorare_slug": "abdelrahman-saidi",
+      "sorare_name": "Abdelrahman Boudah",
+      "sorare_birth_date": "1999-08-13",
+      "sorare_club": "Västerås SK Fotboll"
+    },
+    {
+      "player_id": "wd:Q136697533",
+      "name": "Anaru Cassidy",
+      "status": "needs_review",
+      "sorare_slug": "aaron-ashby-19980524",
+      "sorare_name": "Aaron Ashby",
+      "sorare_birth_date": "1998-05-24",
+      "sorare_club": "Milwaukee Brewers"
+    },
+    {
+      "player_id": "wd:Q18719698",
+      "name": "Andre de Jong",
+      "status": "needs_review",
+      "sorare_slug": "andre-anderson-pomilio-lima-da-silva",
+      "sorare_name": "André Anderson",
+      "sorare_birth_date": "1999-09-23",
+      "sorare_club": "Pouso Alegre FC"
+    },
+    {
+      "player_id": "wd:Q4755179",
+      "name": "Andrea Meikle",
+      "status": "needs_review",
+      "sorare_slug": "andras-nemeth",
+      "sorare_name": "András Németh",
+      "sorare_birth_date": "2002-11-09",
+      "sorare_club": "Puskás Ferenc Akadémia FC"
+    },
+    {
+      "player_id": "wd:Q4755256",
+      "name": "Andrea Rogers",
+      "status": "needs_review",
+      "sorare_slug": "andraz-sporar",
+      "sorare_name": "Andraž Šporar",
+      "sorare_birth_date": "1994-02-27",
+      "sorare_club": "ŠK Slovan Bratislava"
+    },
+    {
+      "player_id": "wd:Q525296",
+      "name": "Andrew Barron",
+      "status": "needs_review",
+      "sorare_slug": "adrian-andres-cubas",
+      "sorare_name": "Andrés Cubas",
+      "sorare_birth_date": "1996-05-11",
+      "sorare_club": "Vancouver Whitecaps FC"
+    },
+    {
+      "player_id": "wd:Q3616242",
+      "name": "Andrew Bevin",
+      "status": "needs_review",
+      "sorare_slug": "aleksandar-andrejevic",
+      "sorare_name": "Aleksandar Andrejević",
+      "sorare_birth_date": "1992-03-28",
+      "sorare_club": "FK Napredak Kruševac"
+    },
+    {
+      "player_id": "wd:Q21005097",
+      "name": "Andrew Blake",
+      "status": "needs_review",
+      "sorare_slug": "andre-blake",
+      "sorare_name": "Andre Blake",
+      "sorare_birth_date": "1990-11-21",
+      "sorare_club": "Philadelphia Union"
+    },
+    {
+      "player_id": "wd:Q503887",
+      "name": "Andrew Boyens",
+      "status": "needs_review",
+      "sorare_slug": "adrian-andres-cubas",
+      "sorare_name": "Andrés Cubas",
+      "sorare_birth_date": "1996-05-11",
+      "sorare_club": "Vancouver Whitecaps FC"
+    },
+    {
+      "player_id": "wd:Q504542",
+      "name": "Andrew Durante",
+      "status": "needs_review",
+      "sorare_slug": "andre-lourenco-duarte",
+      "sorare_name": "André Duarte",
+      "sorare_birth_date": "1997-09-12",
+      "sorare_club": "SC Fotbal Club FCSB SA"
+    },
+    {
+      "player_id": "wd:Q4760589",
+      "name": "Andy Deeley",
+      "status": "needs_review",
+      "sorare_slug": "andres-jose-rodriguez-gaitan",
+      "sorare_name": "Andy",
+      "sorare_birth_date": "1990-01-30",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4760937",
+      "name": "Andy Leslie",
+      "status": "needs_review",
+      "sorare_slug": "andres-jose-rodriguez-gaitan",
+      "sorare_name": "Andy",
+      "sorare_birth_date": "1990-01-30",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4761225",
+      "name": "Andy Rennie",
+      "status": "needs_review",
+      "sorare_slug": "andre-trindade-da-costa-neto",
+      "sorare_name": "André",
+      "sorare_birth_date": "2001-07-16",
+      "sorare_club": "Wolverhampton Wanderers FC"
+    },
+    {
+      "player_id": "wd:Q97750620",
+      "name": "Aneka Mittendorff",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q4762453",
+      "name": "Angela Hall",
+      "status": "needs_review",
+      "sorare_slug": "angel-alarcon",
+      "sorare_name": "Ángel Alarcón",
+      "sorare_birth_date": "2004-05-15",
+      "sorare_club": "FC Utrecht"
+    },
+    {
+      "player_id": "wd:Q61636189",
+      "name": "Angelique Stannett",
+      "status": "needs_review",
+      "sorare_slug": "ange-martial-tia",
+      "sorare_name": "Ange Tia",
+      "sorare_birth_date": "2006-11-20",
+      "sorare_club": "Stade de Reims"
+    },
+    {
+      "player_id": "wd:Q53773340",
+      "name": "Angus Kilkolly",
+      "status": "needs_review",
+      "sorare_slug": "ivan-dario-angulo-cortes",
+      "sorare_name": "Iván Angulo",
+      "sorare_birth_date": "1999-03-22",
+      "sorare_club": "Orlando City SC"
+    },
+    {
+      "player_id": "wd:Q509509",
+      "name": "Anna Green",
+      "status": "needs_review",
+      "sorare_slug": "a-j-green-19990927",
+      "sorare_name": "AJ Green",
+      "sorare_birth_date": "1999-09-27",
+      "sorare_club": "Milwaukee Bucks"
+    },
+    {
+      "player_id": "wd:Q55642886",
+      "name": "Anna Leat",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q4767831",
+      "name": "Annalie Longo",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q4768699",
+      "name": "Anne Ormrod",
+      "status": "needs_review",
+      "sorare_slug": "angel-rodrigo-romero-villamayor",
+      "sorare_name": "Ángel Romero",
+      "sorare_birth_date": "1992-07-04",
+      "sorare_club": "CA Boca Juniors"
+    },
+    {
+      "player_id": "wd:Q4768803",
+      "name": "Anne Smith",
+      "status": "needs_review",
+      "sorare_slug": "aaron-nesmith-19991016",
+      "sorare_name": "Aaron Nesmith",
+      "sorare_birth_date": "1999-10-16",
+      "sorare_club": "Indiana Pacers"
+    },
+    {
+      "player_id": "wd:Q52162126",
+      "name": "Ano Tisam",
+      "status": "needs_review",
+      "sorare_slug": "ilano-silva-timas",
+      "sorare_name": "Ilano Timas",
+      "sorare_birth_date": "2002-09-29",
+      "sorare_club": "Excelsior Rotterdam"
+    },
+    {
+      "player_id": "wd:Q5696954",
+      "name": "Anthony Hobbs",
+      "status": "needs_review",
+      "sorare_slug": "anthony-banda-19930810",
+      "sorare_name": "Anthony Banda",
+      "sorare_birth_date": "1993-08-10",
+      "sorare_club": "Minnesota Twins"
+    },
+    {
+      "player_id": "wd:Q97760526",
+      "name": "Arabella Maynard",
+      "status": "needs_review",
+      "sorare_slug": "adael-amador-20030411",
+      "sorare_name": "Adael Amador",
+      "sorare_birth_date": "2003-04-11",
+      "sorare_club": "Colorado Rockies"
+    },
+    {
+      "player_id": "wd:Q4786747",
+      "name": "Archie McQuarrie",
+      "status": "needs_review",
+      "sorare_slug": "archie-gray",
+      "sorare_name": "Archie Gray",
+      "sorare_birth_date": "2006-03-12",
+      "sorare_club": "Tottenham Hotspur FC"
+    },
+    {
+      "player_id": "wd:Q318931",
+      "name": "Archie Thompson",
+      "status": "needs_review",
+      "sorare_slug": "archie-mair",
+      "sorare_name": "Archie Mair",
+      "sorare_birth_date": "2001-02-10",
+      "sorare_club": "Carlisle United FC"
+    },
+    {
+      "player_id": "wd:Q4795574",
+      "name": "Aroon Clansey",
+      "status": "needs_review",
+      "sorare_slug": "aaron-anselmino",
+      "sorare_name": "Aarón Anselmino",
+      "sorare_birth_date": "2005-04-29",
+      "sorare_club": "Chelsea FC"
+    },
+    {
+      "player_id": "wd:Q4798107",
+      "name": "Arthur Brown",
+      "status": "needs_review",
+      "sorare_slug": "arthur-augusto-de-matos-soares",
+      "sorare_name": "Arthur",
+      "sorare_birth_date": "2003-03-17",
+      "sorare_club": "SV Werder Bremen"
+    },
+    {
+      "player_id": "wd:Q4799165",
+      "name": "Arthur Inglis",
+      "status": "needs_review",
+      "sorare_slug": "arthur-augusto-de-matos-soares",
+      "sorare_name": "Arthur",
+      "sorare_birth_date": "2003-03-17",
+      "sorare_club": "SV Werder Bremen"
+    },
+    {
+      "player_id": "wd:Q4799497",
+      "name": "Arthur Leong",
+      "status": "needs_review",
+      "sorare_slug": "arthur-augusto-de-matos-soares",
+      "sorare_name": "Arthur",
+      "sorare_birth_date": "2003-03-17",
+      "sorare_club": "SV Werder Bremen"
+    },
+    {
+      "player_id": "wd:Q4799666",
+      "name": "Arthur Masters",
+      "status": "needs_review",
+      "sorare_slug": "arthur-atta",
+      "sorare_name": "Arthur Atta",
+      "sorare_birth_date": "2003-01-14",
+      "sorare_club": "ACF Fiorentina"
+    },
+    {
+      "player_id": "wd:Q21622792",
+      "name": "Arus Sem",
+      "status": "needs_review",
+      "sorare_slug": "marcus-semien-19900917",
+      "sorare_name": "Marcus Semien",
+      "sorare_birth_date": "1990-09-17",
+      "sorare_club": "New York Mets"
+    },
+    {
+      "player_id": "wd:Q97735894",
+      "name": "Ashleigh Ward",
+      "status": "needs_review",
+      "sorare_slug": "ashley-hay",
+      "sorare_name": "Ashley Hay",
+      "sorare_birth_date": "2003-07-10",
+      "sorare_club": "Dundee FC"
+    },
+    {
+      "player_id": "wd:Q97762476",
+      "name": "Ashley Arquette",
+      "status": "needs_review",
+      "sorare_slug": "ashley-barnes",
+      "sorare_name": "Ashley Barnes",
+      "sorare_birth_date": "1989-10-30",
+      "sorare_club": "Burnley FC"
+    },
+    {
+      "player_id": "wd:Q62081390",
+      "name": "Atta Elayyan",
+      "status": "needs_review",
+      "sorare_slug": "arthur-atta",
+      "sorare_name": "Arthur Atta",
+      "sorare_birth_date": "2003-01-14",
+      "sorare_club": "ACF Fiorentina"
+    },
+    {
+      "player_id": "wd:Q16232369",
+      "name": "Aturangi Putere",
+      "status": "needs_review",
+      "sorare_slug": "adrian-houser-19930202",
+      "sorare_name": "Adrian Houser",
+      "sorare_birth_date": "1993-02-02",
+      "sorare_club": "San Francisco Giants"
+    },
+    {
+      "player_id": "wd:Q10473706",
+      "name": "Audrey Rigby",
+      "status": "needs_review",
+      "sorare_slug": "abner-uribe-20000620",
+      "sorare_name": "Abner Uribe",
+      "sorare_birth_date": "2000-06-20",
+      "sorare_club": "Milwaukee Brewers"
+    },
+    {
+      "player_id": "wd:Q16198257",
+      "name": "Augusty Bartillard",
+      "status": "needs_review",
+      "sorare_slug": "augustin-anello",
+      "sorare_name": "Augustin Anello",
+      "sorare_birth_date": "2002-04-22",
+      "sorare_club": "Philadelphia Union"
+    },
+    {
+      "player_id": "wd:Q109248412",
+      "name": "Ava Collins",
+      "status": "needs_review",
+      "sorare_slug": "bradley-collins",
+      "sorare_name": "Bradley Collins",
+      "sorare_birth_date": "1997-02-18",
+      "sorare_club": "Bristol City FC"
+    },
+    {
+      "player_id": "wd:Q97760540",
+      "name": "Ayla Pratt",
+      "status": "needs_review",
+      "sorare_slug": "alan-jhosue-cervantes-martin-del-campo",
+      "sorare_name": "Alan Cervantes",
+      "sorare_birth_date": "1998-01-17",
+      "sorare_club": "Club América"
+    },
+    {
+      "player_id": "wd:Q26131918",
+      "name": "Baramee Limwattana",
+      "status": "needs_review",
+      "sorare_slug": "abdoul-bamo-meite",
+      "sorare_name": "Bamo Meïté",
+      "sorare_birth_date": "2001-12-03",
+      "sorare_club": "Olympique de Marseille"
+    },
+    {
+      "player_id": "wd:Q4858832",
+      "name": "Barbara Cox",
+      "status": "needs_review",
+      "sorare_slug": "finley-frank-barbrook",
+      "sorare_name": "Finley Barbrook",
+      "sorare_birth_date": "2004-12-04",
+      "sorare_club": "Falkirk FC"
+    },
+    {
+      "player_id": "wd:Q9165909",
+      "name": "Barnabas Enjoy",
+      "status": "needs_review",
+      "sorare_slug": "ashley-barnes",
+      "sorare_name": "Ashley Barnes",
+      "sorare_birth_date": "1989-10-30",
+      "sorare_club": "Burnley FC"
+    },
+    {
+      "player_id": "wd:Q4863567",
+      "name": "Barrie Truman",
+      "status": "needs_review",
+      "sorare_slug": "barry-mckay",
+      "sorare_name": "Barrie McKay",
+      "sorare_birth_date": "1994-12-30",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q3635246",
+      "name": "Barry Pickering",
+      "status": "needs_review",
+      "sorare_slug": "harry-pickering",
+      "sorare_name": "Harry Pickering",
+      "sorare_birth_date": "1998-12-29",
+      "sorare_club": "Blackburn Rovers FC"
+    },
+    {
+      "player_id": "wd:Q97762400",
+      "name": "Bella Kingi",
+      "status": "needs_review",
+      "sorare_slug": "amari-i-bell",
+      "sorare_name": "Amari'i Bell",
+      "sorare_birth_date": "1994-05-05",
+      "sorare_club": "Charlton Athletic FC"
+    },
+    {
+      "player_id": "wd:Q97762482",
+      "name": "Bella Richards",
+      "status": "needs_review",
+      "sorare_slug": "amari-i-bell",
+      "sorare_name": "Amari'i Bell",
+      "sorare_birth_date": "1994-05-05",
+      "sorare_club": "Charlton Athletic FC"
+    },
+    {
+      "player_id": "wd:Q19968844",
+      "name": "Ben McKendry",
+      "status": "needs_review",
+      "sorare_slug": "alisson-ramses-becker",
+      "sorare_name": "Alisson Becker",
+      "sorare_birth_date": "1992-10-02",
+      "sorare_club": "Liverpool FC"
+    },
+    {
+      "player_id": "wd:Q106939313",
+      "name": "Ben Old",
+      "status": "needs_review",
+      "sorare_slug": "ayman-ben-mohamed",
+      "sorare_name": "Ayman Ben Mohamed",
+      "sorare_birth_date": "1994-12-08",
+      "sorare_club": "US Monastirienne"
+    },
+    {
+      "player_id": "wd:Q462202",
+      "name": "Ben Sigmund",
+      "status": "needs_review",
+      "sorare_slug": "ben-gibson",
+      "sorare_name": "Ben Gibson",
+      "sorare_birth_date": "1993-01-15",
+      "sorare_club": "Stoke City FC"
+    },
+    {
+      "player_id": "wd:Q62629839",
+      "name": "Ben Waine",
+      "status": "needs_review",
+      "sorare_slug": "abdelrafie-benzzine",
+      "sorare_name": "Abdelrafie Benzzine",
+      "sorare_birth_date": "2006-04-04",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q118612261",
+      "name": "Ben Wallace",
+      "status": "needs_review",
+      "sorare_slug": "ben-alexander-voll",
+      "sorare_name": "Ben Voll",
+      "sorare_birth_date": "2000-12-09",
+      "sorare_club": "FC St. Pauli"
+    },
+    {
+      "player_id": "wd:Q111264965",
+      "name": "Benjamin Mata",
+      "status": "needs_review",
+      "sorare_slug": "aron-benjaminsen",
+      "sorare_name": "Aron Benjaminsen",
+      "sorare_birth_date": "2007-11-02",
+      "sorare_club": "Heart of Midlothian FC"
+    },
+    {
+      "player_id": "wd:Q16215058",
+      "name": "Benjamin Rairoa",
+      "status": "needs_review",
+      "sorare_slug": "aron-benjaminsen",
+      "sorare_name": "Aron Benjaminsen",
+      "sorare_birth_date": "2007-11-02",
+      "sorare_club": "Heart of Midlothian FC"
+    },
+    {
+      "player_id": "wd:Q2227744",
+      "name": "Benjamin van den Broek",
+      "status": "needs_review",
+      "sorare_slug": "aron-benjaminsen",
+      "sorare_name": "Aron Benjaminsen",
+      "sorare_birth_date": "2007-11-02",
+      "sorare_club": "Heart of Midlothian FC"
+    },
+    {
+      "player_id": "wd:Q97692391",
+      "name": "Berlinda van Noorden",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-bernal-carreras",
+      "sorare_name": "Álex Bernal",
+      "sorare_birth_date": "1991-03-03",
+      "sorare_club": "Real Club Recreativo de Huelva"
+    },
+    {
+      "player_id": "wd:Q4895120",
+      "name": "Bert Hiddlestone",
+      "status": "needs_review",
+      "sorare_slug": "bert-esselink",
+      "sorare_name": "Bert Esselink",
+      "sorare_birth_date": "1999-08-16",
+      "sorare_club": "Dundee United FC"
+    },
+    {
+      "player_id": "wd:Q4895254",
+      "name": "Bert Ormond",
+      "status": "needs_review",
+      "sorare_slug": "anthony-bermont",
+      "sorare_name": "Anthony Bermont",
+      "sorare_birth_date": "2005-02-10",
+      "sorare_club": "Angers SCO"
+    },
+    {
+      "player_id": "wd:Q4897464",
+      "name": "Beth Clark",
+      "status": "needs_review",
+      "sorare_slug": "ben-doak",
+      "sorare_name": "Ben Doak",
+      "sorare_birth_date": "2005-11-11",
+      "sorare_club": "AFC Bournemouth"
+    },
+    {
+      "player_id": "wd:Q832256",
+      "name": "Betsy Hassett",
+      "status": "needs_review",
+      "sorare_slug": "bennett-sousa-19950406",
+      "sorare_name": "Bennett Sousa",
+      "sorare_birth_date": "1995-04-06",
+      "sorare_club": "Houston Astros"
+    },
+    {
+      "player_id": "wd:Q4907933",
+      "name": "Bill Anton",
+      "status": "needs_review",
+      "sorare_slug": "bill-antonio",
+      "sorare_name": "Bill Antonio",
+      "sorare_birth_date": "2002-09-03",
+      "sorare_club": "YR KV Mechelen"
+    },
+    {
+      "player_id": "wd:Q4908295",
+      "name": "Bill Brownlee",
+      "status": "needs_review",
+      "sorare_slug": "aaron-brown-2005-07-22",
+      "sorare_name": "Aaron Brown",
+      "sorare_birth_date": "2005-07-22",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4908464",
+      "name": "Bill Chapman",
+      "status": "needs_review",
+      "sorare_slug": "aroldis-chapman-19880228",
+      "sorare_name": "Aroldis Chapman",
+      "sorare_birth_date": "1988-02-28",
+      "sorare_club": "Boston Red Sox"
+    },
+    {
+      "player_id": "wd:Q4909317",
+      "name": "Bill Harris",
+      "status": "needs_review",
+      "sorare_slug": "bill-lathouwers",
+      "sorare_name": "Bill Lathouwers",
+      "sorare_birth_date": "1999-09-18",
+      "sorare_club": "KVC Westerlo"
+    },
+    {
+      "player_id": "wd:Q4909479",
+      "name": "Bill Hooper",
+      "status": "needs_review",
+      "sorare_slug": "bill-lathouwers",
+      "sorare_name": "Bill Lathouwers",
+      "sorare_birth_date": "1999-09-18",
+      "sorare_club": "KVC Westerlo"
+    },
+    {
+      "player_id": "wd:Q4909523",
+      "name": "Bill Hume",
+      "status": "needs_review",
+      "sorare_slug": "bilal-brahimi",
+      "sorare_name": "Billal Brahimi",
+      "sorare_birth_date": "2000-03-14",
+      "sorare_club": "Le Mans FC"
+    },
+    {
+      "player_id": "wd:Q4909531",
+      "name": "Bill Hunter",
+      "status": "needs_review",
+      "sorare_slug": "bilal-hussein",
+      "sorare_name": "Bilal Hussein",
+      "sorare_birth_date": "2000-04-22",
+      "sorare_club": "Degerfors IF"
+    },
+    {
+      "player_id": "wd:Q4909565",
+      "name": "Bill Ives",
+      "status": "needs_review",
+      "sorare_slug": "billy-mitchell",
+      "sorare_name": "Billy Mitchell",
+      "sorare_birth_date": "2001-04-07",
+      "sorare_club": "Sheffield Wednesday FC"
+    },
+    {
+      "player_id": "wd:Q4909703",
+      "name": "Bill Kennedy",
+      "status": "needs_review",
+      "sorare_slug": "matthew-kennedy",
+      "sorare_name": "Matty Kennedy",
+      "sorare_birth_date": "1994-11-01",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4909765",
+      "name": "Bill Knott",
+      "status": "needs_review",
+      "sorare_slug": "bill-antonio",
+      "sorare_name": "Bill Antonio",
+      "sorare_birth_date": "2002-09-03",
+      "sorare_club": "YR KV Mechelen"
+    },
+    {
+      "player_id": "wd:Q4911127",
+      "name": "Bill Thomas",
+      "status": "needs_review",
+      "sorare_slug": "bill-antonio",
+      "sorare_name": "Bill Antonio",
+      "sorare_birth_date": "2002-09-03",
+      "sorare_club": "YR KV Mechelen"
+    },
+    {
+      "player_id": "wd:Q5728588",
+      "name": "Bill Tuiloma",
+      "status": "needs_review",
+      "sorare_slug": "bill-tuiloma",
+      "sorare_name": "Bill Tuiloma",
+      "sorare_birth_date": "1995-03-27",
+      "sorare_club": "Wellington Phoenix FC"
+    },
+    {
+      "player_id": "wd:Q4911334",
+      "name": "Bill Westerveld",
+      "status": "needs_review",
+      "sorare_slug": "adam-webster",
+      "sorare_name": "Adam Webster",
+      "sorare_birth_date": "1995-01-04",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q4911484",
+      "name": "Bill Zuill",
+      "status": "needs_review",
+      "sorare_slug": "bilal-coulibaly-20040726",
+      "sorare_name": "Bilal Coulibaly",
+      "sorare_birth_date": "2004-07-26",
+      "sorare_club": "Washington Wizards"
+    },
+    {
+      "player_id": "wd:Q3640050",
+      "name": "Billy McClure",
+      "status": "needs_review",
+      "sorare_slug": "billy-gilmour",
+      "sorare_name": "Billy Gilmour",
+      "sorare_birth_date": "2001-06-11",
+      "sorare_club": "SSC Napoli"
+    },
+    {
+      "player_id": "wd:Q4913105",
+      "name": "Billy Nicolle",
+      "status": "needs_review",
+      "sorare_slug": "billy-cook-19990107",
+      "sorare_name": "Billy Cook",
+      "sorare_birth_date": "1999-01-07",
+      "sorare_club": "Pittsburgh Pirates"
+    },
+    {
+      "player_id": "wd:Q10489371",
+      "name": "Billy Woods",
+      "status": "needs_review",
+      "sorare_slug": "billy-cook-19990107",
+      "sorare_name": "Billy Cook",
+      "sorare_birth_date": "1999-01-07",
+      "sorare_club": "Pittsburgh Pirates"
+    },
+    {
+      "player_id": "wd:Q4913500",
+      "name": "Billy Wright",
+      "status": "needs_review",
+      "sorare_slug": "akil-wright",
+      "sorare_name": "Akil Wright",
+      "sorare_birth_date": "1996-05-13",
+      "sorare_club": "Ross County FC"
+    },
+    {
+      "player_id": "wd:Q97760471",
+      "name": "Blair Currie",
+      "status": "needs_review",
+      "sorare_slug": "harvey-blair",
+      "sorare_name": "Harvey Blair",
+      "sorare_birth_date": "2003-09-14",
+      "sorare_club": "Portsmouth FC"
+    },
+    {
+      "player_id": "wd:Q4924166",
+      "name": "Blair Scoullar",
+      "status": "needs_review",
+      "sorare_slug": "harvey-blair",
+      "sorare_name": "Harvey Blair",
+      "sorare_birth_date": "2003-09-14",
+      "sorare_club": "Portsmouth FC"
+    },
+    {
+      "player_id": "wd:Q4932892",
+      "name": "Bob Innes",
+      "status": "needs_review",
+      "sorare_slug": "ben-bobzien",
+      "sorare_name": "Ben Bobzien",
+      "sorare_birth_date": "2003-04-29",
+      "sorare_club": "SG Dynamo Dresden"
+    },
+    {
+      "player_id": "wd:Q4933029",
+      "name": "Bob King",
+      "status": "needs_review",
+      "sorare_slug": "william-boving-vick",
+      "sorare_name": "William Bøving",
+      "sorare_birth_date": "2003-03-01",
+      "sorare_club": "1. FC Nürnberg"
+    },
+    {
+      "player_id": "wd:Q4933706",
+      "name": "Bob Quickenden",
+      "status": "needs_review",
+      "sorare_slug": "antonin-bobichon",
+      "sorare_name": "Antonin Bobichon",
+      "sorare_birth_date": "1995-09-14",
+      "sorare_club": "Pau FC"
+    },
+    {
+      "player_id": "wd:Q4934408",
+      "name": "Bob Wilson",
+      "status": "needs_review",
+      "sorare_slug": "ben-wilson",
+      "sorare_name": "Ben Wilson",
+      "sorare_birth_date": "1992-08-09",
+      "sorare_club": "Coventry City FC"
+    },
+    {
+      "player_id": "wd:Q3641380",
+      "name": "Bobby Almond",
+      "status": "needs_review",
+      "sorare_slug": "bobby-adekanye",
+      "sorare_name": "Bobby Adekanye",
+      "sorare_birth_date": "1999-02-14",
+      "sorare_club": "Home United FC"
+    },
+    {
+      "player_id": "wd:Q4954240",
+      "name": "Brad Scott",
+      "status": "needs_review",
+      "sorare_slug": "brady-scott",
+      "sorare_name": "Brady Scott",
+      "sorare_birth_date": "1999-06-30",
+      "sorare_club": "LA Galaxy"
+    },
+    {
+      "player_id": "wd:Q9178938",
+      "name": "Branden Turepu",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-bran",
+      "sorare_name": "Alejandro Bran",
+      "sorare_birth_date": "2001-03-05",
+      "sorare_club": "ACS Petrolul 52 Ploieşti"
+    },
+    {
+      "player_id": "wd:Q725145",
+      "name": "Brent Fisher",
+      "status": "needs_review",
+      "sorare_slug": "braydon-fisher-20000726",
+      "sorare_name": "Braydon Fisher",
+      "sorare_birth_date": "2000-07-26",
+      "sorare_club": "Toronto Blue Jays"
+    },
+    {
+      "player_id": "wd:Q4962994",
+      "name": "Brian Armstrong",
+      "status": "needs_review",
+      "sorare_slug": "anthony-briancon",
+      "sorare_name": "Anthony Briançon",
+      "sorare_birth_date": "1994-11-29",
+      "sorare_club": "Pau FC"
+    },
+    {
+      "player_id": "wd:Q4963948",
+      "name": "Brian Hardman",
+      "status": "needs_review",
+      "sorare_slug": "brian-agbor",
+      "sorare_name": "Brian Agbor",
+      "sorare_birth_date": "2001-06-14",
+      "sorare_club": "SC União Torreense"
+    },
+    {
+      "player_id": "wd:Q4965141",
+      "name": "Brian Roberts",
+      "status": "needs_review",
+      "sorare_slug": "braian-ezequiel-romero",
+      "sorare_name": "Braian Romero",
+      "sorare_birth_date": "1991-06-15",
+      "sorare_club": "Club Olimpia"
+    },
+    {
+      "player_id": "wd:Q4965261",
+      "name": "Brian Sergent",
+      "status": "needs_review",
+      "sorare_slug": "brian-serven-19950505",
+      "sorare_name": "Brian Serven",
+      "sorare_birth_date": "1995-05-05",
+      "sorare_club": "Athletics"
+    },
+    {
+      "player_id": "wd:Q2458876",
+      "name": "Brian Turner",
+      "status": "needs_review",
+      "sorare_slug": "anthony-briancon",
+      "sorare_name": "Anthony Briançon",
+      "sorare_birth_date": "1994-11-29",
+      "sorare_club": "Pau FC"
+    },
+    {
+      "player_id": "wd:Q23771487",
+      "name": "Briar Palmer",
+      "status": "needs_review",
+      "sorare_slug": "brian-carmona-romero",
+      "sorare_name": "Brian Romero",
+      "sorare_birth_date": "2006-05-11",
+      "sorare_club": "Crown Legacy"
+    },
+    {
+      "player_id": "wd:Q4966804",
+      "name": "Bridgette Armstrong",
+      "status": "needs_review",
+      "sorare_slug": "jalen-bridges-20010514",
+      "sorare_name": "Jalen Bridges",
+      "sorare_birth_date": "2001-05-14",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q97760456",
+      "name": "Britney Cunningham-Lee",
+      "status": "needs_review",
+      "sorare_slug": "beni-baningime",
+      "sorare_name": "Beni Baningime",
+      "sorare_birth_date": "1998-09-09",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q23004898",
+      "name": "Brock Messenger",
+      "status": "needs_review",
+      "sorare_slug": "alisson-ramses-becker",
+      "sorare_name": "Alisson Becker",
+      "sorare_birth_date": "1992-10-02",
+      "sorare_club": "Liverpool FC"
+    },
+    {
+      "player_id": "wd:Q4974475",
+      "name": "Brooke Rangi",
+      "status": "needs_review",
+      "sorare_slug": "andre-brooks",
+      "sorare_name": "Andre Brooks",
+      "sorare_birth_date": "2003-08-20",
+      "sorare_club": "Norwich City FC"
+    },
+    {
+      "player_id": "wd:Q5017881",
+      "name": "Caitlin Campbell",
+      "status": "needs_review",
+      "sorare_slug": "kristian-campbell-20020628",
+      "sorare_name": "Kristian Campbell",
+      "sorare_birth_date": "2002-06-28",
+      "sorare_club": "Boston Red Sox"
+    },
+    {
+      "player_id": "wd:Q97735892",
+      "name": "Caitlin Smallfield",
+      "status": "needs_review",
+      "sorare_slug": "alejandro-catena-marugan",
+      "sorare_name": "Catena",
+      "sorare_birth_date": "1994-10-28",
+      "sorare_club": "CA Osasuna"
+    },
+    {
+      "player_id": "wd:Q62006806",
+      "name": "Callan Elliot",
+      "status": "confirmed",
+      "sorare_slug": "callan-elliot",
+      "sorare_name": "Callan Elliot",
+      "sorare_birth_date": "1999-07-07",
+      "sorare_club": "Auckland"
+    },
+    {
+      "player_id": "wd:Q50829202",
+      "name": "Callum McCowatt",
+      "status": "confirmed",
+      "sorare_slug": "callum-mccowatt",
+      "sorare_name": "Callum McCowatt",
+      "sorare_birth_date": "1999-04-30",
+      "sorare_club": "Aarhus Gymnastikforening"
+    },
+    {
+      "player_id": "wd:Q64578338",
+      "name": "Cameron Brown",
+      "status": "needs_review",
+      "sorare_slug": "aaron-brown-2005-07-22",
+      "sorare_name": "Aaron Brown",
+      "sorare_birth_date": "2005-07-22",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q595599",
+      "name": "Cameron Howieson",
+      "status": "needs_review",
+      "sorare_slug": "cameron-archer",
+      "sorare_name": "Cameron Archer",
+      "sorare_birth_date": "2001-12-09",
+      "sorare_club": "AJ Auxerre"
+    },
+    {
+      "player_id": "wd:Q5026284",
+      "name": "Cameron Knowles",
+      "status": "needs_review",
+      "sorare_slug": "cameron-boozer-20070718",
+      "sorare_name": "Cameron Boozer",
+      "sorare_birth_date": "2007-07-18",
+      "sorare_club": "Memphis Grizzlies"
+    },
+    {
+      "player_id": "wd:Q5026294",
+      "name": "Cameron Lindsay",
+      "status": "needs_review",
+      "sorare_slug": "cameron-archer",
+      "sorare_name": "Cameron Archer",
+      "sorare_birth_date": "2001-12-09",
+      "sorare_club": "AJ Auxerre"
+    },
+    {
+      "player_id": "wd:Q1030391",
+      "name": "Campbell Banks",
+      "status": "needs_review",
+      "sorare_slug": "allan-campbell",
+      "sorare_name": "Allan Campbell",
+      "sorare_birth_date": "1998-07-04",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q5040401",
+      "name": "Carl Jorgensen",
+      "status": "needs_review",
+      "sorare_slug": "adam-erik-carlen",
+      "sorare_name": "Adam Carlén",
+      "sorare_birth_date": "2000-06-27",
+      "sorare_club": "SK Líšeň"
+    },
+    {
+      "player_id": "wd:Q5044399",
+      "name": "Carol James",
+      "status": "needs_review",
+      "sorare_slug": "aaron-thomas-james",
+      "sorare_name": "Aaron James",
+      "sorare_birth_date": "2005-06-30",
+      "sorare_club": "Wrexham FC"
+    },
+    {
+      "player_id": "wd:Q5044424",
+      "name": "Carol Knox",
+      "status": "needs_review",
+      "sorare_slug": "jose-antonio-caro-diaz",
+      "sorare_name": "José Caro",
+      "sorare_birth_date": "1994-05-03",
+      "sorare_club": "UD Las Palmas"
+    },
+    {
+      "player_id": "wd:Q5044521",
+      "name": "Carol Roberts",
+      "status": "needs_review",
+      "sorare_slug": "alvaro-fernandez-carreras",
+      "sorare_name": "Álvaro Carreras",
+      "sorare_birth_date": "2003-03-23",
+      "sorare_club": "Real Madrid"
+    },
+    {
+      "player_id": "wd:Q5044597",
+      "name": "Carol Waller",
+      "status": "needs_review",
+      "sorare_slug": "andy-carroll",
+      "sorare_name": "Andy Carroll",
+      "sorare_birth_date": "1989-01-06",
+      "sorare_club": "Dagenham & Redbridge FC"
+    },
+    {
+      "player_id": "wd:Q18344461",
+      "name": "Catherine Bott",
+      "status": "needs_review",
+      "sorare_slug": "adou-thiero-20040508",
+      "sorare_name": "Adou Thiero",
+      "sorare_birth_date": "2004-05-08",
+      "sorare_club": "Los Angeles Lakers"
+    },
+    {
+      "player_id": "wd:Q4529596",
+      "name": "Ceri Evans",
+      "status": "needs_review",
+      "sorare_slug": "alan-jhosue-cervantes-martin-del-campo",
+      "sorare_name": "Alan Cervantes",
+      "sorare_birth_date": "1998-01-17",
+      "sorare_club": "Club América"
+    },
+    {
+      "player_id": "wd:Q5065391",
+      "name": "Ces Dacre",
+      "status": "needs_review",
+      "sorare_slug": "abdoulie-ceesay",
+      "sorare_name": "Abdoulie Ceesay",
+      "sorare_birth_date": "2004-01-05",
+      "sorare_club": "FC St. Pauli"
+    },
+    {
+      "player_id": "wd:Q2664471",
+      "name": "Chad Coombes",
+      "status": "needs_review",
+      "sorare_slug": "calum-chambers",
+      "sorare_name": "Calum Chambers",
+      "sorare_birth_date": "1995-01-20",
+      "sorare_club": "Cardiff City FC"
+    },
+    {
+      "player_id": "wd:Q105581784",
+      "name": "Chante Temara",
+      "status": "needs_review",
+      "sorare_slug": "ba-muaka-simakala",
+      "sorare_name": "Chance Simakala",
+      "sorare_birth_date": "1997-01-28",
+      "sorare_club": "KAS Eupen"
+    },
+    {
+      "player_id": "wd:Q5075395",
+      "name": "Charles Ballard",
+      "status": "needs_review",
+      "sorare_slug": "carles-alena-castillo",
+      "sorare_name": "Carles Aleñà",
+      "sorare_birth_date": "1998-01-05",
+      "sorare_club": "D. Alavés"
+    },
+    {
+      "player_id": "wd:Q5079314",
+      "name": "Charles Ives",
+      "status": "needs_review",
+      "sorare_slug": "brandon-miller-20021122",
+      "sorare_name": "Brandon Miller",
+      "sorare_birth_date": "2002-11-22",
+      "sorare_club": "Charlotte Hornets"
+    },
+    {
+      "player_id": "wd:Q5080557",
+      "name": "Charles Mackie",
+      "status": "needs_review",
+      "sorare_slug": "anibal-hernan-chala-ayovi",
+      "sorare_name": "Aníbal Chalá",
+      "sorare_birth_date": "1996-05-09",
+      "sorare_club": "Club Olimpia"
+    },
+    {
+      "player_id": "wd:Q5085558",
+      "name": "Charlie Steele, Jr.",
+      "status": "needs_review",
+      "sorare_slug": "charles-clive-webster",
+      "sorare_name": "Charles Webster",
+      "sorare_birth_date": "2004-01-31",
+      "sorare_club": "Burton Albion FC"
+    },
+    {
+      "player_id": "wd:Q5085559",
+      "name": "Charlie Steele, Sr.",
+      "status": "needs_review",
+      "sorare_slug": "charles-clive-webster",
+      "sorare_name": "Charles Webster",
+      "sorare_birth_date": "2004-01-31",
+      "sorare_club": "Burton Albion FC"
+    },
+    {
+      "player_id": "wd:Q657587",
+      "name": "Che Bunce",
+      "status": "needs_review",
+      "sorare_slug": "che-nunnely",
+      "sorare_name": "Ché Nunnely",
+      "sorare_birth_date": "1999-02-04",
+      "sorare_club": "RKS Radomiak Radom"
+    },
+    {
+      "player_id": "wd:Q97750457",
+      "name": "Chloe Knott",
+      "status": "needs_review",
+      "sorare_slug": "adam-hlozek",
+      "sorare_name": "Adam Hložek",
+      "sorare_birth_date": "2002-07-25",
+      "sorare_club": "TSG Hoffenheim"
+    },
+    {
+      "player_id": "wd:Q1077373",
+      "name": "Chris Jackson",
+      "status": "needs_review",
+      "sorare_slug": "chris-donovan",
+      "sorare_name": "Chris Donovan",
+      "sorare_birth_date": "2000-08-08",
+      "sorare_club": "Louisville City FC"
+    },
+    {
+      "player_id": "wd:Q929120",
+      "name": "Chris James",
+      "status": "needs_review",
+      "sorare_slug": "andreas-christensen",
+      "sorare_name": "Andreas Christensen",
+      "sorare_birth_date": "1996-04-10",
+      "sorare_club": "FC Barcelona"
+    },
+    {
+      "player_id": "wd:Q3815279",
+      "name": "Chris Kerr",
+      "status": "needs_review",
+      "sorare_slug": "benjamin-chrisene",
+      "sorare_name": "Benjamin Chrisene",
+      "sorare_birth_date": "2004-01-12",
+      "sorare_club": "Norwich City FC"
+    },
+    {
+      "player_id": "wd:Q356038",
+      "name": "Chris Killen",
+      "status": "needs_review",
+      "sorare_slug": "benjamin-chrisene",
+      "sorare_name": "Benjamin Chrisene",
+      "sorare_birth_date": "2004-01-12",
+      "sorare_club": "Norwich City FC"
+    },
+    {
+      "player_id": "wd:Q5107869",
+      "name": "Chris Riley",
+      "status": "needs_review",
+      "sorare_slug": "benjamin-chrisene",
+      "sorare_name": "Benjamin Chrisene",
+      "sorare_birth_date": "2004-01-12",
+      "sorare_club": "Norwich City FC"
+    },
+    {
+      "player_id": "wd:Q5108327",
+      "name": "Chris Turner",
+      "status": "needs_review",
+      "sorare_slug": "andreas-christensen",
+      "sorare_name": "Andreas Christensen",
+      "sorare_birth_date": "1996-04-10",
+      "sorare_club": "FC Barcelona"
+    },
+    {
+      "player_id": "wd:Q74548",
+      "name": "Chris Wood",
+      "status": "confirmed",
+      "sorare_slug": "chris-wood",
+      "sorare_name": "Chris Wood ",
+      "sorare_birth_date": "1991-12-07",
+      "sorare_club": "Nottingham Forest FC"
+    },
+    {
+      "player_id": "wd:Q1077904",
+      "name": "Chris Zoricich",
+      "status": "needs_review",
+      "sorare_slug": "chrigor-flores-moraes",
+      "sorare_name": "Chrigor",
+      "sorare_birth_date": "2000-11-13",
+      "sorare_club": "Persatuan Bolasepak Selangor"
+    },
+    {
+      "player_id": "wd:Q3294607",
+      "name": "Christian Bouckenooghe",
+      "status": "needs_review",
+      "sorare_slug": "cam-christie-20050724",
+      "sorare_name": "Cam Christie",
+      "sorare_birth_date": "2005-07-24",
+      "sorare_club": "LA Clippers"
+    },
+    {
+      "player_id": "wd:Q131431729",
+      "name": "Christian Gray",
+      "status": "needs_review",
+      "sorare_slug": "christian-roa-19990402",
+      "sorare_name": "Christian Roa",
+      "sorare_birth_date": "1999-04-02",
+      "sorare_club": null
+    },
+    {
+      "player_id": "wd:Q9191054",
+      "name": "Christian Tauira",
+      "status": "needs_review",
+      "sorare_slug": "cam-christie-20050724",
+      "sorare_name": "Cam Christie",
+      "sorare_birth_date": "2005-07-24",
+      "sorare_club": "LA Clippers"
+    },
+    {
+      "player_id": "wd:Q5121039",
+      "name": "Cinnamon Chaney",
+      "status": "needs_review",
+      "sorare_slug": "cameron-cauley-20030206",
+      "sorare_name": "Cam Cauley",
+      "sorare_birth_date": "2003-02-06",
+      "sorare_club": "Texas Rangers"
+    },
+    {
+      "player_id": "wd:Q73896743",
+      "name": "Claudia Bunge",
+      "status": "needs_review",
+      "sorare_slug": "claudio-andres-baeza-baeza",
+      "sorare_name": "Claudio Baeza",
+      "sorare_birth_date": "1993-12-23",
+      "sorare_club": "Club Atlético Vélez Sarsfield"
+    },
+    {
+      "player_id": "wd:Q97730208",
+      "name": "Claudia Jenkins",
+      "status": "needs_review",
+      "sorare_slug": "claudio-mendes-vicente",
+      "sorare_name": "Clau Mendes",
+      "sorare_birth_date": "2000-12-08",
+      "sorare_club": "FC Penafiel"
+    },
+    {
+      "player_id": "wd:Q20046896",
+      "name": "Clayton Lewis",
+      "status": "needs_review",
+      "sorare_slug": "clay-holmes-19930327",
+      "sorare_name": "Clay Holmes",
+      "sorare_birth_date": "1993-03-27",
+      "sorare_club": "Chicago Cubs"
+    },
+    {
+      "player_id": "wd:Q5132530",
+      "name": "Cliff Banham",
+      "status": "needs_review",
+      "sorare_slug": "boubacar-fofana",
+      "sorare_name": "Boubacar Fofana",
+      "sorare_birth_date": "1998-09-07",
+      "sorare_club": "FC Sochaux-Montbéliard"
+    },
+    {
+      "player_id": "wd:Q5133960",
+      "name": "Clint Gosling",
+      "status": "needs_review",
+      "sorare_slug": "clint-leemans",
+      "sorare_name": "Clint Leemans",
+      "sorare_birth_date": "1995-09-15",
+      "sorare_club": "BV De Graafschap"
+    }
+  ]
+}
