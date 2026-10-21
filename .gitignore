@@ -4,3 +4,8 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
+
+# Unpublished source exports (import only when their reuse is permitted)
+data/understat/exports/
+data/understat/league_exports/
+data/understat/candidates.csv
