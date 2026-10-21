@@ -3,6 +3,29 @@
   "source": "Initial source-linked player catalogue + manual review",
   "players": [
     {
+      "id": "wd:Q107558242",
+      "name": "Alex Paulsen",
+      "birth_date": "2002-07-04",
+      "age": 24,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Goalkeeper",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q107558242",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q107558242"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
       "id": "wd:Q4725149",
       "name": "Ali Riley",
       "birth_date": "1987-10-30",
@@ -23,6 +46,29 @@
       "sorare_slug": null,
       "sources": [
         "https://www.wikidata.org/wiki/Q4725149"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q106939313",
+      "name": "Ben Old",
+      "birth_date": "2002-08-13",
+      "age": 24,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Attacking midfielder",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q106939313",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q106939313"
       ],
       "updated_at": "2026-10-21"
     },
@@ -50,6 +96,52 @@
       "updated_at": "2026-10-21"
     },
     {
+      "id": "wd:Q64031850",
+      "name": "Elijah Just",
+      "birth_date": "2000-05-01",
+      "age": 26,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Forward",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q64031850",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q64031850"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q109968695",
+      "name": "Finn Surman",
+      "birth_date": "2003-09-23",
+      "age": 23,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Centre-back",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q109968695",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q109968695"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
       "id": "wd:Q513967",
       "name": "Hannah Wilkinson",
       "birth_date": "1992-05-28",
@@ -69,6 +161,53 @@
       "sorare_slug": null,
       "sources": [
         "https://www.wikidata.org/wiki/Q513967"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q65493307",
+      "name": "Indiah-Paige Riley",
+      "birth_date": "2001-12-20",
+      "age": 24,
+      "nationalities": [
+        "New Zealand",
+        "Australia"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Forward",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand women's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Women",
+      "wikidata_id": "Q65493307",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q65493307"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q3194149",
+      "name": "Katie Bowen",
+      "birth_date": "1994-04-15",
+      "age": 32,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Defender",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand women's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Women",
+      "wikidata_id": "Q3194149",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q3194149"
       ],
       "updated_at": "2026-10-21"
     },
@@ -142,6 +281,52 @@
       "updated_at": "2026-10-21"
     },
     {
+      "id": "wd:Q120608471",
+      "name": "Milly Clegg",
+      "birth_date": "2005-11-01",
+      "age": 20,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": null,
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand women's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Women",
+      "wikidata_id": "Q120608471",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q120608471"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q42631717",
+      "name": "Paige Satchell",
+      "birth_date": "1998-04-13",
+      "age": 28,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Forward",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": null,
+      "eligibility_status": "nz_nationality",
+      "gender": "Women",
+      "wikidata_id": "Q42631717",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q42631717"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
       "id": "wd:Q28800473",
       "name": "Sarpreet Singh",
       "birth_date": "1999-02-20",
@@ -161,6 +346,29 @@
       "sorare_slug": null,
       "sources": [
         "https://www.wikidata.org/wiki/Q28800473"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q121353909",
+      "name": "Tyler Bindon",
+      "birth_date": "2005-01-27",
+      "age": 21,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Centre-back",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q121353909",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q121353909"
       ],
       "updated_at": "2026-10-21"
     }
