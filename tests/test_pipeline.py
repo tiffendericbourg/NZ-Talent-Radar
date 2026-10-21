@@ -71,18 +71,21 @@ class ImporterTests(unittest.TestCase):
             output.write_text('{"players":[{"id":"manual:keep"}]}', encoding="utf-8")
             manual = root / "manual.csv"
             manual.write_text("manual_id,wikidata_id,name\n", encoding="utf-8")
+            report = root / "collection_report.json"
             before = output.read_bytes()
-            with patch.object(importer, "OUTPUT", output), patch.object(importer, "MANUAL", manual), patch.object(
+            with patch.object(importer, "OUTPUT", output), patch.object(importer, "MANUAL", manual), patch.object(importer, "REPORT", report), patch.object(
                 importer, "request", side_effect=OSError("Offline")
             ):
                 with self.assertRaises(OSError):
                     importer.run()
             self.assertEqual(output.read_bytes(), before)
+            self.assertFalse(report.exists())
 
     def test_end_to_end_generation_without_internet(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             output = root / "players.json"
+            report = root / "collection_report.json"
             output.write_text('{"players":[]}', encoding="utf-8")
             manual = root / "manual.csv"
             with manual.open("w", encoding="utf-8", newline="") as file:
@@ -123,12 +126,16 @@ class ImporterTests(unittest.TestCase):
                         "value": "http://www.wikidata.org/entity/Q74548"
                     }}]}}
                 return {"entities": {qid: entities[qid] for qid in params["ids"].split("|")}}
-            with patch.object(importer, "OUTPUT", output), patch.object(importer, "MANUAL", manual), patch.object(
+            with patch.object(importer, "OUTPUT", output), patch.object(importer, "MANUAL", manual), patch.object(importer, "REPORT", report), patch.object(
                 importer, "request", side_effect=fake_request
             ), patch.object(importer.time, "sleep"):
                 importer.run()
             generated = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(len(generated["players"]), 2)
+            metrics = json.loads(report.read_text(encoding="utf-8"))
+            self.assertEqual(metrics["total_players"], 2)
+            self.assertEqual(metrics["discovered_wikidata_ids"], 1)
+            self.assertEqual(metrics["under_23"], 0)
             wood = next(p for p in generated["players"] if p["id"] == "wd:Q74548")
             self.assertEqual(wood["name"], "Chris Wood")
             self.assertEqual(wood["position"], "Centre-forward")
