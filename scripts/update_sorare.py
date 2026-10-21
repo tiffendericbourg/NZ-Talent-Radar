@@ -26,6 +26,7 @@ query SearchFootballPlayers($name: String!) {
         displayName
         birthDate
         activeClub { name }
+        sport
       }
     }
   }
@@ -87,7 +88,8 @@ def graphql_request(query, variables, api_key):
                 raise RuntimeError("Sorare searchPlayers.hits is missing")
             return [hit["player"] for hit in hits
                     if isinstance(hit, dict) and isinstance(hit.get("player"), dict)
-                    and hit["player"].get("slug")]
+                    and hit["player"].get("slug")
+                    and hit["player"].get("sport", "FOOTBALL") == "FOOTBALL"]
         except HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                 if error.code in (401, 403):
@@ -126,16 +128,18 @@ def lookup_player(player, api_key, request_func=graphql_request):
     candidates = request_func(PLAYER_QUERY, {"name": name}, api_key) or []
     # Keep unique Sorare identities, even if a result appears twice.
     unique = {candidate["slug"]: candidate for candidate in candidates if candidate.get("slug")}
-    matches = [candidate for candidate in unique.values()
+    # Sorare's text search is fuzzy and may return entirely unrelated people.
+    # Only exact normalized name matches are plausible review candidates.
+    plausible = [candidate for candidate in unique.values()
+                 if clean_name(candidate.get("displayName")) == clean_name(name)]
+    matches = [candidate for candidate in plausible
                if match_identity(player, candidate) == "confirmed"]
     if len(matches) == 1:
         return {"status": "confirmed", "candidate": matches[0]}
     if matches:
         return {"status": "needs_review", "candidate": matches[0]}
-    if unique:
-        possible = next((c for c in unique.values()
-                         if clean_name(c.get("displayName")) == clean_name(name)), None)
-        return {"status": "needs_review", "candidate": possible or next(iter(unique.values()))}
+    if plausible:
+        return {"status": "needs_review", "candidate": plausible[0]}
     return {"status": "not_found", "candidate": None}
 
 
@@ -164,6 +168,14 @@ def run(limit=0):
         previous = json.loads(MATCHES_FILE.read_text(encoding="utf-8"))
         earlier = {row["player_id"]: row for row in previous.get("matches", [])
                    if row.get("player_id")}
+        # Clean up wrong fuzzy-search suggestions from earlier versions.
+        for row in earlier.values():
+            if row.get("status") == "needs_review" and (
+                not row.get("sorare_name") or
+                clean_name(row.get("name")) != clean_name(row.get("sorare_name"))
+            ):
+                row.update(status="not_found", sorare_slug=None, sorare_name=None,
+                           sorare_birth_date=None, sorare_club=None)
     current_ids = {p["id"] for p in players}
     results_by_id = {key: row for key, row in earlier.items() if key in current_ids}
     used_slugs = {p["sorare_slug"] for p in players if p.get("sorare_slug")}
