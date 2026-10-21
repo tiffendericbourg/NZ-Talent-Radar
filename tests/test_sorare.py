@@ -213,5 +213,35 @@ class SorareTests(unittest.TestCase):
             self.assertEqual(result["matches"][0]["sorare_slug"], None)
 
 
+    def test_partial_batch_is_saved_on_later_request_error(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            player_file = root / "players.json"
+            report = root / "matches.json"
+            player_file.write_text(json.dumps({"players": [
+                {**self.wood},
+                {"id": "wd:other", "name": "Second Player",
+                 "birth_date": "2000-01-01", "sorare_slug": None}
+            ]}), encoding="utf-8")
+            def find(player, api_key):
+                if player["id"] == "wd:other":
+                    raise RuntimeError("Sorare HTTP 429")
+                return {"status": "confirmed", "candidate": {
+                    "slug": "chris-wood", "displayName": "Chris Wood",
+                    "birthDate": "1991-12-07", "activeClub": None
+                }}
+            with patch.object(sorare, "PLAYERS_FILE", player_file), patch.object(
+                sorare, "MATCHES_FILE", report
+            ), patch.object(sorare, "lookup_player", side_effect=find), patch.object(
+                sorare.time, "sleep"
+            ), patch.dict(sorare.os.environ, {"SORARE_API_KEY": "fake-test"}):
+                sorare.run(limit=0)
+            result = json.loads(report.read_text())
+            self.assertEqual(result["confirmed"], 1)
+            self.assertTrue(result["batch_interrupted"])
+            self.assertEqual(result["remaining"], 1)
+            self.assertEqual(json.loads(player_file.read_text())["players"][0]["sorare_slug"], "chris-wood")
+
+
 if __name__ == "__main__":
     unittest.main()
