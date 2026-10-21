@@ -18,13 +18,15 @@ API_URL = "https://api.sorare.com/graphql"
 
 # Current Sorare Football GraphQL schema. No private account data is requested.
 PLAYER_QUERY = """
-query FindFootballPlayer($slug: String!) {
-  football {
-    player(slug: $slug) {
-      slug
-      displayName
-      birthDate
-      activeClub { name }
+query SearchFootballPlayers($name: String!) {
+  searchPlayers(query: $name, pageSize: 10) {
+    hits {
+      player {
+        slug
+        displayName
+        birthDate
+        activeClub { name }
+      }
     }
   }
 }
@@ -70,13 +72,26 @@ def graphql_request(query, variables, api_key):
             with urlopen(request, timeout=30) as response:
                 payload = json.load(response)
             if payload.get("errors"):
-                # Never log the request headers, secret, or raw API payload.
-                raise RuntimeError("Sorare returned a GraphQL error; check the API schema and access.")
-            if "data" not in payload or "football" not in payload["data"]:
-                raise RuntimeError("Unexpected Sorare response structure")
-            return payload["data"]["football"].get("player")
+                # Log only the error category: never print the secret or HTTP headers.
+                messages = " ".join(str(e.get("message", "")) for e in payload["errors"]).lower()
+                if "cannot query field" in messages or "unknown argument" in messages or "doesn't exist" in messages:
+                    raise RuntimeError("Sorare GraphQL schema mismatch (invalid field or argument)")
+                if "unauthorized" in messages or "authentication" in messages or "forbidden" in messages:
+                    raise RuntimeError("Sorare access denied by GraphQL")
+                raise RuntimeError("Sorare GraphQL request rejected; check the live schema")
+            data = payload.get("data")
+            if not isinstance(data, dict) or not isinstance(data.get("searchPlayers"), dict):
+                raise RuntimeError("Unexpected Sorare searchPlayers response")
+            hits = data["searchPlayers"].get("hits")
+            if not isinstance(hits, list):
+                raise RuntimeError("Sorare searchPlayers.hits is missing")
+            return [hit["player"] for hit in hits
+                    if isinstance(hit, dict) and isinstance(hit.get("player"), dict)
+                    and hit["player"].get("slug")]
         except HTTPError as error:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                if error.code in (401, 403):
+                    raise RuntimeError(f"Sorare HTTP {error.code} — verify API access and secret") from None
                 raise RuntimeError(f"Sorare HTTP {error.code}") from None
             wait = error.headers.get("Retry-After", "")
             seconds = min(int(wait), 60) if wait.isdigit() else 3 * (attempt + 1)
@@ -104,19 +119,23 @@ def match_identity(player, candidate):
 
 
 def lookup_player(player, api_key, request_func=graphql_request):
-    candidates = []
-    seen = set()
-    for slug in possible_slugs(player):
-        remote = request_func(PLAYER_QUERY, {"slug": slug}, api_key)
-        if remote and remote.get("slug") and remote["slug"] not in seen:
-            candidates.append(remote)
-            seen.add(remote["slug"])
-        time.sleep(0.35)
-    matches = [p for p in candidates if match_identity(player, p) == "confirmed"]
+    """Search real Sorare players by name; slug guesses alone are unreliable."""
+    name = (player.get("name") or "").strip()
+    if not name:
+        return {"status": "not_found", "candidate": None}
+    candidates = request_func(PLAYER_QUERY, {"name": name}, api_key) or []
+    # Keep unique Sorare identities, even if a result appears twice.
+    unique = {candidate["slug"]: candidate for candidate in candidates if candidate.get("slug")}
+    matches = [candidate for candidate in unique.values()
+               if match_identity(player, candidate) == "confirmed"]
     if len(matches) == 1:
         return {"status": "confirmed", "candidate": matches[0]}
-    if matches or candidates:
-        return {"status": "needs_review", "candidate": (matches or candidates)[0]}
+    if matches:
+        return {"status": "needs_review", "candidate": matches[0]}
+    if unique:
+        possible = next((c for c in unique.values()
+                         if clean_name(c.get("displayName")) == clean_name(name)), None)
+        return {"status": "needs_review", "candidate": possible or next(iter(unique.values()))}
     return {"status": "not_found", "candidate": None}
 
 
