@@ -49,7 +49,7 @@ def birth_date(entity):
         value = claim.get("mainsnak", {}).get("datavalue", {}).get("value", {})
         if value.get("precision", 0) >= 11:
             raw = value.get("time", "")
-            if re.match(r"^\\+\\d{4}-\\d{2}-\\d{2}T", raw):
+            if re.match(r"^\+\d{4}-\d{2}-\d{2}T", raw):
                 return raw[1:11]
     return None
 
@@ -90,7 +90,7 @@ def overlay_manual(by_id, rows, today):
         manual_id = row.get("manual_id", "").strip()
         if not (qid or name):
             continue
-        key = "wd:" + qid if re.fullmatch(r"Q\\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
+        key = "wd:" + qid if re.fullmatch(r"Q\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
         person = by_id.get(key, {"id": key, "name": name, "sources": [], "nationalities": [], "birth_date": None, "wikidata_id": qid or None, "eligibility_status": "potential_to_verify"})
         for field in ("name", "birth_date", "birth_country", "position", "club", "club_country", "league", "national_team", "eligibility_status", "gender", "sorare_slug"):
             if row.get(field, "").strip():
@@ -116,7 +116,7 @@ def run():
         payload = request("https://query.wikidata.org/sparql", {"query": query, "format": "json"})
         discovered.update(row["person"]["value"].rsplit("/", 1)[-1] for row in payload["results"]["bindings"])
         print(f"Discovery {number}/3: {len(discovered)} unique IDs")
-    discovered = {qid for qid in discovered if re.fullmatch(r"Q\\d+", qid)}
+    discovered = {qid for qid in discovered if re.fullmatch(r"Q\d+", qid)}
     if not discovered:
         raise RuntimeError("No Wikidata players found")
     people = entities_for(discovered)
@@ -164,7 +164,7 @@ def run():
     records = sorted(result.values(), key=lambda p: (p.get("name", "").lower(), p["id"]))
     snapshot = {"generated_at": today.isoformat(), "source": "Wikidata + manual review", "players": records}
     temp = OUTPUT.with_suffix(".json.tmp")
-    temp.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+    temp.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     temp.replace(OUTPUT)
     print(f"Total: {len(records)} | New: {len(set(result)-set(old))} | Refreshed: {len(people)}")
     print(f"Known club: {sum(bool(p.get('club')) for p in records)} | Missing birthday: {sum(not p.get('birth_date') for p in records)}")
