@@ -1,0 +1,168 @@
+{
+  "generated_at": "2026-10-21",
+  "source": "Initial source-linked player catalogue + manual review",
+  "players": [
+    {
+      "id": "wd:Q4725149",
+      "name": "Ali Riley",
+      "birth_date": "1987-10-30",
+      "age": 38,
+      "nationalities": [
+        "New Zealand",
+        "United States"
+      ],
+      "birth_country": "United States",
+      "position": "Defender",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand women's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Women",
+      "wikidata_id": "Q4725149",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q4725149"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q74548",
+      "name": "Chris Wood",
+      "birth_date": "1991-12-07",
+      "age": 34,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Forward",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Men",
+      "wikidata_id": "Q74548",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q74548"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q513967",
+      "name": "Hannah Wilkinson",
+      "birth_date": "1992-05-28",
+      "age": 34,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Forward",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": "New Zealand women's national football team",
+      "eligibility_status": "confirmed_international",
+      "gender": "Women",
+      "wikidata_id": "Q513967",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q513967"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q47544166",
+      "name": "Liberato Cacace",
+      "birth_date": "2000-09-27",
+      "age": 26,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Defender",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": null,
+      "eligibility_status": "nz_nationality",
+      "gender": "Men",
+      "wikidata_id": "Q47544166",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q47544166"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q102257634",
+      "name": "Marko Stamenic",
+      "birth_date": "2002-02-19",
+      "age": 24,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Midfielder",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": null,
+      "eligibility_status": "nz_nationality",
+      "gender": "Men",
+      "wikidata_id": "Q102257634",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q102257634"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q16226599",
+      "name": "Meikayla Moore",
+      "birth_date": "1996-06-04",
+      "age": 30,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Defender",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": null,
+      "eligibility_status": "nz_nationality",
+      "gender": "Women",
+      "wikidata_id": "Q16226599",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q16226599"
+      ],
+      "updated_at": "2026-10-21"
+    },
+    {
+      "id": "wd:Q28800473",
+      "name": "Sarpreet Singh",
+      "birth_date": "1999-02-20",
+      "age": 27,
+      "nationalities": [
+        "New Zealand"
+      ],
+      "birth_country": "New Zealand",
+      "position": "Midfielder",
+      "club": null,
+      "club_country": null,
+      "league": null,
+      "national_team": null,
+      "eligibility_status": "nz_nationality",
+      "gender": "Men",
+      "wikidata_id": "Q28800473",
+      "sorare_slug": null,
+      "sources": [
+        "https://www.wikidata.org/wiki/Q28800473"
+      ],
+      "updated_at": "2026-10-21"
+    }
+  ]
+}
