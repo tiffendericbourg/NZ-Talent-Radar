@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-10-21",
+  "collection_status": "verified_initial_catalogue_waiting_for_full_wikidata_run",
+  "discovery_queries": 6,
+  "query_hits": null,
+  "failed_queries": null,
+  "discovered_wikidata_ids": null,
+  "fetched_wikidata_players": null,
+  "missing_wikidata_entities": null,
+  "total_players": 16,
+  "new_players": null,
+  "manual_rows": 16,
+  "with_birth_date": 16,
+  "with_position": 15,
+  "with_club": 0,
+  "women": 7,
+  "men": 9,
+  "under_23": 2,
+  "abroad_with_known_club": 0,
+  "potential_to_verify": 0
+}
