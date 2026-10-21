@@ -1,5 +1,6 @@
 """Link NZ Talent Radar players with Sorare football profiles (read-only API)."""
 import argparse
+import csv
 import json
 import os
 import re
@@ -14,6 +15,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 PLAYERS_FILE = ROOT / "public/data/players.json"
 MATCHES_FILE = ROOT / "public/data/sorare_matches.json"
+REVIEWS_FILE = ROOT / "data/sorare/identity_reviews.csv"
 API_URL = "https://api.sorare.com/graphql"
 
 # Current Sorare Football GraphQL schema. No private account data is requested.
@@ -111,11 +113,9 @@ def match_identity(player, candidate):
     birth = str(candidate.get("birthDate") or "")[:10]
     same_name = clean_name(player.get("name")) == clean_name(candidate.get("displayName"))
     same_birth = bool(player.get("birth_date") and birth and player["birth_date"] == birth)
-    same_club = bool(player.get("club") and candidate.get("activeClub")
-                     and clean_name(player["club"]) == clean_name(candidate["activeClub"].get("name")))
-    different_club = bool(player.get("club") and candidate.get("activeClub")
-                          and not same_club)
-    if same_name and same_birth and not different_club:
+    # Clubs frequently lag behind transfers in Wikidata. Do not use them
+    # as an identity veto when the full name and birth date agree.
+    if same_name and same_birth:
         return "confirmed"
     return "needs_review"
 
@@ -141,6 +141,57 @@ def lookup_player(player, api_key, request_func=graphql_request):
     if plausible:
         return {"status": "needs_review", "candidate": plausible[0]}
     return {"status": "not_found", "candidate": None}
+
+
+def load_reviews():
+    """Manual identity decisions backed by dated, inspectable public evidence."""
+    if not REVIEWS_FILE.exists():
+        return {}
+    with REVIEWS_FILE.open(newline="", encoding="utf-8-sig") as handle:
+        rows = list(csv.DictReader(handle))
+    reviews = {}
+    for row in rows:
+        identifier = (row.get("player_id") or "").strip()
+        slug = (row.get("sorare_slug") or "").strip()
+        decision = (row.get("decision") or "").strip()
+        evidence = (row.get("evidence_url") or "").strip()
+        if (not identifier or not slug or decision not in ("confirmed", "rejected")
+                or not evidence.startswith("https://") or identifier in reviews):
+            raise ValueError("Invalid Sorare identity review file")
+        reviews[identifier] = {
+            "sorare_slug": slug, "status": decision,
+            "review_reason": (row.get("reason") or "").strip(),
+            "review_source": evidence,
+        }
+    return reviews
+
+
+def apply_reviews(players, results_by_id, reviews, today):
+    """Keep verified decisions even when an automated fuzzy search is repeated."""
+    indexed = {person["id"]: person for person in players}
+    used = {p["sorare_slug"] for p in players if p.get("sorare_slug")}
+    for player_id, review in reviews.items():
+        if player_id not in indexed:
+            raise ValueError("Sorare review references missing player: " + player_id)
+        player = indexed[player_id]
+        expected = review["sorare_slug"]
+        existing = results_by_id.get(player_id, {})
+        recorded = existing.get("sorare_slug")
+        if recorded and recorded != expected:
+            raise ValueError("Sorare review candidate does not match last search: " + player_id)
+        if review["status"] == "confirmed":
+            if player.get("sorare_slug") not in (None, expected):
+                raise ValueError("Sorare review conflicts with player identity")
+            if expected in used and player.get("sorare_slug") != expected:
+                raise ValueError("Sorare slug is already assigned")
+            player["sorare_slug"] = expected
+            used.add(expected)
+        elif player.get("sorare_slug") == expected:
+            raise ValueError("Rejected Sorare slug still assigned to player")
+        results_by_id[player_id] = {
+            **existing, "player_id": player_id, "name": player["name"],
+            **review, "reviewed_at": today,
+        }
 
 
 def check_connection():
@@ -178,6 +229,8 @@ def run(limit=0):
                            sorare_birth_date=None, sorare_club=None)
     current_ids = {p["id"] for p in players}
     results_by_id = {key: row for key, row in earlier.items() if key in current_ids}
+    reviews = load_reviews()
+    apply_reviews(players, results_by_id, reviews, date.today().isoformat())
     used_slugs = {p["sorare_slug"] for p in players if p.get("sorare_slug")}
 
     for player in players:
@@ -190,8 +243,9 @@ def run(limit=0):
     unmatched = [p for p in players if not p.get("sorare_slug")]
     pending = [p for p in unmatched if p["id"] not in results_by_id]
     if not pending:
-        # After checking everybody once, begin another verification cycle.
-        pending = unmatched
+        # Recheck unlinked records, except explicitly rejected candidates:
+        # the search API often returns the same wrong homonym repeatedly.
+        pending = [p for p in unmatched if p["id"] not in reviews]
     if limit:
         pending = pending[:limit]
 
@@ -243,6 +297,7 @@ def run(limit=0):
         "confirmed": sum(r["status"] == "confirmed" for r in results),
         "already_matched": sum(r["status"] == "already_matched" for r in results),
         "needs_review": sum(r["status"] == "needs_review" for r in results),
+        "rejected": sum(r["status"] == "rejected" for r in results),
         "not_found": sum(r["status"] == "not_found" for r in results),
         "matches": results,
     }
