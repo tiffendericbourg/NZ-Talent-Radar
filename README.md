@@ -42,6 +42,23 @@ Every push to `main` triggers the workflow, which runs the importer using GitHub
 
 If a push does not start a run, check that GitHub Actions is enabled in repository settings. This is separate from GitHub Pages, which must be enabled for website deployment.
 
+## Sorare player matching (experimental)
+
+The Sorare key must be saved as a GitHub Actions repository secret named `SORARE_API_KEY`. **Never** put it in React, JSON, a CSV file, Git history or an issue.
+
+- `scripts/update_sorare.py` makes **read-only** football GraphQL requests, using the key in the `APIKEY` HTTP header.
+- It guesses player slugs from existing names, but only saves `sorare_slug` automatically when **full name and exact date of birth both match** and a known club does not conflict.
+- Partial or conflicting matches are written to `public/data/sorare_matches.json` with status `needs_review`. They never alter player records. Unknown players are marked `not_found`, not invented.
+- Existing confirmed slugs are preserved, and an API/network error cancels the update before modifying `players.json`.
+- The workflow `.github/workflows/update-sorare.yml` can be run via **Actions → Match players on Sorare → Run workflow**, using the `limit` parameter (default 50 players per run; 0 means all). It also checks weekly on Mondays after the Wikidata workflow.
+- When enabled, modifying the Sorare script, its tests or workflow on `main` triggers an initial run. In **Actions**, check the "Match player identities" logs and run summary to see if Sorare accepted the key.
+- The key provides API rate limits but does not replace account JWT authentication for private API fields. This stage queries only public player information; there is no login, purchase, market or private user data.
+- Sorare API schemas change. If the GraphQL query fails, check the current [official Sorare API docs](https://github.com/sorare/api) and update the query rather than trying to force an unverified match.
+
+Run offline tests with `python -m unittest discover -s tests -p 'test_sorare.py' -v`. For local runs, export `SORARE_API_KEY` as an environment variable; don't store it in a tracked file.
+
+The full Sorare match list is not yet verified against the live API. No scores or performance statistics are integrated at this stage.
+
 ## GitHub Pages
 In repository **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. Run **Actions → Update data and deploy → Run workflow** or push to `main`. The workflow also runs every Monday at 05:20 UTC, builds the static site, and deploys it with GitHub's official Pages actions.
 
@@ -52,6 +69,8 @@ In repository **Settings → Pages → Build and deployment**, select **GitHub A
 - `data/manual_players.csv` — reviewed records and corrections
 - `public/data/players.json` — site-ready data
 - `public/data/collection_report.json` — collection coverage and missing-field audit; initial report explicitly says full import is pending
+- `scripts/update_sorare.py` — secure Sorare identity matching
+- `public/data/sorare_matches.json` — generated confirmed/review/no-result match audit (after successful API run)
 - `.github/workflows/update-data.yml` — automation and deployment
 
-Sorare and performance rankings are intentionally postponed. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
+Sorare identity matching is in progress; Sorare performance statistics and rankings remain postponed. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
