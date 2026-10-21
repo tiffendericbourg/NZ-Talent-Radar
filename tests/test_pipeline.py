@@ -48,6 +48,21 @@ class ImporterTests(unittest.TestCase):
         self.assertEqual(records["wd:Q1"]["nationalities"], ["New Zealand", "Italy"])
         self.assertEqual(len(records["wd:Q1"]["sources"]), 2)
 
+    def test_manual_name_and_birth_date_dedup(self):
+        players = {"wd:Q7": {"id": "wd:Q7", "name": "Example Player",
+                            "birth_date": "2001-06-15", "sources": [], "nationalities": []}}
+        importer.overlay_manual(players, [{"manual_id": "local-7", "name": "Example Player",
+                                           "birth_date": "2001-06-15", "position": "Goalkeeper"}],
+                                date(2026, 10, 21))
+        self.assertEqual(len(players), 1)
+        self.assertEqual(players["wd:Q7"]["position"], "Goalkeeper")
+
+    def test_national_teams_are_not_current_clubs(self):
+        country_team = {"Q8": {"claims": {"P31": [statement("Q23905105")]}}}
+        self.assertIsNone(importer.club_from_claims(
+            [statement("Q8", "2025-01-01")], date(2026, 10, 21), country_team
+        ))
+
     def test_failed_download_preserves_published_json(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
