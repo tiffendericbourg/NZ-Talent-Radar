@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-10-21",
+  "source": "Understat",
+  "coordinate_system": "normalized 0–1; attacking toward x=1",
+  "players": {},
+  "coverage": {
+    "verified_players": 0,
+    "players_with_exports": 0,
+    "shots": 0
+  }
+}
