@@ -99,6 +99,8 @@ class ImporterTests(unittest.TestCase):
                 "Q30": {"labels": {"en": {"value": "United States"}}},
                 "QFORWARD": {"labels": {"en": {"value": "forward"}}},
                 "Q6581097": {"labels": {"en": {"value": "male"}}},
+                "Q175315": {"labels": {"en": {"value": "New Zealand men national team"}}},
+                "Q503755": {"labels": {"en": {"value": "New Zealand women national team"}}},
             }
             def fake_request(url, params):
                 if "sparql" in url:
