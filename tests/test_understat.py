@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from scripts import update_understat as source
+from scripts import discover_understat as finder
 
 
 class UnderstatTests(unittest.TestCase):
@@ -28,6 +29,26 @@ class UnderstatTests(unittest.TestCase):
         self.assertEqual(source.summarize(clean)["shots"], 2)
         self.assertEqual(source.summarize(clean)["xg"], 0.44)
         self.assertEqual(source.summarize(clean)["conversion_pct"], 50.0)
+
+    def test_season_summary(self):
+        shots = [dict(x, season="2025") for x in source.normalize_shots(self.shots, "42")]
+        by_season = source.summarize_seasons(shots)
+        self.assertEqual(by_season["2025"]["shots"], 2)
+        self.assertEqual(by_season["2025"]["xg"], 0.44)
+
+    def test_candidate_matching_needs_manual_review(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "EPL_2025.json"
+            path.write_text(json.dumps({"players": [
+                {"id": "1234", "player_name": "Marko Stamenić"},
+                {"id": "999", "player_name": "Completely different name"}
+            ]}), encoding="utf-8")
+            found = finder.discover([
+                {"id": "wd:Q999", "name": "Marko Stamenic"},
+            ], [path])
+            self.assertEqual(len(found), 1)
+            self.assertEqual(found[0]["understat_id"], "1234")
+            self.assertEqual(found[0]["status"], "needs_review")
 
     def test_drops_invalid_or_other_players(self):
         corrupt = self.shots + [
