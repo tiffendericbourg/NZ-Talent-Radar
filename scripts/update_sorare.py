@@ -188,10 +188,15 @@ def apply_reviews(players, results_by_id, reviews, today):
             used.add(expected)
         elif player.get("sorare_slug") == expected:
             raise ValueError("Rejected Sorare slug still assigned to player")
-        results_by_id[player_id] = {
+        audit_row = {
             **existing, "player_id": player_id, "name": player["name"],
             **review, "reviewed_at": today,
         }
+        if review["status"] == "rejected":
+            # Keep the rejected slug only as evidence, never as a profile link.
+            audit_row["rejected_candidate_slug"] = expected
+            audit_row["sorare_slug"] = None
+        results_by_id[player_id] = audit_row
 
 
 def check_connection():
