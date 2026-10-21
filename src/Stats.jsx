@@ -122,6 +122,15 @@ export function PlayerPerformance({ player, sorare, understat }) {
       <Metric label="CONVERSION" value={data?.conversion_pct == null ? null : data.conversion_pct + '%'} note={record ? 'Goals / shots' : 'Not available'} muted={!record}/>
       <Metric label="xG PER SHOT" value={data?.xg_per_shot == null ? null : data.xg_per_shot.toFixed(3)} note={record ? 'Shot quality' : 'Not available'} muted={!record}/>
     </div>
+    {record && Object.keys(record.seasons || {}).length > 0 && <div className="scout-season-table">
+      <h3>Goals and xG by season</h3>
+      <div className="scout-season-head"><span>Season</span><span>Shots</span><span>Goals</span><span>xG</span></div>
+      {Object.entries(record.seasons).sort(([a],[b]) => b.localeCompare(a)).map(([year, totals]) =>
+        <div className="scout-season-row" key={year}>
+          <strong>{year}/{String(Number(year) + 1).slice(-2)}</strong>
+          <span>{totals.shots}</span><span>{totals.goals}</span><span>{totals.xg.toFixed(2)}</span>
+        </div>)}
+    </div>}
     {record && record.shots?.length ? <><h3 className="shot-map-title">Shot locations · Understat X/Y</h3><ShotMap shots={record.shots}/><p className="scout-footnote">Shot coordinates are normalised (0–1) with attack towards the right. Period: all imported Understat matches, not necessarily the player's entire career. <a href={record.source_url} target="_blank" rel="noreferrer">Source ↗</a></p></>
       : <p className="scout-empty">No verified Understat shots for this player yet. Missing statistics are never treated as zero.</p>}
     <div className="scout-links"><span>Sorare: <strong>{linked ? 'Verified identity' : match?.status === 'needs_review' ? 'Needs review' : match?.status === 'not_found' ? 'Not found' : 'Not checked'}</strong></span>
