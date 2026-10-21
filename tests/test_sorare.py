@@ -44,12 +44,59 @@ class SorareTests(unittest.TestCase):
     def test_lookup_confirmed(self):
         def request(query, vars, key):
             self.assertEqual(key, "not-a-real-key")
-            self.assertIn("football", query)
-            return {"slug": "chris-wood", "displayName": "Chris Wood",
-                    "birthDate": "1991-12-07"}
+            self.assertIn("searchPlayers", query)
+            self.assertEqual(vars["name"], "Chris Wood")
+            return [{"slug": "chris-wood", "displayName": "Chris Wood",
+                     "birthDate": "1991-12-07"}]
         with patch.object(sorare.time, "sleep"):
             result = sorare.lookup_player(self.wood, "not-a-real-key", request_func=request)
         self.assertEqual(result["status"], "confirmed")
+
+    def test_graphql_search_parses_sorare_hits(self):
+        """The schema uses searchPlayers, not football.player."""
+        class FakeResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+        payload = {"data": {"searchPlayers": {
+            "hits": [{"player": {"slug": "chris-wood", "displayName": "Chris Wood",
+                                 "birthDate": "1991-12-07",
+                                 "activeClub": {"name": "Nottingham Forest"}}}]
+        }}}
+        with patch.object(sorare, "urlopen", return_value=FakeResponse()) as opener, patch.object(
+            sorare.json, "load", return_value=payload
+        ):
+            candidates = sorare.graphql_request(sorare.PLAYER_QUERY, {"name": "Chris Wood"}, "fake-only")
+            self.assertEqual(len(candidates), 1)
+            self.assertEqual(candidates[0]["slug"], "chris-wood")
+            request = opener.call_args.args[0]
+            self.assertEqual(request.get_header("Apikey"), "fake-only")
+            request_body = json.loads(request.data)
+            self.assertIn("searchPlayers", request_body["query"])
+            self.assertNotIn("football {", request_body["query"])
+
+    def test_multiple_matching_identities_need_review(self):
+        twins = [{"slug": "player-a", "displayName": "Chris Wood",
+                  "birthDate": "1991-12-07"},
+                 {"slug": "player-b", "displayName": "Chris Wood",
+                  "birthDate": "1991-12-07"}]
+        outcome = sorare.lookup_player(self.wood, "fake", request_func=lambda *args: twins)
+        self.assertEqual(outcome["status"], "needs_review")
+
+    def test_search_error_does_not_expose_api_key(self):
+        payload = {"errors": [{"message": "Cannot query field 'player' on type FootballRoot."}]}
+        class FakeResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+        with patch.object(sorare, "urlopen", return_value=FakeResponse()), patch.object(
+            sorare.json, "load", return_value=payload
+        ):
+            with self.assertRaisesRegex(RuntimeError, "schema mismatch") as exc:
+                sorare.graphql_request(sorare.PLAYER_QUERY, {"name": "Chris Wood"}, "fake-only")
+            self.assertNotIn("fake-only", str(exc.exception))
 
     def test_missing_secret_keeps_existing_files(self):
         with tempfile.TemporaryDirectory() as folder:
