@@ -196,9 +196,21 @@ def run(limit=0):
         pending = pending[:limit]
 
     checked = 0
+    interrupted = None
     for player in pending:
+        # Stay comfortably within Sorare's API-key rate limit.
+        if checked:
+            time.sleep(0.5)
+        try:
+            found = lookup_player(player, key)
+        except RuntimeError as error:
+            if not checked:
+                raise
+            # A later failed request must not discard hundreds of valid matches.
+            interrupted = str(error)
+            print(f"Sorare batch stopped early: {interrupted}", file=sys.stderr)
+            break
         checked += 1
-        found = lookup_player(player, key)
         candidate = found["candidate"]
         # A Sorare slug cannot be assigned to two different players.
         if found["status"] == "confirmed" and candidate["slug"] in used_slugs:
@@ -224,6 +236,8 @@ def run(limit=0):
         "generated_at": today,
         "source": "Sorare football GraphQL",
         "scanned": checked,
+        "batch_interrupted": bool(interrupted),
+        "interruption_reason": interrupted,
         "checked_so_far": len(results),
         "remaining": len(players) - len(results),
         "confirmed": sum(r["status"] == "confirmed" for r in results),
