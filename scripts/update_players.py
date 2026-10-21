@@ -84,7 +84,7 @@ def qualifier_date(qualifiers, prop):
         value = statement.get("datavalue", {}).get("value", {})
         if isinstance(value, dict):
             raw = value.get("time", "")
-            if re.match(r"^\\+\\d{4}-\\d{2}-\\d{2}T", raw):
+            if re.match(r"^\+\d{4}-\d{2}-\d{2}T", raw):
                 return raw[1:11]
     return None
 
@@ -129,7 +129,7 @@ def overlay_manual(by_id, rows, today):
         manual_id = row.get("manual_id", "").strip()
         if not (qid or name):
             continue
-        key = "wd:" + qid if re.fullmatch(r"Q\\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
+        key = "wd:" + qid if re.fullmatch(r"Q\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
         # Only merge a CSV player with Wikidata without a QID when BOTH
         # full name and exact date of birth match exactly one player.
         born = row.get("birth_date", "").strip()
