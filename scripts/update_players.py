@@ -25,6 +25,8 @@ QUERIES = [
     "SELECT DISTINCT ?person WHERE { ?person wdt:P106 wd:Q937857; wdt:P19 ?place. ?place wdt:P131/wdt:P17 wd:Q664. }",
 ]
 NZ_TEAMS = {"Q175315", "Q503755"}
+# Wikidata instance-of values for national association football teams.
+NATIONAL_TEAM_TYPES = {"Q6979593", "Q135408445", "Q23905105"}
 
 def request(url, params):
     """Fetch public JSON with retry/backoff for temporary Wikimedia errors."""
@@ -86,7 +88,7 @@ def qualifier_date(qualifiers, prop):
                 return raw[1:11]
     return None
 
-def club_from_claims(memberships, today=None):
+def club_from_claims(memberships, today=None, team_entities=None):
     """Only accept one unambiguously ongoing team with a known start date.
 
     Old, undated memberships are NOT assumed current. National teams are excluded.
@@ -99,7 +101,8 @@ def club_from_claims(memberships, today=None):
         qualifiers = claim.get("qualifiers", {})
         start = qualifier_date(qualifiers, "P580")
         end = qualifier_date(qualifiers, "P582")
-        if club and club not in NZ_TEAMS and start and start <= today.isoformat() and (
+        national_team = bool(team_entities and set(ids(team_entities.get(club, {}), "P31")) & NATIONAL_TEAM_TYPES)
+        if club and club not in NZ_TEAMS and not national_team and start and start <= today.isoformat() and (
             not end or end >= today.isoformat()
         ) and not ("P582" in qualifiers and not end):
             possible.add(club)
@@ -126,7 +129,16 @@ def overlay_manual(by_id, rows, today):
         manual_id = row.get("manual_id", "").strip()
         if not (qid or name):
             continue
-        key = "wd:" + qid if re.fullmatch(r"Q\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
+        key = "wd:" + qid if re.fullmatch(r"Q\\d+", qid) else "manual:" + (manual_id or re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-"))
+        # Only merge a CSV player with Wikidata without a QID when BOTH
+        # full name and exact date of birth match exactly one player.
+        born = row.get("birth_date", "").strip()
+        if not qid and name and born:
+            matches = [pid for pid, player in by_id.items()
+                       if pid.startswith("wd:") and player.get("name", "").casefold() == name.casefold()
+                       and player.get("birth_date") == born]
+            if len(matches) == 1:
+                key = matches[0]
         person = by_id.get(key, {"id": key, "name": name, "sources": [], "nationalities": [], "birth_date": None, "wikidata_id": qid or None, "eligibility_status": "potential_to_verify"})
         for field in ("name", "birth_date", "birth_country", "position", "club", "club_country", "league", "national_team", "eligibility_status", "gender", "sorare_slug"):
             if row.get(field, "").strip():
@@ -179,7 +191,7 @@ def run():
         nz_team = next((q for q in teams if q in NZ_TEAMS), None)
         birthplace = next(iter(ids(entity, "P19")), None)
         birth_country = next(iter(ids(related.get(birthplace, {}), "P17")), None)
-        club = club_from_claims(claims(entity, "P54"), today)
+        club = club_from_claims(claims(entity, "P54"), today, related)
         club_country = next(iter(ids(related.get(club, {}), "P17")), None)
         league = next(iter(ids(related.get(club, {}), "P118")), None)
         sex = next(iter(ids(entity, "P21")), None)
