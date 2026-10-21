@@ -139,6 +139,15 @@ def lookup_player(player, api_key, request_func=graphql_request):
     return {"status": "not_found", "candidate": None}
 
 
+def check_connection():
+    """Small read-only request to check the secret, endpoint and GraphQL query."""
+    key = os.environ.get("SORARE_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("SORARE_API_KEY is not available in GitHub Actions")
+    results = graphql_request(PLAYER_QUERY, {"name": "Chris Wood"}, key)
+    print(f"Sorare connection OK: searchPlayers query accepted, {len(results)} result(s)")
+
+
 def run(limit=0):
     key = os.environ.get("SORARE_API_KEY", "").strip()
     if not key:
@@ -225,11 +234,16 @@ def run(limit=0):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Read-only Sorare football player matching")
     parser.add_argument("--limit", type=int, default=0, help="Max players to check; 0 checks all")
+    parser.add_argument("--check", action="store_true",
+                        help="Test API key, Sorare endpoint and search query without saving files")
     args = parser.parse_args()
     try:
         if args.limit < 0:
             raise ValueError("--limit must be at least 0")
-        run(args.limit)
+        if args.check:
+            check_connection()
+        else:
+            run(args.limit)
     except (RuntimeError, ValueError, HTTPError) as error:
         print(f"Sorare update cancelled: {error}", file=sys.stderr)
         sys.exit(1)
