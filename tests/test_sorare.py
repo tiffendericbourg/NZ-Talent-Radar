@@ -12,6 +12,10 @@ class SorareTests(unittest.TestCase):
     def setUp(self):
         self.wood = {"id": "wd:Q74548", "name": "Chris Wood",
                      "birth_date": "1991-12-07", "club": None, "sorare_slug": None}
+        # The repository's real audited decisions must not affect tiny test fixtures.
+        self.reviews_patcher = patch.object(sorare, "load_reviews", return_value={})
+        self.reviews_patcher.start()
+        self.addCleanup(self.reviews_patcher.stop)
 
     def test_slug_and_accents(self):
         self.assertEqual(sorare.slugify("Marko Stamenić"), "marko-stamenic")
@@ -29,11 +33,11 @@ class SorareTests(unittest.TestCase):
         self.assertEqual(sorare.match_identity(self.wood, {**candidate, "displayName": "Another Wood"}),
                          "needs_review")
 
-    def test_club_conflict_requires_review(self):
+    def test_stale_club_does_not_override_exact_name_and_birth(self):
         player = {**self.wood, "club": "Club A"}
         candidate = {"slug": "chris-wood", "displayName": "Chris Wood",
                      "birthDate": "1991-12-07", "activeClub": {"name": "Club B"}}
-        self.assertEqual(sorare.match_identity(player, candidate), "needs_review")
+        self.assertEqual(sorare.match_identity(player, candidate), "confirmed")
 
     def test_lookup_not_found(self):
         with patch.object(sorare.time, "sleep"):
@@ -241,6 +245,48 @@ class SorareTests(unittest.TestCase):
             self.assertTrue(result["batch_interrupted"])
             self.assertEqual(result["remaining"], 1)
             self.assertEqual(json.loads(player_file.read_text())["players"][0]["sorare_slug"], "chris-wood")
+
+
+    def test_audited_confirmed_and_rejected_decisions(self):
+        players = [
+            {"id": "wd:Q1", "name": "Matching player", "sorare_slug": None},
+            {"id": "wd:Q2", "name": "Wrong homonym", "sorare_slug": None},
+        ]
+        stored = {
+            "wd:Q1": {"player_id": "wd:Q1", "status": "needs_review",
+                      "sorare_slug": "matching-player"},
+            "wd:Q2": {"player_id": "wd:Q2", "status": "needs_review",
+                      "sorare_slug": "wrong-homonym"},
+        }
+        decisions = {
+            "wd:Q1": {"sorare_slug": "matching-player", "status": "confirmed",
+                      "review_reason": "Verified full name and birth date",
+                      "review_source": "https://example.org/matching"},
+            "wd:Q2": {"sorare_slug": "wrong-homonym", "status": "rejected",
+                      "review_reason": "Different birth date and country",
+                      "review_source": "https://example.org/rejected"},
+        }
+        sorare.apply_reviews(players, stored, decisions, "2026-10-21")
+        self.assertEqual(players[0]["sorare_slug"], "matching-player")
+        self.assertIsNone(players[1]["sorare_slug"])
+        self.assertEqual(stored["wd:Q1"]["status"], "confirmed")
+        self.assertEqual(stored["wd:Q2"]["status"], "rejected")
+        self.assertIsNone(stored["wd:Q2"]["sorare_slug"])
+        self.assertEqual(stored["wd:Q2"]["rejected_candidate_slug"], "wrong-homonym")
+
+    def test_review_csv_loader_rejects_duplicate_ids(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "identity_reviews.csv"
+            path.write_text(
+                "player_id,sorare_slug,decision,reason,evidence_url\n"
+                "wd:Q1,p-1,confirmed,same person,https://example.org/1\n"
+                "wd:Q1,p-2,rejected,different person,https://example.org/2\n",
+                encoding="utf-8"
+            )
+            with patch.object(sorare, "REVIEWS_FILE", path):
+                with self.assertRaises(ValueError):
+                    sorare.load_reviews()
+
 
 
 if __name__ == "__main__":
