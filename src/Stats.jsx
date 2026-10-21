@@ -70,7 +70,18 @@ export function ScoutingDashboard({ players, sorare, understat }) {
         {label:'Club unknown',value:counts.clubsMissing}
       ]}/>
     </div>
-    <p className="scout-footnote">Numbers are descriptive, not scouting rankings. Sorare IDs are matched by name and birth date; Understat only covers selected competitions. Understat shot coordinates are normalised from 0 to 1.</p>
+    {sorare && <div className="scout-audit">
+      <div><span className="eyebrow">SORARE / MATCHING AUDIT</span><h2>Who needs a second look?</h2>
+        <p>{sorare.checked_so_far ?? sorare.matches?.length ?? 0} players checked · {sorare.confirmed ?? 0} confirmed · {sorare.needs_review ?? 0} to review</p></div>
+      {Array.isArray(sorare.matches) && sorare.matches.some(r => r.status === 'needs_review')
+        ? <div className="scout-review-list">{sorare.matches.filter(r => r.status === 'needs_review').slice(0, 15).map(r =>
+          <div key={r.player_id} className="scout-review-row">
+            <strong>{r.name}</strong><span>{r.sorare_name || 'Name missing'} · {r.sorare_birth_date || 'Date unknown'}</span>
+            {r.sorare_slug ? <a href={'https://sorare.com/football/players/' + encodeURIComponent(r.sorare_slug)} target="_blank" rel="noreferrer">Check identity ↗</a> : <span>Needs verification</span>}
+          </div>)}</div>
+        : <p className="scout-empty">No identities currently waiting for manual review.</p>}
+    </div>}
+    <p className="scout-footnote">Numbers are descriptive, not scouting rankings. Sorare identities are accepted only after strict name and date checks; Understat only covers selected competitions. Understat shot coordinates are normalised from 0 to 1.</p>
   </section>
 }
 
