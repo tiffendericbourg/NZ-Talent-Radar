@@ -16294,7 +16294,7 @@
         "New Zealand"
       ],
       "birth_country": "New Zealand",
-      "position": null,
+      "position": "Forward",
       "club": null,
       "club_country": null,
       "league": null,
@@ -16304,8 +16304,8 @@
       "wikidata_id": "Q132200431",
       "sorare_slug": "luke-brooke-smith",
       "sources": [
-        "https://www.wikidata.org/wiki/Q132200431",
-        "https://www.friendsoffootballnz.com/2025/02/24/feature-luke-brooke-smiths-journey-from-juniors-to-phoenix-record-breaker/"
+        "https://www.friendsoffootballnz.com/2025/02/24/feature-luke-brooke-smiths-journey-from-juniors-to-phoenix-record-breaker/",
+        "https://www.wikidata.org/wiki/Q132200431"
       ],
       "updated_at": "2026-10-21"
     },
