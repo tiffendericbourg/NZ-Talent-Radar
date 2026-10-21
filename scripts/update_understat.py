@@ -124,8 +124,12 @@ def permitted_to_fetch(url):
 def run(fetch=False, max_players=5):
     known = {p["id"]: p for p in json.loads(PLAYERS.read_text(encoding="utf-8"))["players"]}
     mapping = list(csv.DictReader(MAPPING.open(newline="", encoding="utf-8-sig")))
-    if not mapping:
-        print("No verified Understat IDs yet; nothing to import")
+    previous = {}
+    if OUTPUT.exists():
+        previous = json.loads(OUTPUT.read_text(encoding="utf-8")).get("players", {})
+    if not mapping and OUTPUT.exists():
+        print("No verified Understat IDs yet; preserving existing shot data")
+        return json.loads(OUTPUT.read_text(encoding="utf-8"))
     result = {}
     seen_understat = set()
     fetched = 0
@@ -151,6 +155,10 @@ def run(fetch=False, max_players=5):
             fetched += 1
             time.sleep(3)
         else:
+            # A missing export must not delete previously verified events.
+            old = previous.get(player_id)
+            if old and str(old.get("understat_id")) == understat_id:
+                result[player_id] = old
             continue
         raw = parse_shots(text)
         shots = normalize_shots(raw, understat_id)
