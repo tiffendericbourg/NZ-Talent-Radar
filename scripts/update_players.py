@@ -176,7 +176,7 @@ def run():
             failed_queries.append(number)
             query_counts.append(None)
             print(f"WARNING: Discovery query {number} failed: {error}", file=sys.stderr)
-    if len(discovered) < 5:
+    if not discovered:
         raise RuntimeError("Insufficient results from Wikidata; keeping existing data")
     people = entities_for(discovered, props="labels|claims")
     missing = [q for q in discovered if q not in people or "missing" in people[q]]
@@ -184,7 +184,7 @@ def run():
         print(f"WARNING: {len(missing)} Wikidata IDs unavailable, keeping previous records if any")
         for q in missing:
             people.pop(q, None)
-    if len(people) < 5:
+    if not people:
         raise RuntimeError("Too few Wikidata player records; keeping existing data")
     refs = set(NZ_TEAMS) | {"Q664"}
     places_and_teams = set()
