@@ -131,6 +131,7 @@ def run(limit=0):
 
     results = []
     checked = 0
+    used_slugs = {p["sorare_slug"] for p in players if p.get("sorare_slug")}
     for player in players:
         if player.get("sorare_slug"):
             results.append({"player_id": player["id"], "name": player["name"],
@@ -141,6 +142,9 @@ def run(limit=0):
         checked += 1
         found = lookup_player(player, key)
         candidate = found["candidate"]
+        # A Sorare slug cannot be assigned to two different players.
+        if found["status"] == "confirmed" and candidate["slug"] in used_slugs:
+            found["status"] = "needs_review"
         item = {
             "player_id": player["id"], "name": player.get("name"),
             "status": found["status"],
@@ -152,6 +156,7 @@ def run(limit=0):
         results.append(item)
         if item["status"] == "confirmed":
             player["sorare_slug"] = item["sorare_slug"]
+            used_slugs.add(item["sorare_slug"])
         print(f"{checked}: {player.get('name')} — {found['status']}")
     today = date.today().isoformat()
     summary = {
