@@ -129,16 +129,34 @@ def run(limit=0):
     if not isinstance(players, list) or not players:
         raise RuntimeError("No player data; Sorare update cancelled")
 
-    results = []
-    checked = 0
+    # Continue where the previous weekly run stopped.
+    # This matters when the Wikidata catalogue contains hundreds of players.
+    earlier = {}
+    if MATCHES_FILE.exists():
+        previous = json.loads(MATCHES_FILE.read_text(encoding="utf-8"))
+        earlier = {row["player_id"]: row for row in previous.get("matches", [])
+                   if row.get("player_id")}
+    current_ids = {p["id"] for p in players}
+    results_by_id = {key: row for key, row in earlier.items() if key in current_ids}
     used_slugs = {p["sorare_slug"] for p in players if p.get("sorare_slug")}
+
     for player in players:
-        if player.get("sorare_slug"):
-            results.append({"player_id": player["id"], "name": player["name"],
-                            "status": "already_matched", "sorare_slug": player["sorare_slug"]})
-            continue
-        if limit and checked >= limit:
-            continue
+        if player.get("sorare_slug") and player["id"] not in results_by_id:
+            results_by_id[player["id"]] = {
+                "player_id": player["id"], "name": player["name"],
+                "status": "already_matched", "sorare_slug": player["sorare_slug"]
+            }
+
+    unmatched = [p for p in players if not p.get("sorare_slug")]
+    pending = [p for p in unmatched if p["id"] not in results_by_id]
+    if not pending:
+        # After checking everybody once, begin another verification cycle.
+        pending = unmatched
+    if limit:
+        pending = pending[:limit]
+
+    checked = 0
+    for player in pending:
         checked += 1
         found = lookup_player(player, key)
         candidate = found["candidate"]
@@ -150,19 +168,24 @@ def run(limit=0):
             "status": found["status"],
             "sorare_slug": candidate.get("slug") if candidate else None,
             "sorare_name": candidate.get("displayName") if candidate else None,
-            "sorare_birth_date": str(candidate.get("birthDate") or "")[:10] or None if candidate else None,
+            "sorare_birth_date": (str(candidate.get("birthDate") or "")[:10] or None)
+                                 if candidate else None,
             "sorare_club": (candidate.get("activeClub") or {}).get("name") if candidate else None,
         }
-        results.append(item)
+        results_by_id[player["id"]] = item
         if item["status"] == "confirmed":
             player["sorare_slug"] = item["sorare_slug"]
             used_slugs.add(item["sorare_slug"])
         print(f"{checked}: {player.get('name')} — {found['status']}")
+
+    results = [results_by_id[p["id"]] for p in players if p["id"] in results_by_id]
     today = date.today().isoformat()
     summary = {
         "generated_at": today,
         "source": "Sorare football GraphQL",
         "scanned": checked,
+        "checked_so_far": len(results),
+        "remaining": len(players) - len(results),
         "confirmed": sum(r["status"] == "confirmed" for r in results),
         "already_matched": sum(r["status"] == "already_matched" for r in results),
         "needs_review": sum(r["status"] == "needs_review" for r in results),
