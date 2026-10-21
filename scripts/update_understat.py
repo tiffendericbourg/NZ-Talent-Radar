@@ -92,6 +92,17 @@ def summarize(shots):
     }
 
 
+def summarize_seasons(shots):
+    """Season-level goals and xG from the same shot events."""
+    by_season = {}
+    for shot in shots:
+        year = str(shot.get("season") or "").strip()
+        if not year.isdigit():
+            continue
+        by_season.setdefault(year, []).append(shot)
+    return {year: summarize(entries) for year, entries in sorted(by_season.items())}
+
+
 def permitted_to_fetch(url):
     """Fail closed when Understat's robots policy cannot be checked."""
     parsed = urlparse(url)
@@ -147,6 +158,7 @@ def run(fetch=False, max_players=5):
             "understat_id": understat_id, "source_url": url,
             "sample": "All imported shot events; coverage varies by league and season",
             "stats": summarize(shots),
+            "seasons": summarize_seasons(shots),
             "shots": shots,
         }
         print(f"{known[player_id]['name']}: {len(shots)} valid shot events")
