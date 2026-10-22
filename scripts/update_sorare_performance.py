@@ -36,8 +36,8 @@ query NZPlayerPerformance($slug: String!, $count: Int!) {
     __typename
     slug
     displayName
-    birthDate
     ... on Player {
+      birthDate
       allPlayerGameScores(first: $count) {
         nodes {
           __typename
