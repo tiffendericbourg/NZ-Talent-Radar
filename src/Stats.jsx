@@ -15,7 +15,7 @@ function CountBars({ title, rows, total }) {
   </article>
 }
 
-export function ScoutingDashboard({ players, sorare, understat, performance }) {
+export function ScoutingDashboard({ players, sorare, understat, understatLinks, performance }) {
   const counts = useMemo(() => {
     const age = player => {
       if (!player.birth_date) return null
@@ -41,6 +41,7 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
   }, [players])
   const visibleIds = new Set(players.map(p => p.id))
   const linked = players.filter(p => p.sorare_slug).length
+  const understatIdentities = Object.keys(understatLinks?.players || {}).filter(id => visibleIds.has(id)).length
   const shotPlayers = Object.entries(understat?.players || {})
     .filter(([id]) => visibleIds.has(id)).map(([, player]) => player)
   const reviewMatches = (sorare?.matches || [])
@@ -56,8 +57,8 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
       <Metric label="PLAYER PROFILES" value={players.length.toLocaleString('en-NZ')} note="Source-linked catalogue"/>
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
       <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && p.games?.length > 0).length} note="Players with verified game scores"/>
-      <Metric label="UNDERSTAT PLAYERS" value={shotPlayers.length} note="Verified Understat IDs"/>
-      <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note="Imported X/Y locations"/>
+      <Metric label="UNDERSTAT IDENTITIES" value={understatIdentities} note="Reviewed player profile links"/>
+      <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note="Imported X/Y locations · {shotPlayers.length} players"/>
       <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
     </div>
     <div className="scout-chart-grid">
@@ -71,7 +72,8 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
       ]}/>
       <CountBars title="Source coverage" total={players.length} rows={[
         {label:'Sorare linked',value:linked},
-        {label:'Understat shots',value:shotPlayers.length},
+        {label:'Understat linked',value:understatIdentities},
+         {label:'Understat shots',value:shotPlayers.length},
         {label:'Club unknown',value:counts.clubsMissing}
       ]}/>
     </div>
@@ -112,17 +114,18 @@ export function ShotMap({ shots }) {
   </div>
 }
 
-export function PlayerPerformance({ player, sorare, understat, performance }) {
+export function PlayerPerformance({ player, sorare, understat, understatLinks, performance }) {
   const sorareRecord = performance?.players?.[player.id]
   const sorareSummary = sorareRecord?.summary
   const recentGames = sorareRecord?.games || []
   const record = understat?.players?.[player.id]
+  const understatLink = understatLinks?.players?.[player.id]
   const data = record?.stats
   const match = (sorare?.matches || []).find(row => row.player_id === player.id)
   const linked = player.sorare_slug
   return <section className="performance-section">
     <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2></div>
-      <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : 'SOURCE COVERAGE'}</span></div>
+      <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : understatLink ? 'UNDERSTAT · VERIFIED ID' : 'SOURCE COVERAGE'}</span></div>
     {sorareRecord && <div className="scout-audit">
       <span className="eyebrow">SORARE / RECENT PERFORMANCE</span>
       <h3>Match-by-match form</h3>
@@ -162,9 +165,11 @@ export function PlayerPerformance({ player, sorare, understat, performance }) {
         </div>)}
     </div>}
     {record && record.shots?.length ? <><h3 className="shot-map-title">Shot locations · Understat X/Y</h3><ShotMap shots={record.shots}/><p className="scout-footnote">Shot coordinates are normalised (0–1) with attack towards the right. Period: all imported Understat matches, not necessarily the player's entire career. <a href={record.source_url} target="_blank" rel="noreferrer">Source ↗</a></p></>
-      : <p className="scout-empty">No verified Understat shots for this player yet. Missing statistics are never treated as zero.</p>}
+      : <p className="scout-empty">{understatLink ? 'Understat profile matched. Shot coordinates have not been imported yet.' : 'No verified Understat shots for this player yet.'} Missing statistics are never treated as zero.</p>}
     <div className="scout-links"><span>Sorare: <strong>{linked ? 'Verified identity' : match?.status === 'needs_review' ? 'Needs review' : match?.status === 'not_found' ? 'Not found' : match?.status === 'rejected' ? 'Wrong homonym excluded' : 'Not checked'}</strong></span>
       {linked && <a href={'https://sorare.com/football/players/' + encodeURIComponent(linked)} target="_blank" rel="noreferrer">View Sorare profile ↗</a>}
+      <span>Understat: <strong>{understatLink ? 'Verified identity' : 'Not linked'}</strong></span>
+      {understatLink && <a href={understatLink.source_url} target="_blank" rel="noreferrer">View Understat profile ↗</a>}
     </div>
   </section>
 }
