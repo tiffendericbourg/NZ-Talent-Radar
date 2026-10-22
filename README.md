@@ -172,3 +172,23 @@ The first leaderboard is intentionally simple: **average Sorare score from the l
 Players without enough published match data appear in a separate **watchlist**, alphabetically, **without a rank**. There is no meaningful top 10 until `public/data/sorare_performance.json` actually contains sourced results. The current live collection is still not confirmed; a Sorare identity link is not proof of performance data. The site reports both match periods and data snapshot dates when available.
 
 Relevant files: `src/Rankings.jsx`, `src/rankingUtils.js` and `tests/ranking.test.mjs`. Run `npm test` for the calculation checks; GitHub Pages deployment runs them before the build. League-strength adjustments, specialist sub-positions and a distinct NZ Talent Score are planned only after there is enough reliable data to calibrate them.
+
+
+## Scouting charts & indicators — 22 October 2026
+
+Both the **Statistics** dashboard and each verified player profile now use data-driven charts, implemented with lightweight React/SVG and CSS (no chart-library dependency):
+
+| Screen | Chart or KPI | Data and safeguards |
+|---|---|---|
+| Statistics | Doughnut: confirmed match stats vs shot events vs identity-only | Exclusive categories, no duplicate player counting. A Sorare match counts only if finalized, played and scored. |
+| Statistics | Horizontal bars by player position | Existing verified NZ-linked directory positions; unknown stays unknown. |
+| Player | Sorare score form graph | Up to 15 finalized played games; exclude low-coverage games, and do not mix scoring versions. Dates and scoring version are shown. |
+| Player | Minutes by match chart | Up to 12 completed matches with actual reported minutes, including explicit 0-minute appearances. |
+| Player | Four role KPIs per 90 minutes | Saves, tackles, interceptions, chances, goals etc. vary by broad player position. Each figure shows how many match records actually supplied that stat, with no missing-as-zero handling. |
+| Player | Performance vs peer median | Only if the player is eligible and at least three NZ players share the same gender, broad position and Sorare scoring version, with 3+ games/180+ minutes in the last 365 days. No league adjustment yet. |
+| Player | Goals vs xG by season and X/Y shot map | Only from actual verified Understat shot exports; never invented for identity-only links. |
+| Rankings | Score distribution histogram and individual score bars | Based exclusively on eligible, comparable Sorare rankings. |
+
+When no match/shot events have been sourced, the visual shows a **clearly labelled unavailable-data state**, not synthetic graphs. Collection dates remain separate from fixture dates. Each chart labels its source, included observations and limitations.
+
+Files: `src/ScoutingCharts.jsx`, `src/chartData.js`, `src/Stats.jsx`, `src/Rankings.jsx`. Run `npm test` to execute the chart-data and ranking-data tests before deployment.
