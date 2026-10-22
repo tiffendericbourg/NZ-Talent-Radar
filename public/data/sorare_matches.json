@@ -6,11 +6,11 @@
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 24,
+  "confirmed": 38,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1083,
+  "not_found": 1069,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -330,11 +330,15 @@
     {
       "player_id": "wd:Q107558242",
       "name": "Alex Paulsen",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "alexander-paulsen",
+      "sorare_name": "Alexander Paulsen",
+      "sorare_birth_date": "2002-07-04",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Alexander Paulsen, same full birth date 2002-07-04, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/alexander-paulsen/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q16239766",
@@ -555,11 +559,15 @@
     {
       "player_id": "wd:Q18719698",
       "name": "Andre de Jong",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "andre-ernest-de-jong",
+      "sorare_name": "Andre de Jong",
+      "sorare_birth_date": "1996-11-02",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Andre de Jong, same full birth date 1996-11-02, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/andre-ernest-de-jong/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q4755179",
@@ -978,11 +986,15 @@
     {
       "player_id": "wd:Q106939313",
       "name": "Ben Old",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "benjamin-craig-old",
+      "sorare_name": "Benjamin Old",
+      "sorare_birth_date": "2002-08-13",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Benjamin Old, same full birth date 2002-08-13, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/benjamin-craig-old/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q462202",
@@ -996,11 +1008,15 @@
     {
       "player_id": "wd:Q62629839",
       "name": "Ben Waine",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "ben-waine",
+      "sorare_name": "Benjamin Waine",
+      "sorare_birth_date": "2001-06-11",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Benjamin Waine, same full birth date 2001-06-11, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/ben-waine/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q118612261",
@@ -1792,11 +1808,15 @@
     {
       "player_id": "wd:Q20046896",
       "name": "Clayton Lewis",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "clayton-lewis",
+      "sorare_name": "Clayton Lewis",
+      "sorare_birth_date": "1997-02-12",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Clayton Lewis, same full birth date 1997-02-12, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/clayton-lewis/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q5132530",
@@ -2854,11 +2874,15 @@
     {
       "player_id": "wd:Q123473457",
       "name": "Fin Conchie",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "fin-ngahina-roa-conchie",
+      "sorare_name": "Fin Conchie",
+      "sorare_birth_date": "2003-08-10",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Fin Conchie, same full birth date 2003-08-10, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/fin-ngahina-roa-conchie/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q134987311",
@@ -3282,11 +3306,15 @@
     {
       "player_id": "wd:Q62017452",
       "name": "Gianni Stensness",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "gianni-stensness",
+      "sorare_name": "Gianni Stensness",
+      "sorare_birth_date": "1999-02-07",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Gianni Stensness, same full birth date 1999-02-07, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/gianni-stensness/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q21642495",
@@ -5244,11 +5272,15 @@
     {
       "player_id": "wd:Q118463931",
       "name": "Kees Sims",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "kees-sims",
+      "sorare_name": "Kees Sims",
+      "sorare_birth_date": "2003-03-27",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Kees Sims, same full birth date 2003-03-27, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/kees-sims/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q6384033",
@@ -5568,11 +5600,15 @@
     {
       "player_id": "wd:Q771396",
       "name": "Kosta Barbarouses",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "kosta-barbarouses",
+      "sorare_name": "Konstantinos Barbarouses",
+      "sorare_birth_date": "1990-02-19",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Konstantinos Barbarouses, same full birth date 1990-02-19, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/kosta-barbarouses/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q929563",
@@ -6220,11 +6256,15 @@
     {
       "player_id": "wd:Q1851874",
       "name": "Marco Rojas",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "marco-rojas",
+      "sorare_name": "Marco Rojas",
+      "sorare_birth_date": "1991-11-05",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Marco Rojas, same full birth date 1991-11-05, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/fr/football/players/marco-rojas/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q10477536",
@@ -6584,11 +6624,15 @@
     {
       "player_id": "wd:Q64260656",
       "name": "Max Mata",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "max-mata",
+      "sorare_name": "Max Mata",
+      "sorare_birth_date": "2000-07-10",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Max Mata, same full birth date 2000-07-10, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/max-mata/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q30056192",
@@ -8681,11 +8725,15 @@
     {
       "player_id": "wd:Q79378939",
       "name": "Sam Sutton",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "sam-sutton",
+      "sorare_name": "Sam Sutton",
+      "sorare_birth_date": "2001-12-10",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Sam Sutton, same full birth date 2001-12-10, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/football/players/sam-sutton/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q97750615",
@@ -9095,20 +9143,28 @@
     {
       "player_id": "wd:Q131676093",
       "name": "Stipe Ukich",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "stipe-josip-ukich",
+      "sorare_name": "Stipe Ukich",
+      "sorare_birth_date": "2007-01-03",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Stipe Ukich, same full birth date 2007-01-03, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/fr/football/players/stipe-josip-ukich/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q7620171",
       "name": "Storm Roux",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "storm-roux",
+      "sorare_name": "Storm Roux",
+      "sorare_birth_date": "1993-01-13",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history: Storm Roux, same full birth date 1993-01-13, documented New Zealand player career; source profile name differs or was missed by fuzzy search",
+      "review_source": "https://sorare.com/es/football/players/storm-roux/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q7626166",
@@ -10059,5 +10115,7 @@
       "sorare_birth_date": null,
       "sorare_club": null
     }
-  ]
+  ],
+  "reviewed_players": 25,
+  "manual_review_date": "2026-10-22"
 }
