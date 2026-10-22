@@ -1,2 +1,3 @@
 player_id,understat_id,reason,evidence_url
 wd:Q6309673,11040,Name collision: Understat player is a modern Spezia footballer while NZ catalogue player is a historical New Zealand international,https://github.com/AlvaroPrietox/TFG-INSO-Alvaro-Prieto/blob/8448e6fbd555cae0377b7d0ede6/datos/Serie-A/2022-2023/players.csv
+wd:Q462503,6029,Name collision: Understat player was a Huddersfield defender while NZ Tommy Smith was at Ipswich and Colorado Rapids,https://github.com/douglasbc/scraping-understat-dataset/blob/87960c218d873b63daabdd851e93adbecab77faa/datasets/epl/players_epl_17-18.csv
