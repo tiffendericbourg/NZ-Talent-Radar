@@ -209,3 +209,21 @@ Both the **Statistics** dashboard and each verified player profile now use data-
 When no match/shot events have been sourced, the visual shows a **clearly labelled unavailable-data state**, not synthetic graphs. Collection dates remain separate from fixture dates. Each chart labels its source, included observations and limitations.
 
 Files: `src/ScoutingCharts.jsx`, `src/chartData.js`, `src/Stats.jsx`, `src/Rankings.jsx`. Run `npm test` to execute the chart-data and ranking-data tests before deployment.
+
+
+## Scouting portfolio — three applied case studies (22 October 2026)
+
+The **U23 study** navigation item now opens three practical, data-driven research views:
+- **01 / U23 watchlist** — documented NZ U23 players, overseas-club verification, match evidence and up to three video-review candidates (no fabricated top three).
+- **02 / Role comparison** — two players from the same gender, broad position and Sorare scoring version, with sourced per-90 role metrics and coverage checks. Different leagues are *not* normalized.
+- **03 / Data blind spots** — whole-catalogue audit of club completeness and scored-match coverage by women, men and U23 players, plus missing-data research leads.
+
+Each sourced **player profile** includes an additional scouting note: qualifying match count and minutes, role metrics, evidence level, supported observations, peer median only if at least three compatible players exist, an explicit next action, source timestamps and limitations. Notes are deliberately descriptive, not national-team selection predictions.
+
+The **Methodology** tab explains the personal project and reproducible analysis decisions. Detailed portfolio write-up: [Three scouting questions](docs/portfolio_case_studies.md).
+
+**Important coverage limitation:** the 22 October snapshot contained only two U23s with a documented foreign club country in the *full* catalogue. The website does not invent a third. Missing club country is not assumed to mean a domestic player. There are still no imported Understat shot events.
+
+**Run all frontend calculations tests:** npm test
+
+The website deployment workflow now runs these tests before building. The new source-only research calculations are in src/scoutingReport.js, the pages in src/ScoutingWorkspace.jsx and tests in tests/scoutingReport.test.mjs. The Statistics coverage panel now uses all catalogue profiles rather than only the match-data directory.
