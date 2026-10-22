@@ -131,8 +131,23 @@ def request_player(slug, count, key):
             except HTTPError as error:
                 if error.code in (401, 403):
                     raise RuntimeError(
-                        "Sorare HTTP %s: verify SORARE_API_KEY and optional "
-                        "SORARE_ACCESS_TOKEN authentication" % error.code) from None
+                        "Sorare HTTP %s: confirm SORARE_ACCESS_TOKEN (JWT) and API key" %
+                        error.code) from None
+                if error.code in (400, 422):
+                    # GraphQL validation errors sometimes arrive as HTTP 422.
+                    # Show only the error message, never credentials or headers.
+                    raw = error.read(6000).decode("utf-8", errors="replace")
+                    try:
+                        detail = json.loads(raw)
+                        reason = graphql_errors(detail) or str(detail.get("message", ""))[:220]
+                    except (ValueError, AttributeError):
+                        reason = raw[:220]
+                    if query_label == "detailed":
+                        print("Sorare detailed HTTP %s (%s); trying minimal stats" %
+                              (error.code, reason[:170]))
+                        break
+                    raise RuntimeError("Sorare core API HTTP %s: %s" %
+                                       (error.code, reason[:220])) from None
                 if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                     raise RuntimeError("Sorare API HTTP %s" % error.code) from None
                 delay = error.headers.get("Retry-After", "")
