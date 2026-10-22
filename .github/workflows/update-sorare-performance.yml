@@ -1,0 +1,76 @@
+name: Update Sorare performances
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Confirmed NZ players to update (0 = all)'
+        required: false
+        default: '0'
+      games:
+        description: 'Recent game scores per player (1 to 50)'
+        required: false
+        default: '15'
+  schedule:
+    - cron: '40 6 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/update_sorare_performance.py'
+      - 'tests/test_sorare_performance.py'
+      - '.github/workflows/update-sorare-performance.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sorare-performances
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test offline calculations
+        run: python -m unittest discover -s tests -p 'test_sorare_performance.py' -v
+      - name: Validate Sorare performance API
+        env:
+          SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
+        run: python scripts/update_sorare_performance.py --check
+      - name: Collect recent NZ player performances
+        env:
+          SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
+          MATCH_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '0' }}
+          MATCHES_PER_PLAYER: ${{ github.event_name == 'workflow_dispatch' && inputs.games || '15' }}
+        run: python scripts/update_sorare_performance.py --limit "$MATCH_LIMIT" --games "$MATCHES_PER_PLAYER"
+      - name: Summarize verified game data
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          data = json.loads(Path("public/data/sorare_performance.json").read_text(encoding="utf-8"))
+          stats = data["coverage"]
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
+              out.write("## Sorare — New Zealand player performances\n\n")
+              out.write(f"- Verified identities: **{stats['confirmed_identities']}**\n")
+              out.write(f"- Players updated: **{stats['players_updated']}**\n")
+              out.write(f"- Players with real game scores: **{stats['players_with_data']}**\n")
+              out.write(f"- Game scores published: **{stats['game_scores']}**\n")
+              out.write(f"- Players failed this run: **{len(stats['failed_players'])}**\n")
+              out.write("\nNo synthetic game scores. DNP/low-coverage matches are not included in score averages.\n")
+          PY
+      - name: Commit sourced performance data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/data/sorare_performance.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh Sorare performances'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
