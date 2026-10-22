@@ -14,6 +14,7 @@ PLAYERS = ROOT / "public/data/players.json"
 LEAGUES = ROOT / "data/understat/league_exports"
 ALIASES = ROOT / "data/understat/aliases.csv"
 VERIFIED = ROOT / "data/understat/verified_players.csv"
+REJECTED = ROOT / "data/understat/rejected_players.csv"
 CANDIDATES = ROOT / "data/understat/candidates.csv"
 FIELDS = ["player_id", "player_name", "understat_id", "understat_name",
           "team", "source_file", "match_method", "status"]
@@ -99,6 +100,14 @@ def read_aliases(path, valid_ids):
     return aliases
 
 
+def read_rejected(path):
+    if not path.exists():
+        return set()
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        return {(row["player_id"].strip(), row["understat_id"].strip())
+                for row in csv.DictReader(handle)}
+
+
 def run():
     players = json.loads(PLAYERS.read_text(encoding="utf-8"))["players"]
     valid_ids = {player["id"] for player in players if eligible(player)}
@@ -112,13 +121,16 @@ def run():
                 (row["player_id"].strip(), row["understat_id"].strip())
                 for row in csv.DictReader(handle) if row.get("status", "").strip().lower() == "confirmed"
             }
-    found = [row for row in found if (row["player_id"], row["understat_id"]) not in confirmed]
+    rejected = read_rejected(REJECTED)
+    found = [row for row in found
+             if (row["player_id"], row["understat_id"]) not in confirmed
+             and (row["player_id"], row["understat_id"]) not in rejected]
     CANDIDATES.parent.mkdir(parents=True, exist_ok=True)
     with CANDIDATES.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDS)
         writer.writeheader()
         writer.writerows(found)
-    print(f"Understat: {len(found)} NZ name/alias candidates needing identity review from {len(files)} local exports")
+    print(f"Understat: {len(found)} NZ name/alias candidates needing identity review from {len(files)} local exports; {len(rejected)} known homonyms excluded")
 
 
 if __name__ == "__main__":
