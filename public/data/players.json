@@ -1834,8 +1834,8 @@
       "wikidata_id": "Q53773340",
       "sorare_slug": "angus-kilkolly",
       "sources": [
-        "https://www.wikidata.org/wiki/Q53773340",
-        "https://sorare.com/football/players/angus-kilkolly/history"
+        "https://sorare.com/football/players/angus-kilkolly/history",
+        "https://www.wikidata.org/wiki/Q53773340"
       ],
       "updated_at": "2026-10-22"
     },
@@ -6823,8 +6823,7 @@
       "wikidata_id": "Q124789400",
       "sorare_slug": "dylan-manickum",
       "sources": [
-        "https://www.wikidata.org/wiki/Q124789400",
-        "https://sorare.com/football/teams/auckland-city-auckland/team"
+        "https://www.wikidata.org/wiki/Q124789400"
       ],
       "updated_at": "2026-10-22"
     },
@@ -7677,8 +7676,7 @@
       "wikidata_id": "Q126924680",
       "sorare_slug": "fergus-william-gillion",
       "sources": [
-        "https://www.wikidata.org/wiki/Q126924680",
-        "https://sorare.com/football/teams/auckland-city-auckland/team"
+        "https://www.wikidata.org/wiki/Q126924680"
       ],
       "updated_at": "2026-10-22"
     },
@@ -10639,9 +10637,8 @@
       "wikidata_id": "Q125791559",
       "sorare_slug": "isaac-robert-hughes",
       "sources": [
-        "https://www.wikidata.org/wiki/Q125791559",
         "https://www.transfermarkt.com/isaac-hughes/profil/spieler/953953",
-        "https://sorare.com/football/teams/wellington-phoenix-wellington/team"
+        "https://www.wikidata.org/wiki/Q125791559"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11153,8 +11150,7 @@
       "wikidata_id": "Q1568728",
       "sorare_slug": "jake-gleeson",
       "sources": [
-        "https://www.wikidata.org/wiki/Q1568728",
-        "https://sorare.com/fr/football/players/jake-gleeson/history"
+        "https://www.wikidata.org/wiki/Q1568728"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11631,8 +11627,7 @@
       "wikidata_id": "Q111512710",
       "sorare_slug": "jay-joshua-herdman",
       "sources": [
-        "https://www.wikidata.org/wiki/Q111512710",
-        "https://sorare.com/nl/football/teams/cavalry/team"
+        "https://www.wikidata.org/wiki/Q111512710"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11903,8 +11898,7 @@
       "wikidata_id": "Q134931872",
       "sorare_slug": "jeremy-foo",
       "sources": [
-        "https://www.wikidata.org/wiki/Q134931872",
-        "https://sorare.com/football/teams/auckland-city-auckland/team"
+        "https://www.wikidata.org/wiki/Q134931872"
       ],
       "updated_at": "2026-10-22"
     },
@@ -16261,8 +16255,7 @@
       "wikidata_id": "Q124963162",
       "sorare_slug": "lukas-eric-kelly-heald",
       "sources": [
-        "https://www.wikidata.org/wiki/Q124963162",
-        "https://sorare.com/football/players/lukas-eric-kelly-heald"
+        "https://www.wikidata.org/wiki/Q124963162"
       ],
       "updated_at": "2026-10-22"
     },
@@ -17573,8 +17566,7 @@
       "wikidata_id": "Q139971019",
       "sorare_slug": "matthew-george-foord",
       "sources": [
-        "https://www.wikidata.org/wiki/Q139971019",
-        "https://sorare.com/football/teams/auckland-city-auckland/team"
+        "https://www.wikidata.org/wiki/Q139971019"
       ],
       "updated_at": "2026-10-22"
     },
@@ -17674,8 +17666,7 @@
       "wikidata_id": "Q125973758",
       "sorare_slug": "matthew-benjamin-sheridan",
       "sources": [
-        "https://www.wikidata.org/wiki/Q125973758",
-        "https://sorare.com/football/players/matthew-benjamin-sheridan/history"
+        "https://www.wikidata.org/wiki/Q125973758"
       ],
       "updated_at": "2026-10-22"
     },
@@ -17758,24 +17749,25 @@
       "birth_date": "1993-08-12",
       "age": 33,
       "nationalities": [
-        "New Zealand"
+        "New Zealand",
+        "United Kingdom"
       ],
       "country_for_sport": [
         "New Zealand"
       ],
       "birth_country": "New Zealand",
-      "position": "goalkeeper",
-      "club": null,
-      "club_country": null,
-      "league": null,
-      "national_team": null,
-      "eligibility_status": "nz_nationality",
+      "position": "Goalkeeper",
+      "club": "Millwall FC",
+      "club_country": "United Kingdom",
+      "league": "EFL Championship",
+      "national_team": "New Zealand men's national football team",
+      "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q6794678",
       "sorare_slug": "maxime-teremoana-crocombe",
       "sources": [
-        "https://www.wikidata.org/wiki/Q6794678",
-        "https://sorare.com/football/players/maxime-teremoana-crocombe/history"
+        "https://sorare.com/football/players/maxime-teremoana-crocombe/history",
+        "https://www.wikidata.org/wiki/Q6794678"
       ],
       "updated_at": "2026-10-22"
     },
@@ -19760,8 +19752,7 @@
       "wikidata_id": "Q20916837",
       "sorare_slug": "nikko-boxall",
       "sources": [
-        "https://www.wikidata.org/wiki/Q20916837",
-        "https://sorare.com/football/players/nikko-boxall"
+        "https://www.wikidata.org/wiki/Q20916837"
       ],
       "updated_at": "2026-10-22"
     },
@@ -25538,8 +25529,7 @@
       "wikidata_id": "Q2642525",
       "sorare_slug": "tim-payne",
       "sources": [
-        "https://www.wikidata.org/wiki/Q2642525",
-        "https://sorare.com/football/players/tim-payne/history"
+        "https://www.wikidata.org/wiki/Q2642525"
       ],
       "updated_at": "2026-10-22"
     },
@@ -25979,8 +25969,7 @@
       "wikidata_id": "Q462503",
       "sorare_slug": "tommy-smith-1990-03-31",
       "sources": [
-        "https://www.wikidata.org/wiki/Q462503",
-        "https://sorare.com/football/countries/nz/team"
+        "https://www.wikidata.org/wiki/Q462503"
       ],
       "updated_at": "2026-10-22"
     },

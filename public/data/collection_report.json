@@ -15,13 +15,13 @@
   "missing_wikidata_entities": 0,
   "total_players": 1111,
   "new_players": 0,
-  "manual_rows": 17,
-  "with_birth_date": 824,
+  "manual_rows": 20,
+  "with_birth_date": 825,
   "with_position": 800,
-  "with_club": 216,
+  "with_club": 217,
   "women": 303,
   "men": 808,
   "under_23": 46,
-  "abroad_with_known_club": 86,
+  "abroad_with_known_club": 87,
   "potential_to_verify": 13
 }
