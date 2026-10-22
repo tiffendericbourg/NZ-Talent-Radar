@@ -22,8 +22,15 @@ export function seasonOf(date) {
   return String(+match[1] - (+match[2] < 7 ? 1 : 0))
 }
 
-export function seasonType(competition) {
+export function seasonType(competition, date = '') {
   const name = String(competition || '').trim().toLowerCase()
+  if (['j1 league', 'j2 league', 'j3 league'].includes(name) && date) {
+    // Japan changed to August–June from 2026/27.
+    // The Jan–Jul 2026 transition period isn't an ordinary league season.
+    if (date >= '2026-08-01') return 'split'
+    if (date >= '2026-01-01') return 'unclassified'
+    return 'calendar'
+  }
   if (CALENDAR.has(name)) return 'calendar'
   if (SPLIT.has(name)) return 'split'
   if (EVENTS.has(name)) return 'event'
@@ -35,7 +42,7 @@ export function gameSeasonKey(game) {
   const date = String(game?.date || '')
   const year = /^(\d{4})-(\d{2})-\d{2}/.exec(date)
   if (!year || +year[2] < 1 || +year[2] > 12) return null
-  const type = seasonType(game.competition)
+  const type = seasonType(game.competition, date)
   const seasonYear = type === 'split' ? seasonOf(date) : year[1]
   return type + ':' + seasonYear
 }
