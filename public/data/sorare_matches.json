@@ -6,11 +6,11 @@
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 38,
+  "confirmed": 43,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1069,
+  "not_found": 1064,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -285,11 +285,15 @@
     {
       "player_id": "wd:Q110616470",
       "name": "Alex Greive",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "alexander-greive",
+      "sorare_name": "Alex Greive",
+      "sorare_birth_date": "1999-05-13",
+      "sorare_club": null,
+      "review_reason": "Sorare displays Alex Greive, DOB and Saint Mirren career match; slug adds Alexander",
+      "review_source": "https://sorare.com/football/players/alexander-greive/history",
+      "review_method": "manual_external_source_verification",
+      "reviewed_at": "2026-10-22"
     },
     {
       "player_id": "wd:Q4717337",
@@ -1493,11 +1497,15 @@
     {
       "player_id": "wd:Q595599",
       "name": "Cameron Howieson",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "cameron-howieson",
+      "sorare_name": "Cameron Howieson",
+      "sorare_birth_date": "1994-12-22",
+      "sorare_club": null,
+      "review_reason": "Exact displayed name and DOB; Auckland City and NZ national-team histories agree",
+      "review_source": "https://sorare.com/football/players/cameron-howieson/history",
+      "review_method": "manual_external_source_verification",
+      "reviewed_at": "2026-10-22"
     },
     {
       "player_id": "wd:Q5026284",
@@ -5964,11 +5972,15 @@
     {
       "player_id": "wd:Q20963029",
       "name": "Logan Rogerson",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "logan-tipene-rogerson",
+      "sorare_name": "Logan Rogerson",
+      "sorare_birth_date": "1998-05-28",
+      "sorare_club": null,
+      "review_reason": "Sorare displays Logan Rogerson, DOB and Auckland / NZ team match; slug adds middle name",
+      "review_source": "https://sorare.com/football/players/logan-tipene-rogerson/history",
+      "review_method": "manual_external_source_verification",
+      "reviewed_at": "2026-10-22"
     },
     {
       "player_id": "wd:Q6681238",
@@ -7352,11 +7364,15 @@
     {
       "player_id": "wd:Q50672661",
       "name": "Niko Kirwan",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "niko-kirwan",
+      "sorare_name": "Niko Kirwan",
+      "sorare_birth_date": "1995-09-04",
+      "sorare_club": null,
+      "review_reason": "Exact name and DOB; Sorare lists NZ national team and Padova",
+      "review_source": "https://sorare.com/football/players/niko-kirwan/history",
+      "review_method": "manual_external_source_verification",
+      "reviewed_at": "2026-10-22"
     },
     {
       "player_id": "wd:Q130757864",
@@ -8626,11 +8642,15 @@
     {
       "player_id": "wd:Q9071500",
       "name": "Ryan De Vries",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "ryan-de-vries",
+      "sorare_name": "Ryan De Vries",
+      "sorare_birth_date": "1991-09-14",
+      "sorare_club": "Auckland City FC",
+      "review_reason": "Exact name and DOB; NZ and Auckland City / Sligo Rovers career agree",
+      "review_source": "https://sorare.com/football/players/ryan-de-vries/history",
+      "review_method": "manual_external_source_verification",
+      "reviewed_at": "2026-10-22"
     },
     {
       "player_id": "wd:Q208557",
@@ -10116,6 +10136,6 @@
       "sorare_club": null
     }
   ],
-  "reviewed_players": 25,
+  "reviewed_players": 30,
   "manual_review_date": "2026-10-22"
 }
