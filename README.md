@@ -57,7 +57,7 @@ The Sorare key must be saved as a GitHub Actions repository secret named `SORARE
 
 Run offline tests with `python -m unittest discover -s tests -p 'test_sorare.py' -v`. For local runs, export `SORARE_API_KEY` as an environment variable; don't store it in a tracked file.
 
-A first live Sorare API pass has succeeded. The remaining database is scanned in incremental batches; some footballers have no Sorare listing. No scores or performance statistics are integrated at this stage.
+A first live Sorare API pass has succeeded. The remaining database is scanned in incremental batches; some footballers have no Sorare listing. Real Sorare match statistics are now integrated for verified players; see the performance section below.
 
 ## Sorare manual identity audit — 21 October 2026
 
@@ -128,26 +128,32 @@ In repository **Settings → Pages → Build and deployment**, select **GitHub A
 - `public/data/sorare_matches.json` — generated confirmed/review/no-result match audit (after successful API run)
 - `.github/workflows/update-data.yml` — automation and deployment
 
-Sorare identity matching is in progress; Sorare performance statistics and rankings remain postponed. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
+Sorare match performance data and position rankings are now live for eligible sourced players. A verified identity without actual match statistics is not displayed as a performance card. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
 
 
 ## Dates and traceability of statistics
 
-Every future performance import records **when the statistics were found** separately from **when the matches took place**. The site displays these dates in each player's performance section and shows the most recent collection dates on the Statistics dashboard.
+Every performance import records **when the statistics were found** separately from **when the matches took place**. The site displays these dates in each player's performance section and shows the most recent collection dates on the Statistics dashboard.
 
 - **Sorare:** `retrieved_at` is the UTC timestamp of a successful API response for that player; `last_checked_at` is the latest successful check (including when no new matches were returned). `period_start` and `period_end` cover finalized, actually played matches used in the performance summary. The individual game date remains in `games[].date`. If a check returns no games, existing scores and their original `retrieved_at` are preserved.
 - **Understat:** `imported_at` is the UTC time at which a valid shot export was processed. `source_mode` distinguishes `local_export` from `direct_fetch`. `source_fetched_at` is set **only** for a direct fetch; the original download date of a local export is **unknown**, not assumed to be its import date. `period_start` and `period_end` come from the actual dated shot events; individual shots retain `shots[].date`.
 - Both output JSONs include `generated_at_utc` (file generation timestamp), separate from per-player timestamps. Older records without collection metadata display **Date not recorded** instead of a guessed date. A verified player identity alone is not a statistic.
 
-**As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The Sorare performance JSON is not yet published. No historical performance retrieval dates are backfilled or invented. Separately, `data/understat/statistics_observations.csv` logs the **date found (2026-10-22)** and **historical season (2024)** for three season-summary sources (Chris Wood, Liberato Cacace and Ben Old). These are research observations, **not** published performance imports.
+**As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The first Sorare performance JSON was published on 22 October 2026. Each match retains its true date and each import its own UTC retrieval timestamp; no missing historic retrieval dates are invented. Separately, `data/understat/statistics_observations.csv` logs the **date found (2026-10-22)** and **historical season (2024)** for three season-summary sources (Chris Wood, Liberato Cacace and Ben Old). These are research observations, **not** published performance imports.
+
+## Season filters and first published coverage
+
+The top-of-page **Season** selector applies to the player directory, profile graphs, Understat shot maps and position rankings. **All seasons** uses every published match; choosing **2025/26**, for example, uses only games in that period. Sorare games are grouped from **1 July to 30 June** by actual match date, a convenient scouting convention rather than an assertion about each league's official competition season. Understat data use the season identifier supplied by Understat. Cards without played Sorare matches or sourced Understat shots in the selected period are hidden, rather than showing empty statistics.
+
+**Initial Sorare extraction on 22 October 2026:** 62 verified identities checked, 58 players returning game-score records, 50 with completed matches and comparable Sorare scores, and 1,526 game-score records in the downloaded snapshot. Five date-based seasons are represented, 2022/23–2026/27. Those figures are a dated snapshot, not live player results.
 
 ## Match-by-match Sorare performances
 
 The dedicated `scripts/update_sorare_performance.py` importer fetches the latest **real football game scores** for players with a verified `sorare_slug`. It uses the same `SORARE_API_KEY` repository secret as the identity matcher. It does not guess stats or publish credentials.
 
-- **Actions → Update Sorare performances → Run workflow** updates the confirmed player set (default: all, 15 recent scores per player). The workflow also runs every Monday and on importer/workflow code changes.
-- `python scripts/update_sorare_performance.py --check` validates one API request without publishing data; `python scripts/update_sorare_performance.py --limit 5 --games 15` collects a small batch. Set the API key in the environment for local runs.
-- `public/data/sorare_performance.json` is created only after successful API responses; it contains dates, competition, minutes, Sorare scores, score versions, raw match stats and summary fields. Older valid records are preserved when an individual player lookup fails.
+- **Actions → Update Sorare performances → Run workflow** updates the confirmed player set (default: all, 50 recent scores per player). The workflow also runs every Monday and on importer/workflow code changes.
+- `python scripts/update_sorare_performance.py --check` validates one API request without publishing data; `python scripts/update_sorare_performance.py --limit 5 --games 50` collects a small batch. Set the API key in the environment for local runs.
+- `public/data/sorare_performance.json` is created only after successful API responses; it contains dates, competition, minutes, Sorare scores, score versions, raw match stats and summary fields. Previously retrieved games are retained and merged with fresh scores, including matches from earlier seasons. Records survive individual lookup failures.
 - The profile page shows the figures only when the file contains sourced records; missing data are never displayed as zeros. DNP, pending and low-coverage games are excluded from averages, as are scores from different scoring versions.
 - Run offline checks: `python -m unittest discover -s tests -p 'test_sorare_performance.py' -v`.
 - Review the workflow summary for the **actual number of players and scores fetched**; an identity match alone does not imply match data are available. If the GraphQL schema or access rules change, collection fails safely rather than publishing guessed numbers.
