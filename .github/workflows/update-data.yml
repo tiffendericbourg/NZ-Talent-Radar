@@ -3,14 +3,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/**'
       - 'public/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'index.html'
-      - 'vite.config.js'
       - 'scripts/**'
-      - 'tests/**'
       - 'data/**'
       - '.github/workflows/update-data.yml'
   schedule:
