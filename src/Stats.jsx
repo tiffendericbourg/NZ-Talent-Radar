@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { seasonLabel } from './seasonUtils.js'
-import { FormChart, MinutesChart, PositionIndicators, GoalXgChart, CoverageChart, PositionsChart, PeerChart } from './ScoutingCharts.jsx'
+import { MinutesChart, PositionIndicators, GoalXgChart, CoverageChart, PositionsChart } from './ScoutingCharts.jsx'
+import { ActivityChart, ImpactContextChart } from './ImpactCharts.jsx'
 
 function formatUtc(value) {
   if (!value) return 'Date not recorded'
@@ -154,12 +155,12 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
     <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2><p>{season === 'all' ? 'All imported seasons' : 'Selected season: ' + seasonLabel(season)}</p></div>
       <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : understatLink ? 'UNDERSTAT · VERIFIED ID' : 'SOURCE COVERAGE'}</span></div>
     <div className="viz-two viz-player-charts">
-      <FormChart record={sorareRecord}/>
+      <ActivityChart player={player} record={sorareRecord} season={season}/>
       <MinutesChart record={sorareRecord}/>
     </div>
     <div className="viz-two viz-player-charts">
       <PositionIndicators player={player} record={sorareRecord}/>
-      <PeerChart player={player} record={sorareRecord} players={players} performance={performance} season={season}/>
+      <ImpactContextChart player={player} players={players} performance={performance} season={season}/>
     </div>
     {sorareRecord && <div className="scout-audit">
       <span className="eyebrow">SORARE / {season === 'all' ? 'IMPORTED PERFORMANCE' : seasonLabel(season)}</span>
@@ -168,25 +169,25 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
       <div className="scout-stats-grid player-metrics">
         <Metric label="MATCHES PLAYED" value={sorareSummary?.matches_played ?? null} note="Finalized, verified match records"/>
         <Metric label="MINUTES" value={sorareSummary?.minutes ?? null} note="From scored games"/>
-        <Metric label="AVERAGE SORARE SCORE" value={sorareSummary?.average_score ?? null} note={(sorareSummary?.scored_matches || 0) + ' comparable matches'}/>
+        <Metric label="TOTAL PLAYED MATCHES" value={sorareSummary?.matches_played ?? null} note="Completed matches in this source snapshot"/>
         <Metric label="GOALS" value={sorareSummary?.totals?.goals ?? null} note="Documented matches" />
         <Metric label="ASSISTS" value={sorareSummary?.totals?.goalAssist ?? null} note="Documented matches" />
       </div>
       {recentGames.length > 0 ? <div className="scout-season-table">
         <h3>Documented matches <small>({recentGames.length} imported)</small></h3>
-        <div className="scout-season-head"><span>Date</span><span>Competition</span><span>Minutes</span><span>Score</span></div>
+        <div className="scout-season-head"><span>Date</span><span>Competition</span><span>Minutes</span><span>Goals</span></div>
         {recentGames.slice(0, visibleMatchCount).map(g => <div className="scout-season-row" key={g.id}>
           <strong>{g.date?.slice(0,10) || '—'}</strong>
           <span>{g.competition || '—'}</span>
           <span>{g.stats?.minsPlayed ?? '—'}</span>
-          <span>{g.score_status === 'FINAL' && g.stats?.playedInGame && !g.low_coverage ? g.score?.toFixed(1) ?? '—' : g.stats?.playedInGame ? 'Partial' : 'DNP'}</span>
+          <span>{g.score_status === 'FINAL' && g.stats?.playedInGame && !g.low_coverage ? (typeof g.stats?.goals === 'number' ? g.stats.goals : '—') : '—'}</span>
         </div>)}
         {recentGames.length > visibleMatchCount && <button type="button" className="outline"
           onClick={() => setVisibleMatchCount(n => n + 20)}>
           Show more matches ({recentGames.length - visibleMatchCount} remaining) ↘
         </button>}
       </div> : <p className="scout-empty">No scored matches returned by Sorare for this player.</p>}
-      <p className="scout-footnote">{season === 'all' ? 'All imported fixtures may span multiple seasons. ' : 'Matches filtered by date (July–June season). '}Sorare score averages exclude DNP, unfinished matches, low-coverage games and older scoring versions. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
+      <p className="scout-footnote">{season === 'all' ? 'All imported fixtures may span multiple seasons. ' : 'Matches filtered by date (July–June season). '}Football actions exclude unfinished and low-coverage games. No fantasy score is used in NZ Impact Index. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
     </div>}
     <div className="scout-stats-grid player-metrics">
       <Metric label="SHOTS" value={data?.shots} note={record ? 'Tracked events' : 'Not available'} muted={!record}/>
