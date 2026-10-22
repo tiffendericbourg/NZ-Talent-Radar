@@ -137,3 +137,13 @@ The dedicated `scripts/update_sorare_performance.py` importer fetches the latest
 - The profile page shows the figures only when the file contains sourced records; missing data are never displayed as zeros. DNP, pending and low-coverage games are excluded from averages, as are scores from different scoring versions.
 - Run offline checks: `python -m unittest discover -s tests -p 'test_sorare_performance.py' -v`.
 - Review the workflow summary for the **actual number of players and scores fetched**; an identity match alone does not imply match data are available. If the GraphQL schema or access rules change, collection fails safely rather than publishing guessed numbers.
+
+### If the Sorare performance workflow fails
+
+1. Open **Actions → Update Sorare performances**, choose the most recent run, and inspect **Validate Sorare performance API**. The collector now reports a short, actionable reason for schema rejection, missing credentials, 401/403 or network errors.
+2. Verify the GitHub secret `SORARE_API_KEY` is available (Settings → Secrets and variables → Actions). Do not paste keys into issues, source files, or the website.
+3. Sorare's documentation distinguishes an API key (rate limits) from **user authentication**. If the run says authentication is required, provide an authorized user access token in the `SORARE_ACCESS_TOKEN` Actions secret. When using a Sorare JWT, set the corresponding audience in `SORARE_JWT_AUD`; OAuth access tokens do not need a JWT audience header. JWT tokens can expire; never commit them.
+4. The importer automatically retries a smaller, schema-verified set of match statistics if the detailed query is rejected. It only writes data after a successful response and preserves existing game histories on failures.
+5. The summary reports the actual number of players and game scores collected. The JSON file **does not exist** until at least one successful live collection; the UI correctly shows unavailable instead of invented figures.
+
+Documentation: https://github.com/sorare/api
