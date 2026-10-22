@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { DistributionChart } from './ScoutingCharts.jsx'
+import { seasonLabel, seasonEndDate } from './seasonUtils.js'
 import {
   POSITIONS, RANKING_MIN_MATCHES, RANKING_MIN_MINUTES,
   RANKING_WINDOW_DAYS, rankingRows,
@@ -12,13 +13,13 @@ const METRICS = {
   goalkeeper: 'Saves / 90',
 }
 
-export default function Rankings({ players, performance, onOpen }) {
+export default function Rankings({ players, performance, onOpen, season = 'all' }) {
   const [gender, setGender] = useState('Men')
   const [position, setPosition] = useState('forward')
   const [youthOnly, setYouthOnly] = useState(false)
   const [selectedVersion, setSelectedVersion] = useState(null)
 
-  const rows = useMemo(() => rankingRows(players, performance), [players, performance])
+  const rows = useMemo(() => rankingRows(players, performance, seasonEndDate(season)), [players, performance, season])
   const cohort = rows.filter(p => p.gender === gender && p.group === position &&
     (!youthOnly || (p.age !== null && p.age < 23)))
   const candidates = cohort.filter(p => p.eligible)
@@ -30,7 +31,7 @@ export default function Rankings({ players, performance, onOpen }) {
   const waiting = cohort.filter(p => !p.eligible || p.version !== version)
     .sort((a, b) => a.name.localeCompare(b.name))
   const totalWithGames = rows.filter(p => p.matches > 0).length
-  const currentSeasonNote = 'Last ' + RANKING_WINDOW_DAYS + ' days · only completed Sorare matches'
+  const currentSeasonNote = season === 'all' ? 'Last ' + RANKING_WINDOW_DAYS + ' days · only completed Sorare matches' : seasonLabel(season) + ' · completed Sorare matches only'
   const updated = performance?.generated_at_utc || performance?.generated_at || null
 
   function changePosition(next) {
@@ -134,7 +135,7 @@ export default function Rankings({ players, performance, onOpen }) {
     </div>
     <p className="scout-footnote">
       Method: {RANKING_MIN_MATCHES}+ finalized, played, non-low-coverage games and
-      { ' ' + RANKING_MIN_MINUTES}+ minutes within the last {RANKING_WINDOW_DAYS} days.
+      { ' ' + RANKING_MIN_MINUTES}+ minutes {season === 'all' ? 'within the last ' + RANKING_WINDOW_DAYS + ' days.' : 'during selected season ' + seasonLabel(season) + '.'}
       Players are compared only within the same gender, broad position and Sorare scoring version.
       The score is Sorare's fantasy performance rating, not an independent NZ Talent Score.
       Position-specific figures per 90 minutes appear only when every counted match contains that statistic.
