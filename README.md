@@ -131,6 +131,16 @@ In repository **Settings → Pages → Build and deployment**, select **GitHub A
 Sorare identity matching is in progress; Sorare performance statistics and rankings remain postponed. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
 
 
+## Dates and traceability of statistics
+
+Every future performance import records **when the statistics were found** separately from **when the matches took place**. The site displays these dates in each player's performance section and shows the most recent collection dates on the Statistics dashboard.
+
+- **Sorare:** `retrieved_at` is the UTC timestamp of a successful API response for that player; `last_checked_at` is the latest successful check (including when no new matches were returned). `period_start` and `period_end` cover finalized, actually played matches used in the performance summary. The individual game date remains in `games[].date`. If a check returns no games, existing scores and their original `retrieved_at` are preserved.
+- **Understat:** `imported_at` is the UTC time at which a valid shot export was processed. `source_mode` distinguishes `local_export` from `direct_fetch`. `source_fetched_at` is set **only** for a direct fetch; the original download date of a local export is **unknown**, not assumed to be its import date. `period_start` and `period_end` come from the actual dated shot events; individual shots retain `shots[].date`.
+- Both output JSONs include `generated_at_utc` (file generation timestamp), separate from per-player timestamps. Older records without collection metadata display **Date not recorded** instead of a guessed date. A verified player identity alone is not a statistic.
+
+**As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The Sorare performance JSON is not yet published. No historical performance retrieval dates are backfilled or invented.
+
 ## Match-by-match Sorare performances
 
 The dedicated `scripts/update_sorare_performance.py` importer fetches the latest **real football game scores** for players with a verified `sorare_slug`. It uses the same `SORARE_API_KEY` repository secret as the identity matcher. It does not guess stats or publish credentials.
