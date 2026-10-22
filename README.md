@@ -2,6 +2,8 @@
 
 **Discovering New Zealand football talent worldwide.**
 
+> **NEW — NZ Impact Index v1 (22 October 2026).** Player cards, scouting reports and rankings now use an **original football-action index** instead of showing Sorare fantasy ratings. The 0–100 score is a weighted average of three position-specific event percentiles, comparing NZ players of the same gender and broad role. Missing match data, weak reference cohorts and insufficient minutes prevent a score; it is not an absolute talent forecast. [Read the full formula, thresholds and limitations](docs/nz_impact_index.md).
+
 A static, source-linked football player catalogue for New Zealand. Built with React, Vite, Python and GitHub Actions. No backend or paid API.
 
 ## Live site
