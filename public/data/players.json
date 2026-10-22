@@ -1817,8 +1817,8 @@
     {
       "id": "wd:Q53773340",
       "name": "Angus Kilkolly",
-      "birth_date": null,
-      "age": null,
+      "birth_date": "1996-04-18",
+      "age": 30,
       "nationalities": [
         "New Zealand"
       ],
@@ -1832,9 +1832,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q53773340",
-      "sorare_slug": null,
+      "sorare_slug": "angus-kilkolly",
       "sources": [
-        "https://www.wikidata.org/wiki/Q53773340"
+        "https://www.wikidata.org/wiki/Q53773340",
+        "https://sorare.com/football/players/angus-kilkolly/history"
       ],
       "updated_at": "2026-10-22"
     },
@@ -6820,9 +6821,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q124789400",
-      "sorare_slug": null,
+      "sorare_slug": "dylan-manickum",
       "sources": [
-        "https://www.wikidata.org/wiki/Q124789400"
+        "https://www.wikidata.org/wiki/Q124789400",
+        "https://sorare.com/football/teams/auckland-city-auckland/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -7673,9 +7675,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q126924680",
-      "sorare_slug": null,
+      "sorare_slug": "fergus-william-gillion",
       "sources": [
-        "https://www.wikidata.org/wiki/Q126924680"
+        "https://www.wikidata.org/wiki/Q126924680",
+        "https://sorare.com/football/teams/auckland-city-auckland/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11146,9 +11149,10 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q1568728",
-      "sorare_slug": null,
+      "sorare_slug": "jake-gleeson",
       "sources": [
-        "https://www.wikidata.org/wiki/Q1568728"
+        "https://www.wikidata.org/wiki/Q1568728",
+        "https://sorare.com/fr/football/players/jake-gleeson/history"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11623,9 +11627,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q111512710",
-      "sorare_slug": null,
+      "sorare_slug": "jay-joshua-herdman",
       "sources": [
-        "https://www.wikidata.org/wiki/Q111512710"
+        "https://www.wikidata.org/wiki/Q111512710",
+        "https://sorare.com/nl/football/teams/cavalry/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -11894,9 +11899,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q134931872",
-      "sorare_slug": null,
+      "sorare_slug": "jeremy-foo",
       "sources": [
-        "https://www.wikidata.org/wiki/Q134931872"
+        "https://www.wikidata.org/wiki/Q134931872",
+        "https://sorare.com/football/teams/auckland-city-auckland/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -17562,9 +17568,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q139971019",
-      "sorare_slug": null,
+      "sorare_slug": "matthew-george-foord",
       "sources": [
-        "https://www.wikidata.org/wiki/Q139971019"
+        "https://www.wikidata.org/wiki/Q139971019",
+        "https://sorare.com/football/teams/auckland-city-auckland/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -19746,9 +19753,10 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q20916837",
-      "sorare_slug": null,
+      "sorare_slug": "nikko-boxall",
       "sources": [
-        "https://www.wikidata.org/wiki/Q20916837"
+        "https://www.wikidata.org/wiki/Q20916837",
+        "https://sorare.com/football/players/nikko-boxall"
       ],
       "updated_at": "2026-10-22"
     },
