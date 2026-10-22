@@ -65,6 +65,14 @@ query NZPlayerPerformance($slug: String!, $count: Int!) {
 }
 """ % "\n              ".join(GAME_FIELDS)
 
+# Cursor pagination is optional: older API schemas can fall back to one page.
+PAGED_QUERY = (QUERY.replace("$count: Int!", "$count: Int!, $cursor: String")
+    .replace("allPlayerGameScores(first: $count)", "allPlayerGameScores(first: $count, after: $cursor)")
+    .replace("allPlayerGameScores(first: $count, after: $cursor) {",
+             "allPlayerGameScores(first: $count, after: $cursor) {\n        pageInfo { hasNextPage endCursor }"))
+PAGED_CORE_QUERY = PAGED_QUERY.replace("\\n              ".join(GAME_FIELDS),
+                                       "\\n              ".join(("minsPlayed", "playedInGame", "goals", "goalAssist")))
+
 # Compact fallback that avoids optional fields if Sorare modifies its schema.
 CORE_FIELDS = ("minsPlayed", "playedInGame", "goals", "goalAssist")
 CORE_QUERY = QUERY.replace("\n              ".join(GAME_FIELDS), "\n              ".join(CORE_FIELDS))
@@ -93,12 +101,21 @@ def graphql_errors(payload):
                      for e in payload.get("errors", []) if isinstance(e, dict))
 
 
-def request_player(slug, count, key):
-    """Try detailed stats and fall back to a compact, schema-safe query."""
+def _request_page(slug, count, key, cursor=None, use_pagination=False):
+    """Fetch one page. Fall back if Sorare refuses optional cursor fields."""
     headers = auth_headers(key)
-    for query_label, query in (("detailed", QUERY), ("core", CORE_QUERY)):
-        body = json.dumps({"query": query, "variables": {
-            "slug": slug, "count": count}}).encode("utf-8")
+    if use_pagination:
+        options = (("detailed", PAGED_QUERY, True),
+                   ("core", PAGED_CORE_QUERY, True),
+                   ("detailed", QUERY, False), ("core", CORE_QUERY, False))
+    else:
+        options = (("detailed", QUERY, False), ("core", CORE_QUERY, False))
+    last_error = ""
+    for query_label, query, paged in options:
+        variables = {"slug": slug, "count": count}
+        if paged:
+            variables["cursor"] = cursor
+        body = json.dumps({"query": query, "variables": variables}).encode("utf-8")
         for attempt in range(3):
             try:
                 req = Request(API_URL, data=body, headers=headers, method="POST")
@@ -109,45 +126,34 @@ def request_player(slug, count, key):
                     lowered = reason.lower()
                     if any(word in lowered for word in (
                             "unauthorized", "forbidden", "authentication", "not authenticated")):
-                        raise RuntimeError(
-                            "Sorare authentication required. Provide SORARE_ACCESS_TOKEN "
-                            "(and SORARE_JWT_AUD for JWT) in repository secrets")
-                    if query_label == "detailed" and any(word in lowered for word in (
-                            "cannot query field", "unknown argument", "complexity",
-                            "max complexity", "query is too complex")):
-                        print("Sorare detailed query rejected; retrying essential match stats")
+                        raise RuntimeError("Sorare authentication required: check SORARE_ACCESS_TOKEN")
+                    if any(word in lowered for word in (
+                            "cannot query field", "unknown argument", "doesn't exist", "complexity",
+                            "max complexity", "query is too complex", "was not provided")):
+                        last_error = reason
                         break
-                    raise RuntimeError("Sorare " + query_label + " GraphQL error: " + reason)
+                    raise RuntimeError("Sorare GraphQL error: " + reason)
                 player = (payload.get("data") or {}).get("anyPlayer")
-                if not isinstance(player, dict):
-                    raise RuntimeError("Sorare returned no verified player for slug " + slug)
-                if player.get("__typename") != "Player":
-                    raise RuntimeError("Sorare slug does not identify a football player")
+                if not isinstance(player, dict) or player.get("__typename") != "Player":
+                    raise RuntimeError("Sorare returned no verified football player for " + slug)
                 scores = player.get("allPlayerGameScores")
                 if not isinstance(scores, dict) or not isinstance(scores.get("nodes"), list):
                     raise RuntimeError("Sorare response has no game scores list")
                 player["collection_detail"] = query_label
+                player["pagination_supported"] = paged
                 return player
             except HTTPError as error:
                 if error.code in (401, 403):
-                    raise RuntimeError(
-                        "Sorare HTTP %s: confirm SORARE_ACCESS_TOKEN (JWT) and API key" %
-                        error.code) from None
+                    raise RuntimeError("Sorare HTTP %s: check API credentials" % error.code) from None
                 if error.code in (400, 422):
-                    # GraphQL validation errors sometimes arrive as HTTP 422.
-                    # Show only the error message, never credentials or headers.
                     raw = error.read(6000).decode("utf-8", errors="replace")
                     try:
                         detail = json.loads(raw)
-                        reason = graphql_errors(detail) or str(detail.get("message", ""))[:220]
+                        reason = graphql_errors(detail) or str(detail.get("message", ""))[:200]
                     except (ValueError, AttributeError):
-                        reason = raw[:220]
-                    if query_label == "detailed":
-                        print("Sorare detailed HTTP %s (%s); trying minimal stats" %
-                              (error.code, reason[:170]))
-                        break
-                    raise RuntimeError("Sorare core API HTTP %s: %s" %
-                                       (error.code, reason[:220])) from None
+                        reason = raw[:200]
+                    last_error = reason
+                    break
                 if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
                     raise RuntimeError("Sorare API HTTP %s" % error.code) from None
                 delay = error.headers.get("Retry-After", "")
@@ -156,7 +162,42 @@ def request_player(slug, count, key):
                 if attempt == 2:
                     raise RuntimeError("Sorare network unavailable after retries") from None
                 time.sleep(3 * (attempt + 1))
-    raise RuntimeError("Sorare performance queries were rejected")
+        if cursor and not paged:
+            # A legacy single-page query cannot continue an existing cursor.
+            raise RuntimeError("Sorare history pagination unavailable: " + last_error[:160])
+    raise RuntimeError("Sorare performance query rejected: " + last_error[:220])
+
+
+def request_player(slug, count, key, pages=1):
+    """Collect up to 'pages' cursor pages, stopping safely on unsupported schemas."""
+    first = _request_page(slug, count, key, use_pagination=pages > 1)
+    scores = first["allPlayerGameScores"]
+    page_info = scores.get("pageInfo") if first.get("pagination_supported") else None
+    retrieved = 1
+    complete = not bool(page_info and page_info.get("hasNextPage"))
+    cursors = set()
+    while not complete and retrieved < pages:
+        cursor = (page_info or {}).get("endCursor")
+        if not cursor or cursor in cursors:
+            break
+        cursors.add(cursor)
+        try:
+            next_page = _request_page(slug, count, key, cursor=cursor, use_pagination=True)
+        except RuntimeError as exc:
+            print("Sorare history page unavailable for %s: %s" % (slug, str(exc)[:120]))
+            break
+        if not next_page.get("pagination_supported"):
+            break
+        incoming = next_page["allPlayerGameScores"]
+        scores["nodes"].extend(incoming.get("nodes") or [])
+        page_info = incoming.get("pageInfo") or {}
+        retrieved += 1
+        complete = not bool(page_info.get("hasNextPage"))
+        time.sleep(0.2)
+    first["history_pages_fetched"] = retrieved
+    first["history_complete"] = complete
+    first["history_has_more"] = not complete
+    return first
 
 
 def normalize_game(node):
@@ -256,6 +297,9 @@ def normalize_player(catalogue_player, api_player, count):
         "source_url": "https://sorare.com/football/players/" + catalogue_player["sorare_slug"],
         "requested_games": count,
         "collection_detail": api_player.get("collection_detail", "detailed"),
+        "history_pages_fetched": api_player.get("history_pages_fetched", 1),
+        "history_complete": api_player.get("history_complete"),
+        "history_has_more": api_player.get("history_has_more"),
         "games": games,
         "period_start": period_start,
         "period_end": period_end,
@@ -263,7 +307,7 @@ def normalize_player(catalogue_player, api_player, count):
     }
 
 
-def run(limit=0, games=50, check=False, request_func=request_player):
+def run(limit=0, games=50, check=False, request_func=request_player, pages=4):
     key = os.environ.get("SORARE_API_KEY", "").strip()
     if not key and not os.environ.get("SORARE_ACCESS_TOKEN", "").strip():
         raise RuntimeError("Missing Sorare credentials: SORARE_API_KEY or SORARE_ACCESS_TOKEN")
@@ -280,7 +324,7 @@ def run(limit=0, games=50, check=False, request_func=request_player):
     failures = []
     for p in selected[:1] if check else selected:
         try:
-            remote = request_func(p["sorare_slug"], 1 if check else games, key)
+            remote = request_func(p["sorare_slug"], 1 if check else games, key, 1 if check else pages)
             result = normalize_player(p, remote, 1 if check else games)
             # Record when this player's data were actually returned by Sorare.
             checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -316,13 +360,13 @@ def run(limit=0, games=50, check=False, request_func=request_player):
         "generated_at": generated_at.date().isoformat(),
         "generated_at_utc": generated_at.isoformat(timespec="seconds"),
         "source": "Sorare football GraphQL",
-        "sample": "Latest %s game scores per request, with previously verified match history retained" % games,
+        "sample": "Up to %s Sorare pages of %s scores; older verified match history retained" % (pages, games),
         "players": records,
         "coverage": {
             "confirmed_identities": len(verified),
             "players_requested": len(selected),
             "players_updated": success,
-            "players_with_data": sum(bool(r.get("games")) for r in records.values()),
+            "players_with_data": sum(bool(r.get("games")) for r in records.values()),\n            "players_with_more_history": sum(bool(r.get("history_has_more")) for r in records.values()),
             "game_scores": sum(len(r.get("games") or []) for r in records.values()),
             "failed_players": failures,
         },
@@ -340,11 +384,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="0 = all confirmed identities")
     parser.add_argument("--games", type=int, default=50, help="Recent match scores per player (max 50); retains earlier imports")
-    parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
+    parser.add_argument("--pages", type=int, default=4, help="Maximum history pages per player (1 to 8)")\n    parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
     args = parser.parse_args()
-    if args.limit < 0 or not 1 <= args.games <= 50:
+    if args.limit < 0 or not 1 <= args.games <= 50 or not 1 <= args.pages <= 8:
         parser.error("limit must be >= 0 and games between 1 and 50")
-    run(limit=args.limit, games=args.games, check=args.check)
+    run(limit=args.limit, games=args.games, check=args.check, pages=args.pages)
 
 
 if __name__ == "__main__":
