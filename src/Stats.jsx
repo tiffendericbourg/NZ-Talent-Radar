@@ -36,7 +36,7 @@ function CountBars({ title, rows, total }) {
   </article>
 }
 
-export function ScoutingDashboard({ players, sorare, understat, understatLinks, performance }) {
+export function ScoutingDashboard({ players, cataloguePlayers = players, sorare, understat, understatLinks, performance }) {
   const counts = useMemo(() => {
     const age = player => {
       if (!player.birth_date) return null
@@ -46,22 +46,22 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
       return now.getUTCFullYear() - birth.getUTCFullYear() -
         (now.getUTCMonth() < birth.getUTCMonth() || (now.getUTCMonth() === birth.getUTCMonth() && now.getUTCDate() < birth.getUTCDate()) ? 1 : 0)
     }
-    const ages = players.map(age)
+    const ages = cataloguePlayers.map(age)
     return {
-      women: players.filter(p => p.gender === 'Women').length,
-      men: players.filter(p => p.gender === 'Men').length,
-      unknownGender: players.filter(p => !['Men', 'Women'].includes(p.gender)).length,
+      women: cataloguePlayers.filter(p => p.gender === 'Women').length,
+      men: cataloguePlayers.filter(p => p.gender === 'Men').length,
+      unknownGender: cataloguePlayers.filter(p => !['Men', 'Women'].includes(p.gender)).length,
       young: ages.filter(a => a !== null && a < 23).length,
       age23to29: ages.filter(a => a !== null && a >= 23 && a < 30).length,
       age30plus: ages.filter(a => a !== null && a >= 30).length,
       ageUnknown: ages.filter(a => a === null).length,
-      abroad: players.filter(p => p.club && p.club_country && p.club_country !== 'New Zealand').length,
-      clubs: new Set(players.map(p => p.club).filter(Boolean)).size,
-      clubsMissing: players.filter(p => !p.club).length,
+      abroad: cataloguePlayers.filter(p => p.club && p.club_country && p.club_country !== 'New Zealand').length,
+      clubs: new Set(cataloguePlayers.map(p => p.club).filter(Boolean)).size,
+      clubsMissing: cataloguePlayers.filter(p => !p.club).length,
     }
-  }, [players])
-  const visibleIds = new Set(players.map(p => p.id))
-  const linked = players.filter(p => p.sorare_slug).length
+  }, [cataloguePlayers])
+  const visibleIds = new Set(cataloguePlayers.map(p => p.id))
+  const linked = cataloguePlayers.filter(p => p.sorare_slug).length
   const understatIdentities = Object.keys(understatLinks?.players || {}).filter(id => visibleIds.has(id)).length
   const shotPlayers = Object.entries(understat?.players || {})
     .filter(([id]) => visibleIds.has(id)).map(([, player]) => player)
@@ -76,23 +76,23 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
     <p className="scout-strip">DATABASE SNAPSHOT <span>Wikidata · Sorare · Understat</span></p>
     <p className="scout-footnote">Latest Sorare stats retrieval: {formatUtc(latestTimestamp(performance?.players, 'retrieved_at'))} · Latest Understat shot import: {formatUtc(latestTimestamp(understat?.players, 'imported_at'))}. These are data collection dates, not match dates. Each player profile shows its covered match period.</p>
     <div className="scout-stats-grid">
-      <Metric label="PLAYER PROFILES" value={players.length.toLocaleString('en-NZ')} note="Source-linked catalogue"/>
-      <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
+      <Metric label="PLAYER PROFILES" value={cataloguePlayers.length.toLocaleString('en-NZ')} note="Full NZ-linked catalogue"/>
+      <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={cataloguePlayers.length ? (100 * linked / cataloguePlayers.length).toFixed(1) + '% of catalogue' : '—'}/>
       <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && p.games?.length > 0).length} note="Players with verified game scores"/>
       <Metric label="UNDERSTAT IDENTITIES" value={understatIdentities} note="Reviewed player profile links"/>
       <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note={'Imported X/Y locations · ' + shotPlayers.length + ' players'}/>
       <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
     </div>
     <div className="scout-chart-grid">
-      <CountBars title="Who is in the database?" total={players.length} rows={[
+      <CountBars title="Who is in the database?" total={cataloguePlayers.length} rows={[
         {label:'Women',value:counts.women},{label:'Men',value:counts.men},
         {label:'Not recorded',value:counts.unknownGender}
       ]}/>
-      <CountBars title="Age distribution" total={players.length} rows={[
+      <CountBars title="Age distribution" total={cataloguePlayers.length} rows={[
         {label:'Under 23',value:counts.young},{label:'23–29',value:counts.age23to29},
         {label:'30+',value:counts.age30plus},{label:'Date missing',value:counts.ageUnknown}
       ]}/>
-      <CountBars title="Source coverage" total={players.length} rows={[
+      <CountBars title="Source coverage" total={cataloguePlayers.length} rows={[
         {label:'Sorare linked',value:linked},
         {label:'Understat linked',value:understatIdentities},
          {label:'Understat shots',value:shotPlayers.length},
@@ -100,8 +100,8 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
       ]}/>
     </div>
     <div className="viz-two viz-dashboard">
-      <CoverageChart players={players} understatLinks={understatLinks} understat={understat} performance={performance}/>
-      <PositionsChart players={players}/>
+      <CoverageChart players={cataloguePlayers} understatLinks={understatLinks} understat={understat} performance={performance}/>
+      <PositionsChart players={cataloguePlayers}/>
     </div>
     {sorare && <div className="scout-audit">
       <div><span className="eyebrow">SORARE / MATCHING AUDIT</span><h2>Who needs a second look?</h2>
