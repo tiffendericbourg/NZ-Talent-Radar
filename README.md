@@ -125,3 +125,15 @@ In repository **Settings → Pages → Build and deployment**, select **GitHub A
 - `.github/workflows/update-data.yml` — automation and deployment
 
 Sorare identity matching is in progress; Sorare performance statistics and rankings remain postponed. This project is independent of New Zealand Football. Wikidata data are CC0; records link to their source pages.
+
+
+## Match-by-match Sorare performances
+
+The dedicated `scripts/update_sorare_performance.py` importer fetches the latest **real football game scores** for players with a verified `sorare_slug`. It uses the same `SORARE_API_KEY` repository secret as the identity matcher. It does not guess stats or publish credentials.
+
+- **Actions → Update Sorare performances → Run workflow** updates the confirmed player set (default: all, 15 recent scores per player). The workflow also runs every Monday and on importer/workflow code changes.
+- `python scripts/update_sorare_performance.py --check` validates one API request without publishing data; `python scripts/update_sorare_performance.py --limit 5 --games 15` collects a small batch. Set the API key in the environment for local runs.
+- `public/data/sorare_performance.json` is created only after successful API responses; it contains dates, competition, minutes, Sorare scores, score versions, raw match stats and summary fields. Older valid records are preserved when an individual player lookup fails.
+- The profile page shows the figures only when the file contains sourced records; missing data are never displayed as zeros. DNP, pending and low-coverage games are excluded from averages, as are scores from different scoring versions.
+- Run offline checks: `python -m unittest discover -s tests -p 'test_sorare_performance.py' -v`.
+- Review the workflow summary for the **actual number of players and scores fetched**; an identity match alone does not imply match data are available. If the GraphQL schema or access rules change, collection fails safely rather than publishing guessed numbers.
