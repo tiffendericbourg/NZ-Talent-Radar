@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { seasonLabel } from './seasonUtils.js'
 import { FormChart, MinutesChart, PositionIndicators, GoalXgChart, CoverageChart, PositionsChart, PeerChart } from './ScoutingCharts.jsx'
 
@@ -144,6 +144,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
   const sorareRecord = performance?.players?.[player.id]
   const sorareSummary = sorareRecord?.summary
   const recentGames = sorareRecord?.games || []
+  const [visibleMatchCount, setVisibleMatchCount] = useState(10)
   const record = understat?.players?.[player.id]
   const understatLink = understatLinks?.players?.[player.id]
   const data = record?.stats
@@ -172,14 +173,18 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
         <Metric label="ASSISTS" value={sorareSummary?.totals?.goalAssist ?? null} note="Documented matches" />
       </div>
       {recentGames.length > 0 ? <div className="scout-season-table">
-        <h3>Recent matches</h3>
+        <h3>Documented matches <small>({recentGames.length} imported)</small></h3>
         <div className="scout-season-head"><span>Date</span><span>Competition</span><span>Minutes</span><span>Score</span></div>
-        {recentGames.slice(0, 10).map(g => <div className="scout-season-row" key={g.id}>
+        {recentGames.slice(0, visibleMatchCount).map(g => <div className="scout-season-row" key={g.id}>
           <strong>{g.date?.slice(0,10) || '—'}</strong>
           <span>{g.competition || '—'}</span>
           <span>{g.stats?.minsPlayed ?? '—'}</span>
           <span>{g.score_status === 'FINAL' && g.stats?.playedInGame && !g.low_coverage ? g.score?.toFixed(1) ?? '—' : g.stats?.playedInGame ? 'Partial' : 'DNP'}</span>
         </div>)}
+        {recentGames.length > visibleMatchCount && <button type="button" className="outline"
+          onClick={() => setVisibleMatchCount(n => n + 20)}>
+          Show more matches ({recentGames.length - visibleMatchCount} remaining) ↘
+        </button>}
       </div> : <p className="scout-empty">No scored matches returned by Sorare for this player.</p>}
       <p className="scout-footnote">{season === 'all' ? 'All imported fixtures may span multiple seasons. ' : 'Matches filtered by date (July–June season). '}Sorare score averages exclude DNP, unfinished matches, low-coverage games and older scoring versions. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
     </div>}
