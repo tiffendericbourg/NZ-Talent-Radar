@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { DistributionChart } from './ScoutingCharts.jsx'
 import {
   POSITIONS, RANKING_MIN_MATCHES, RANKING_MIN_MINUTES,
   RANKING_WINDOW_DAYS, rankingRows,
@@ -101,7 +102,9 @@ export default function Rankings({ players, performance, onOpen }) {
               <small>Matches: {p.start} → {p.end}</small>
             </span>
           </div>
-          <div className="ranking-average"><strong>{p.average?.toFixed(1)}</strong><span> / 100</span></div>
+          <div className="ranking-average"><strong>{p.average?.toFixed(1)}</strong><span> / 100</span>
+            <div className="ranking-score-track"><div style={{ width: Math.min(100, Math.max(0, p.average)) + '%' }}/></div>
+          </div>
           <div className="ranking-minutes"><strong>{p.minutes}</strong><span>{p.matches} matches</span></div>
           <div className="ranking-extra">{p.keyMetric === null ? '—' : p.keyMetric.toFixed(1)} <span aria-hidden="true">↗</span></div>
         </button>)}
@@ -113,6 +116,9 @@ export default function Rankings({ players, performance, onOpen }) {
           The leaderboard will populate from published match data, not from reputation, age or a Sorare identity alone.</p>
       </div>}
 
+    <div className="ranking-distribution">
+      <DistributionChart rows={ranked}/>
+    </div>
     <div className="ranking-waiting">
       <div className="ranking-heading">
         <div><span className="eyebrow">SCOUTING WATCHLIST</span><h2>Players awaiting enough data</h2>
