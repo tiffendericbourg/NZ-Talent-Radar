@@ -44,7 +44,7 @@ class UnderstatTests(unittest.TestCase):
                 {"id": "999", "player_name": "Completely different name"}
             ]}), encoding="utf-8")
             found = finder.discover([
-                {"id": "wd:Q999", "name": "Marko Stamenic"},
+                {"id": "wd:Q999", "name": "Marko Stamenic", "nationalities": ["New Zealand"], "gender": "Men"},
             ], [path])
             self.assertEqual(len(found), 1)
             self.assertEqual(found[0]["understat_id"], "1234")
@@ -133,6 +133,43 @@ class UnderstatTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     source.run()
             self.assertFalse(output.exists())
+
+
+    def test_understat_id_dict_csv_and_aliases(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "id_dict.csv"
+            path.write_text(
+                "Understat_ID,FPL_ID,Understat_Name,FPL_Name\n"
+                "4456,109,Chris Wood,Chris Wood\n"
+                "8888,111,Benjamin Old,Ben Old\n", encoding="utf-8")
+            players = [
+                {"id": "wd:Q74548", "name": "Chris Wood", "nationalities": ["New Zealand"], "gender": "Men"},
+                {"id": "wd:Q106939313", "name": "Ben Old", "nationalities": ["New Zealand"], "gender": "Men"},
+                {"id": "wd:Q999", "name": "Not Kiwi", "nationalities": ["England"], "gender": "Men"},
+            ]
+            found = finder.discover(players, [path], {"wd:Q106939313": ["Benjamin Old"]})
+            self.assertEqual(len(found), 2)
+            self.assertEqual({p["understat_id"] for p in found}, {"4456", "8888"})
+            self.assertEqual(next(p for p in found if p["understat_id"] == "8888")["match_method"], "alias")
+            self.assertTrue(all(p["status"] == "needs_review" for p in found))
+
+    def test_excludes_unverified_nz_and_women(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "players.json"
+            path.write_text(json.dumps([
+                {"id": "1", "player_name": "Potential Player"},
+                {"id": "2", "player_name": "NZ Woman"},
+                {"id": "3", "player_name": "Chris Wood"},
+            ]), encoding="utf-8")
+            players = [
+                {"id": "wd:1", "name": "Potential Player", "nationalities": ["New Zealand"],
+                 "eligibility_status": "potential_to_verify", "gender": "Men"},
+                {"id": "wd:2", "name": "NZ Woman", "nationalities": ["New Zealand"], "gender": "Women"},
+                {"id": "wd:3", "name": "Chris Wood", "nationalities": ["New Zealand"], "gender": "Men"},
+            ]
+            found = finder.discover(players, [path])
+            self.assertEqual([p["player_id"] for p in found], ["wd:3"])
+
 
 
 if __name__ == "__main__":
