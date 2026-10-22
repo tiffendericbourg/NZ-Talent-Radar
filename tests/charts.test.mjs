@@ -64,7 +64,7 @@ test('source coverage avoids double-counting a player with two data sources', ()
     { id:'A', sorare_slug:'a' }, { id:'B', sorare_slug:'b' },
     { id:'C', sorare_slug:null }, { id:'D', sorare_slug:null },
   ]
-  const stats = { players: { A: { games: [{ id:'g1' }] } } }
+  const stats = { players: { A: { games: [{ id: 'g1', date: '2026-10-20', score: 70, score_status: 'FINAL', scoring_version: 7, low_coverage: false, stats: { playedInGame: true, minsPlayed: 90 } }] } } }
   const shots = { players: { A: { shots: [{ id:'s1' }] }, C: { shots: [{ id:'s2' }] } } }
   const links = { players: { C: { source_url:'https://example.org' } } }
   assert.deepEqual(sourceCoverage(players, links, shots, stats).map(g => g.count), [1,1,1,1])
