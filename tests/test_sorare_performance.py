@@ -56,6 +56,20 @@ class PerformanceTests(unittest.TestCase):
         self.assertEqual(result["summary"]["totals"]["goals"], 1)
         self.assertIsNone(result["summary"]["totals"]["goalAssist"])
 
+    def test_merges_previous_season_without_replacing_recent_results(self):
+        old = perf.normalize_game(player_result()["allPlayerGameScores"]["nodes"][0])
+        old["id"], old["game_id"], old["date"] = "old", "match-older", "2025-03-17T12:00:00Z"
+        newer = perf.normalize_game(player_result()["allPlayerGameScores"]["nodes"][0])
+        merged = perf.merge_games([newer], [old, {**newer, "score": 45}])
+        self.assertEqual([g["id"] for g in merged], [newer["id"], "old"])
+        self.assertEqual(merged[0]["score"], 71)
+        self.assertEqual(perf.played_period(merged), ("2025-03-17", "2026-10-20"))
+
+    def test_birth_date_in_player_fragment_not_sport_agnostic_interface(self):
+        before, after = perf.QUERY.split("... on Player {")
+        self.assertNotIn("birthDate", before)
+        self.assertIn("birthDate", after)
+
     def test_wrong_identity_fails(self):
         remote = {**player_result(), "birthDate": "1990-01-01"}
         with self.assertRaises(ValueError):
