@@ -99,5 +99,59 @@ class PerformanceTests(unittest.TestCase):
             self.assertTrue(output.exists())
 
 
+    def test_compact_query_keeps_only_supported_basic_stats(self):
+        self.assertIn("minsPlayed", perf.CORE_QUERY)
+        self.assertNotIn("accurateLongBalls", perf.CORE_QUERY)
+        self.assertIn("allPlayerGameScores", perf.CORE_QUERY)
+
+    def test_auth_header_supports_optional_user_token(self):
+        with patch.dict("os.environ", {
+            "SORARE_ACCESS_TOKEN": "example-token", "SORARE_JWT_AUD": "nz-radar",
+        }):
+            headers = perf.auth_headers("example-key")
+        self.assertEqual(headers["APIKEY"], "example-key")
+        self.assertEqual(headers["Authorization"], "Bearer example-token")
+        self.assertEqual(headers["JWT-AUD"], "nz-radar")
+
+    def test_fallback_handles_rejected_detailed_query(self):
+        import io
+        class Response:
+            def __init__(self, payload):
+                self.payload = payload
+            def __enter__(self):
+                return io.BytesIO(json.dumps(self.payload).encode("utf-8"))
+            def __exit__(self, *args):
+                return False
+        calls = []
+        def fake_urlopen(request, timeout):
+            body = json.loads(request.data)
+            calls.append(body["query"])
+            if len(calls) == 1:
+                return Response({"errors": [{"message":
+                    "Cannot query field 'sampleField' on type 'PlayerGameStats'."}]})
+            return Response({"data": {"anyPlayer": player_result()}})
+        with patch.object(perf, "urlopen", side_effect=fake_urlopen):
+            result = perf.request_player("chris-wood", 15, "example-key")
+        self.assertEqual(result["collection_detail"], "core")
+        self.assertEqual(len(calls), 2)
+        self.assertNotIn("successfulFinalThirdPasses", calls[1])
+
+    def test_empty_success_does_not_overwrite_existing_matches(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            catalogue = root / "players.json"
+            output = root / "performance.json"
+            catalogue.write_text(json.dumps({"players": [self.player]}), encoding="utf-8")
+            previous = {"players": {self.player["id"]: {
+                "games": [{"id": "old-score"}],
+                "summary": {"matches_played": 1}}}}
+            output.write_text(json.dumps(previous), encoding="utf-8")
+            no_scores = {**player_result(), "allPlayerGameScores": {"nodes": []}}
+            with patch.object(perf, "CATALOGUE", catalogue), patch.object(perf, "OUTPUT", output), \
+                 patch.object(perf.time, "sleep"), patch.dict("os.environ", {"SORARE_API_KEY": "test"}):
+                result = perf.run(request_func=lambda *args: no_scores)
+            self.assertEqual(result["players"][self.player["id"]]["games"], [{"id": "old-score"}])
+
+
 if __name__ == "__main__":
     unittest.main()
