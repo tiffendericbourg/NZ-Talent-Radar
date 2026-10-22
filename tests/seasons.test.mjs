@@ -134,3 +134,12 @@ test('J.League switch in 2026 respects the confirmed August-June season', () => 
   assert.equal(gameSeasonKey({ competition: 'J1 League', date: '2027-04-07' }), 'split:2026')
   assert.equal(gameSeasonKey({ competition: 'MLS', date: '2027-04-07' }), 'calendar:2027')
 })
+
+test('the season menu ignores DNP-only periods', () => {
+  const fixture = game('played', '2026-10-02', 50)
+  const bench = { ...game('bench', '2024-08-20', null), stats: {
+    minsPlayed: 0, playedInGame: false,
+  } }
+  const result = availableSeasons({ players: { p: { games: [fixture, bench] } } }, null)
+  assert.deepEqual(result, ['split:2026'])
+})
