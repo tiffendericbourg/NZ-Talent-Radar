@@ -305,3 +305,31 @@
 @media(max-width:1100px){.research-cases{grid-template-columns:repeat(2,minmax(0,1fr))}.research-facts{grid-template-columns:repeat(2,minmax(0,1fr))}.research-overseas,.research-pending{grid-template-columns:repeat(2,minmax(0,1fr))}.methodology-columns{grid-template-columns:1fr}}
 @media(max-width:820px){.research-intro{grid-template-columns:1fr}.research-insight-layout{grid-template-columns:1fr}.research-cases{grid-template-columns:1fr}.research-report{padding:16px}.sidebar nav{overflow-x:auto;flex-wrap:nowrap;min-width:0}.sidebar nav button{flex:none}.top{gap:10px}.methodology-conclusion{display:block}.methodology-conclusion .cta{margin-top:20px}}
 @media(max-width:520px){.research-overseas,.research-pending{grid-template-columns:1fr}.research-facts>div{padding:15px}.research-facts strong{font-size:25px}.sidebar{display:block}.sidebar nav{margin-top:12px}.sidebar nav button{font-size:11px;padding:9px}.sidebar nav small{display:none}.top{font-size:8px}.research-case{padding:17px}}
+
+
+/* Three practical studies: monitored U23s, same-role comparison, and coverage. */
+.research-study-tabs{display:flex;gap:7px;overflow-x:auto;border-bottom:1px solid #37563b;padding-top:24px}
+.research-study-tabs button{flex:none;padding:15px 18px;background:transparent;border:0;border-bottom:2px solid transparent;color:#95b49a;font-size:12px;font-weight:700;letter-spacing:.03em}
+.research-study-tabs button:hover{color:#d9f3c9}
+.research-study-tabs button.selected{color:#b7e98d;border-color:#b7e98d}
+.comparison-controls{justify-content:start}
+.comparison-players,.comparison-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:17px 0}
+.comparison-players label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#a6bdab;font-weight:700}
+.comparison-players select{width:100%;background:#132318;border:1px solid #456348;border-radius:5px;padding:13px;margin-top:8px;color:#edf6e7}
+.comparison-metrics{border:1px solid #3a563e;border-radius:7px;background:#16271b;padding:24px;margin-top:20px}
+.comparison-metrics-head{display:flex;gap:15px;justify-content:space-between;align-items:center}
+.comparison-metrics-head h2{font-size:23px}
+.comparison-metrics-head span{font-size:12px;color:#8da892}
+.comparison-metric-row{display:grid;grid-template-columns:160px 1fr 1fr;gap:25px;border-top:1px solid #36513b;padding:21px 0;align-items:center}
+.comparison-metric-row>strong{font-size:13px;color:#e1efe0}
+.comparison-bar>span{display:block;color:#abc3ae;font-size:11px;margin-bottom:9px}
+.comparison-track{height:10px;border-radius:5px;background:#2c4530;overflow:hidden}
+.comparison-track i{display:block;height:100%;background:#b1df90;min-width:0;border-radius:5px}
+.comparison-track.alt i{background:#80bbcd}
+.coverage-audit{border:1px solid #3b593f;background:#17281b;border-radius:7px;padding:22px}
+.coverage-audit-row{padding:15px 0}
+.coverage-audit-row+.coverage-audit-row{border-top:1px solid #39513e}
+.coverage-audit-row>div:first-child{display:grid;grid-template-columns:1fr 1fr 65px;gap:10px;align-items:center;margin-bottom:12px}
+.coverage-audit-row strong{font-size:14px}
+.coverage-audit-row span{font-size:12px;color:#96b099}
+@media(max-width:700px){.comparison-metric-row{grid-template-columns:1fr;gap:11px}.comparison-cards,.comparison-players{grid-template-columns:1fr}.coverage-audit-row>div:first-child{grid-template-columns:1fr auto}.coverage-audit-row span{grid-row:2}.research-study-tabs button{padding:13px 10px;font-size:11px}}
