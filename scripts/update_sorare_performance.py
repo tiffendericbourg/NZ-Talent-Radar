@@ -174,9 +174,9 @@ def request_player(slug, count, key, pages=1):
     scores = first["allPlayerGameScores"]
     page_info = scores.get("pageInfo") if first.get("pagination_supported") else None
     retrieved = 1
-    complete = not bool(page_info and page_info.get("hasNextPage"))
+    complete = not bool(page_info.get("hasNextPage")) if isinstance(page_info, dict) else None
     cursors = set()
-    while not complete and retrieved < pages:
+    while complete is False and retrieved < pages:
         cursor = (page_info or {}).get("endCursor")
         if not cursor or cursor in cursors:
             break
@@ -196,7 +196,7 @@ def request_player(slug, count, key, pages=1):
         time.sleep(0.2)
     first["history_pages_fetched"] = retrieved
     first["history_complete"] = complete
-    first["history_has_more"] = not complete
+    first["history_has_more"] = not complete if complete is not None else None
     return first
 
 
@@ -389,7 +389,7 @@ def main():
     parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
     args = parser.parse_args()
     if args.limit < 0 or not 1 <= args.games <= 50 or not 1 <= args.pages <= 8:
-        parser.error("limit must be >= 0 and games between 1 and 50")
+        parser.error("limit must be >= 0, games 1–50 and pages 1–8")
     run(limit=args.limit, games=args.games, check=args.check, pages=args.pages)
 
 
