@@ -1,4 +1,4 @@
-import { seasonEndDate, seasonLabel } from './seasonUtils.js'
+import { seasonEndDate, seasonStartDate, seasonLabel } from './seasonUtils.js'
 import {
   scoredGames, minutesByMatch, playerIndicators, shotSeasons,
   sourceCoverage, positionDistribution, peerComparison, scoreDistribution,
@@ -163,7 +163,7 @@ export function PositionsChart({ players }) {
 }
 
 export function PeerChart({ player, record, players, performance, season = 'all' }) {
-  const peer = peerComparison(player, record, players, performance, seasonEndDate(season))
+  const peer = peerComparison(player, record, players, performance, seasonEndDate(season), seasonStartDate(season))
   return <ChartPanel title="Among NZ peers" eyebrow="COMPARABLE PERFORMANCE"
     note={peer ? 'Same gender · same broad position · scoring version ' + peer.scoringVersion +
       ' · at least 3 games and 180 minutes ' + (season === 'all' ? 'within the last 365 days' : 'in ' + seasonLabel(season)) + '. League strength is not adjusted.' :
