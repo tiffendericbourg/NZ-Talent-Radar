@@ -7,7 +7,7 @@ import argparse
 import json
 import os
 import time
-from datetime import date
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
@@ -217,6 +217,11 @@ def normalize_player(catalogue_player, api_player, count):
             seen.add(game["id"])
             games.append(game)
     games.sort(key=lambda x: x["date"], reverse=True)
+    # The stats period covers finalized matches actually played, not DNP entries.
+    played_dates = sorted(g["date"][:10] for g in games
+                          if g["score_status"] == "FINAL"
+                          and g["stats"].get("playedInGame") is True
+                          and (g["stats"].get("minsPlayed") or 0) > 0)
     return {
         "sorare_slug": catalogue_player["sorare_slug"],
         "name": catalogue_player["name"],
@@ -224,6 +229,8 @@ def normalize_player(catalogue_player, api_player, count):
         "requested_games": count,
         "collection_detail": api_player.get("collection_detail", "detailed"),
         "games": games,
+        "period_start": played_dates[0] if played_dates else None,
+        "period_end": played_dates[-1] if played_dates else None,
         "summary": summarize(games),
     }
 
@@ -247,12 +254,17 @@ def run(limit=0, games=15, check=False, request_func=request_player):
         try:
             remote = request_func(p["sorare_slug"], 1 if check else games, key)
             result = normalize_player(p, remote, 1 if check else games)
+            # Record when this player's data were actually returned by Sorare.
+            checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+            result["retrieved_at"] = checked_at
+            result["last_checked_at"] = checked_at
             if check:
                 print("Sorare performance query accepted for a verified player")
                 return result
             # Keep the old history only when this request returns no scores.
             # A valid empty dataset is still reported, not filled with fabricated games.
             if not result["games"] and records.get(p["id"], {}).get("games"):
+                records[p["id"]]["last_checked_at"] = checked_at
                 print("%s: no new scores; preserving previous confirmed matches" % p["name"])
             else:
                 records[p["id"]] = result
@@ -268,8 +280,10 @@ def run(limit=0, games=15, check=False, request_func=request_player):
     if success == 0:
         raise RuntimeError("No player performance could be verified; previous snapshot kept. "
                            + (failures[0]["reason"] if failures else "Sorare returned no players"))
+    generated_at = datetime.now(timezone.utc)
     output = {
-        "generated_at": date.today().isoformat(),
+        "generated_at": generated_at.date().isoformat(),
+        "generated_at_utc": generated_at.isoformat(timespec="seconds"),
         "source": "Sorare football GraphQL",
         "sample": "Up to %s most recent player game scores; not necessarily current season" % games,
         "players": records,
