@@ -106,38 +106,92 @@ def graphql_request(query, variables, api_key):
             time.sleep(3 * (attempt + 1))
 
 
+# Sorare often uses full first names where Wikidata stores a familiar name.
+# DOB and unique identity are mandatory before any auto-link.
+FIRST_NAMES = {
+    "alex": "alexander", "ben": "benjamin", "kosta": "konstantinos",
+    "matt": "matthew", "sam": "samuel", "fin": "finn",
+    "tom": "thomas", "joe": "joseph", "dan": "daniel",
+}
+LOOKUP_VERSION = "name-variants-v2"
+
+
+def name_parts(name):
+    normal = unicodedata.normalize("NFKD", name or "")
+    normal = "".join(ch for ch in normal if not unicodedata.combining(ch))
+    return re.findall(r"[a-z0-9]+", normal.casefold())
+
+
+def canonical_first(word):
+    return FIRST_NAMES.get(word, word)
+
+
+def compatible_names(left, right):
+    """Same family name and matching first name (including known diminutives)."""
+    a, b = name_parts(left), name_parts(right)
+    return bool(len(a) >= 2 and len(b) >= 2 and a[-1] == b[-1]
+                and canonical_first(a[0]) == canonical_first(b[0]))
+
+
+def search_terms(name):
+    """Primary, short, and known full-first-name spellings. No guessed URLs."""
+    words = name_parts(name)
+    if len(words) < 2:
+        return [name] if name else []
+    first_last = words[0] + " " + words[-1]
+    names = [name, first_last]
+    first = canonical_first(words[0])
+    if first != words[0]:
+        names.append(first + " " + words[-1])
+    for short, long in FIRST_NAMES.items():
+        if words[0] == long:
+            names.append(short + " " + words[-1])
+    seen = set()
+    result = []
+    for value in names:
+        normal = clean_name(value)
+        if normal and normal not in seen:
+            result.append(value)
+            seen.add(normal)
+    return result[:4]
+
+
 def match_identity(player, candidate):
-    """Only an exact name AND full birth date can confirm a match automatically."""
+    """Only unique, compatible names and full matching birthdays can confirm."""
     if not candidate:
         return "not_found"
     birth = str(candidate.get("birthDate") or "")[:10]
-    same_name = clean_name(player.get("name")) == clean_name(candidate.get("displayName"))
-    same_birth = bool(player.get("birth_date") and birth and player["birth_date"] == birth)
-    # Clubs frequently lag behind transfers in Wikidata. Do not use them
-    # as an identity veto when the full name and birth date agree.
-    if same_name and same_birth:
+    good_name = compatible_names(player.get("name"), candidate.get("displayName"))
+    good_birth = bool(player.get("birth_date") and birth and player["birth_date"] == birth)
+    if good_name and good_birth:
         return "confirmed"
     return "needs_review"
 
 
 def lookup_player(player, api_key, request_func=graphql_request):
-    """Search real Sorare players by name; slug guesses alone are unreliable."""
+    """Retry different names, then optionally surname. Validate all identities."""
     name = (player.get("name") or "").strip()
     if not name:
         return {"status": "not_found", "candidate": None}
-    candidates = request_func(PLAYER_QUERY, {"name": name}, api_key) or []
-    # Keep unique Sorare identities, even if a result appears twice.
-    unique = {candidate["slug"]: candidate for candidate in candidates if candidate.get("slug")}
-    # Sorare's text search is fuzzy and may return entirely unrelated people.
-    # Only exact normalized name matches are plausible review candidates.
-    plausible = [candidate for candidate in unique.values()
-                 if clean_name(candidate.get("displayName")) == clean_name(name)]
-    matches = [candidate for candidate in plausible
-               if match_identity(player, candidate) == "confirmed"]
-    if len(matches) == 1:
-        return {"status": "confirmed", "candidate": matches[0]}
-    if matches:
-        return {"status": "needs_review", "candidate": matches[0]}
+    candidates = {}
+    for term in search_terms(name):
+        for row in request_func(PLAYER_QUERY, {"name": term}, api_key) or []:
+            if isinstance(row, dict) and row.get("slug"):
+                candidates[row["slug"]] = row
+        matched = [p for p in candidates.values()
+                   if match_identity(player, p) == "confirmed"]
+        if matched:
+            break
+        time.sleep(0.25)
+    # Strictly compare identity. Sorare's text search returns unrelated names.
+    confirmed = [p for p in candidates.values()
+                 if match_identity(player, p) == "confirmed"]
+    if len(confirmed) == 1:
+        return {"status": "confirmed", "candidate": confirmed[0]}
+    if len(confirmed) > 1:
+        return {"status": "needs_review", "candidate": confirmed[0]}
+    plausible = [p for p in candidates.values()
+                 if compatible_names(name, p.get("displayName"))]
     if plausible:
         return {"status": "needs_review", "candidate": plausible[0]}
     return {"status": "not_found", "candidate": None}
@@ -245,12 +299,26 @@ def run(limit=0):
                 "status": "already_matched", "sorare_slug": player["sorare_slug"]
             }
 
-    unmatched = [p for p in players if not p.get("sorare_slug")]
-    pending = [p for p in unmatched if p["id"] not in results_by_id]
-    if not pending:
-        # Recheck unlinked records, except explicitly rejected candidates:
-        # the search API often returns the same wrong homonym repeatedly.
-        pending = [p for p in unmatched if p["id"] not in reviews]
+    unmatched = [p for p in players if not p.get("sorare_slug") and p["id"] not in reviews]
+    # First-time records retain their original order. Existing "not found"
+    # records are rescanned once with more search variants; prioritize recent
+    # and active careers over retired historic profiles.
+    fresh = [p for p in unmatched if p["id"] not in results_by_id]
+    retry = [p for p in unmatched if p["id"] in results_by_id and
+             results_by_id[p["id"]].get("lookup_version") != LOOKUP_VERSION]
+    def priority(player):
+        try:
+            year = int((player.get("birth_date") or "")[:4])
+        except ValueError:
+            year = 0
+        age = date.today().year - year if year else 999
+        score = 5 if 16 <= age <= 30 else 1 if age <= 38 else 0
+        score += 3 if player.get("club") else 0
+        score += 2 if player.get("national_team") else 0
+        score += 2 if player.get("club_country") and player["club_country"] != "New Zealand" else 0
+        return score
+    retry.sort(key=priority, reverse=True)
+    pending = fresh + retry
     if limit:
         pending = pending[:limit]
 
@@ -283,6 +351,7 @@ def run(limit=0):
                                  if candidate else None,
             "sorare_club": (candidate.get("activeClub") or {}).get("name") if candidate else None,
         }
+        item["lookup_version"] = LOOKUP_VERSION
         results_by_id[player["id"]] = item
         if item["status"] == "confirmed":
             player["sorare_slug"] = item["sorare_slug"]
@@ -295,6 +364,8 @@ def run(limit=0):
         "generated_at": today,
         "source": "Sorare football GraphQL",
         "scanned": checked,
+        "lookup_version": LOOKUP_VERSION,
+        "second_pass_remaining": max(0, len(pending) - checked),
         "batch_interrupted": bool(interrupted),
         "interruption_reason": interrupted,
         "checked_so_far": len(results),
