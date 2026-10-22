@@ -4,7 +4,7 @@ import {
   seasonOf, seasonType, gameSeasonKey, seasonLabel, availableSeasons, seasonSummary,
   selectSorareSeason, selectUnderstatSeason, seasonStartDate, seasonEndDate,
 } from '../src/seasonUtils.js'
-import { rankingRows } from '../src/rankingUtils.js'
+import { impactEvidence } from '../src/impactIndex.js'
 
 const game = (id, date, score, version = 7, stats = {}) => ({
   id, date, score, competition: 'Premier League', score_status: 'FINAL', scoring_version: version,
@@ -72,10 +72,10 @@ test('rankings can calculate a historical season rather than only the last year'
     game('c', '2026-01-01', 75),
   ] } } }
   const stats = selectSorareSeason(source, '2025')
-  const rows = rankingRows(players, stats, seasonEndDate('2025'), seasonStartDate('2025'))
-  assert.equal(rows[0].eligible, true)
-  assert.equal(rows[0].average, 70)
-  assert.equal(rows[0].matches, 3)
+  const report = impactEvidence(players[0], stats.players.nz1, seasonEndDate('2025'), seasonStartDate('2025'))
+  assert.equal(report.eligible, true)
+  assert.equal(report.minutes, 270)
+  assert.equal(report.matches, 3)
 })
 
 test('calendar leagues and tournaments do not leak into July-June rankings', () => {
@@ -122,9 +122,10 @@ test('historical rankings use the entire July-June period even on leap years', (
     game('c', '2024-06-30', 55),
   ]
   const perf = selectSorareSeason({ players: { p: { games: matches } } }, 'split:2023')
-  const [row] = rankingRows(players, perf, seasonEndDate('split:2023'), seasonStartDate('split:2023'))
-  assert.equal(row.matches, 3)
-  assert.equal(row.average, 50)
+  const report = impactEvidence(players[0], perf.players.p, seasonEndDate('split:2023'), seasonStartDate('split:2023'))
+  assert.equal(report.matches, 3)
+  assert.equal(report.minutes, 270)
+  assert.equal(report.eligible, true)
 })
 
 test('J.League switch in 2026 respects the confirmed August-June season', () => {
