@@ -7,7 +7,7 @@ const SPLIT = new Set([
   'afc champions league elite', 'play-offs 1/2',
 ])
 const CALENDAR = new Set([
-  'mls', 'eliteserien', 'j1 league', 'j2 league', 'k league 1', 'k league 2',
+  'mls', 'eliteserien', 'j1 league', 'j2 league', 'j3 league', 'k league 1', 'k league 2',
   'allsvenskan', 'veikkausliiga', 'usl championship',
 ])
 const EVENTS = new Set([
@@ -69,6 +69,8 @@ export function availableSeasons(performance, understat) {
   const seasons = new Set()
   for (const record of Object.values(performance?.players || {})) {
     for (const game of record.games || []) {
+      if (game.score_status !== 'FINAL' || game.stats?.playedInGame !== true ||
+          !(Number(game.stats?.minsPlayed) > 0)) continue
       const key = gameSeasonKey(game)
       if (key) seasons.add(key)
     }
