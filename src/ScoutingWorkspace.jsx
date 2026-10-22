@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { scoutingReport, u23Research, ageAt } from './scoutingReport.js'
+import { positionGroup } from './rankingUtils.js'
 import { seasonEndDate, seasonStartDate, seasonLabel } from './seasonUtils.js'
 
 const fmt = n => typeof n === 'number' ? n.toLocaleString('en-NZ') : '—'
@@ -179,4 +180,172 @@ export function MethodologyPage({ cataloguePlayers, performance, onCaseStudy }) 
     </div><button className="cta" type="button" onClick={onCaseStudy}>See the U23 case study ↗</button></div>
     <p className="research-disclaimer">Independent portfolio · no affiliation with New Zealand Football. Source catalogue: Wikidata and reviewed football sources. Match data: Sorare. Understat identity records are not shot data. <a href="https://github.com/tiffendericbourg/NZ-Talent-Radar" target="_blank" rel="noreferrer">Read the code and methodology on GitHub ↗</a></p>
   </section>
+}
+
+
+const GROUP_OPTIONS = [
+  ['goalkeeper', 'Goalkeepers'], ['defender', 'Defenders'],
+  ['midfielder', 'Midfielders'], ['forward', 'Forwards'],
+]
+
+export function RoleComparisonStudy({ cataloguePlayers, performance, season, onOpen }) {
+  const [gender, setGender] = useState('Men')
+  const [group, setGroup] = useState('midfielder')
+  const [leftId, setLeftId] = useState('')
+  const [rightId, setRightId] = useState('')
+  const reports = useMemo(() => cataloguePlayers
+    .filter(p => p.gender === gender && positionGroup(p.position) === group)
+    .map(p => scoutingReport(p, performance, cataloguePlayers,
+      seasonEndDate(season), seasonStartDate(season)))
+    .filter(r => r.games >= 3 && r.minutes >= 180)
+    .sort((a, b) => b.minutes - a.minutes || a.player.name.localeCompare(b.player.name)),
+  [cataloguePlayers, performance, season, gender, group])
+  // Do not compare players whose Sorare scores use different scoring versions.
+  const versions = [...new Set(reports.map(r => r.version))]
+    .map(v => ({ version: v, count: reports.filter(r => r.version === v).length }))
+    .sort((a, b) => b.count - a.count)
+  const [selectedVersion, setSelectedVersion] = useState(null)
+  const version = versions.some(v => v.version === selectedVersion) ?
+    selectedVersion : versions[0]?.version || null
+  const compatible = reports.filter(r => r.version === version)
+  const left = compatible.find(r => r.player.id === leftId) || compatible[0]
+  const right = compatible.find(r => r.player.id === rightId && r.player.id !== left?.player.id) ||
+    compatible.find(r => r.player.id !== left?.player.id)
+  const fields = (left?.metrics || []).map(m => m.field)
+  const sameField = (report, field) => report?.metrics.find(m => m.field === field)
+  const valid = (m, report) => m?.per90 != null && m.observed === report.games
+  const maxFor = field => Math.max(1, ...[left, right].map(r => {
+    const metric = sameField(r, field)
+    return r && valid(metric, r) ? metric.per90 : 0
+  }))
+  return <section className="research-page">
+    <div className="directory-heading"><span className="eyebrow">CASE STUDY 02 / COMPARABLE ROLES</span>
+      <h1>What changes by position<span className="green">?</span></h1>
+      <p>Two players, the same documented broad role, gender and scoring version. Look past the headline fantasy rating: compare role-specific events per 90 and their coverage before deciding what to watch on video.</p></div>
+    <div className="research-toolbar comparison-controls">
+      <label>Competition group<select value={gender} onChange={event => { setGender(event.target.value); setLeftId(''); setRightId(''); setSelectedVersion(null) }}>
+        <option value="Men">Men</option><option value="Women">Women</option></select></label>
+      <label>Position<select value={group} onChange={event => { setGroup(event.target.value); setLeftId(''); setRightId(''); setSelectedVersion(null) }}>
+        {GROUP_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
+      {versions.length > 1 && <label>Score version<select value={version || ''} onChange={event => { setSelectedVersion(event.target.value); setLeftId(''); setRightId('') }}>
+        {versions.map(v => <option key={v.version} value={v.version}>{v.version} · {v.count} players</option>)}</select></label>}
+      <span>{compatible.length} comparable profiles · {season === 'all' ? 'past 365 days' : seasonLabel(season)}</span>
+    </div>
+    {compatible.length < 2 ? <div className="research-empty">
+      <h3>A two-player comparison is not available for this cohort.</h3>
+      <p>At least two documented players need 3 scored, completed, non-low-coverage matches and 180 minutes in the same Sorare scoring version. Try a different position or period.</p>
+    </div> : <>
+      <div className="comparison-players">
+        <label>Player A<select value={left.player.id} onChange={event => setLeftId(event.target.value)}>
+          {compatible.filter(r => r.player.id !== right?.player.id).map(r =>
+            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}
+        </select></label>
+        <label>Player B<select value={right.player.id} onChange={event => setRightId(event.target.value)}>
+          {compatible.filter(r => r.player.id !== left?.player.id).map(r =>
+            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}
+        </select></label>
+      </div>
+      <div className="comparison-cards">
+        {[left, right].map(r => <article key={r.player.id} className="research-case">
+          <span className="eyebrow">{r.player.club_country || 'CLUB COUNTRY UNKNOWN'}</span>
+          <h3>{r.player.name}</h3><p>{r.player.club || 'Club not confirmed'}</p>
+          <div className="research-numbers">
+            <div><strong>{fmt(r.minutes)}</strong><small>minutes</small></div>
+            <div><strong>{r.games}</strong><small>matches</small></div>
+            <div><strong>{r.average?.toFixed(1)}</strong><small>Sorare</small></div>
+          </div>
+          <p className="research-observation">{r.nextAction}</p>
+          <button type="button" className="research-link" onClick={() => onOpen(r.player)}>Read player report ↗</button>
+        </article>)}
+      </div>
+      <div className="comparison-metrics">
+        <div className="comparison-metrics-head"><h2>Role-specific events / 90</h2><span>Only fully covered metrics are plotted</span></div>
+        {fields.map(field => {
+          const a = sameField(left, field), b = sameField(right, field)
+          const comparable = valid(a, left) && valid(b, right)
+          const upper = maxFor(field)
+          return <div className="comparison-metric-row" key={field}>
+            <strong>{a?.label || field}</strong>
+            <div className="comparison-bar">
+              <span>Player A {comparable ? a.per90.toFixed(1) : 'Not comparable'}</span>
+              <div className="comparison-track">{comparable && <i style={{ width: 100 * a.per90 / upper + '%' }}/>}</div>
+            </div>
+            <div className="comparison-bar">
+              <span>Player B {comparable ? b.per90.toFixed(1) : 'Not comparable'}</span>
+              <div className="comparison-track alt">{comparable && <i style={{ width: 100 * b.per90 / upper + '%' }}/>}</div>
+            </div>
+          </div>
+        })}</div>
+      <p className="research-caution">These differences describe recorded match events, not talent. A higher count can reflect team style or match context. Do not infer who is better without video, opposition and competition-strength adjustments.</p>
+    </>}
+    <p className="research-disclaimer">Scoring periods and versions are shared, but leagues and tactical jobs are not necessarily equivalent. No cross-league performance score or percentile is computed here. Missing stats remain unavailable, not zero.</p>
+  </section>
+}
+
+export function CoverageStudy({ cataloguePlayers, performance, season }) {
+  const sources = performance?.players || {}
+  const played = p => (sources[p.id]?.games || []).some(g => g.score_status === 'FINAL' &&
+    g.low_coverage === false && g.stats?.playedInGame === true &&
+    Number(g.stats?.minsPlayed) > 0 && typeof g.score === 'number')
+  const women = cataloguePlayers.filter(p => p.gender === 'Women')
+  const men = cataloguePlayers.filter(p => p.gender === 'Men')
+  const youth = cataloguePlayers.filter(p => {
+    const years = ageAt(p.birth_date)
+    return years !== null && years < 23 && p.eligibility_status !== 'potential_to_verify'
+  })
+  const withClub = cataloguePlayers.filter(p => p.club_country).length
+  const withScores = cataloguePlayers.filter(played)
+  const researchLeads = youth.filter(p => !played(p))
+    .sort((a, b) => Number(Boolean(b.club_country)) - Number(Boolean(a.club_country)) ||
+      a.name.localeCompare(b.name))
+  const shortlist = [
+    ...researchLeads.filter(p => p.gender === 'Women').slice(0, 3),
+    ...researchLeads.filter(p => p.gender === 'Men').slice(0, 3),
+  ]
+  return <section className="research-page">
+    <div className="directory-heading"><span className="eyebrow">CASE STUDY 03 / DATA QUALITY</span>
+      <h1>Who is missing from the data<span className="green">?</span></h1>
+      <p>A scouting tool is only as credible as its blind spots. This audit distinguishes the size of the NZ-linked catalogue from the much smaller group with usable source statistics.</p></div>
+    <div className="research-facts">
+      <div><small>NZ-LINKED PLAYERS</small><strong>{fmt(cataloguePlayers.length)}</strong></div>
+      <div><small>WITH CLUB COUNTRY</small><strong>{fmt(withClub)}</strong></div>
+      <div><small>WITH SOURCED SCORES</small><strong>{fmt(withScores.length)}</strong></div>
+      <div><small>U23 WITHOUT SCORES</small><strong>{fmt(researchLeads.length)}</strong></div>
+    </div>
+    <div className="research-section-head"><div><span className="eyebrow">COVERAGE BY GROUP</span>
+      <h2>Not equally visible.</h2><p>The bars compare documentation rates only. They must not be treated as performance indicators.</p></div></div>
+    <div className="coverage-audit">
+      {[['Women', women], ['Men', men], ['U23 with NZ links', youth]].map(([label, group]) => {
+        const scored = group.filter(played).length
+        const share = group.length ? 100 * scored / group.length : 0
+        return <div key={label} className="coverage-audit-row">
+          <div><strong>{label}</strong><span>{scored} / {group.length} have scored games</span><strong>{share.toFixed(1)}%</strong></div>
+          <div className="comparison-track"><i style={{ width: share + '%' }}/></div>
+        </div>
+      })}</div>
+    <div className="research-section-head"><div><span className="eyebrow">RESEARCH LEADS — NOT TALENT RANKINGS</span>
+      <h2>Six U23 profiles to verify next.</h2>
+      <p>These names are drawn from the existing catalogue because their match evidence is missing. An absence from Sorare is not an absence of football performance.</p></div></div>
+    {shortlist.length ? <div className="research-overseas">
+      {shortlist.map(p => <div key={p.id}><strong>{p.name}</strong>
+        <span>{p.club || 'Club not reported'} · {p.club_country || 'Location not recorded'}</span>
+        <small>{p.gender} · {p.position || 'Role unknown'} · {ageAt(p.birth_date)} years · verify recent matches</small>
+      </div>)}</div> : <div className="research-empty">No missing U23 cases were found in the current catalogue.</div>}
+    <p className="research-caution">Next collection priorities: validate current clubs, expand women's and youth competition coverage, and confirm whether match histories are incomplete. Do not fill missing fields with estimates.</p>
+    <p className="research-disclaimer">Full catalogue audit; source snapshots can be incomplete. Unlike the season-specific analysis in the other studies, these coverage counts describe all imported score history, not just {season === 'all' ? 'the past 365 days' : seasonLabel(season)}.</p>
+  </section>
+}
+
+export function ResearchHub({ cataloguePlayers, performance, season, onOpen }) {
+  const [study, setStudy] = useState('u23')
+  return <>
+    <nav className="research-study-tabs" aria-label="Scouting research studies">
+      <button type="button" className={study === 'u23' ? 'selected' : ''} onClick={() => setStudy('u23')}>01 / U23 watchlist</button>
+      <button type="button" className={study === 'roles' ? 'selected' : ''} onClick={() => setStudy('roles')}>02 / Role comparison</button>
+      <button type="button" className={study === 'coverage' ? 'selected' : ''} onClick={() => setStudy('coverage')}>03 / Data blind spots</button>
+    </nav>
+    {study === 'u23' ? <U23CaseStudy cataloguePlayers={cataloguePlayers} performance={performance} season={season} onOpen={onOpen}/> :
+      study === 'roles' ? <RoleComparisonStudy cataloguePlayers={cataloguePlayers} performance={performance} season={season} onOpen={onOpen}/> :
+        <CoverageStudy cataloguePlayers={cataloguePlayers} performance={performance} season={season}/>}
+  </>
 }
