@@ -33,8 +33,10 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Build website
         run: npm run build
-      - name: Check that the filtered directory is bundled
-        run: grep -Rq 'Only players linked to Sorare or verified Understat data are shown.' dist/assets
+      - name: Check that Sorare and the season filter are bundled
+        run: |
+          grep -Rq 'Filter by season' dist/assets
+          grep -Rq 'sorare_performance.json' dist/assets
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
