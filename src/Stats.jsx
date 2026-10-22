@@ -58,7 +58,7 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
       <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && p.games?.length > 0).length} note="Players with verified game scores"/>
       <Metric label="UNDERSTAT IDENTITIES" value={understatIdentities} note="Reviewed player profile links"/>
-      <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note="Imported X/Y locations · {shotPlayers.length} players"/>
+      <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note={'Imported X/Y locations · ' + shotPlayers.length + ' players'}/>
       <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
     </div>
     <div className="scout-chart-grid">
