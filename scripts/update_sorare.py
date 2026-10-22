@@ -111,9 +111,10 @@ def graphql_request(query, variables, api_key):
 FIRST_NAMES = {
     "alex": "alexander", "ben": "benjamin", "kosta": "konstantinos",
     "matt": "matthew", "sam": "samuel", "fin": "finn",
-    "tom": "thomas", "joe": "joseph", "dan": "daniel",
+    "tom": "thomas", "tommy": "thomas", "tim": "timothy",
+    "max": "maxime", "joe": "joseph", "dan": "daniel",
 }
-LOOKUP_VERSION = "name-variants-v2"
+LOOKUP_VERSION = "name-variants-v3"
 
 
 def name_parts(name):
