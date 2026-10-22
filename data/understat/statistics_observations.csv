@@ -1,0 +1,4 @@
+observed_on,player_id,understat_id,season_start,source_type,source_url,published_in_app,notes
+2026-10-22,wd:Q74548,4456,2024,season_summary_csv,https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/main/understat_data/Players_Cleaned/player_seasons/Chris_Wood_4456.csv,no,Nottingham Forest season summary observed; not an imported shot event dataset
+2026-10-22,wd:Q47544166,10385,2024,season_summary_csv,https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/main/understat_data/Players_Cleaned/player_seasons/Liberato_Cacace_10385.csv,no,Empoli season summary observed; not an imported shot event dataset
+2026-10-22,wd:Q106939313,12809,2024,season_summary_csv,https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/main/understat_data/Players_Cleaned/player_seasons/Ben_Old_12809.csv,no,Saint-Etienne season summary observed; not an imported shot event dataset
