@@ -30,7 +30,7 @@ function ageOn(birth, now) {
   return years
 }
 
-export function playerRankingData(player, record, now = new Date()) {
+export function playerRankingData(player, record, now = new Date(), seasonStart = null) {
   const result = {
     ...player, group: positionGroup(player.position), age: ageOn(player.birth_date, now),
     eligible: false, average: null, minutes: 0, matches: 0,
@@ -41,7 +41,7 @@ export function playerRankingData(player, record, now = new Date()) {
   if (!Array.isArray(record?.games) || record.games.length === 0) return result
 
   const today = now.getTime()
-  const since = today - RANKING_WINDOW_DAYS * 86400000
+  const since = seasonStart ? seasonStart.getTime() : today - RANKING_WINDOW_DAYS * 86400000
   const good = record.games.filter(g => {
     const date = new Date(g.date).getTime()
     return Number.isFinite(date) && date >= since && date <= today &&
@@ -84,7 +84,7 @@ export function playerRankingData(player, record, now = new Date()) {
   return result
 }
 
-export function rankingRows(players, performance, now = new Date()) {
+export function rankingRows(players, performance, now = new Date(), seasonStart = null) {
   return players.filter(p => p.sorare_slug || performance?.players?.[p.id])
-    .map(p => playerRankingData(p, performance?.players?.[p.id], now))
+    .map(p => playerRankingData(p, performance?.players?.[p.id], now, seasonStart))
 }
