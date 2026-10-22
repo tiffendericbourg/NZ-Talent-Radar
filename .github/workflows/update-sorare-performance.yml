@@ -8,9 +8,13 @@ on:
         required: false
         default: '0'
       games:
-        description: 'Recent game scores per player (1 to 50; history preserved)'
+        description: 'Games per page (1 to 50)'
         required: false
         default: '50'
+      pages:
+        description: 'History pages per player (1 to 8)'
+        required: false
+        default: '4'
   schedule:
     - cron: '40 6 * * 1'
   push:
@@ -52,7 +56,8 @@ jobs:
           SORARE_JWT_AUD: ${{ secrets.SORARE_JWT_AUD }}
           MATCH_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '0' }}
           MATCHES_PER_PLAYER: ${{ github.event_name == 'workflow_dispatch' && inputs.games || '50' }}
-        run: python scripts/update_sorare_performance.py --limit "$MATCH_LIMIT" --games "$MATCHES_PER_PLAYER"
+          HISTORY_PAGES: ${{ github.event_name == 'workflow_dispatch' && inputs.pages || '4' }}
+        run: python scripts/update_sorare_performance.py --limit "$MATCH_LIMIT" --games "$MATCHES_PER_PLAYER" --pages "$HISTORY_PAGES"
       - name: Summarize verified game data
         run: |
           python - <<'PY'
@@ -66,6 +71,7 @@ jobs:
               out.write(f"- Players updated: **{stats['players_updated']}**\n")
               out.write(f"- Players with real game scores: **{stats['players_with_data']}**\n")
               out.write(f"- Game scores published: **{stats['game_scores']}**\n")
+              out.write(f"- Players with additional history beyond requested pages: **{stats.get('players_with_more_history', 0)}**\n")
               out.write(f"- Players failed this run: **{len(stats['failed_players'])}**\n")
               out.write("\nNo synthetic game scores. DNP/low-coverage matches are not included in score averages.\n")
           PY
