@@ -61,3 +61,22 @@
 .scout-season-head{color:#8ea994;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
 .scout-season-row{color:#d4e7d4;font-size:13px}
 .scout-season-row:last-child{border-bottom:0}
+
+
+/* Player profile cards — visible even while match statistics are being collected. */
+.player-view-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 18px;color:#9ab29b;font-size:12px}
+.player-view-bar>div{display:flex;gap:4px;background:#16251a;border:1px solid #344a38;padding:4px;border-radius:7px}
+.player-view-bar button{border:0;border-radius:5px;background:transparent;color:#9fba9f;padding:8px 14px;font-size:12px;font-weight:700}
+.player-view-bar button.selected{color:#182818;background:#b3e68f}
+.player-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.player-card{border:1px solid #34503a;background:linear-gradient(145deg,#1a2d20,#111d15);padding:20px;text-align:left;min-width:0;min-height:228px;border-radius:8px;color:#e6f1e2;display:flex;flex-direction:column;gap:9px;transition:border-color .15s,transform .15s}
+.player-card:hover{border-color:#b2df90;transform:translateY(-2px)}
+.player-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.player-card-initial{display:grid;place-items:center;width:55px;height:55px;flex:none;border:1px solid #426849;border-radius:8px;background:#294832;color:#bceba1;font:700 24px 'Space Grotesk',sans-serif}
+.player-card-source{font-size:9px;color:#c0e2a9;letter-spacing:.07em;font-weight:700;background:#213d28;border:1px solid #3b6244;padding:6px 8px;border-radius:4px}
+.player-card-name{font:600 21px 'Space Grotesk',sans-serif;letter-spacing:-.04em;overflow-wrap:anywhere}
+.player-card-meta{font-size:12px;color:#a8bfa9}
+.player-card-club{font-size:12px;color:#8ea490;line-height:1.4}
+.player-card-bottom{border-top:1px solid #35513a;margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;color:#b6e997;font-size:11px;font-weight:700}
+@media(max-width:1100px){.player-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.player-cards{grid-template-columns:1fr}.player-view-bar{flex-wrap:wrap}.player-card{min-height:205px}}
