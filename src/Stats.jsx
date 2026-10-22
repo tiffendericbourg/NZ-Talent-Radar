@@ -15,7 +15,7 @@ function CountBars({ title, rows, total }) {
   </article>
 }
 
-export function ScoutingDashboard({ players, sorare, understat }) {
+export function ScoutingDashboard({ players, sorare, understat, performance }) {
   const counts = useMemo(() => {
     const age = player => {
       if (!player.birth_date) return null
@@ -51,6 +51,7 @@ export function ScoutingDashboard({ players, sorare, understat }) {
     <div className="scout-stats-grid">
       <Metric label="PLAYER PROFILES" value={players.length.toLocaleString('en-NZ')} note="Source-linked catalogue"/>
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
+      <Metric label="SORARE MATCH DATA" value={Object.values(performance?.players || {}).filter(p => p.games?.length > 0).length} note="Players with verified game scores"/>
       <Metric label="UNDERSTAT PLAYERS" value={shotPlayers.length} note="Verified Understat IDs"/>
       <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note="Imported X/Y locations"/>
       <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
@@ -107,14 +108,39 @@ export function ShotMap({ shots }) {
   </div>
 }
 
-export function PlayerPerformance({ player, sorare, understat }) {
+export function PlayerPerformance({ player, sorare, understat, performance }) {
+  const sorareRecord = performance?.players?.[player.id]
+  const sorareSummary = sorareRecord?.summary
+  const recentGames = sorareRecord?.games || []
   const record = understat?.players?.[player.id]
   const data = record?.stats
   const match = (sorare?.matches || []).find(row => row.player_id === player.id)
   const linked = player.sorare_slug
   return <section className="performance-section">
     <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2></div>
-      <span className="scout-source">{record ? 'UNDERSTAT · ALL IMPORTED SHOTS' : 'SOURCE COVERAGE'}</span></div>
+      <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : 'SOURCE COVERAGE'}</span></div>
+    {sorareRecord && <div className="scout-audit">
+      <span className="eyebrow">SORARE / RECENT PERFORMANCE</span>
+      <h3>Match-by-match form</h3>
+      <div className="scout-stats-grid player-metrics">
+        <Metric label="MATCHES PLAYED" value={sorareSummary?.matches_played ?? null} note="Finalized, verified match records"/>
+        <Metric label="MINUTES" value={sorareSummary?.minutes ?? null} note="From scored games"/>
+        <Metric label="AVERAGE SORARE SCORE" value={sorareSummary?.average_score ?? null} note={(sorareSummary?.scored_matches || 0) + ' comparable matches'}/>
+        <Metric label="GOALS" value={sorareSummary?.totals?.goals ?? null} note="Documented matches" />
+        <Metric label="ASSISTS" value={sorareSummary?.totals?.goalAssist ?? null} note="Documented matches" />
+      </div>
+      {recentGames.length > 0 ? <div className="scout-season-table">
+        <h3>Recent matches</h3>
+        <div className="scout-season-head"><span>Date</span><span>Competition</span><span>Minutes</span><span>Score</span></div>
+        {recentGames.slice(0, 10).map(g => <div className="scout-season-row" key={g.id}>
+          <strong>{g.date?.slice(0,10) || '—'}</strong>
+          <span>{g.competition || '—'}</span>
+          <span>{g.stats?.minsPlayed ?? '—'}</span>
+          <span>{g.score_status === 'FINAL' && g.stats?.playedInGame && !g.low_coverage ? g.score?.toFixed(1) ?? '—' : g.stats?.playedInGame ? 'Partial' : 'DNP'}</span>
+        </div>)}
+      </div> : <p className="scout-empty">No scored matches returned by Sorare for this player.</p>}
+      <p className="scout-footnote">Latest imported games, not necessarily one season. Sorare score averages exclude DNP, unfinished matches, low-coverage games and older scoring versions. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
+    </div>}
     <div className="scout-stats-grid player-metrics">
       <Metric label="SHOTS" value={data?.shots} note={record ? 'Tracked events' : 'Not available'} muted={!record}/>
       <Metric label="GOALS" value={data?.goals} note={record ? 'Shot outcomes' : 'Not available'} muted={!record}/>
