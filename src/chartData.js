@@ -110,10 +110,10 @@ export function positionDistribution(players) {
   return groups
 }
 
-export function peerComparison(player, record, players, performance, now = new Date()) {
-  const current = rankingRows([player], { players: { [player.id]: record } }, now)[0]
+export function peerComparison(player, record, players, performance, now = new Date(), seasonStart = null) {
+  const current = rankingRows([player], { players: { [player.id]: record } }, now, seasonStart)[0]
   if (!current?.eligible) return null
-  const peers = rankingRows(players, performance, now)
+  const peers = rankingRows(players, performance, now, seasonStart)
     .filter(p => p.eligible && p.gender === player.gender &&
       p.group === current.group && p.version === current.version)
     .sort((a, b) => a.average - b.average)
