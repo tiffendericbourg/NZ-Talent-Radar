@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-10-22",
-  "generated_at_utc": "2026-10-22T12:17:10+00:00",
+  "generated_at_utc": "2026-10-22T12:20:25+00:00",
   "source": "Sorare football GraphQL",
   "sample": "Latest 50 game scores per request, with previously verified match history retained",
   "players": {
@@ -203,8 +203,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:28+00:00",
-      "last_checked_at": "2026-10-22T12:16:28+00:00"
+      "retrieved_at": "2026-10-22T12:19:38+00:00",
+      "last_checked_at": "2026-10-22T12:19:38+00:00"
     },
     "wd:Q24239357": {
       "sorare_slug": "adam-thomas-mitchell",
@@ -405,8 +405,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:29+00:00",
-      "last_checked_at": "2026-10-22T12:16:29+00:00"
+      "retrieved_at": "2026-10-22T12:19:39+00:00",
+      "last_checked_at": "2026-10-22T12:19:39+00:00"
     },
     "wd:Q110616470": {
       "sorare_slug": "alexander-greive",
@@ -2763,8 +2763,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:30+00:00",
-      "last_checked_at": "2026-10-22T12:16:30+00:00"
+      "retrieved_at": "2026-10-22T12:19:40+00:00",
+      "last_checked_at": "2026-10-22T12:19:40+00:00"
     },
     "wd:Q107558242": {
       "sorare_slug": "alexander-paulsen",
@@ -4582,8 +4582,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:31+00:00",
-      "last_checked_at": "2026-10-22T12:16:31+00:00"
+      "retrieved_at": "2026-10-22T12:19:40+00:00",
+      "last_checked_at": "2026-10-22T12:19:40+00:00"
     },
     "wd:Q16239766": {
       "sorare_slug": "alex-arthur-rufer",
@@ -5568,8 +5568,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:31+00:00",
-      "last_checked_at": "2026-10-22T12:16:31+00:00"
+      "retrieved_at": "2026-10-22T12:19:41+00:00",
+      "last_checked_at": "2026-10-22T12:19:41+00:00"
     },
     "wd:Q18719698": {
       "sorare_slug": "andre-ernest-de-jong",
@@ -5917,8 +5917,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:32+00:00",
-      "last_checked_at": "2026-10-22T12:16:32+00:00"
+      "retrieved_at": "2026-10-22T12:19:42+00:00",
+      "last_checked_at": "2026-10-22T12:19:42+00:00"
     },
     "wd:Q53773340": {
       "sorare_slug": "angus-kilkolly",
@@ -6119,8 +6119,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:32+00:00",
-      "last_checked_at": "2026-10-22T12:16:32+00:00"
+      "retrieved_at": "2026-10-22T12:19:43+00:00",
+      "last_checked_at": "2026-10-22T12:19:43+00:00"
     },
     "wd:Q106939313": {
       "sorare_slug": "benjamin-craig-old",
@@ -8624,8 +8624,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:33+00:00",
-      "last_checked_at": "2026-10-22T12:16:33+00:00"
+      "retrieved_at": "2026-10-22T12:19:43+00:00",
+      "last_checked_at": "2026-10-22T12:19:43+00:00"
     },
     "wd:Q62629839": {
       "sorare_slug": "ben-waine",
@@ -11129,8 +11129,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:34+00:00",
-      "last_checked_at": "2026-10-22T12:16:34+00:00"
+      "retrieved_at": "2026-10-22T12:19:44+00:00",
+      "last_checked_at": "2026-10-22T12:19:44+00:00"
     },
     "wd:Q5728588": {
       "sorare_slug": "bill-tuiloma",
@@ -13634,8 +13634,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:35+00:00",
-      "last_checked_at": "2026-10-22T12:16:35+00:00"
+      "retrieved_at": "2026-10-22T12:19:45+00:00",
+      "last_checked_at": "2026-10-22T12:19:45+00:00"
     },
     "wd:Q62006806": {
       "sorare_slug": "callan-elliot",
@@ -15257,8 +15257,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:35+00:00",
-      "last_checked_at": "2026-10-22T12:16:35+00:00"
+      "retrieved_at": "2026-10-22T12:19:45+00:00",
+      "last_checked_at": "2026-10-22T12:19:45+00:00"
     },
     "wd:Q50829202": {
       "sorare_slug": "callum-mccowatt",
@@ -17762,8 +17762,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:36+00:00",
-      "last_checked_at": "2026-10-22T12:16:36+00:00"
+      "retrieved_at": "2026-10-22T12:19:46+00:00",
+      "last_checked_at": "2026-10-22T12:19:46+00:00"
     },
     "wd:Q595599": {
       "sorare_slug": "cameron-howieson",
@@ -17915,8 +17915,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:37+00:00",
-      "last_checked_at": "2026-10-22T12:16:37+00:00"
+      "retrieved_at": "2026-10-22T12:19:47+00:00",
+      "last_checked_at": "2026-10-22T12:19:47+00:00"
     },
     "wd:Q74548": {
       "sorare_slug": "chris-wood",
@@ -20420,8 +20420,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:37+00:00",
-      "last_checked_at": "2026-10-22T12:16:37+00:00"
+      "retrieved_at": "2026-10-22T12:19:48+00:00",
+      "last_checked_at": "2026-10-22T12:19:48+00:00"
     },
     "wd:Q20046896": {
       "sorare_slug": "clayton-lewis",
@@ -20818,8 +20818,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:38+00:00",
-      "last_checked_at": "2026-10-22T12:16:38+00:00"
+      "retrieved_at": "2026-10-22T12:19:49+00:00",
+      "last_checked_at": "2026-10-22T12:19:49+00:00"
     },
     "wd:Q124789400": {
       "sorare_slug": "dylan-manickum",
@@ -21020,8 +21020,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:39+00:00",
-      "last_checked_at": "2026-10-22T12:16:39+00:00"
+      "retrieved_at": "2026-10-22T12:19:49+00:00",
+      "last_checked_at": "2026-10-22T12:19:49+00:00"
     },
     "wd:Q64031850": {
       "sorare_slug": "elijah-henry-just",
@@ -23525,8 +23525,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:40+00:00",
-      "last_checked_at": "2026-10-22T12:16:40+00:00"
+      "retrieved_at": "2026-10-22T12:19:50+00:00",
+      "last_checked_at": "2026-10-22T12:19:50+00:00"
     },
     "wd:Q126924680": {
       "sorare_slug": "fergus-william-gillion",
@@ -23579,8 +23579,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:40+00:00",
-      "last_checked_at": "2026-10-22T12:16:40+00:00"
+      "retrieved_at": "2026-10-22T12:19:51+00:00",
+      "last_checked_at": "2026-10-22T12:19:51+00:00"
     },
     "wd:Q123473457": {
       "sorare_slug": "fin-ngahina-roa-conchie",
@@ -23781,8 +23781,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:41+00:00",
-      "last_checked_at": "2026-10-22T12:16:41+00:00"
+      "retrieved_at": "2026-10-22T12:19:51+00:00",
+      "last_checked_at": "2026-10-22T12:19:51+00:00"
     },
     "wd:Q109968695": {
       "sorare_slug": "finn-surman",
@@ -26286,8 +26286,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:41+00:00",
-      "last_checked_at": "2026-10-22T12:16:41+00:00"
+      "retrieved_at": "2026-10-22T12:19:52+00:00",
+      "last_checked_at": "2026-10-22T12:19:52+00:00"
     },
     "wd:Q29113776": {
       "sorare_slug": "francis-de-vries",
@@ -27174,8 +27174,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:42+00:00",
-      "last_checked_at": "2026-10-22T12:16:42+00:00"
+      "retrieved_at": "2026-10-22T12:19:53+00:00",
+      "last_checked_at": "2026-10-22T12:19:53+00:00"
     },
     "wd:Q64031856": {
       "sorare_slug": "george-stanger",
@@ -29679,8 +29679,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:43+00:00",
-      "last_checked_at": "2026-10-22T12:16:43+00:00"
+      "retrieved_at": "2026-10-22T12:19:54+00:00",
+      "last_checked_at": "2026-10-22T12:19:54+00:00"
     },
     "wd:Q62017452": {
       "sorare_slug": "gianni-stensness",
@@ -32184,8 +32184,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:44+00:00",
-      "last_checked_at": "2026-10-22T12:16:44+00:00"
+      "retrieved_at": "2026-10-22T12:19:55+00:00",
+      "last_checked_at": "2026-10-22T12:19:55+00:00"
     },
     "wd:Q125791559": {
       "sorare_slug": "isaac-robert-hughes",
@@ -32386,8 +32386,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:44+00:00",
-      "last_checked_at": "2026-10-22T12:16:44+00:00"
+      "retrieved_at": "2026-10-22T12:19:56+00:00",
+      "last_checked_at": "2026-10-22T12:19:56+00:00"
     },
     "wd:Q1568728": {
       "sorare_slug": "jake-gleeson",
@@ -32440,8 +32440,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:45+00:00",
-      "last_checked_at": "2026-10-22T12:16:45+00:00"
+      "retrieved_at": "2026-10-22T12:19:57+00:00",
+      "last_checked_at": "2026-10-22T12:19:57+00:00"
     },
     "wd:Q20963030": {
       "sorare_slug": "james-robert-mcgarry",
@@ -34945,8 +34945,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:46+00:00",
-      "last_checked_at": "2026-10-22T12:16:46+00:00"
+      "retrieved_at": "2026-10-22T12:19:57+00:00",
+      "last_checked_at": "2026-10-22T12:19:57+00:00"
     },
     "wd:Q111512710": {
       "sorare_slug": "jay-joshua-herdman",
@@ -36813,8 +36813,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:46+00:00",
-      "last_checked_at": "2026-10-22T12:16:46+00:00"
+      "retrieved_at": "2026-10-22T12:19:58+00:00",
+      "last_checked_at": "2026-10-22T12:19:58+00:00"
     },
     "wd:Q134931872": {
       "sorare_slug": "jeremy-foo",
@@ -37015,8 +37015,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:47+00:00",
-      "last_checked_at": "2026-10-22T12:16:47+00:00"
+      "retrieved_at": "2026-10-22T12:19:59+00:00",
+      "last_checked_at": "2026-10-22T12:19:59+00:00"
     },
     "wd:Q118287620": {
       "sorare_slug": "jesse-randall",
@@ -38197,8 +38197,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:47+00:00",
-      "last_checked_at": "2026-10-22T12:16:47+00:00"
+      "retrieved_at": "2026-10-22T12:19:59+00:00",
+      "last_checked_at": "2026-10-22T12:19:59+00:00"
     },
     "wd:Q64433070": {
       "sorare_slug": "joe-bell",
@@ -40702,8 +40702,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:48+00:00",
-      "last_checked_at": "2026-10-22T12:16:48+00:00"
+      "retrieved_at": "2026-10-22T12:20:00+00:00",
+      "last_checked_at": "2026-10-22T12:20:00+00:00"
     },
     "wd:Q118463931": {
       "sorare_slug": "kees-sims",
@@ -41100,8 +41100,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:49+00:00",
-      "last_checked_at": "2026-10-22T12:16:49+00:00"
+      "retrieved_at": "2026-10-22T12:20:01+00:00",
+      "last_checked_at": "2026-10-22T12:20:01+00:00"
     },
     "wd:Q771396": {
       "sorare_slug": "kosta-barbarouses",
@@ -41988,8 +41988,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:49+00:00",
-      "last_checked_at": "2026-10-22T12:16:49+00:00"
+      "retrieved_at": "2026-10-22T12:20:02+00:00",
+      "last_checked_at": "2026-10-22T12:20:02+00:00"
     },
     "wd:Q123571870": {
       "sorare_slug": "lachlan-bayliss",
@@ -42533,8 +42533,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:50+00:00",
-      "last_checked_at": "2026-10-22T12:16:50+00:00"
+      "retrieved_at": "2026-10-22T12:20:02+00:00",
+      "last_checked_at": "2026-10-22T12:20:02+00:00"
     },
     "wd:Q47544166": {
       "sorare_slug": "liberato-gianpaolo-cacace",
@@ -45038,8 +45038,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:51+00:00",
-      "last_checked_at": "2026-10-22T12:16:51+00:00"
+      "retrieved_at": "2026-10-22T12:20:03+00:00",
+      "last_checked_at": "2026-10-22T12:20:03+00:00"
     },
     "wd:Q20963029": {
       "sorare_slug": "logan-tipene-rogerson",
@@ -45730,8 +45730,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:52+00:00",
-      "last_checked_at": "2026-10-22T12:16:52+00:00"
+      "retrieved_at": "2026-10-22T12:20:04+00:00",
+      "last_checked_at": "2026-10-22T12:20:04+00:00"
     },
     "wd:Q124963162": {
       "sorare_slug": "lukas-eric-kelly-heald",
@@ -46128,8 +46128,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:52+00:00",
-      "last_checked_at": "2026-10-22T12:16:52+00:00"
+      "retrieved_at": "2026-10-22T12:20:05+00:00",
+      "last_checked_at": "2026-10-22T12:20:05+00:00"
     },
     "wd:Q132200431": {
       "sorare_slug": "luke-brooke-smith",
@@ -46820,8 +46820,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:53+00:00",
-      "last_checked_at": "2026-10-22T12:16:53+00:00"
+      "retrieved_at": "2026-10-22T12:20:05+00:00",
+      "last_checked_at": "2026-10-22T12:20:05+00:00"
     },
     "wd:Q1851874": {
       "sorare_slug": "marco-rojas",
@@ -48100,8 +48100,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:54+00:00",
-      "last_checked_at": "2026-10-22T12:16:54+00:00"
+      "retrieved_at": "2026-10-22T12:20:07+00:00",
+      "last_checked_at": "2026-10-22T12:20:07+00:00"
     },
     "wd:Q102257634": {
       "sorare_slug": "marko-stamenic",
@@ -50605,8 +50605,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:54+00:00",
-      "last_checked_at": "2026-10-22T12:16:54+00:00"
+      "retrieved_at": "2026-10-22T12:20:07+00:00",
+      "last_checked_at": "2026-10-22T12:20:07+00:00"
     },
     "wd:Q139971019": {
       "sorare_slug": "matthew-george-foord",
@@ -50659,8 +50659,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:55+00:00",
-      "last_checked_at": "2026-10-22T12:16:55+00:00"
+      "retrieved_at": "2026-10-22T12:20:08+00:00",
+      "last_checked_at": "2026-10-22T12:20:08+00:00"
     },
     "wd:Q96091702": {
       "sorare_slug": "matthew-garbett",
@@ -53164,8 +53164,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:56+00:00",
-      "last_checked_at": "2026-10-22T12:16:56+00:00"
+      "retrieved_at": "2026-10-22T12:20:09+00:00",
+      "last_checked_at": "2026-10-22T12:20:09+00:00"
     },
     "wd:Q125973758": {
       "sorare_slug": "matthew-benjamin-sheridan",
@@ -53366,8 +53366,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:56+00:00",
-      "last_checked_at": "2026-10-22T12:16:56+00:00"
+      "retrieved_at": "2026-10-22T12:20:09+00:00",
+      "last_checked_at": "2026-10-22T12:20:09+00:00"
     },
     "wd:Q6794678": {
       "sorare_slug": "maxime-teremoana-crocombe",
@@ -55871,8 +55871,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:57+00:00",
-      "last_checked_at": "2026-10-22T12:16:57+00:00"
+      "retrieved_at": "2026-10-22T12:20:10+00:00",
+      "last_checked_at": "2026-10-22T12:20:10+00:00"
     },
     "wd:Q64260656": {
       "sorare_slug": "max-mata",
@@ -56367,8 +56367,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:58+00:00",
-      "last_checked_at": "2026-10-22T12:16:58+00:00"
+      "retrieved_at": "2026-10-22T12:20:11+00:00",
+      "last_checked_at": "2026-10-22T12:20:11+00:00"
     },
     "wd:Q524730": {
       "sorare_slug": "michael-boxall",
@@ -58872,8 +58872,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:58+00:00",
-      "last_checked_at": "2026-10-22T12:16:58+00:00"
+      "retrieved_at": "2026-10-22T12:20:12+00:00",
+      "last_checked_at": "2026-10-22T12:20:12+00:00"
     },
     "wd:Q54862548": {
       "sorare_slug": "michael-cornelis-woud",
@@ -61083,8 +61083,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:16:59+00:00",
-      "last_checked_at": "2026-10-22T12:16:59+00:00"
+      "retrieved_at": "2026-10-22T12:20:12+00:00",
+      "last_checked_at": "2026-10-22T12:20:12+00:00"
     },
     "wd:Q64031855": {
       "sorare_slug": "nando-pijnaker",
@@ -61971,8 +61971,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:00+00:00",
-      "last_checked_at": "2026-10-22T12:17:00+00:00"
+      "retrieved_at": "2026-10-22T12:20:13+00:00",
+      "last_checked_at": "2026-10-22T12:20:13+00:00"
     },
     "wd:Q131405893": {
       "sorare_slug": "nathan-garrow",
@@ -62173,8 +62173,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:00+00:00",
-      "last_checked_at": "2026-10-22T12:17:00+00:00"
+      "retrieved_at": "2026-10-22T12:20:14+00:00",
+      "last_checked_at": "2026-10-22T12:20:14+00:00"
     },
     "wd:Q20916837": {
       "sorare_slug": "nikko-boxall",
@@ -62375,8 +62375,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:01+00:00",
-      "last_checked_at": "2026-10-22T12:17:01+00:00"
+      "retrieved_at": "2026-10-22T12:20:14+00:00",
+      "last_checked_at": "2026-10-22T12:20:14+00:00"
     },
     "wd:Q50672661": {
       "sorare_slug": "niko-kirwan",
@@ -62528,8 +62528,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:01+00:00",
-      "last_checked_at": "2026-10-22T12:17:01+00:00"
+      "retrieved_at": "2026-10-22T12:20:15+00:00",
+      "last_checked_at": "2026-10-22T12:20:15+00:00"
     },
     "wd:Q20993947": {
       "sorare_slug": "noah-billingsley",
@@ -62582,8 +62582,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:02+00:00",
-      "last_checked_at": "2026-10-22T12:17:02+00:00"
+      "retrieved_at": "2026-10-22T12:20:16+00:00",
+      "last_checked_at": "2026-10-22T12:20:16+00:00"
     },
     "wd:Q109968702": {
       "sorare_slug": "oskar-van-hattum",
@@ -62784,8 +62784,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:03+00:00",
-      "last_checked_at": "2026-10-22T12:17:03+00:00"
+      "retrieved_at": "2026-10-22T12:20:16+00:00",
+      "last_checked_at": "2026-10-22T12:20:16+00:00"
     },
     "wd:Q9071500": {
       "sorare_slug": "ryan-de-vries",
@@ -62986,8 +62986,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:03+00:00",
-      "last_checked_at": "2026-10-22T12:17:03+00:00"
+      "retrieved_at": "2026-10-22T12:20:17+00:00",
+      "last_checked_at": "2026-10-22T12:20:17+00:00"
     },
     "wd:Q3943100": {
       "sorare_slug": "ryan-thomas",
@@ -65491,8 +65491,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:04+00:00",
-      "last_checked_at": "2026-10-22T12:17:04+00:00"
+      "retrieved_at": "2026-10-22T12:20:18+00:00",
+      "last_checked_at": "2026-10-22T12:20:18+00:00"
     },
     "wd:Q79378939": {
       "sorare_slug": "sam-sutton",
@@ -65693,8 +65693,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:05+00:00",
-      "last_checked_at": "2026-10-22T12:17:05+00:00"
+      "retrieved_at": "2026-10-22T12:20:18+00:00",
+      "last_checked_at": "2026-10-22T12:20:18+00:00"
     },
     "wd:Q28800473": {
       "sorare_slug": "sarpeet-singh",
@@ -68198,8 +68198,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:05+00:00",
-      "last_checked_at": "2026-10-22T12:17:05+00:00"
+      "retrieved_at": "2026-10-22T12:20:19+00:00",
+      "last_checked_at": "2026-10-22T12:20:19+00:00"
     },
     "wd:Q131676093": {
       "sorare_slug": "stipe-josip-ukich",
@@ -70703,8 +70703,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:06+00:00",
-      "last_checked_at": "2026-10-22T12:17:06+00:00"
+      "retrieved_at": "2026-10-22T12:20:20+00:00",
+      "last_checked_at": "2026-10-22T12:20:20+00:00"
     },
     "wd:Q7620171": {
       "sorare_slug": "storm-roux",
@@ -71248,8 +71248,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:07+00:00",
-      "last_checked_at": "2026-10-22T12:17:07+00:00"
+      "retrieved_at": "2026-10-22T12:20:21+00:00",
+      "last_checked_at": "2026-10-22T12:20:21+00:00"
     },
     "wd:Q2642525": {
       "sorare_slug": "tim-payne",
@@ -72234,8 +72234,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:07+00:00",
-      "last_checked_at": "2026-10-22T12:17:07+00:00"
+      "retrieved_at": "2026-10-22T12:20:22+00:00",
+      "last_checked_at": "2026-10-22T12:20:22+00:00"
     },
     "wd:Q462503": {
       "sorare_slug": "tommy-smith-1990-03-31",
@@ -73171,8 +73171,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:08+00:00",
-      "last_checked_at": "2026-10-22T12:17:08+00:00"
+      "retrieved_at": "2026-10-22T12:20:22+00:00",
+      "last_checked_at": "2026-10-22T12:20:22+00:00"
     },
     "wd:Q121353909": {
       "sorare_slug": "tyler-grant-bindon",
@@ -75676,8 +75676,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:09+00:00",
-      "last_checked_at": "2026-10-22T12:17:09+00:00"
+      "retrieved_at": "2026-10-22T12:20:23+00:00",
+      "last_checked_at": "2026-10-22T12:20:23+00:00"
     },
     "wd:Q7859955": {
       "sorare_slug": "tyler-boyd",
@@ -78181,8 +78181,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-10-22T12:17:09+00:00",
-      "last_checked_at": "2026-10-22T12:17:09+00:00"
+      "retrieved_at": "2026-10-22T12:20:24+00:00",
+      "last_checked_at": "2026-10-22T12:20:24+00:00"
     }
   },
   "coverage": {
