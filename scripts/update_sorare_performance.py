@@ -67,7 +67,7 @@ query NZPlayerPerformance($slug: String!, $count: Int!) {
 
 # Compact fallback that avoids optional fields if Sorare modifies its schema.
 CORE_FIELDS = ("minsPlayed", "playedInGame", "goals", "goalAssist")
-CORE_QUERY = QUERY.replace("\\n              ".join(GAME_FIELDS), "\\n              ".join(CORE_FIELDS))
+CORE_QUERY = QUERY.replace("\n              ".join(GAME_FIELDS), "\n              ".join(CORE_FIELDS))
 
 
 def auth_headers(key):
