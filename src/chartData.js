@@ -80,7 +80,7 @@ export function shotSeasons(record) {
 
 export function sourceCoverage(players, understatLinks, understat, performance) {
   const groups = [
-    { label: 'Match stats (Sorare)', count: 0, color: 'var(--scouting-lime)' },
+    { label: 'Match stats (Sorare)', count: 0, color: '#b8e891' },
     { label: 'Shot events (Understat)', count: 0, color: '#7fbbcc' },
     { label: 'Identity only', count: 0, color: '#688776' },
     { label: 'Without linked source', count: 0, color: '#344e3d' },
