@@ -3,16 +3,16 @@
   "source": "Sorare football GraphQL",
   "scanned": 10,
   "lookup_version": "name-variants-v2",
-  "second_pass_remaining": 1038,
+  "second_pass_remaining": 1035,
   "batch_interrupted": false,
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 59,
+  "confirmed": 62,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1048,
+  "not_found": 1045,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -4007,11 +4007,16 @@
     {
       "player_id": "wd:Q125791559",
       "name": "Isaac Hughes",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "isaac-robert-hughes",
+      "sorare_name": "Isaac Hughes",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "2004-03-25",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/teams/wellington-phoenix-wellington/team",
+      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
     },
     {
       "player_id": "wd:Q97762323",
@@ -6105,11 +6110,16 @@
     {
       "player_id": "wd:Q124963162",
       "name": "Lukas Kelly-Heald",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "lukas-eric-kelly-heald",
+      "sorare_name": "Lukas Kelly-Heald",
+      "sorare_birth_date": "2005-03-18",
+      "sorare_club": null,
+      "verified_birth_date": "2005-03-18",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/players/lukas-eric-kelly-heald",
+      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
     },
     {
       "player_id": "wd:Q5984750",
@@ -6636,11 +6646,16 @@
     {
       "player_id": "wd:Q125973758",
       "name": "Matthew Sheridan",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "matthew-benjamin-sheridan",
+      "sorare_name": "Matthew Sheridan",
+      "sorare_birth_date": "2004-05-09",
+      "sorare_club": null,
+      "verified_birth_date": "2004-05-09",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/players/matthew-benjamin-sheridan/history",
+      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
     },
     {
       "player_id": "wd:Q10462376",
@@ -10223,6 +10238,6 @@
       "sorare_club": null
     }
   ],
-  "reviewed_players": 46,
+  "reviewed_players": 49,
   "manual_review_date": "2026-10-22"
 }
