@@ -70,8 +70,8 @@ PAGED_QUERY = (QUERY.replace("$count: Int!", "$count: Int!, $cursor: String")
     .replace("allPlayerGameScores(first: $count)", "allPlayerGameScores(first: $count, after: $cursor)")
     .replace("allPlayerGameScores(first: $count, after: $cursor) {",
              "allPlayerGameScores(first: $count, after: $cursor) {\n        pageInfo { hasNextPage endCursor }"))
-PAGED_CORE_QUERY = PAGED_QUERY.replace("\\n              ".join(GAME_FIELDS),
-                                       "\\n              ".join(("minsPlayed", "playedInGame", "goals", "goalAssist")))
+PAGED_CORE_QUERY = PAGED_QUERY.replace("\n              ".join(GAME_FIELDS),
+                                       "\n              ".join(("minsPlayed", "playedInGame", "goals", "goalAssist")))
 
 # Compact fallback that avoids optional fields if Sorare modifies its schema.
 CORE_FIELDS = ("minsPlayed", "playedInGame", "goals", "goalAssist")
