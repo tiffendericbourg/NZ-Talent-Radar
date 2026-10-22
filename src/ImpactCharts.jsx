@@ -3,10 +3,10 @@ import { impactFor, footballGames, ROLE_SIGNALS } from './impactIndex.js'
 import { seasonEndDate, seasonStartDate } from './seasonUtils.js'
 import { positionGroup } from './rankingUtils.js'
 
-export function ActivityChart({ player, record }) {
+export function ActivityChart({ player, record, season = 'all' }) {
   const group = positionGroup(player.position)
   const signal = ROLE_SIGNALS[group]?.[0]
-  const rows = signal ? footballGames(record).slice(0, 12).reverse()
+  const rows = signal ? footballGames(record, seasonEndDate(season), seasonStartDate(season)).slice(0, 12).reverse()
     .filter(g => typeof g.stats?.[signal.field] === 'number' &&
       Number.isFinite(g.stats[signal.field]))
     .map(g => ({ id: g.id, date: String(g.date).slice(5, 10), value: g.stats[signal.field] })) : []
@@ -23,7 +23,7 @@ export function ActivityChart({ player, record }) {
           style={{ height: r.value / max * 100 + '%' }}/></div>
         <small>{r.date}</small>
       </div>)}
-    </div> : <div className="chart-empty"><p>No role-specific match events available in the last 365 days.</p></div>}
+    </div> : <div className="chart-empty"><p>No role-specific match events available in the selected period.</p></div>}
     <p className="viz-note">Recorded football actions only. Values are not fantasy scores, and the competition's tactical context matters.</p>
   </article>
 }
