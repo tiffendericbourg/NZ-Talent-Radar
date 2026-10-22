@@ -113,7 +113,19 @@ export function impactRows(players, performance, end = new Date(), start = null)
   })
 }
 
+// Reports share the same published snapshot and research period across a page.
+// Avoid rebuilding the full 1,111-player reference group for every dossier.
+const memo = new WeakMap()
 export function impactFor(player, players, performance, end = new Date(), start = null) {
-  return impactRows(players, performance, end, start).find(row => row.player.id === player.id) ||
+  if (!performance || !players) return impactEvidence(player, performance?.players?.[player.id], end, start)
+  const period = end.toISOString().slice(0, 10) + ':' + (start?.toISOString().slice(0, 10) || '')
+  let entries = memo.get(performance)
+  if (!entries || entries.players !== players || entries.period !== period) {
+    entries = { players, period, rows: new Map(
+      impactRows(players, performance, end, start).map(row => [row.player.id, row])
+    ) }
+    memo.set(performance, entries)
+  }
+  return entries.rows.get(player.id) ||
     impactEvidence(player, performance?.players?.[player.id], end, start)
 }
