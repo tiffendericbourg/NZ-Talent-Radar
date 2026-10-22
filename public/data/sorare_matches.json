@@ -1,7 +1,9 @@
 {
-  "generated_at": "2026-10-21",
+  "generated_at": "2026-10-22",
   "source": "Sorare football GraphQL",
-  "scanned": 1083,
+  "scanned": 10,
+  "lookup_version": "name-variants-v2",
+  "second_pass_remaining": 0,
   "batch_interrupted": false,
   "interruption_reason": null,
   "checked_so_far": 1111,
@@ -715,7 +717,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q4767831",
@@ -1212,7 +1215,7 @@
       "sorare_club": "Wellington Phoenix FC",
       "review_reason": "Full name and DOB match; Sorare career includes Charlotte FC then Wellington Phoenix",
       "review_source": "https://sorare.com/football/players/bill-tuiloma/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -1802,7 +1805,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q97730208",
@@ -2637,7 +2641,7 @@
       "sorare_club": "Swansea City AFC",
       "review_reason": "Full name and DOB match; historical AC Horsens tenure listed in Sorare career",
       "review_source": "https://sorare.com/football/players/elijah-henry-just/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -2656,7 +2660,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q5363220",
@@ -2848,7 +2853,7 @@
       "sorare_club": "Stoke City FC",
       "review_reason": "Different DOB and national football association: Northern Ireland 2001 vs NZ 1991",
       "review_source": "https://www.irishfa.com/ifa-international/squads/northern-ireland-senior-men/ethan-galbraith",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "rejected_candidate_slug": "ethan-stuart-william-galbraith"
     },
@@ -3181,7 +3186,7 @@
       "sorare_club": "West Bromwich Albion FC",
       "review_reason": "Sorare candidate American defender born 2001; NZ record is former forward without that birth",
       "review_source": "https://www.wba.co.uk/player/487",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "rejected_candidate_slug": "george-campbell"
     },
@@ -3403,7 +3408,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q98066482",
@@ -3421,7 +3427,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q5592222",
@@ -3754,7 +3761,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q135102212",
@@ -3943,7 +3951,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q6033205",
@@ -4141,7 +4150,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q97762425",
@@ -4702,7 +4712,7 @@
       "sorare_club": "Viking FK",
       "review_reason": "Full name and DOB match; Viking career and Brondby tenure documented",
       "review_source": "https://sorare.com/football/players/joe-bell/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -5111,7 +5121,7 @@
       "sorare_club": "IF Elfsborg",
       "review_reason": "Sorare candidate Danish U20 midfielder born 2005; NZ player is historical international in 1967",
       "review_source": "https://sorare.com/football/players/julius-beck/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "rejected_candidate_slug": "julius-beck"
     },
@@ -6082,7 +6092,7 @@
       "sorare_club": "Portsmouth FC",
       "review_reason": "NZ career and full name align; independent NZ timeline confirms 2008-06-06, correcting Wikidata 2008-06-08",
       "review_source": "https://www.friendsoffootballnz.com/2025/02/24/feature-luke-brooke-smiths-journey-from-juniors-to-phoenix-record-breaker/",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -6227,7 +6237,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q6746610",
@@ -6558,7 +6569,7 @@
       "sorare_club": "Peterborough United FC",
       "review_reason": "Full name and DOB match; Sorare career includes NAC Breda then Peterborough",
       "review_source": "https://sorare.com/football/players/matthew-garbett/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -6689,7 +6700,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v2"
     },
     {
       "player_id": "wd:Q6810322",
@@ -6764,7 +6776,7 @@
       "sorare_club": "Minnesota United",
       "review_reason": "Full name DOB and Minnesota United club all align",
       "review_source": "https://sorare.com/football/players/michael-boxall/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -7510,7 +7522,7 @@
       "sorare_club": "Ayr United FC",
       "review_reason": "Sorare candidate Scottish born 2006; NZ Oliver Whyte born 2000 is a different player",
       "review_source": "https://www.motherwellfc.co.uk/player/olly-whyte/",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "rejected_candidate_slug": "olly-whyte"
     },
@@ -9853,7 +9865,7 @@
       "sorare_club": "Los Angeles FC",
       "review_reason": "Full name and DOB match; Sorare career lists NZ and US national teams",
       "review_source": "https://sorare.com/football/players/tyler-boyd/history",
-      "reviewed_at": "2026-10-21",
+      "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
     },
     {
@@ -10135,7 +10147,5 @@
       "sorare_birth_date": null,
       "sorare_club": null
     }
-  ],
-  "reviewed_players": 30,
-  "manual_review_date": "2026-10-22"
+  ]
 }
