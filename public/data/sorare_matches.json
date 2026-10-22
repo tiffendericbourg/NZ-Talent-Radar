@@ -1,9 +1,9 @@
 {
   "generated_at": "2026-10-22",
   "source": "Sorare football GraphQL",
-  "scanned": 10,
-  "lookup_version": "name-variants-v2",
-  "second_pass_remaining": 1035,
+  "scanned": 100,
+  "lookup_version": "name-variants-v3",
+  "second_pass_remaining": 945,
   "batch_interrupted": false,
   "interruption_reason": null,
   "checked_so_far": 1111,
@@ -30,7 +30,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q22097756",
@@ -48,7 +49,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4664441",
@@ -66,7 +68,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97762502",
@@ -75,7 +78,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q131785405",
@@ -85,7 +89,7 @@
       "sorare_name": "Adam Bell",
       "sorare_birth_date": "2004-02-12",
       "sorare_club": null,
-      "review_reason": "Verified Sorare history for Adam Bell: matching birthdate 2004-02-12 and NZ football career",
+      "review_reason": "Verified Sorare history: Adam Bell, full DOB 2004-02-12, same NZ player and career",
       "review_source": "https://sorare.com/football/players/adam-alexander-kanui-bell/history",
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
@@ -125,7 +129,7 @@
       "sorare_name": "Adam Mitchell",
       "sorare_birth_date": "1996-06-01",
       "sorare_club": null,
-      "review_reason": "Verified Sorare history for Adam Mitchell: matching birthdate 1996-06-01 and NZ football career",
+      "review_reason": "Verified Sorare history: Adam Mitchell, full DOB 1996-06-01, same NZ player and career",
       "review_source": "https://sorare.com/football/players/adam-thomas-mitchell/history",
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
@@ -173,7 +177,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4685683",
@@ -191,7 +196,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q27855547",
@@ -236,7 +242,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4708060",
@@ -263,7 +270,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4716776",
@@ -469,7 +477,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4730624",
@@ -496,7 +505,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4730979",
@@ -514,7 +524,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4737491",
@@ -532,7 +543,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4739599",
@@ -550,7 +562,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97760426",
@@ -559,7 +572,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q136697533",
@@ -568,7 +582,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q18719698",
@@ -608,7 +623,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q3616242",
@@ -626,7 +642,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q503887",
@@ -712,7 +729,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/players/angus-kilkolly/history",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Angus Kilkolly: Sorare direct history DOB 1996-04-18, NZ forward at Auckland City; correct missing Wikidata birthday"
     },
     {
       "player_id": "wd:Q509509",
@@ -721,7 +738,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q55642886",
@@ -731,7 +749,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4767831",
@@ -920,7 +938,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97760540",
@@ -1001,7 +1020,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q106939313",
@@ -1072,7 +1092,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97692391",
@@ -1117,7 +1138,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q4907933",
@@ -1719,7 +1741,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q3815279",
@@ -1782,7 +1805,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q131431729",
@@ -1791,7 +1815,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q9191054",
@@ -1819,7 +1844,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97730208",
@@ -1904,7 +1929,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5145561",
@@ -1940,7 +1966,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q131535554",
@@ -1994,7 +2021,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5181451",
@@ -2039,7 +2067,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q2078144",
@@ -2129,7 +2158,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q1090840",
@@ -2372,7 +2402,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5258271",
@@ -2575,7 +2606,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Dylan Manickum: Sorare Auckland City NZ forward aged 34, DOB 1992-06-16 confirmed by transfer and club records"
     },
     {
       "player_id": "wd:Q124512301",
@@ -2679,7 +2710,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5363220",
@@ -2688,7 +2719,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5364582",
@@ -2850,7 +2882,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5394374",
@@ -2905,7 +2938,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Fergus Gillion: Sorare Auckland City NZ midfielder aged 21 with full-name profile, DOB 2005-01-19 independently documented"
     },
     {
       "player_id": "wd:Q123473457",
@@ -2963,7 +2996,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q29113776",
@@ -3053,7 +3087,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q125502749",
@@ -3274,7 +3309,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5543961",
@@ -3432,7 +3468,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q98066482",
@@ -3451,7 +3487,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5592222",
@@ -3649,7 +3685,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97738723",
@@ -3748,7 +3785,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q20994269",
@@ -3766,7 +3804,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q16210298",
@@ -3785,7 +3824,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q135102212",
@@ -3911,7 +3950,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q5982211",
@@ -3975,7 +4015,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6033205",
@@ -4016,7 +4056,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/teams/wellington-phoenix-wellington/team",
-      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
+      "review_reason": "Sorare Wellington Phoenix roster names NZ defender Isaac Hughes; linked profile is Isaac Robert Hughes; DOB corrected from 2004-03-24 to 2004-03-25 using FBref and Transfermarkt"
     },
     {
       "player_id": "wd:Q97762323",
@@ -4179,7 +4219,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97762425",
@@ -4211,7 +4251,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/fr/football/players/jake-gleeson/history",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Jake Gleeson: Sorare DOB 1990-06-26 and New Zealand international, historical Portland Timbers career matches Wikidata"
     },
     {
       "player_id": "wd:Q21622972",
@@ -4256,7 +4296,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q11716778",
@@ -4328,7 +4369,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q1382840",
@@ -4387,7 +4429,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/nl/football/teams/cavalry/team",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Jay Herdman: Sorare Cavalry NZ forward aged 21 with profile link Jay Joshua Herdman; DOB 2004-08-14 verified in independent player record"
     },
     {
       "player_id": "wd:Q97760559",
@@ -4423,7 +4465,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6175100",
@@ -4459,7 +4502,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6181166",
@@ -4477,7 +4521,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q134931872",
@@ -4491,7 +4536,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Jeremy Foo: Sorare Auckland City NZ midfielder aged 19; DOB 2007-03-07 matches independent player reference"
     },
     {
       "player_id": "wd:Q131470093",
@@ -4500,7 +4545,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97735890",
@@ -4518,7 +4564,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q118287620",
@@ -4725,7 +4772,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6207312",
@@ -4819,7 +4867,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6215447",
@@ -5062,7 +5111,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6285559",
@@ -5184,7 +5234,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q11729669",
@@ -5238,7 +5289,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6377237",
@@ -5256,7 +5308,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q437857",
@@ -5265,7 +5318,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q124390839",
@@ -5310,7 +5364,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q105336073",
@@ -5656,7 +5711,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q771396",
@@ -5678,7 +5734,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6438471",
@@ -5840,7 +5897,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6521671",
@@ -5948,7 +6006,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q127790220",
@@ -6119,7 +6178,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/players/lukas-eric-kelly-heald",
-      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
+      "review_reason": "Sorare profile shows DOB 2005-03-18, NZ nationality and Wellington Phoenix; exact identity match"
     },
     {
       "player_id": "wd:Q5984750",
@@ -6128,7 +6187,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q132200431",
@@ -6159,7 +6219,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q127787780",
@@ -6286,7 +6347,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6746610",
@@ -6322,7 +6383,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q1851874",
@@ -6610,7 +6672,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Matthew Foord: Sorare Auckland City NZ goalkeeper aged 20 with linked Matthew George Foord profile, DOB 2006-02-19 confirmed by Auckland City FC"
     },
     {
       "player_id": "wd:Q96091702",
@@ -6641,7 +6703,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q125973758",
@@ -6655,7 +6718,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/players/matthew-benjamin-sheridan/history",
-      "review_reason": "Sorare direct profile or NZ Wellington Phoenix roster corroborates identity and birthdate"
+      "review_reason": "Sorare profile DOB 2004-05-09 and NZ U23/Wellington Phoenix matches Matthew Sheridan"
     },
     {
       "player_id": "wd:Q10462376",
@@ -6696,7 +6759,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/players/maxime-teremoana-crocombe/history",
-      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
+      "review_reason": "Sorare Maxime Crocombe DOB 1993-08-12, NZ national team goalkeeper and Millwall club, matches Wikidata Q6794678"
     },
     {
       "player_id": "wd:Q6794691",
@@ -6727,7 +6790,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97760499",
@@ -6764,7 +6828,7 @@
       "sorare_name": null,
       "sorare_birth_date": null,
       "sorare_club": null,
-      "lookup_version": "name-variants-v2"
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6810322",
@@ -6858,7 +6922,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6830817",
@@ -6894,7 +6959,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6831706",
@@ -7002,7 +7068,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q98085677",
@@ -7101,7 +7168,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q16301831",
@@ -7155,7 +7223,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q19875610",
@@ -7164,7 +7233,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q135840113",
@@ -7237,7 +7307,7 @@
       "sorare_name": "Nathan Garrow",
       "sorare_birth_date": "2004-11-29",
       "sorare_club": null,
-      "review_reason": "Verified Sorare history for Nathan Garrow: matching birthdate 2004-11-29 and NZ football career",
+      "review_reason": "Verified Sorare history: Nathan Garrow, full DOB 2004-11-29, same NZ player and career",
       "review_source": "https://sorare.com/football/players/nathan-garrow/history",
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
@@ -7258,7 +7328,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q3531282",
@@ -7443,7 +7514,7 @@
       "reviewed_at": "2026-10-22",
       "review_source": "https://sorare.com/football/players/nikko-boxall",
       "review_method": "manual_external_source_verification",
-      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
+      "review_reason": "Nikko Boxall: Sorare NZ defender aged 34 at Auckland City, DOB 1992-02-24 independently confirmed by club-career player reference"
     },
     {
       "player_id": "wd:Q50672661",
@@ -7475,7 +7546,7 @@
       "sorare_name": "Noah Billingsley",
       "sorare_birth_date": "1997-08-06",
       "sorare_club": null,
-      "review_reason": "Verified Sorare history for Noah Billingsley: matching birthdate 1997-08-06 and NZ football career",
+      "review_reason": "Verified Sorare history: Noah Billingsley, full DOB 1997-08-06, same NZ player and career",
       "review_source": "https://sorare.com/football/players/noah-billingsley/history",
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
@@ -7609,7 +7680,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q125499070",
@@ -7655,7 +7727,7 @@
       "sorare_name": "Oskar van Hattum",
       "sorare_birth_date": "2002-04-14",
       "sorare_club": null,
-      "review_reason": "Verified Sorare history for Oskar van Hattum: matching birthdate 2002-04-14 and NZ football career",
+      "review_reason": "Verified Sorare history: Oskar van Hattum, full DOB 2002-04-14, same NZ player and career",
       "review_source": "https://sorare.com/football/players/oskar-van-hattum/history",
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification"
@@ -8081,7 +8153,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7279349",
@@ -8162,7 +8235,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q97735879",
@@ -8261,7 +8335,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7307752",
@@ -8315,7 +8390,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q2142952",
@@ -8369,7 +8445,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q87760486",
@@ -8872,7 +8949,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q28801756",
@@ -8917,7 +8995,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q6999201",
@@ -8926,7 +9005,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q55632559",
@@ -9052,7 +9132,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q45342943",
@@ -9088,7 +9169,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q129333291",
@@ -9160,7 +9242,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7608369",
@@ -9250,7 +9333,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q131676093",
@@ -9357,7 +9441,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q21005631",
@@ -9366,7 +9451,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7683252",
@@ -9411,7 +9497,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q20994125",
@@ -9465,7 +9552,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7704499",
@@ -9519,7 +9607,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7781516",
@@ -9605,7 +9694,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/players/tim-payne/history",
-      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
+      "review_reason": "Sorare Timothy Payne full history DOB 1994-01-10 and NZ national team / Wellington Phoenix career match NZ Tim Payne"
     },
     {
       "player_id": "wd:Q11951840",
@@ -9740,7 +9829,8 @@
       "sorare_slug": null,
       "sorare_name": null,
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "lookup_version": "name-variants-v3"
     },
     {
       "player_id": "wd:Q7819403",
@@ -9772,7 +9862,7 @@
       "reviewed_at": "2026-10-22",
       "review_method": "manual_external_source_verification",
       "review_source": "https://sorare.com/football/countries/nz/team",
-      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
+      "review_reason": "NZ Thomas / Tommy Smith; Sorare NZ national team defender aged 36 and player slug identifies 1990-03-31, consistent with Wikidata"
     },
     {
       "player_id": "wd:Q7822303",
@@ -10237,7 +10327,5 @@
       "sorare_birth_date": null,
       "sorare_club": null
     }
-  ],
-  "reviewed_players": 49,
-  "manual_review_date": "2026-10-22"
+  ]
 }
