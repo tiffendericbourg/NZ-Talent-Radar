@@ -139,7 +139,7 @@ Every future performance import records **when the statistics were found** separ
 - **Understat:** `imported_at` is the UTC time at which a valid shot export was processed. `source_mode` distinguishes `local_export` from `direct_fetch`. `source_fetched_at` is set **only** for a direct fetch; the original download date of a local export is **unknown**, not assumed to be its import date. `period_start` and `period_end` come from the actual dated shot events; individual shots retain `shots[].date`.
 - Both output JSONs include `generated_at_utc` (file generation timestamp), separate from per-player timestamps. Older records without collection metadata display **Date not recorded** instead of a guessed date. A verified player identity alone is not a statistic.
 
-**As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The Sorare performance JSON is not yet published. No historical performance retrieval dates are backfilled or invented.
+**As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The Sorare performance JSON is not yet published. No historical performance retrieval dates are backfilled or invented. Separately, `data/understat/statistics_observations.csv` logs the **date found (2026-10-22)** and **historical season (2024)** for three season-summary sources (Chris Wood, Liberato Cacace and Ben Old). These are research observations, **not** published performance imports.
 
 ## Match-by-match Sorare performances
 
