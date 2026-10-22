@@ -87,7 +87,7 @@ export function sourceCoverage(players, understatLinks, understat, performance) 
   ]
   for (const player of players) {
     const id = player.id
-    if ((performance?.players?.[id]?.games || []).length > 0) groups[0].count++
+    if (scoredGames(performance?.players?.[id]).length > 0) groups[0].count++
     else if ((understat?.players?.[id]?.shots || []).length > 0) groups[1].count++
     else if (player.sorare_slug || understatLinks?.players?.[id]) groups[2].count++
     else groups[3].count++
