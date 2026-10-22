@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { seasonLabel } from './seasonUtils.js'
 import { FormChart, MinutesChart, PositionIndicators, GoalXgChart, CoverageChart, PositionsChart, PeerChart } from './ScoutingCharts.jsx'
 
 function formatUtc(value) {
@@ -139,7 +140,7 @@ export function ShotMap({ shots }) {
   </div>
 }
 
-export function PlayerPerformance({ player, sorare, understat, understatLinks, performance, players = [] }) {
+export function PlayerPerformance({ player, sorare, understat, understatLinks, performance, players = [], season = 'all' }) {
   const sorareRecord = performance?.players?.[player.id]
   const sorareSummary = sorareRecord?.summary
   const recentGames = sorareRecord?.games || []
@@ -149,7 +150,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
   const match = (sorare?.matches || []).find(row => row.player_id === player.id)
   const linked = player.sorare_slug
   return <section className="performance-section">
-    <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2></div>
+    <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2><p>{season === 'all' ? 'All imported seasons' : 'Selected season: ' + seasonLabel(season)}</p></div>
       <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : understatLink ? 'UNDERSTAT · VERIFIED ID' : 'SOURCE COVERAGE'}</span></div>
     <div className="viz-two viz-player-charts">
       <FormChart record={sorareRecord}/>
@@ -157,10 +158,10 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
     </div>
     <div className="viz-two viz-player-charts">
       <PositionIndicators player={player} record={sorareRecord}/>
-      <PeerChart player={player} record={sorareRecord} players={players} performance={performance}/>
+      <PeerChart player={player} record={sorareRecord} players={players} performance={performance} season={season}/>
     </div>
     {sorareRecord && <div className="scout-audit">
-      <span className="eyebrow">SORARE / RECENT PERFORMANCE</span>
+      <span className="eyebrow">SORARE / {season === 'all' ? 'IMPORTED PERFORMANCE' : seasonLabel(season)}</span>
       <h3>Match-by-match form</h3>
       <p className="scout-footnote">Sorare checked: {formatUtc(sorareRecord.last_checked_at || sorareRecord.retrieved_at)} · Stats retrieved: {recentGames.length ? formatUtc(sorareRecord.retrieved_at) : 'No matches returned'} · Played-match period: {formatPeriod(sorareRecord.period_start, sorareRecord.period_end)}</p>
       <div className="scout-stats-grid player-metrics">
@@ -180,7 +181,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
           <span>{g.score_status === 'FINAL' && g.stats?.playedInGame && !g.low_coverage ? g.score?.toFixed(1) ?? '—' : g.stats?.playedInGame ? 'Partial' : 'DNP'}</span>
         </div>)}
       </div> : <p className="scout-empty">No scored matches returned by Sorare for this player.</p>}
-      <p className="scout-footnote">Latest imported games, not necessarily one season. Sorare score averages exclude DNP, unfinished matches, low-coverage games and older scoring versions. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
+      <p className="scout-footnote">{season === 'all' ? 'All imported fixtures may span multiple seasons. ' : 'Matches filtered by date (July–June season). '}Sorare score averages exclude DNP, unfinished matches, low-coverage games and older scoring versions. <a href={sorareRecord.source_url} target="_blank" rel="noreferrer">Source ↗</a></p>
     </div>}
     <div className="scout-stats-grid player-metrics">
       <Metric label="SHOTS" value={data?.shots} note={record ? 'Tracked events' : 'Not available'} muted={!record}/>
