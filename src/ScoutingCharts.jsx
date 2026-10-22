@@ -1,3 +1,4 @@
+import { seasonEndDate, seasonLabel } from './seasonUtils.js'
 import {
   scoredGames, minutesByMatch, playerIndicators, shotSeasons,
   sourceCoverage, positionDistribution, peerComparison, scoreDistribution,
@@ -161,11 +162,11 @@ export function PositionsChart({ players }) {
   </ChartPanel>
 }
 
-export function PeerChart({ player, record, players, performance }) {
-  const peer = peerComparison(player, record, players, performance)
+export function PeerChart({ player, record, players, performance, season = 'all' }) {
+  const peer = peerComparison(player, record, players, performance, seasonEndDate(season))
   return <ChartPanel title="Among NZ peers" eyebrow="COMPARABLE PERFORMANCE"
     note={peer ? 'Same gender · same broad position · scoring version ' + peer.scoringVersion +
-      ' · at least 3 games and 180 minutes within the last 365 days. League strength is not adjusted.' :
+      ' · at least 3 games and 180 minutes ' + (season === 'all' ? 'within the last 365 days' : 'in ' + seasonLabel(season)) + '. League strength is not adjusted.' :
       'Peer comparison needs at least three qualified players in the same gender, role and scoring version.'}>
     {!peer ? <EmptyChart>Not enough comparable verified Sorare scores for a fair comparison.</EmptyChart>
       : <div className="peer-bars">
