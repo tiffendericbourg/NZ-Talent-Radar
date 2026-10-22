@@ -17,6 +17,7 @@ function hasFootballData(player, understat, performance, understatLinks) {
   )
 }
 function PlayerTable({players,onOpen,compact=false}) {
+  const [view,setView]=useState('cards')
   const [search,setSearch]=useState(''),[position,setPosition]=useState('all'),[status,setStatus]=useState('all'),[country,setCountry]=useState('all'),[club,setClub]=useState(''),[maximumAge,setMaximumAge]=useState('all'),[sort,setSort]=useState('name'),[reverse,setReverse]=useState(false),[page,setPage]=useState(1)
   const choices=key=>[...new Set(players.map(p=>p[key]).filter(Boolean))].sort()
   const filtered=useMemo(()=>players.filter(p=>([p.name,p.club,p.league,p.club_country].join(' ').toLowerCase().includes(search.toLowerCase()))&&(position==='all'||p.position===position)&&(status==='all'||p.eligibility_status===status)&&(country==='all'||p.club_country===country)&&(p.club||'').toLowerCase().includes(club.toLowerCase())&&(maximumAge==='all'||ageOf(p.birth_date)!==null&&ageOf(p.birth_date)<=Number(maximumAge))).sort((a,b)=>{const x=valueOf(a,sort),y=valueOf(b,sort);let comparison=x==null?1:y==null?-1:typeof x==='number'&&typeof y==='number'?x-y:String(x).localeCompare(String(y),'en',{sensitivity:'base'});return reverse?-comparison:comparison}),[players,search,position,status,country,club,maximumAge,sort,reverse])
@@ -24,7 +25,43 @@ function PlayerTable({players,onOpen,compact=false}) {
   function sortColumn(key){if(sort===key)setReverse(!reverse);else{setSort(key);setReverse(false)}setPage(1)}
   const clear=()=>{setSearch('');setPosition('all');setStatus('all');setCountry('all');setClub('');setMaximumAge('all');setPage(1)}
   return <section>{!compact&&<div className="filters"><label>SEARCH THE DATABASE<input placeholder="Name, league or location…" value={search} onChange={e=>{setSearch(e.target.value);setPage(1)}}/></label><div className="filter-grid"><label>Position<select value={position} onChange={e=>{setPosition(e.target.value);setPage(1)}}><option value="all">All positions</option>{choices('position').map(x=><option key={x}>{x}</option>)}</select></label><label>NZ status<select value={status} onChange={e=>{setStatus(e.target.value);setPage(1)}}><option value="all">All statuses</option>{Object.entries(STATUS).map(([key,x])=><option value={key} key={key}>{x}</option>)}</select></label><label>Club country<select value={country} onChange={e=>{setCountry(e.target.value);setPage(1)}}><option value="all">All countries</option>{choices('club_country').map(x=><option key={x}>{x}</option>)}</select></label><label>Club<input value={club} onChange={e=>{setClub(e.target.value);setPage(1)}} placeholder="Any club"/></label><label>Maximum age<select value={maximumAge} onChange={e=>{setMaximumAge(e.target.value);setPage(1)}}><option value="all">Any age</option>{[18,21,23,30].map(x=><option key={x}>{x}</option>)}</select></label></div><div className="filter-bottom"><span>{filtered.length} matching players</span><button onClick={clear}>Clear filters ↗</button></div></div>}
-  <div className="table-scroll"><table><thead><tr>{FIELDS.map(([key,label])=><th key={key}><button onClick={()=>sortColumn(key)}>{label} <span>{sort===key?(reverse?'↓':'↑'):'↕'}</span></button></th>)}<th></th></tr></thead><tbody>{filtered.slice((current-1)*perPage,current*perPage).map(p=><tr key={p.id}><td><button className="name-cell" onClick={()=>onOpen(p)}><span className="avatar">{p.name?.charAt(0)}</span><span><strong>{p.name}</strong><small>{p.gender||'Football'} · {p.wikidata_id||'Manual'}</small></span></button></td><td>{ageOf(p.birth_date)??'—'}</td><td>{p.position||'—'}</td><td>{(p.nationalities||[]).join(', ')||'—'}</td><td>{p.club||'Unknown'}</td><td>{p.club_country||'—'}</td><td><span className={'status '+p.eligibility_status}>{STATUS[p.eligibility_status]||'To verify'}</span></td><td><button className="open" onClick={()=>onOpen(p)} aria-label={'Open '+p.name}>↗</button></td></tr>)}</tbody></table>{!filtered.length&&<div className="empty"><h3>{players.length ? 'No players found' : 'No Sorare or Understat players yet'}</h3><p>{players.length ? 'Try adjusting the filters.' : 'Only verified Sorare profiles and imported Understat records are shown.'}</p>{players.length > 0 && <button onClick={clear}>Clear filters</button>}</div>}</div>
+
+  {!compact && <div className="player-view-bar">
+    <span>Browse {filtered.length} verified player profiles</span>
+    <div role="group" aria-label="Player display">
+      <button type="button" className={view === 'cards' ? 'selected' : ''} onClick={() => setView('cards')}>Cards</button>
+      <button type="button" className={view === 'table' ? 'selected' : ''} onClick={() => setView('table')}>Table</button>
+    </div>
+  </div>}
+  {filtered.length > 0 && (compact || view === 'cards')
+    ? <div className="player-cards">
+      {filtered.slice((current - 1) * perPage, current * perPage).map(p =>
+        <button type="button" className="player-card" key={p.id} onClick={() => onOpen(p)} aria-label={'Open the profile of ' + p.name}>
+          <span className="player-card-top">
+            <span className="player-card-initial" aria-hidden="true">{p.name?.split(' ').slice(0,2).map(n => n[0]).join('')}</span>
+            <span className="player-card-source">{p.sorare_slug ? 'SORARE VERIFIED' : 'UNDERSTAT DATA'}</span>
+          </span>
+          <strong className="player-card-name">{p.name}</strong>
+          <span className="player-card-meta">{p.position || 'Position not listed'} · {ageOf(p.birth_date) ?? 'Age unknown'}{ageOf(p.birth_date) == null ? '' : ' yrs'}</span>
+          <span className="player-card-club">{p.club || 'Club not reported'}{p.club_country ? ' · ' + p.club_country : ''}</span>
+          <span className="player-card-bottom">View player profile <span aria-hidden="true">↗</span></span>
+        </button>
+      )}
+    </div>
+    : filtered.length > 0 ? <div className="table-scroll"><table>
+      <thead><tr>{FIELDS.map(([key,label]) => <th key={key}><button onClick={() => sortColumn(key)}>{label} <span>{sort === key ? (reverse ? '↓' : '↑') : '↕'}</span></button></th>)}<th></th></tr></thead>
+      <tbody>{filtered.slice((current-1)*perPage,current*perPage).map(p => <tr key={p.id}>
+        <td><button className="name-cell" onClick={() => onOpen(p)}><span className="avatar">{p.name?.charAt(0)}</span><span><strong>{p.name}</strong><small>{p.gender || 'Football'} · {p.wikidata_id || 'Manual'}</small></span></button></td>
+        <td>{ageOf(p.birth_date) ?? '—'}</td><td>{p.position || '—'}</td><td>{(p.nationalities || []).join(', ') || '—'}</td>
+        <td>{p.club || 'Unknown'}</td><td>{p.club_country || '—'}</td>
+        <td><span className={'status ' + p.eligibility_status}>{STATUS[p.eligibility_status] || 'To verify'}</span></td>
+        <td><button className="open" onClick={() => onOpen(p)} aria-label={'Open ' + p.name}>↗</button></td>
+      </tr>)}</tbody>
+    </table></div>
+    : <div className="empty"><h3>{players.length ? 'No players found' : 'No verified Sorare or Understat profiles in this snapshot'}</h3>
+      <p>{players.length ? 'Try adjusting the filters.' : 'Check the player data collection; statistics are not required for a verified Sorare profile.'}</p>
+      {players.length > 0 && <button onClick={clear}>Clear filters</button>}
+    </div>}
   {!compact&&<div className="pagination"><span>Showing {filtered.length?(current-1)*perPage+1:0}–{Math.min(current*perPage,filtered.length)} of {filtered.length}</span><div><button disabled={current===1} onClick={()=>setPage(current-1)}>← Previous</button><span>{current} / {pages}</span><button disabled={current===pages} onClick={()=>setPage(current+1)}>Next →</button></div></div>}</section>
 }
 function Overview({players,updated,onPlayers,onOpen}) {
