@@ -8,11 +8,11 @@
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 43,
+  "confirmed": 48,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1064,
+  "not_found": 1059,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -80,11 +80,15 @@
     {
       "player_id": "wd:Q131785405",
       "name": "Adam Bell",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "adam-alexander-kanui-bell",
+      "sorare_name": "Adam Bell",
+      "sorare_birth_date": "2004-02-12",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history for Adam Bell: matching birthdate 2004-02-12 and NZ football career",
+      "review_source": "https://sorare.com/football/players/adam-alexander-kanui-bell/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q5684101",
@@ -116,11 +120,15 @@
     {
       "player_id": "wd:Q24239357",
       "name": "Adam Mitchell",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "adam-thomas-mitchell",
+      "sorare_name": "Adam Mitchell",
+      "sorare_birth_date": "1996-06-01",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history for Adam Mitchell: matching birthdate 1996-06-01 and NZ football career",
+      "review_source": "https://sorare.com/football/players/adam-thomas-mitchell/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q4679627",
@@ -7169,11 +7177,15 @@
     {
       "player_id": "wd:Q131405893",
       "name": "Nathan Garrow",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "nathan-garrow",
+      "sorare_name": "Nathan Garrow",
+      "sorare_birth_date": "2004-11-29",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history for Nathan Garrow: matching birthdate 2004-11-29 and NZ football career",
+      "review_source": "https://sorare.com/football/players/nathan-garrow/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q6969185",
@@ -7398,11 +7410,15 @@
     {
       "player_id": "wd:Q20993947",
       "name": "Noah Billingsley",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "noah-billingsley",
+      "sorare_name": "Noah Billingsley",
+      "sorare_birth_date": "1997-08-06",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history for Noah Billingsley: matching birthdate 1997-08-06 and NZ football career",
+      "review_source": "https://sorare.com/football/players/noah-billingsley/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q1994651",
@@ -7574,11 +7590,15 @@
     {
       "player_id": "wd:Q109968702",
       "name": "Oskar van Hattum",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "oskar-van-hattum",
+      "sorare_name": "Oskar van Hattum",
+      "sorare_birth_date": "2002-04-14",
+      "sorare_club": null,
+      "review_reason": "Verified Sorare history for Oskar van Hattum: matching birthdate 2002-04-14 and NZ football career",
+      "review_source": "https://sorare.com/football/players/oskar-van-hattum/history",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification"
     },
     {
       "player_id": "wd:Q7107476",
@@ -10147,5 +10167,7 @@
       "sorare_birth_date": null,
       "sorare_club": null
     }
-  ]
+  ],
+  "reviewed_players": 35,
+  "manual_review_date": "2026-10-22"
 }
