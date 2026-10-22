@@ -3,16 +3,16 @@
   "source": "Sorare football GraphQL",
   "scanned": 10,
   "lookup_version": "name-variants-v2",
-  "second_pass_remaining": 1049,
+  "second_pass_remaining": 1038,
   "batch_interrupted": false,
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 56,
+  "confirmed": 59,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1051,
+  "not_found": 1048,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -6672,11 +6672,16 @@
     {
       "player_id": "wd:Q6794678",
       "name": "Max Crocombe",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "maxime-teremoana-crocombe",
+      "sorare_name": "Maxime Crocombe",
+      "sorare_birth_date": "1993-08-12",
+      "sorare_club": null,
+      "verified_birth_date": "1993-08-12",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/players/maxime-teremoana-crocombe/history",
+      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
     },
     {
       "player_id": "wd:Q6794691",
@@ -9576,11 +9581,16 @@
     {
       "player_id": "wd:Q2642525",
       "name": "Tim Payne",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "tim-payne",
+      "sorare_name": "Timothy Payne",
+      "sorare_birth_date": "1994-01-10",
+      "sorare_club": null,
+      "verified_birth_date": "1994-01-10",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/players/tim-payne/history",
+      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
     },
     {
       "player_id": "wd:Q11951840",
@@ -9738,11 +9748,16 @@
     {
       "player_id": "wd:Q462503",
       "name": "Tommy Smith",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "tommy-smith-1990-03-31",
+      "sorare_name": "Thomas Smith",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "1990-03-31",
+      "reviewed_at": "2026-10-22",
+      "review_method": "manual_external_source_verification",
+      "review_source": "https://sorare.com/football/countries/nz/team",
+      "review_reason": "Sorare NZ national team roster/history corroborates birth date, club and player identity"
     },
     {
       "player_id": "wd:Q7822303",
@@ -10208,6 +10223,6 @@
       "sorare_club": null
     }
   ],
-  "reviewed_players": 43,
+  "reviewed_players": 46,
   "manual_review_date": "2026-10-22"
 }
