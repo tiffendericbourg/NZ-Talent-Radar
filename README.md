@@ -91,7 +91,7 @@ Decisions are retained in `data/sorare/identity_reviews.csv` and written into bo
 
 The **Statistics** page and player profile **Performance** cards are now wired to static JSON:
 - Overall database coverage, Sorare identity matches, age groups and club-country distribution use the existing sourced player catalogue.
-- Once verified Understat shots exist, player cards show **shots, goals, total xG, xG/shot, shot conversion**, plus a real attacking-direction **X/Y shot map** and season breakdown.
+- Verified Understat identities are shown as **profile links** even before any shot export exists. Once verified shots are imported, cards show **shots, goals, total xG, xG/shot, shot conversion**, plus an attacking-direction **X/Y shot map** and season breakdown.
 - `public/data/understat_shots.json` starts empty on purpose; zero imported shots means **no source yet**, not that players have taken zero shots. The website renders “Not available” for missing performance stats.
 
 ### Understat extraction
@@ -99,10 +99,12 @@ The **Statistics** page and player profile **Performance** cards are now wired t
 Understat is a third-party data source, not a guaranteed open bulk API. It mainly tracks selected men's leagues. Do not assume it covers all NZ footballers, especially women, youth, or players in leagues outside its coverage. Understat coordinate pairs `X` and `Y` are normalized from 0 to 1; `xG` is per-shot expected goals. No spatial coordinates are invented.
 
 1. Obtain appropriately licensed/authorized Understat player or league JSON exports and save them **locally** under `data/understat/exports/<understat_id>.json` or `data/understat/league_exports/<league>.json` (ignored by Git).
-2. Run `python scripts/discover_understat.py` to find **possible** NZ player links in imported league data. They are written to `data/understat/candidates.csv` with `needs_review` status, never automatically confirmed.
-3. Manually verify each ID using player name, team, source profile and other available evidence. Put confirmed IDs in `data/understat/verified_players.csv` (`player_id,understat_id,status,evidence_url`).
-4. Run `python scripts/update_understat.py`. It reads local exports and publishes structured, validated events to `public/data/understat_shots.json`. The main site reads the JSON directly.
-5. `python -m unittest discover -s tests -p 'test_understat.py' -v` runs offline parser, identity, source and X/Y tests.
+2. Run `python scripts/discover_understat.py` to find **possible** NZ player links from local league JSON or Understat/FPL `id_dict.csv` exports. Curated name variants in `data/understat/aliases.csv` help discovery. The output `data/understat/candidates.csv` is always `needs_review`, never auto-confirmed.
+3. Manually verify the name, historic club and player identity. Record reviewed IDs and an independent HTTPS evidence link in `data/understat/verified_players.csv` (`player_id,understat_id,status,evidence_url`). The `data/understat/research_targets.csv` file prioritizes players in leagues covered by Understat.
+4. Run `python scripts/link_understat.py` to publish the identity-only mapping to `public/data/understat_links.json`. This file powers verified Understat profile links in the player directory and profiles, **even if no shot data are available**.
+5. Run `python scripts/update_understat.py` after obtaining authorized player JSON exports. It publishes validated events to `public/data/understat_shots.json`, separately from the identity links. Run offline tests with `python -m unittest discover -s tests -p 'test_*understat.py' -v`.
+
+Two Understat IDs are now linked to catalogue players with cross-referenced [Understat/FPL IDs](https://github.com/vaastav/Fantasy-Premier-League/blob/9779cdbc0c07f6c900c2d0c181ddf6bb9c800f88/data/2021-22/id_dict.csv): **Chris Wood → 4456**, **Winston Reid → 529**. These are verified *identities*, not imported performances. Other targets (Liberato Cacace, Sarpreet Singh, Bill Tuiloma, Ben Old) remain unlinked until their Understat IDs can be evidenced.
 
 A manual GitHub Actions workflow **Build Understat shot maps** is ready. Remote page fetching is **disabled by default**. Its optional `--fetch` code checks `robots.txt`, pauses between requests, stops if policy can't be determined, and must be used only when collection/republication is authorized. It does not work around blocking or website restrictions. **No Understat shots have been collected or published yet.** Raw exports are never committed automatically.
 
@@ -118,8 +120,9 @@ In repository **Settings → Pages → Build and deployment**, select **GitHub A
 - `public/data/collection_report.json` — collection coverage and missing-field audit; initial report explicitly says full import is pending
 - `scripts/update_sorare.py` — secure Sorare identity matching
 - `src/Stats.jsx` — sourced coverage cards, player metrics and spatial X/Y visualization
-- `scripts/discover_understat.py` and `scripts/update_understat.py` — Understat matching and shot importer
+- `scripts/discover_understat.py`, `scripts/link_understat.py` and `scripts/update_understat.py` — Understat candidate discovery, verified links and shot importer
 - `data/understat/verified_players.csv` — manually verified Understat mapping
+- `public/data/understat_links.json` — verified Understat profile identities (independent of shot coverage)
 - `public/data/understat_shots.json` — validated shot locations and per-season totals (empty until sourced)
 - `public/data/sorare_matches.json` — generated confirmed/review/no-result match audit (after successful API run)
 - `.github/workflows/update-data.yml` — automation and deployment
