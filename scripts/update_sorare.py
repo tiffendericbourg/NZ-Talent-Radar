@@ -365,7 +365,10 @@ def run(limit=0):
         "source": "Sorare football GraphQL",
         "scanned": checked,
         "lookup_version": LOOKUP_VERSION,
-        "second_pass_remaining": max(0, len(pending) - checked),
+        "second_pass_remaining": sum(
+            1 for p in players if not p.get("sorare_slug") and p["id"] not in reviews
+            and results_by_id.get(p["id"], {}).get("lookup_version") != LOOKUP_VERSION
+        ),
         "batch_interrupted": bool(interrupted),
         "interruption_reason": interrupted,
         "checked_so_far": len(results),
