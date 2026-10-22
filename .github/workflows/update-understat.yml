@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test shot parser and sourcing rules
-        run: python -m unittest discover -s tests -p 'test_understat.py' -v
+        run: python -m unittest discover -s tests -p 'test_*understat.py' -v
       - name: Publish reviewed Understat identities
         run: python scripts/link_understat.py
       - name: Import verified player shots
