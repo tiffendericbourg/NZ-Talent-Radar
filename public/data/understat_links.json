@@ -2,13 +2,41 @@
   "generated_at": "2026-10-22",
   "source": "Manually reviewed Understat IDs",
   "note": "An identity link does not imply imported matches or shot coordinates.",
-  "confirmed": 2,
+  "confirmed": 6,
   "players": {
+    "wd:Q106939313": {
+      "player_name": "Ben Old",
+      "understat_id": "12809",
+      "source_url": "https://understat.com/player/12809",
+      "evidence_url": "https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/9dc2c5dc6844977a0e9b113f97bfbccd479b681e/understat_data/Players_Cleaned/player_seasons/Ben_Old_12809.csv",
+      "status": "confirmed"
+    },
     "wd:Q150289": {
       "player_name": "Winston Reid",
       "understat_id": "529",
       "source_url": "https://understat.com/player/529",
       "evidence_url": "https://github.com/vaastav/Fantasy-Premier-League/blob/9779cdbc0c07f6c900c2d0c181ddf6bb9c800f88/data/2021-22/id_dict.csv",
+      "status": "confirmed"
+    },
+    "wd:Q28800473": {
+      "player_name": "Sarpreet Singh",
+      "understat_id": "7777",
+      "source_url": "https://understat.com/player/7777",
+      "evidence_url": "https://github.com/eddwebster/football_analytics/blob/47cac1ba5c9748b057b7cfa366dd3d7a21d73575/data/understat/raw/metadata/bundesliga/metadata_bundesliga_1920.csv",
+      "status": "confirmed"
+    },
+    "wd:Q47544166": {
+      "player_name": "Liberato Cacace",
+      "understat_id": "10385",
+      "source_url": "https://understat.com/player/10385",
+      "evidence_url": "https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/9dc2c5dc6844977a0e9b113f97bfbccd479b681e/understat_data/Players_Cleaned/player_seasons/Liberato_Cacace_10385.csv",
+      "status": "confirmed"
+    },
+    "wd:Q5728588": {
+      "player_name": "Bill Tuiloma",
+      "understat_id": "3807",
+      "source_url": "https://understat.com/player/3807",
+      "evidence_url": "https://github.com/eddwebster/football_analytics/blob/47cac1ba5c9748b057b7cfa366dd3d7a21d73575/data/understat/raw/metadata/ligue-1/metadata_ligue1_1415_.csv",
       "status": "confirmed"
     },
     "wd:Q74548": {
