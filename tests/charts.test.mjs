@@ -20,7 +20,7 @@ function match(id, score, minutes, overrides = {}) {
 test('form chart series uses only played, complete, same-version scores', () => {
   const games = [
     match('1', 50, 90), match('2', 65, 80),
-    match('3', 90, 90, { scoring_version: 6 }),
+    match('3', 90, 90, { scoring_version: 6, date: '2026-09-21' }),
     match('4', 25, 60, { low_coverage: true }),
     match('5', 0, 0, { stats: { playedInGame: false, minsPlayed: 0 } }),
     match('6', 95, 90, { score_status: 'PENDING' }),
