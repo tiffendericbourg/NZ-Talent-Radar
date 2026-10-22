@@ -30,6 +30,11 @@ class UnderstatTests(unittest.TestCase):
         self.assertEqual(source.summarize(clean)["xg"], 0.44)
         self.assertEqual(source.summarize(clean)["conversion_pct"], 50.0)
 
+    def test_shot_period_uses_match_dates_not_import_date(self):
+        clean = source.normalize_shots(self.shots, "42")
+        self.assertEqual(source.shot_period(clean), ("2026-01-02", "2026-01-03"))
+        self.assertEqual(source.shot_period([]), (None, None))
+
     def test_season_summary(self):
         shots = [dict(x, season="2025") for x in source.normalize_shots(self.shots, "42")]
         by_season = source.summarize_seasons(shots)
@@ -116,6 +121,13 @@ class UnderstatTests(unittest.TestCase):
             self.assertEqual(result["coverage"]["shots"], 2)
             self.assertEqual(result["players"]["wd:Q74548"]["stats"]["goals"], 1)
             self.assertEqual(len(result["players"]["wd:Q74548"]["shots"]), 2)
+            record = result["players"]["wd:Q74548"]
+            self.assertEqual(record["source_mode"], "local_export")
+            self.assertIsNone(record["source_fetched_at"])
+            self.assertEqual(record["period_start"], "2026-01-02")
+            self.assertEqual(record["period_end"], "2026-01-03")
+            self.assertIn("+00:00", record["imported_at"])
+            self.assertIn("+00:00", result["generated_at_utc"])
 
     def test_does_not_invent_missing_player(self):
         with tempfile.TemporaryDirectory() as folder:
