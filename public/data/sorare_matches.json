@@ -8,11 +8,11 @@
   "interruption_reason": null,
   "checked_so_far": 1111,
   "remaining": 0,
-  "confirmed": 48,
+  "confirmed": 56,
   "already_matched": 0,
   "needs_review": 0,
   "rejected": 4,
-  "not_found": 1059,
+  "not_found": 1051,
   "matches": [
     {
       "player_id": "wd:Q301037",
@@ -703,11 +703,16 @@
     {
       "player_id": "wd:Q53773340",
       "name": "Angus Kilkolly",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "angus-kilkolly",
+      "sorare_name": "Angus Kilkolly",
+      "sorare_birth_date": "1996-04-18",
+      "sorare_club": null,
+      "verified_birth_date": "1996-04-18",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/players/angus-kilkolly/history",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q509509",
@@ -2561,11 +2566,16 @@
     {
       "player_id": "wd:Q124789400",
       "name": "Dylan Manickum",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "dylan-manickum",
+      "sorare_name": "Dylan Manickum",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "1992-06-16",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q124512301",
@@ -2886,11 +2896,16 @@
     {
       "player_id": "wd:Q126924680",
       "name": "Fergus Gillion",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "fergus-william-gillion",
+      "sorare_name": "Fergus Gillion",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "2005-01-19",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q123473457",
@@ -4182,11 +4197,16 @@
     {
       "player_id": "wd:Q1568728",
       "name": "Jake Gleeson",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
-      "sorare_birth_date": null,
-      "sorare_club": null
+      "status": "confirmed",
+      "sorare_slug": "jake-gleeson",
+      "sorare_name": "Jake Gleeson",
+      "sorare_birth_date": "1990-06-26",
+      "sorare_club": null,
+      "verified_birth_date": "1990-06-26",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/fr/football/players/jake-gleeson/history",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q21622972",
@@ -4353,11 +4373,16 @@
     {
       "player_id": "wd:Q111512710",
       "name": "Jay Herdman",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "jay-joshua-herdman",
+      "sorare_name": "Jay Herdman",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "2004-08-14",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/nl/football/teams/cavalry/team",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q97760559",
@@ -4452,11 +4477,16 @@
     {
       "player_id": "wd:Q134931872",
       "name": "Jeremy Foo",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "jeremy-foo",
+      "sorare_name": "Jeremy Foo",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "2007-03-07",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q131470093",
@@ -6561,11 +6591,16 @@
     {
       "player_id": "wd:Q139971019",
       "name": "Matthew Foord",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "matthew-george-foord",
+      "sorare_name": "Matthew Foord",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "2006-02-19",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/teams/auckland-city-auckland/team",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q96091702",
@@ -7379,11 +7414,16 @@
     {
       "player_id": "wd:Q20916837",
       "name": "Nikko Boxall",
-      "status": "not_found",
-      "sorare_slug": null,
-      "sorare_name": null,
+      "status": "confirmed",
+      "sorare_slug": "nikko-boxall",
+      "sorare_name": "Nikko Boxall",
       "sorare_birth_date": null,
-      "sorare_club": null
+      "sorare_club": null,
+      "verified_birth_date": "1992-02-24",
+      "reviewed_at": "2026-10-22",
+      "review_source": "https://sorare.com/football/players/nikko-boxall",
+      "review_method": "manual_external_source_verification",
+      "review_reason": "Sorare player or team roster plus independent date of birth and club/nationality validation"
     },
     {
       "player_id": "wd:Q50672661",
@@ -10168,6 +10208,6 @@
       "sorare_club": null
     }
   ],
-  "reviewed_players": 35,
+  "reviewed_players": 43,
   "manual_review_date": "2026-10-22"
 }
