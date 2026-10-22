@@ -40,7 +40,8 @@ def source_rows(path):
     path = Path(path)
     if path.suffix.lower() == ".csv":
         with path.open(newline="", encoding="utf-8-sig") as handle:
-            return list(csv.DictReader(handle))
+            return [{str(k).strip(): v for k, v in row.items() if k is not None}
+                    for row in csv.DictReader(handle)]
     data = json.loads(path.read_text(encoding="utf-8"))
     rows = data.get("players", []) if isinstance(data, dict) else data
     return rows if isinstance(rows, list) else []
