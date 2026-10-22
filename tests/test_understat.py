@@ -172,5 +172,44 @@ class UnderstatTests(unittest.TestCase):
 
 
 
+    def test_rejected_understat_homonym_stays_excluded(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            league_dir = root / "league_exports"
+            league_dir.mkdir()
+            (league_dir / "serie_a.csv").write_text(
+                "id,player_name,team_title\n"
+                "11040,Julius Beck,Spezia\n"
+                "4456,Chris Wood,Nottingham Forest\n", encoding="utf-8")
+            catalogue = root / "players.json"
+            catalogue.write_text(json.dumps({"players": [
+                {"id": "wd:Q6309673", "name": "Julius Beck",
+                 "nationalities": ["New Zealand"], "gender": "Men"},
+                {"id": "wd:Q74548", "name": "Chris Wood",
+                 "nationalities": ["New Zealand"], "gender": "Men"},
+            ]}), encoding="utf-8")
+            rejected = root / "rejected.csv"
+            rejected.write_text(
+                "player_id,understat_id,reason,evidence_url\n"
+                "wd:Q6309673,11040,Historical namesake,https://example.org\n",
+                encoding="utf-8")
+            aliases = root / "aliases.csv"
+            aliases.write_text("player_id,alias\n", encoding="utf-8")
+            verified = root / "verified.csv"
+            verified.write_text("player_id,understat_id,status,evidence_url\n", encoding="utf-8")
+            output = root / "candidates.csv"
+            with patch.object(finder, "PLAYERS", catalogue), \
+                 patch.object(finder, "LEAGUES", league_dir), \
+                 patch.object(finder, "ALIASES", aliases), \
+                 patch.object(finder, "VERIFIED", verified), \
+                 patch.object(finder, "REJECTED", rejected), \
+                 patch.object(finder, "CANDIDATES", output):
+                finder.run()
+            rows = output.read_text(encoding="utf-8")
+            self.assertIn("Chris Wood", rows)
+            self.assertNotIn("Julius Beck", rows)
+
+
+
 if __name__ == "__main__":
     unittest.main()
