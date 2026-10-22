@@ -16,6 +16,7 @@ on:
       - 'scripts/link_understat.py'
       - 'data/understat/verified_players.csv'
       - 'data/understat/aliases.csv'
+      - 'data/understat/rejected_players.csv'
       - 'tests/test_understat.py'
       - 'tests/test_link_understat.py'
       - '.github/workflows/update-understat.yml'
