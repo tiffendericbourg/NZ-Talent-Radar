@@ -78,10 +78,10 @@ export function ScoutingDashboard({ players, cataloguePlayers = players, sorare,
     <div className="scout-stats-grid">
       <Metric label="PLAYER PROFILES" value={cataloguePlayers.length.toLocaleString('en-NZ')} note="Full NZ-linked catalogue"/>
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={cataloguePlayers.length ? (100 * linked / cataloguePlayers.length).toFixed(1) + '% of catalogue' : '—'}/>
-      <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && p.games?.length > 0).length} note="Players with verified game scores"/>
+      <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && (p.games || []).some(g => g.score_status === 'FINAL' && g.low_coverage === false && g.stats?.playedInGame === true && Number(g.stats?.minsPlayed) > 0 && typeof g.score === 'number')).length} note="Players with verified game scores"/>
       <Metric label="UNDERSTAT IDENTITIES" value={understatIdentities} note="Reviewed player profile links"/>
       <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note={'Imported X/Y locations · ' + shotPlayers.length + ' players'}/>
-      <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
+      <Metric label="PLAYERS ABROAD" value={counts.abroad} note="Documented foreign club country"/>
     </div>
     <div className="scout-chart-grid">
       <CountBars title="Who is in the database?" total={cataloguePlayers.length} rows={[
