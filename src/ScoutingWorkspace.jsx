@@ -137,16 +137,17 @@ export function U23CaseStudy({ cataloguePlayers, performance, season, onOpen }) 
   </section>
 }
 
-export function MethodologyPage({ cataloguePlayers, performance, onCaseStudy }) {
+export function MethodologyPage({ cataloguePlayers, performance, understat, onCaseStudy }) {
   const linked = cataloguePlayers.filter(p => Boolean(p.sorare_slug)).length
   const scored = Object.values(performance?.players || {}).filter(p =>
     (p.games || []).some(g => g.score_status === 'FINAL' &&
       g.stats?.playedInGame === true && Number(g.stats?.minsPlayed) > 0 &&
       typeof g.score === 'number' && g.low_coverage === false)).length
+  const importedShots = Object.values(understat?.players || {}).reduce((sum, record) => sum + (record.shots?.length || 0), 0)
   return <section className="research-page methodology-page">
     <div className="directory-heading"><span className="eyebrow">ABOUT / THE ANALYST'S APPROACH</span>
       <h1>Better questions.<br/><em>Better scouting.</em></h1>
-      <p>NZ Talent Radar is an independent football data portfolio exploring how publicly documented information can support the identification and monitoring of New Zealand players worldwide.</p>
+      <p>I started NZ Talent Radar with a simple question: could I build a reliable way to follow New Zealand footballers abroad, then explain which ones deserve a closer look? This is my independent football data portfolio, from messy sources to practical scouting notes.</p>
     </div>
     <div className="research-intro">
       <div><strong>01 / Find</strong><p>Build the NZ-linked player universe, including women's and men's football, while flagging uncertain eligibility.</p></div>
@@ -158,7 +159,7 @@ export function MethodologyPage({ cataloguePlayers, performance, onCaseStudy }) 
       <div><small>CATALOGUE PROFILES</small><strong>{fmt(cataloguePlayers.length)}</strong></div>
       <div><small>SORARE IDENTITIES</small><strong>{fmt(linked)}</strong></div>
       <div><small>PLAYERS WITH SCORES</small><strong>{fmt(scored)}</strong></div>
-      <div><small>UNDERSTAT XY EVENTS</small><strong>Not yet imported</strong></div>
+      <div><small>UNDERSTAT XY EVENTS</small><strong>{fmt(importedShots)}</strong></div>
     </div>
     <div className="methodology-columns">
       <article><span className="eyebrow">DATA ENGINEERING</span><h3>Reproducible before impressive</h3>
@@ -176,7 +177,7 @@ export function MethodologyPage({ cataloguePlayers, performance, onCaseStudy }) 
     </div>
     <div className="methodology-conclusion"><div>
       <span className="eyebrow">THE OBJECTIVE</span><h2>A useful conversation with a football staff.</h2>
-      <p>The aim is not to replace scouting judgement. It is to make evidence easy to inspect and help decide which match or player should be reviewed next.</p>
+      <p>I want a coach or analyst to understand what the numbers can tell them, what they cannot, and which match is worth watching next. Data is useful when it makes a football decision clearer.</p>
     </div><button className="cta" type="button" onClick={onCaseStudy}>See the U23 case study ↗</button></div>
     <p className="research-disclaimer">Independent portfolio · no affiliation with New Zealand Football. Source catalogue: Wikidata and reviewed football sources. Match data: Sorare. Understat identity records are not shot data. <a href="https://github.com/tiffendericbourg/NZ-Talent-Radar" target="_blank" rel="noreferrer">Read the code and methodology on GitHub ↗</a></p>
   </section>
