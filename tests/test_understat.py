@@ -180,6 +180,7 @@ class UnderstatTests(unittest.TestCase):
             (league_dir / "serie_a.csv").write_text(
                 "id,player_name,team_title\n"
                 "11040,Julius Beck,Spezia\n"
+                "6029,Tommy Smith,Huddersfield\n"
                 "4456,Chris Wood,Nottingham Forest\n", encoding="utf-8")
             catalogue = root / "players.json"
             catalogue.write_text(json.dumps({"players": [
@@ -187,11 +188,14 @@ class UnderstatTests(unittest.TestCase):
                  "nationalities": ["New Zealand"], "gender": "Men"},
                 {"id": "wd:Q74548", "name": "Chris Wood",
                  "nationalities": ["New Zealand"], "gender": "Men"},
+                {"id": "wd:Q462503", "name": "Tommy Smith",
+                 "nationalities": ["New Zealand"], "gender": "Men"},
             ]}), encoding="utf-8")
             rejected = root / "rejected.csv"
             rejected.write_text(
                 "player_id,understat_id,reason,evidence_url\n"
-                "wd:Q6309673,11040,Historical namesake,https://example.org\n",
+                "wd:Q6309673,11040,Historical namesake,https://example.org\n"
+                "wd:Q462503,6029,English namesake,https://example.org\n",
                 encoding="utf-8")
             aliases = root / "aliases.csv"
             aliases.write_text("player_id,alias\n", encoding="utf-8")
@@ -208,6 +212,7 @@ class UnderstatTests(unittest.TestCase):
             rows = output.read_text(encoding="utf-8")
             self.assertIn("Chris Wood", rows)
             self.assertNotIn("Julius Beck", rows)
+            self.assertNotIn("Tommy Smith", rows)
 
 
 
