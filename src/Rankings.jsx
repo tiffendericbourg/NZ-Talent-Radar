@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { DistributionChart } from './ScoutingCharts.jsx'
-import { seasonLabel, seasonEndDate } from './seasonUtils.js'
+import { seasonLabel, seasonEndDate, seasonStartDate } from './seasonUtils.js'
 import {
   POSITIONS, RANKING_MIN_MATCHES, RANKING_MIN_MINUTES,
   RANKING_WINDOW_DAYS, rankingRows,
@@ -19,7 +19,7 @@ export default function Rankings({ players, performance, onOpen, season = 'all' 
   const [youthOnly, setYouthOnly] = useState(false)
   const [selectedVersion, setSelectedVersion] = useState(null)
 
-  const rows = useMemo(() => rankingRows(players, performance, seasonEndDate(season)), [players, performance, season])
+  const rows = useMemo(() => rankingRows(players, performance, seasonEndDate(season), seasonStartDate(season)), [players, performance, season])
   const cohort = rows.filter(p => p.gender === gender && p.group === position &&
     (!youthOnly || (p.age !== null && p.age < 23)))
   const candidates = cohort.filter(p => p.eligible)
