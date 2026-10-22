@@ -61,13 +61,19 @@ A first live Sorare API pass has succeeded. The remaining database is scanned in
 
 ## Sorare manual identity audit — 21 October 2026
 
-A comparison of the 11 previously uncertain Sorare candidates identified **7 additional identities** and **4 unrelated homonyms**. The saved Sorare match count is now **24 confirmed**, **4 explicitly rejected**, and **0 awaiting manual review** across the 1,111-player snapshot.
+The original 11 uncertain matches were reviewed manually (**7 confirmed**, **4 unrelated homonyms rejected**). Additional official Sorare histories and targeted name variations were then checked on 22 October 2026. The published catalogue now has **48 confirmed Sorare identities**, **4 rejected homonyms**, and **0 unresolved manual reviews** among **1111** NZ-linked players. Other `not_found` statuses are search outcomes, not proof that the person is absent from Sorare.
 
 Decisions and evidence are maintained in `data/sorare/identity_reviews.csv`, which is reapplied by `scripts/update_sorare.py` on each run. Rejected candidates do not become profile links. Historic Wikidata clubs are not treated as identity contradictions when the name, birth date and career match.
 
 Approved: Bill Tuiloma, Elijah Just, Joe Bell, Luke Brooke-Smith, Matthew Garbett, Michael Boxall, Tyler Boyd. Rejected: Ethan Galbraith (Northern Irish homonym), George Campbell (US defender), Julius Beck (Danish namesake), Oliver Whyte (Scottish Olly Whyte).
 
 **Source discrepancy corrected:** Luke Brooke-Smith's birth date is **2008-06-06**, documented by Friends of Football NZ and Sorare, rather than Wikidata's 2008-06-08. The correction is also recorded in `data/manual_players.csv` so the next Wikidata refresh does not reintroduce it. Sorare names, slugs, the reasons for approval/rejection and supporting links are preserved in the published match report.
+
+## Expanded Sorare discovery
+
+The script now performs an incremental **second pass** over people previously missed: first-name variants (Ben/Benjamin, Alex/Alexander, Kosta/Konstantinos), simplified first/last names, and exact date-of-birth checks. Recent footballers with club or national-team records are prioritised. It automatically links only **one unique compatible name + matching full DOB**; unclear candidates stay unlinked for human review.
+
+A successful first-pass search does not mean complete coverage: players can appear on Sorare under different display names or middle-name slugs. Use `data/sorare/identity_reviews.csv` for carefully checked external profiles, so manual research is preserved across automatic updates. This file currently contains 35 decisions (including the initial four homonym rejections). `public/data/sorare_matches.json` reports `lookup_version` and `second_pass_remaining` to track the additional scan.
 
 ## Spatial scouting and Understat
 
