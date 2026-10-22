@@ -8,9 +8,9 @@ on:
         required: false
         default: '0'
       games:
-        description: 'Recent game scores per player (1 to 50)'
+        description: 'Recent game scores per player (1 to 50; history preserved)'
         required: false
-        default: '15'
+        default: '50'
   schedule:
     - cron: '40 6 * * 1'
   push:
@@ -18,6 +18,7 @@ on:
     paths:
       - 'scripts/update_sorare_performance.py'
       - 'tests/test_sorare_performance.py'
+      - 'public/data/players.json'
       - '.github/workflows/update-sorare-performance.yml'
 
 permissions:
@@ -50,7 +51,7 @@ jobs:
           SORARE_ACCESS_TOKEN: ${{ secrets.SORARE_ACCESS_TOKEN }}
           SORARE_JWT_AUD: ${{ secrets.SORARE_JWT_AUD }}
           MATCH_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '0' }}
-          MATCHES_PER_PLAYER: ${{ github.event_name == 'workflow_dispatch' && inputs.games || '15' }}
+          MATCHES_PER_PLAYER: ${{ github.event_name == 'workflow_dispatch' && inputs.games || '50' }}
         run: python scripts/update_sorare_performance.py --limit "$MATCH_LIMIT" --games "$MATCHES_PER_PLAYER"
       - name: Summarize verified game data
         run: |
