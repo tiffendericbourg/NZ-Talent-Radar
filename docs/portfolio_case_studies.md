@@ -10,7 +10,7 @@ My goal is a simple analyst workflow: **find → verify → compare → explain 
 
 **Question.** Which young players have enough documented playing time to justify a closer look?
 
-**Method.** Start with recorded NZ links and ages calculated at the date of analysis. Keep possible eligibility separate from confirmed NZ nationality or senior representation. Count verified completed Sorare scores and played minutes in one period and scoring version. A player enters the review queue at **3 scored matches and 180 minutes**, with position variety used to create up to three examples.
+**Method.** Start with recorded NZ links and ages calculated at the date of analysis. Keep possible eligibility separate from confirmed NZ nationality or senior representation. Count completed played matches and recorded minutes in one period, then check actual football-event coverage. Fantasy match scores are excluded. A player enters the review queue at **3 scored matches and 180 minutes**, with position variety used to create up to three examples.
 
 **Finding.** The starting catalogue holds 1,111 NZ-linked profiles. On 22 October 2026, *only two U23 records in the full catalogue had a known overseas club country*: Milly Clegg and Stipe Ukich. That is a limitation of our documented club fields, not proof that only two young New Zealanders play abroad. The case-study page recalculates the match-evidence shortlist from the current JSON; it **does not invent a third overseas player**.
 
@@ -22,9 +22,9 @@ My goal is a simple analyst workflow: **find → verify → compare → explain 
 
 **Question.** What do the recorded match events reveal beyond an average fantasy score?
 
-**Method.** Filter by gender, broad playing role, Sorare scoring version and date range. Require at least 3 completed scored matches and 180 minutes. Show match minutes, score averages, and position-specific events per 90 side by side. A role metric is drawn only if it is present in **every included game for both players**.
+**Method.** Filter by gender, broad playing role and match dates. Require at least 3 completed played matches and 180 minutes. Show match minutes, score averages, and position-specific events per 90 side by side. A role metric is drawn only if it is present in **every included game for both players**.
 
-**Interpretation.** More tackles or clearances may reflect a different team style rather than a better defender. A higher fantasy score across two leagues is not enough to identify superior talent. The app therefore offers observations and a review action, not a cross-league talent index.
+**Interpretation.** More tackles or clearances may reflect a different team style rather than a better defender. The NZ Impact Index compares role-specific action percentiles inside a documented NZ cohort, but it does not remove differences in league strength or tactics. The report therefore pairs the index with observed statistics and a video-review action.
 
 **What I would improve next.** Split broad roles into centre-backs, full-backs, defensive midfielders, creators, wingers and strikers; add context such as team possession, opposition strength and video observations.
 
@@ -42,13 +42,13 @@ My goal is a simple analyst workflow: **find → verify → compare → explain 
 
 - **Python** — data collection, manual corrections, reproducible JSON snapshots and guarded source matching.
 - **Data quality** — identity audits, rejected homonyms, missingness and retrieval-date tracking.
-- **Analytics** — match-level filters, per-90 calculations, comparable groups, transparent thresholds.
+- **Analytics** — match-level filters, per-90 calculations, original NZ Impact Index, role reference distributions and transparent thresholds.
 - **React / JavaScript** — accessible charts, interactive analysis and player-specific evidence cards.
 - **Communication** — every report includes a plain-language observation, uncertainty and a recommended next step.
 
 ### What this does not prove yet
 
-Sorare ratings are fantasy football outputs. Position-level peer medians currently mix leagues of different standards. The published Understat shot dataset is still empty. There is no independent talent score, medical assessment, legal FIFA eligibility decision or model of future potential. The site is not affiliated with New Zealand Football.
+Sorare fantasy ratings are excluded from the site. The NZ Impact Index is a position-specific, weighted percentile of recorded match actions; its small reference cohorts can mix leagues of different standards. The published Understat shot dataset is still empty. There is no validated absolute talent score, medical assessment, legal FIFA eligibility decision or model of future potential. The site is not affiliated with New Zealand Football.
 
 I deliberately leave these limitations visible rather than publish impressive-looking numbers that cannot be defended.
 
@@ -58,4 +58,4 @@ Install the Node dependencies, then run the scripts **npm test** and **npm run b
 
 Open **U23 study** on the site and switch between the three research questions. Choose a season using the site-wide selector. Player notes are generated from published JSON snapshots; empty or incomplete data produce a warning rather than made-up graphs.
 
-Relevant implementation: src/scoutingReport.js, src/ScoutingWorkspace.jsx, src/ScoutingCharts.jsx, and tests/scoutingReport.test.mjs.
+Relevant implementation: src/impactIndex.js, src/scoutingReport.js, src/ScoutingWorkspace.jsx, src/ImpactCharts.jsx, and tests/impactIndex.test.mjs. See docs/nz_impact_index.md for the formula.
