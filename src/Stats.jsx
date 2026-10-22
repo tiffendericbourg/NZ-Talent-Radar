@@ -1,5 +1,24 @@
 import { useMemo } from 'react'
 
+function formatUtc(value) {
+  if (!value) return 'Date not recorded'
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return 'Date not recorded'
+  return new Intl.DateTimeFormat('en-NZ', {
+    day: '2-digit', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC',
+  }).format(date) + ' UTC'
+}
+
+function formatPeriod(start, end) {
+  if (!start || !end) return 'Match dates not recorded'
+  return start === end ? start : start + ' → ' + end
+}
+
+function latestTimestamp(records, field) {
+  return Object.values(records || {}).map(record => record[field]).filter(Boolean).sort().at(-1) || null
+}
+
 function Metric({ label, value, note, muted = false }) {
   return <article className="scout-stat"><small>{label}</small><strong className={muted ? 'scout-unavailable' : ''}>{value ?? '—'}</strong><span>{note}</span></article>
 }
@@ -53,6 +72,7 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
       <p>A transparent view of NZ football talent. Source coverage is not the same as player performance.</p>
     </div>
     <p className="scout-strip">DATABASE SNAPSHOT <span>Wikidata · Sorare · Understat</span></p>
+    <p className="scout-footnote">Latest Sorare stats retrieval: {formatUtc(latestTimestamp(performance?.players, 'retrieved_at'))} · Latest Understat shot import: {formatUtc(latestTimestamp(understat?.players, 'imported_at'))}. These are data collection dates, not match dates. Each player profile shows its covered match period.</p>
     <div className="scout-stats-grid">
       <Metric label="PLAYER PROFILES" value={players.length.toLocaleString('en-NZ')} note="Source-linked catalogue"/>
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
@@ -129,6 +149,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
     {sorareRecord && <div className="scout-audit">
       <span className="eyebrow">SORARE / RECENT PERFORMANCE</span>
       <h3>Match-by-match form</h3>
+      <p className="scout-footnote">Sorare checked: {formatUtc(sorareRecord.last_checked_at || sorareRecord.retrieved_at)} · Stats retrieved: {recentGames.length ? formatUtc(sorareRecord.retrieved_at) : 'No matches returned'} · Played-match period: {formatPeriod(sorareRecord.period_start, sorareRecord.period_end)}</p>
       <div className="scout-stats-grid player-metrics">
         <Metric label="MATCHES PLAYED" value={sorareSummary?.matches_played ?? null} note="Finalized, verified match records"/>
         <Metric label="MINUTES" value={sorareSummary?.minutes ?? null} note="From scored games"/>
@@ -155,6 +176,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
       <Metric label="CONVERSION" value={data?.conversion_pct == null ? null : data.conversion_pct + '%'} note={record ? 'Goals / shots' : 'Not available'} muted={!record}/>
       <Metric label="xG PER SHOT" value={data?.xg_per_shot == null ? null : data.xg_per_shot.toFixed(3)} note={record ? 'Shot quality' : 'Not available'} muted={!record}/>
     </div>
+    {record && <p className="scout-footnote">Understat imported: {formatUtc(record.imported_at)} · Shot dates: {formatPeriod(record.period_start, record.period_end)} · {record.source_mode === 'local_export' ? 'Original source download date unknown (local export).' : record.source_fetched_at ? 'Source fetched: ' + formatUtc(record.source_fetched_at) : 'Original source retrieval date not recorded.'}</p>}
     {record && Object.keys(record.seasons || {}).length > 0 && <div className="scout-season-table">
       <h3>Goals and xG by season</h3>
       <div className="scout-season-head"><span>Season</span><span>Shots</span><span>Goals</span><span>xG</span></div>
