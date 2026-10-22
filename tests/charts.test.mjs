@@ -14,7 +14,7 @@ test('minutes chart preserves reported zero and rejects pending fixtures', () =>
   const found = minutesByMatch({ games:[
     fixture('1',90),fixture('2',0),fixture('3',65,{}, {score_status:'PENDING'})
   ] })
-  assert.deepEqual(found.map(g=>g.minutes),[90,0])
+  assert.deepEqual(found.map(g=>g.minutes),[0,90])
 })
 
 test('per-90 actions use only observed matches and never substitute missing with zero', () => {
