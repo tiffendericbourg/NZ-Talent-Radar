@@ -146,9 +146,11 @@ Every performance import records **when the statistics were found** separately f
 The **Season** selector applies to player cards, profiles, Sorare charts, Understat shot maps and player rankings. The app keeps different types of seasons apart:
 
 - **2026/27 · July–June:** leagues such as the English Premier League, Championship, Eredivisie and UEFA club competitions; Understat's own season keys also use this group.
-- **2026 · calendar leagues:** MLS, Eliteserien, J1 League and other named leagues running mainly within a single calendar year.
+- **2026 · calendar leagues:** MLS, Eliteserien and J1 League matches before its calendar change, plus other confirmed calendar-year competitions.
 - **2026 · cups & friendlies:** World Cup, Olympics and one-year tournaments and international friendlies. These do not contribute to a domestic league season.
 - **2026 · season to verify:** competition names with ambiguous or unknown calendars, which must not silently be assigned to either league group.
+
+**Japan is a dated exception:** the J.League officially switched to an August–June season in 2026/27. J1/J2 results before January 2026 remain in calendar-year groups, August 2026 onward follows July–June and the ambiguous January–July 2026 transition remains in "season to verify." See the [official J.League season calendar](https://www.jleague.jp/corporate/about_competitions/season/).
 
 These are **date-based scouting groupings**, not official league season IDs. The mapping is deliberately conservative in `src/seasonUtils.js`: adding a new competition requires checking its schedule. Selecting one season filters the entire app and hides players without sourced played matches or verified shots in that category. **All seasons** combines all collected competition types and must not be read as a single domestic season.
 
