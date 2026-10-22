@@ -366,7 +366,8 @@ def run(limit=0, games=50, check=False, request_func=request_player, pages=4):
             "confirmed_identities": len(verified),
             "players_requested": len(selected),
             "players_updated": success,
-            "players_with_data": sum(bool(r.get("games")) for r in records.values()),\n            "players_with_more_history": sum(bool(r.get("history_has_more")) for r in records.values()),
+            "players_with_data": sum(bool(r.get("games")) for r in records.values()),
+            "players_with_more_history": sum(bool(r.get("history_has_more")) for r in records.values()),
             "game_scores": sum(len(r.get("games") or []) for r in records.values()),
             "failed_players": failures,
         },
@@ -384,7 +385,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="0 = all confirmed identities")
     parser.add_argument("--games", type=int, default=50, help="Recent match scores per player (max 50); retains earlier imports")
-    parser.add_argument("--pages", type=int, default=4, help="Maximum history pages per player (1 to 8)")\n    parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
+    parser.add_argument("--pages", type=int, default=4, help="Maximum history pages per player (1 to 8)")
+    parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
     args = parser.parse_args()
     if args.limit < 0 or not 1 <= args.games <= 50 or not 1 <= args.pages <= 8:
         parser.error("limit must be >= 0 and games between 1 and 50")
