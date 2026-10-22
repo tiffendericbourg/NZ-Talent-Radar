@@ -2,6 +2,11 @@ name: Update data and deploy
 on:
   push:
     branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'data/**'
+      - '.github/workflows/update-data.yml'
   schedule:
     - cron: '20 5 * * 1'
   workflow_dispatch:
