@@ -76,6 +76,7 @@ jobs:
           git add public/data/sorare_performance.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh Sorare performances'
-            git pull --rebase origin main
+            # During rebase, 'ours' is the newer remote snapshot; keep it on concurrent runs.
+            git pull --rebase -X ours origin main
             git push origin HEAD:main
           fi
