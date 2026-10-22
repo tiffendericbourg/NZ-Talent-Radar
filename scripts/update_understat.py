@@ -95,7 +95,7 @@ def summarize(shots):
 def shot_period(shots):
     """Dates of actual imported events, independent of when we imported them."""
     dates = sorted(str(shot.get("date") or "")[:10] for shot in shots
-                   if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", str(shot.get("date") or "")[:10]))
+                   if re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(shot.get("date") or "")[:10]))
     return (dates[0], dates[-1]) if dates else (None, None)
 
 
