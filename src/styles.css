@@ -333,3 +333,14 @@
 .coverage-audit-row strong{font-size:14px}
 .coverage-audit-row span{font-size:12px;color:#96b099}
 @media(max-width:700px){.comparison-metric-row{grid-template-columns:1fr;gap:11px}.comparison-cards,.comparison-players{grid-template-columns:1fr}.coverage-audit-row>div:first-child{grid-template-columns:1fr auto}.coverage-audit-row span{grid-row:2}.research-study-tabs button{padding:13px 10px;font-size:11px}}
+
+
+/* NZ Impact Index: transparent calculated football-event evidence */
+.index-method{margin:32px 0;border-top:2px solid #a4d88a;padding:24px 25px;background:#17271a;border-radius:0 0 8px 8px}
+.index-method h3{font:600 23px 'Space Grotesk',sans-serif;letter-spacing:-.03em;color:#e8f5e5;margin-bottom:14px}
+.index-method p{max-width:990px;font-size:13px;color:#b6cbb8;line-height:1.75;margin:10px 0}
+.index-method p strong{color:#dff2d7}
+.index-method .research-disclaimer{font-size:11px;color:#8da991}
+.ranking-average strong{font-variant-numeric:tabular-nums}
+.ranking-pulse-date{overflow-wrap:anywhere}
+@media(max-width:600px){.index-method{padding:20px 16px}.index-method h3{font-size:20px}}
