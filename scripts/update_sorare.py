@@ -142,11 +142,15 @@ def search_terms(name):
     first_last = words[0] + " " + words[-1]
     names = [name, first_last]
     first = canonical_first(words[0])
+    # Search Sorare with natural name casing, including aliases.
+    # The original full name is already in 'names'; aliases need their own
+    # capitalisation or the live search may miss an otherwise verified player.
+    surname = name.split()[-1]
     if first != words[0]:
-        names.append(first + " " + words[-1])
+        names.append(first.title() + " " + surname)
     for short, long in FIRST_NAMES.items():
         if words[0] == long:
-            names.append(short + " " + words[-1])
+            names.append(short.title() + " " + surname)
     seen = set()
     result = []
     for value in names:
