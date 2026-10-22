@@ -65,6 +65,19 @@ class SorareTests(unittest.TestCase):
         }])
         self.assertEqual(result["status"], "confirmed")
 
+    def test_second_pass_max_tim_and_tommy_aliases(self):
+        self.assertIn("Maxime Crocombe", sorare.search_terms("Max Crocombe"))
+        self.assertIn("Timothy Payne", sorare.search_terms("Tim Payne"))
+        self.assertIn("Thomas Smith", sorare.search_terms("Tommy Smith"))
+        self.assertEqual(sorare.match_identity(
+            {"name": "Tommy Smith", "birth_date": "1990-03-31"},
+            {"displayName": "Thomas Smith", "birthDate": "1990-03-31"}
+        ), "confirmed")
+        self.assertEqual(sorare.match_identity(
+            {"name": "Max Crocombe", "birth_date": "1993-08-12"},
+            {"displayName": "Maxime Crocombe", "birthDate": "1993-08-12"}
+        ), "confirmed")
+
     def test_name_variant_requires_matching_dob(self):
         player = {"name": "Kosta Barbarouses", "birth_date": "1990-02-19"}
         wrong = {"slug": "kosta", "displayName": "Konstantinos Barbarouses",
