@@ -11,7 +11,7 @@ import json
 import re
 import sys
 import time
-from datetime import date
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
@@ -92,6 +92,13 @@ def summarize(shots):
     }
 
 
+def shot_period(shots):
+    """Dates of actual imported events, independent of when we imported them."""
+    dates = sorted(str(shot.get("date") or "")[:10] for shot in shots
+                   if re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", str(shot.get("date") or "")[:10]))
+    return (dates[0], dates[-1]) if dates else (None, None)
+
+
 def summarize_seasons(shots):
     """Season-level goals and xG from the same shot events."""
     by_season = {}
@@ -147,12 +154,16 @@ def run(fetch=False, max_players=5):
         path = EXPORTS / (understat_id + ".json")
         if path.exists():
             text = path.read_text(encoding="utf-8")
+            source_mode = "local_export"
+            source_fetched_at = None  # Original download time is unknown.
         elif fetch and fetched < max_players:
             if not permitted_to_fetch(url):
                 raise RuntimeError("Understat crawling not permitted or robots.txt unavailable")
             with urlopen(Request(url, headers={"User-Agent": AGENT}), timeout=30) as response:
                 text = response.read(5_000_000).decode("utf-8")
             fetched += 1
+            source_mode = "direct_fetch"
+            source_fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
             time.sleep(3)
         else:
             # A missing export must not delete previously verified events.
@@ -162,8 +173,14 @@ def run(fetch=False, max_players=5):
             continue
         raw = parse_shots(text)
         shots = normalize_shots(raw, understat_id)
+        period_start, period_end = shot_period(shots)
         result[player_id] = {
             "understat_id": understat_id, "source_url": url,
+            "imported_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "source_mode": source_mode,
+            "source_fetched_at": source_fetched_at,
+            "period_start": period_start,
+            "period_end": period_end,
             "sample": "All imported shot events; coverage varies by league and season",
             "stats": summarize(shots),
             "seasons": summarize_seasons(shots),
@@ -171,8 +188,10 @@ def run(fetch=False, max_players=5):
         }
         print(f"{known[player_id]['name']}: {len(shots)} valid shot events")
 
+    generated_at = datetime.now(timezone.utc)
     output = {
-        "generated_at": date.today().isoformat(),
+        "generated_at": generated_at.date().isoformat(),
+        "generated_at_utc": generated_at.isoformat(timespec="seconds"),
         "source": "Understat",
         "coordinate_system": "normalized 0–1; attacking toward x=1",
         "players": result,
