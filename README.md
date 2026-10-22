@@ -141,18 +141,27 @@ Every performance import records **when the statistics were found** separately f
 
 **As of 22 October 2026:** six Understat player identities are verified, but zero shot events have been imported. The first Sorare performance JSON was published on 22 October 2026. Each match retains its true date and each import its own UTC retrieval timestamp; no missing historic retrieval dates are invented. Separately, `data/understat/statistics_observations.csv` logs the **date found (2026-10-22)** and **historical season (2024)** for three season-summary sources (Chris Wood, Liberato Cacace and Ben Old). These are research observations, **not** published performance imports.
 
-## Season filters and first published coverage
+## Season filters: league calendar, cup fixtures and missing rules
 
-The top-of-page **Season** selector applies to the player directory, profile graphs, Understat shot maps and position rankings. **All seasons** uses every published match; choosing **2025/26**, for example, uses only games in that period. Sorare games are grouped from **1 July to 30 June** by actual match date, a convenient scouting convention rather than an assertion about each league's official competition season. Understat data use the season identifier supplied by Understat. Cards without played Sorare matches or sourced Understat shots in the selected period are hidden, rather than showing empty statistics.
+The **Season** selector applies to player cards, profiles, Sorare charts, Understat shot maps and player rankings. The app keeps different types of seasons apart:
 
-**Initial Sorare extraction on 22 October 2026:** 62 verified identities checked, 58 players returning game-score records, 50 with completed matches and comparable Sorare scores, and 1,526 game-score records in the downloaded snapshot. Five date-based seasons are represented, 2022/23–2026/27. Those figures are a dated snapshot, not live player results.
+- **2026/27 · July–June:** leagues such as the English Premier League, Championship, Eredivisie and UEFA club competitions; Understat's own season keys also use this group.
+- **2026 · calendar leagues:** MLS, Eliteserien, J1 League and other named leagues running mainly within a single calendar year.
+- **2026 · cups & friendlies:** World Cup, Olympics and one-year tournaments and international friendlies. These do not contribute to a domestic league season.
+- **2026 · season to verify:** competition names with ambiguous or unknown calendars, which must not silently be assigned to either league group.
+
+These are **date-based scouting groupings**, not official league season IDs. The mapping is deliberately conservative in `src/seasonUtils.js`: adding a new competition requires checking its schedule. Selecting one season filters the entire app and hides players without sourced played matches or verified shots in that category. **All seasons** combines all collected competition types and must not be read as a single domestic season.
+
+Sorare's public GraphQL `allPlayerGameScores` connection supports **cursor pagination**. `scripts/update_sorare_performance.py` requests up to **four pages of 50 games per player by default**, merging game IDs with prior verified imports. The workflow accepts `pages` (1–8) and `games` (1–50). If Sorare rejects the pagination fields, the importer falls back to the original single-page query and marks history completeness as unknown. A successful history query is still limited to matches covered by Sorare—not an exhaustive professional career.
+
+**22 October 2026, earlier reference snapshot:** 62 confirmed Sorare identities were checked. The first import published 1,526 scores. With pagination enabled, a subsequent successful collection published **2,762** game-score records (including games not played). These numbers are dated pipeline snapshots and can change on the next update.
 
 ## Match-by-match Sorare performances
 
 The dedicated `scripts/update_sorare_performance.py` importer fetches the latest **real football game scores** for players with a verified `sorare_slug`. It uses the same `SORARE_API_KEY` repository secret as the identity matcher. It does not guess stats or publish credentials.
 
-- **Actions → Update Sorare performances → Run workflow** updates the confirmed player set (default: all, 50 recent scores per player). The workflow also runs every Monday and on importer/workflow code changes.
-- `python scripts/update_sorare_performance.py --check` validates one API request without publishing data; `python scripts/update_sorare_performance.py --limit 5 --games 50` collects a small batch. Set the API key in the environment for local runs.
+- **Actions → Update Sorare performances → Run workflow** updates the confirmed player set (default: all, four pages of up to 50 scores per player). The workflow also runs every Monday and on importer/workflow code changes.
+- `python scripts/update_sorare_performance.py --check` validates one API request without publishing data; `python scripts/update_sorare_performance.py --limit 5 --games 50 --pages 4` collects a small batch. Set the API key in the environment for local runs.
 - `public/data/sorare_performance.json` is created only after successful API responses; it contains dates, competition, minutes, Sorare scores, score versions, raw match stats and summary fields. Previously retrieved games are retained and merged with fresh scores, including matches from earlier seasons. Records survive individual lookup failures.
 - The profile page shows the figures only when the file contains sourced records; missing data are never displayed as zeros. DNP, pending and low-coverage games are excluded from averages, as are scores from different scoring versions.
 - Run offline checks: `python -m unittest discover -s tests -p 'test_sorare_performance.py' -v`.
