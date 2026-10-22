@@ -1,0 +1,263 @@
+"""Collect actual match performances for verified NZ footballers from Sorare.
+
+Read-only GraphQL; API key lives in the SORARE_API_KEY Actions secret.
+Missing data stays missing. Failed requests never erase previously saved players.
+"""
+import argparse
+import json
+import os
+import time
+from datetime import date
+from pathlib import Path
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
+
+ROOT = Path(__file__).resolve().parents[1]
+CATALOGUE = ROOT / "public/data/players.json"
+OUTPUT = ROOT / "public/data/sorare_performance.json"
+API_URL = "https://api.sorare.com/graphql"
+
+# These fields were checked against Sorare's public GraphQL schema (October 2026).
+GAME_FIELDS = (
+    "minsPlayed", "playedInGame", "gameStarted", "onGameSheet",
+    "goals", "goalAssist", "totalScoringAtt", "ontargetScoringAtt",
+    "bigChanceCreated", "bigChanceMissed", "penAreaEntries",
+    "totalPass", "accuratePass", "successfulFinalThirdPasses",
+    "accurateLongBalls", "duelWon", "duelLost", "wonContest",
+    "totalTackle", "wonTackle", "interceptionWon", "possWon",
+    "possLostCtrl", "effectiveClearance", "errorLeadToShot",
+    "errorLeadToGoal", "fouls", "yellowCard", "redCard",
+    "saves", "goalsConceded", "goodHighClaim", "accurateKeeperSweeper",
+    "penaltiesSaved", "cleanSheet",
+)
+QUERY = """
+query NZPlayerPerformance($slug: String!, $count: Int!) {
+  anyPlayer(slug: $slug) {
+    __typename
+    slug
+    displayName
+    birthDate
+    ... on Player {
+      allPlayerGameScores(first: $count) {
+        nodes {
+          __typename
+          id
+          score
+          scoreStatus
+          scoringVersion
+          position
+          ... on PlayerGameScore {
+            allAroundScore
+            footballGame {
+              id
+              date
+              lowCoverage
+              competition { name }
+            }
+            footballPlayerGameStats {
+              %s
+            }
+          }
+        }
+      }
+    }
+  }
+}
+""" % "\n              ".join(GAME_FIELDS)
+
+
+def request_player(slug, count, key):
+    body = json.dumps({"query": QUERY, "variables": {"slug": slug, "count": count}}).encode()
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "APIKEY": key,
+        "User-Agent": "NZTalentRadar/1.0 (https://github.com/tiffendericbourg/NZ-Talent-Radar)",
+    }
+    for attempt in range(3):
+        try:
+            req = Request(API_URL, data=body, headers=headers, method="POST")
+            with urlopen(req, timeout=30) as response:
+                result = json.load(response)
+            if result.get("errors"):
+                # GraphQL errors are never silently interpreted as empty statistics.
+                raise RuntimeError("Sorare GraphQL rejected performance query: "
+                                   + "; ".join(str(e.get("message", ""))[:170]
+                                               for e in result["errors"][:2]))
+            player = (result.get("data") or {}).get("anyPlayer")
+            if not isinstance(player, dict):
+                raise RuntimeError("Sorare returned no player for this verified slug")
+            if player.get("__typename") != "Player":
+                raise RuntimeError("Sorare slug does not identify a football player")
+            connection = player.get("allPlayerGameScores")
+            if not isinstance(connection, dict) or not isinstance(connection.get("nodes"), list):
+                raise RuntimeError("Sorare response has no allPlayerGameScores list")
+            return player
+        except HTTPError as error:
+            if error.code in (401, 403):
+                raise RuntimeError("Sorare API refused authentication (HTTP %s)" % error.code) from None
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                raise RuntimeError("Sorare API HTTP %s" % error.code) from None
+            delay = error.headers.get("Retry-After", "")
+            time.sleep(min(int(delay), 60) if delay.isdigit() else 3 * (attempt + 1))
+        except (URLError, TimeoutError):
+            if attempt == 2:
+                raise RuntimeError("Sorare network error after retries") from None
+            time.sleep(3 * (attempt + 1))
+
+
+def normalize_game(node):
+    if node.get("__typename") != "PlayerGameScore":
+        return None
+    game = node.get("footballGame") or {}
+    stats = node.get("footballPlayerGameStats") or {}
+    if not node.get("id") or not game.get("date") or not game.get("id"):
+        return None
+    filtered_stats = {
+        field: stats.get(field) if isinstance(stats.get(field), (int, bool)) else None
+        for field in GAME_FIELDS
+    }
+    return {
+        "id": node["id"],
+        "game_id": game["id"],
+        "date": game["date"],
+        "competition": (game.get("competition") or {}).get("name"),
+        "position": node.get("position"),
+        "score": node.get("score") if isinstance(node.get("score"), (int, float)) else None,
+        "score_status": node.get("scoreStatus"),
+        "scoring_version": node.get("scoringVersion"),
+        "all_around_score": node.get("allAroundScore"),
+        "low_coverage": game.get("lowCoverage"),
+        "stats": filtered_stats,
+    }
+
+
+def summarize(games):
+    played = [g for g in games if g["stats"].get("playedInGame") is True
+              and (g["stats"].get("minsPlayed") or 0) > 0
+              and g["score_status"] == "FINAL"]
+    reliable = [g for g in played if g.get("low_coverage") is False
+                and isinstance(g.get("score"), (int, float))
+                and isinstance(g.get("scoring_version"), int)]
+    # Prevent comparing different scoring versions inside the same average.
+    newest = reliable[0]["scoring_version"] if reliable else None
+    comparable = [g for g in reliable if g["scoring_version"] == newest]
+    totals = {}
+    for field in GAME_FIELDS:
+        if field in ("playedInGame", "onGameSheet", "gameStarted"):
+            continue
+        values = [g["stats"][field] for g in played if g["stats"].get(field) is not None]
+        totals[field] = sum(values) if values else None
+    minutes = sum(g["stats"]["minsPlayed"] for g in played)
+    return {
+        "matches_played": len(played),
+        "minutes": minutes,
+        "scored_matches": len(comparable),
+        "scoring_version": newest,
+        "average_score": round(sum(g["score"] for g in comparable) / len(comparable), 1)
+        if comparable else None,
+        "totals": totals,
+        "scope": "last retrieved game scores; finalized played matches; totals only where reported",
+    }
+
+
+def normalize_player(catalogue_player, api_player, count):
+    expected = catalogue_player.get("birth_date")
+    actual = str(api_player.get("birthDate") or "")[:10]
+    # An established identity is not enough if the live slug changed owners.
+    if expected and actual and expected != actual:
+        raise ValueError("Sorare birth date does not match verified NZ identity")
+    if not actual:
+        raise ValueError("Sorare returned no date of birth to verify identity")
+    games = []
+    seen = set()
+    for entry in api_player["allPlayerGameScores"]["nodes"]:
+        if not isinstance(entry, dict):
+            continue
+        game = normalize_game(entry)
+        if game and game["id"] not in seen:
+            seen.add(game["id"])
+            games.append(game)
+    games.sort(key=lambda x: x["date"], reverse=True)
+    return {
+        "sorare_slug": catalogue_player["sorare_slug"],
+        "name": catalogue_player["name"],
+        "source_url": "https://sorare.com/football/players/" + catalogue_player["sorare_slug"],
+        "requested_games": count,
+        "games": games,
+        "summary": summarize(games),
+    }
+
+
+def run(limit=0, games=15, check=False, request_func=request_player):
+    key = os.environ.get("SORARE_API_KEY", "").strip()
+    if not key:
+        raise RuntimeError("Missing SORARE_API_KEY repository secret")
+    players = json.loads(CATALOGUE.read_text(encoding="utf-8"))["players"]
+    verified = [p for p in players if p.get("sorare_slug") and p.get("id")]
+    if not verified:
+        raise RuntimeError("No verified Sorare identities in the current catalogue")
+    selected = verified[:limit] if limit > 0 else verified
+    previous = {"players": {}}
+    if OUTPUT.exists():
+        previous = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    records = dict(previous.get("players", {}))
+    success = 0
+    failures = []
+    for p in selected[:1] if check else selected:
+        try:
+            remote = request_func(p["sorare_slug"], 1 if check else games, key)
+            result = normalize_player(p, remote, 1 if check else games)
+            if check:
+                print("Sorare performance query accepted for a verified player")
+                return result
+            # Keep the old history only when this request returns no scores.
+            # A valid empty dataset is still reported, not filled with fabricated games.
+            records[p["id"]] = result
+            success += 1
+            print("%s: %s matches played / %s game scores" %
+                  (p["name"], result["summary"]["matches_played"], len(result["games"])))
+        except (RuntimeError, ValueError) as exc:
+            failures.append({"player_id": p["id"], "reason": str(exc)[:220]})
+            print("%s: performance unavailable (%s)" % (p["name"], str(exc)[:130]))
+            if check:
+                raise
+        time.sleep(0.5)
+    if success == 0:
+        raise RuntimeError("No player performance could be verified; previous snapshot kept")
+    output = {
+        "generated_at": date.today().isoformat(),
+        "source": "Sorare football GraphQL",
+        "sample": "Up to %s most recent player game scores; not necessarily current season" % games,
+        "players": records,
+        "coverage": {
+            "confirmed_identities": len(verified),
+            "players_requested": len(selected),
+            "players_updated": success,
+            "players_with_data": sum(bool(r.get("games")) for r in records.values()),
+            "game_scores": sum(len(r.get("games") or []) for r in records.values()),
+            "failed_players": failures,
+        },
+    }
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    temp = OUTPUT.with_suffix(".json.tmp")
+    temp.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temp.replace(OUTPUT)
+    print("Saved %s players with scores (%s updated)" %
+          (output["coverage"]["players_with_data"], success))
+    return output
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--limit", type=int, default=0, help="0 = all confirmed identities")
+    parser.add_argument("--games", type=int, default=15, help="Number of recent matches per player")
+    parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
+    args = parser.parse_args()
+    if args.limit < 0 or not 1 <= args.games <= 50:
+        parser.error("limit must be >= 0 and games between 1 and 50")
+    run(limit=args.limit, games=args.games, check=args.check)
+
+
+if __name__ == "__main__":
+    main()
