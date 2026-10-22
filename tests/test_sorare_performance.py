@@ -70,6 +70,61 @@ class PerformanceTests(unittest.TestCase):
         self.assertNotIn("birthDate", before)
         self.assertIn("birthDate", after)
 
+    def test_history_pagination_follows_cursor_and_joins_real_scores(self):
+        import io
+        results = player_result()
+        second = player_result()
+        second["allPlayerGameScores"] = {"nodes": [
+            {**results["allPlayerGameScores"]["nodes"][0],
+             "id": "older-score", "footballGame": {
+                 "id": "older-match", "date": "2024-08-25T10:00:00Z",
+                 "lowCoverage": False, "competition": {"name": "Premier League"}}}
+        ], "pageInfo": {"hasNextPage": False, "endCursor": "cursor-2"}}
+        results["allPlayerGameScores"]["pageInfo"] = {
+            "hasNextPage": True, "endCursor": "cursor-1"}
+        calls = []
+        class Response:
+            def __init__(self, obj):
+                self.obj = obj
+            def __enter__(self):
+                return io.BytesIO(json.dumps({"data": {"anyPlayer": self.obj}}).encode())
+            def __exit__(self, *args):
+                return False
+        def fake_urlopen(request, timeout):
+            variables = json.loads(request.data)["variables"]
+            calls.append(variables)
+            return Response(results if variables.get("cursor") is None else second)
+        with patch.object(perf, "urlopen", side_effect=fake_urlopen), patch.object(perf.time, "sleep"):
+            fetched = perf.request_player("chris-wood", 50, "key", pages=4)
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(calls[1]["cursor"], "cursor-1")
+        self.assertEqual(len(fetched["allPlayerGameScores"]["nodes"]), 6)
+        self.assertEqual(fetched["history_pages_fetched"], 2)
+        self.assertTrue(fetched["history_complete"])
+        normalized = perf.normalize_player(self.player, fetched, 50)
+        self.assertEqual(normalized["period_start"], "2024-08-25")
+
+    def test_history_page_limit_does_not_claim_complete_backfill(self):
+        import io
+        raw = player_result()
+        raw["allPlayerGameScores"]["pageInfo"] = {
+            "hasNextPage": True, "endCursor": "cursor-1"}
+        class Response:
+            def __enter__(self):
+                return io.BytesIO(json.dumps({"data": {"anyPlayer": raw}}).encode())
+            def __exit__(self, *args):
+                return False
+        with patch.object(perf, "urlopen", return_value=Response()):
+            fetched = perf.request_player("chris-wood", 50, "key", pages=1)
+        self.assertIsNone(fetched["history_complete"])
+        self.assertIsNone(fetched["history_has_more"])
+
+    def test_paginated_query_only_downgrades_schema_fields(self):
+        self.assertIn("pageInfo { hasNextPage endCursor }", perf.PAGED_QUERY)
+        self.assertIn("after: $cursor", perf.PAGED_QUERY)
+        self.assertNotIn("accurateLongBalls", perf.PAGED_CORE_QUERY)
+        self.assertIn("minsPlayed", perf.PAGED_CORE_QUERY)
+
     def test_wrong_identity_fails(self):
         remote = {**player_result(), "birthDate": "1990-01-01"}
         with self.assertRaises(ValueError):
