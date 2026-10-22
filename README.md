@@ -161,3 +161,14 @@ The dedicated `scripts/update_sorare_performance.py` importer fetches the latest
 5. The summary reports the actual number of players and game scores collected. The JSON file **does not exist** until at least one successful live collection; the UI correctly shows unavailable instead of invented figures.
 
 Documentation: https://github.com/sorare/api
+
+
+## Position rankings — October 22, 2026
+
+The new **Rankings** tab separates Sorare-linked New Zealand players into goalkeepers, defenders, midfielders and forwards. It also separates men and women, offers an **Under 23** filter, and links every entry to its sourced player profile. The same player cards now show a recent Sorare average when verified match scores are available.
+
+The first leaderboard is intentionally simple: **average Sorare score from the last 365 days**, not a fabricated overall talent rating. To enter, a player needs at least **three finalized, actually played, non-low-coverage matches** and **180 minutes**, all under the **same Sorare scoring version**. When several versions exist, visitors select the version to compare. A secondary per-90 indicator is shown by broad position *only when every eligible match has that field*: saves (GK), tackles + interceptions (DEF), successful final-third passes (MID), or shots (FWD). Player age alone is never treated as a performance score.
+
+Players without enough published match data appear in a separate **watchlist**, alphabetically, **without a rank**. There is no meaningful top 10 until `public/data/sorare_performance.json` actually contains sourced results. The current live collection is still not confirmed; a Sorare identity link is not proof of performance data. The site reports both match periods and data snapshot dates when available.
+
+Relevant files: `src/Rankings.jsx`, `src/rankingUtils.js` and `tests/ranking.test.mjs`. Run `npm test` for the calculation checks; GitHub Pages deployment runs them before the build. League-strength adjustments, specialist sub-positions and a distinct NZ Talent Score are planned only after there is enough reliable data to calibrate them.
