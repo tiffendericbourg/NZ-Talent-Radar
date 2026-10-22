@@ -26,7 +26,8 @@ export default function Rankings({ players, performance, onOpen }) {
   const version = versions.includes(selectedVersion) ? selectedVersion : versions[0] || null
   const ranked = candidates.filter(p => p.version === version)
     .sort((a, b) => b.average - a.average || b.matches - a.matches || a.name.localeCompare(b.name))
-  const waiting = cohort.filter(p => !p.eligible).sort((a, b) => a.name.localeCompare(b.name))
+  const waiting = cohort.filter(p => !p.eligible || p.version !== version)
+    .sort((a, b) => a.name.localeCompare(b.name))
   const totalWithGames = rows.filter(p => p.matches > 0).length
   const currentSeasonNote = 'Last ' + RANKING_WINDOW_DAYS + ' days · only completed Sorare matches'
   const updated = performance?.generated_at_utc || performance?.generated_at || null
@@ -46,7 +47,7 @@ export default function Rankings({ players, performance, onOpen }) {
 
     <div className="ranking-pulse">
       <div><small>SCOUTING DATABASE</small><strong>{rows.length}</strong><span>Verified Sorare-linked players</span></div>
-      <div><small>RECENT MATCH SCORES</small><strong>{totalWithGames}</strong><span>Players with recent eligible scores</span></div>
+      <div><small>RECENT MATCH SCORES</small><strong>{totalWithGames}</strong><span>Players with recent complete scores</span></div>
       <div><small>DATA SNAPSHOT</small><strong className="ranking-pulse-date">{updated ? String(updated).slice(0, 10) : 'Pending'}</strong><span>Most recent imported source</span></div>
     </div>
 
@@ -115,11 +116,11 @@ export default function Rankings({ players, performance, onOpen }) {
     <div className="ranking-waiting">
       <div className="ranking-heading">
         <div><span className="eyebrow">SCOUTING WATCHLIST</span><h2>Players awaiting enough data</h2>
-          <p>{waiting.length} linked profiles · not assigned a performance rank</p></div>
+          <p>{waiting.length} linked profiles · not ranked in this scoring version</p></div>
       </div>
       {waiting.length ? <div className="ranking-watchlist">
         {waiting.slice(0, 20).map(p => <button key={p.id} type="button" onClick={() => onOpen(p)}>
-          <span><strong>{p.name}</strong><small>{p.club || 'Club not recorded'} · {p.matches} comparable matches</small></span>
+          <span><strong>{p.name}</strong><small>{p.club || 'Club not recorded'} · {p.version && p.eligible ? 'Different Sorare scoring version (' + p.version + ')' : p.matches + ' recent scores · ' + p.minutes + ' min'}</small></span>
           <span>View profile ↗</span>
         </button>)}
         {waiting.length > 20 && <p>Showing 20 of {waiting.length} players without a ranking.</p>}
