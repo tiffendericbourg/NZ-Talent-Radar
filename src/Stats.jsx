@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { FormChart, MinutesChart, PositionIndicators, GoalXgChart, CoverageChart, PositionsChart, PeerChart } from './ScoutingCharts.jsx'
 
 function formatUtc(value) {
   if (!value) return 'Date not recorded'
@@ -97,6 +98,10 @@ export function ScoutingDashboard({ players, sorare, understat, understatLinks, 
         {label:'Club unknown',value:counts.clubsMissing}
       ]}/>
     </div>
+    <div className="viz-two viz-dashboard">
+      <CoverageChart players={players} understatLinks={understatLinks} understat={understat} performance={performance}/>
+      <PositionsChart players={players}/>
+    </div>
     {sorare && <div className="scout-audit">
       <div><span className="eyebrow">SORARE / MATCHING AUDIT</span><h2>Who needs a second look?</h2>
         <p>{sorare.checked_so_far ?? sorare.matches?.length ?? 0} players checked · {sorare.confirmed ?? 0} confirmed · {sorare.rejected ?? 0} false matches excluded · {sorare.needs_review ?? 0} to review</p></div>
@@ -134,7 +139,7 @@ export function ShotMap({ shots }) {
   </div>
 }
 
-export function PlayerPerformance({ player, sorare, understat, understatLinks, performance }) {
+export function PlayerPerformance({ player, sorare, understat, understatLinks, performance, players = [] }) {
   const sorareRecord = performance?.players?.[player.id]
   const sorareSummary = sorareRecord?.summary
   const recentGames = sorareRecord?.games || []
@@ -146,6 +151,14 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
   return <section className="performance-section">
     <div className="performance-heading"><div><span className="eyebrow">03 / PERFORMANCE</span><h2>On the radar<span className="green">.</span></h2></div>
       <span className="scout-source">{sorareRecord ? 'SORARE · VERIFIED GAME DATA' : record ? 'UNDERSTAT · IMPORTED SHOTS' : understatLink ? 'UNDERSTAT · VERIFIED ID' : 'SOURCE COVERAGE'}</span></div>
+    <div className="viz-two viz-player-charts">
+      <FormChart record={sorareRecord}/>
+      <MinutesChart record={sorareRecord}/>
+    </div>
+    <div className="viz-two viz-player-charts">
+      <PositionIndicators player={player} record={sorareRecord}/>
+      <PeerChart player={player} record={sorareRecord} players={players} performance={performance}/>
+    </div>
     {sorareRecord && <div className="scout-audit">
       <span className="eyebrow">SORARE / RECENT PERFORMANCE</span>
       <h3>Match-by-match form</h3>
@@ -177,6 +190,7 @@ export function PlayerPerformance({ player, sorare, understat, understatLinks, p
       <Metric label="xG PER SHOT" value={data?.xg_per_shot == null ? null : data.xg_per_shot.toFixed(3)} note={record ? 'Shot quality' : 'Not available'} muted={!record}/>
     </div>
     {record && <p className="scout-footnote">Understat imported: {formatUtc(record.imported_at)} · Shot dates: {formatPeriod(record.period_start, record.period_end)} · {record.source_mode === 'local_export' ? 'Original source download date unknown (local export).' : record.source_fetched_at ? 'Source fetched: ' + formatUtc(record.source_fetched_at) : 'Original source retrieval date not recorded.'}</p>}
+    {record && Object.keys(record.seasons || {}).length > 0 && <GoalXgChart record={record}/>}
     {record && Object.keys(record.seasons || {}).length > 0 && <div className="scout-season-table">
       <h3>Goals and xG by season</h3>
       <div className="scout-season-head"><span>Season</span><span>Shots</span><span>Goals</span><span>xG</span></div>
