@@ -65,45 +65,83 @@ query NZPlayerPerformance($slug: String!, $count: Int!) {
 }
 """ % "\n              ".join(GAME_FIELDS)
 
+# Compact fallback that avoids optional fields if Sorare modifies its schema.
+CORE_FIELDS = ("minsPlayed", "playedInGame", "goals", "goalAssist")
+CORE_QUERY = QUERY.replace("\\n              ".join(GAME_FIELDS), "\\n              ".join(CORE_FIELDS))
 
-def request_player(slug, count, key):
-    body = json.dumps({"query": QUERY, "variables": {"slug": slug, "count": count}}).encode()
+
+def auth_headers(key):
+    """The API key controls rate limits; user access tokens authenticate."""
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "APIKEY": key,
-        "User-Agent": "NZTalentRadar/1.0 (https://github.com/tiffendericbourg/NZ-Talent-Radar)",
+        "User-Agent": "NZTalentRadar/1.1 (https://github.com/tiffendericbourg/NZ-Talent-Radar)",
     }
-    for attempt in range(3):
-        try:
-            req = Request(API_URL, data=body, headers=headers, method="POST")
-            with urlopen(req, timeout=30) as response:
-                result = json.load(response)
-            if result.get("errors"):
-                # GraphQL errors are never silently interpreted as empty statistics.
-                raise RuntimeError("Sorare GraphQL rejected performance query: "
-                                   + "; ".join(str(e.get("message", ""))[:170]
-                                               for e in result["errors"][:2]))
-            player = (result.get("data") or {}).get("anyPlayer")
-            if not isinstance(player, dict):
-                raise RuntimeError("Sorare returned no player for this verified slug")
-            if player.get("__typename") != "Player":
-                raise RuntimeError("Sorare slug does not identify a football player")
-            connection = player.get("allPlayerGameScores")
-            if not isinstance(connection, dict) or not isinstance(connection.get("nodes"), list):
-                raise RuntimeError("Sorare response has no allPlayerGameScores list")
-            return player
-        except HTTPError as error:
-            if error.code in (401, 403):
-                raise RuntimeError("Sorare API refused authentication (HTTP %s)" % error.code) from None
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
-                raise RuntimeError("Sorare API HTTP %s" % error.code) from None
-            delay = error.headers.get("Retry-After", "")
-            time.sleep(min(int(delay), 60) if delay.isdigit() else 3 * (attempt + 1))
-        except (URLError, TimeoutError):
-            if attempt == 2:
-                raise RuntimeError("Sorare network error after retries") from None
-            time.sleep(3 * (attempt + 1))
+    if key:
+        headers["APIKEY"] = key
+    token = os.environ.get("SORARE_ACCESS_TOKEN", "").strip()
+    if token:
+        headers["Authorization"] = "Bearer " + token
+        audience = os.environ.get("SORARE_JWT_AUD", "").strip()
+        if audience:
+            headers["JWT-AUD"] = audience
+    return headers
+
+
+def graphql_errors(payload):
+    return "; ".join(str(e.get("message", ""))[:160]
+                     for e in payload.get("errors", []) if isinstance(e, dict))
+
+
+def request_player(slug, count, key):
+    """Try detailed stats and fall back to a compact, schema-safe query."""
+    headers = auth_headers(key)
+    for query_label, query in (("detailed", QUERY), ("core", CORE_QUERY)):
+        body = json.dumps({"query": query, "variables": {
+            "slug": slug, "count": count}}).encode("utf-8")
+        for attempt in range(3):
+            try:
+                req = Request(API_URL, data=body, headers=headers, method="POST")
+                with urlopen(req, timeout=30) as response:
+                    payload = json.load(response)
+                if payload.get("errors"):
+                    reason = graphql_errors(payload)
+                    lowered = reason.lower()
+                    if any(word in lowered for word in (
+                            "unauthorized", "forbidden", "authentication", "not authenticated")):
+                        raise RuntimeError(
+                            "Sorare authentication required. Provide SORARE_ACCESS_TOKEN "
+                            "(and SORARE_JWT_AUD for JWT) in repository secrets")
+                    if query_label == "detailed" and any(word in lowered for word in (
+                            "cannot query field", "unknown argument", "complexity",
+                            "max complexity", "query is too complex")):
+                        print("Sorare detailed query rejected; retrying essential match stats")
+                        break
+                    raise RuntimeError("Sorare " + query_label + " GraphQL error: " + reason)
+                player = (payload.get("data") or {}).get("anyPlayer")
+                if not isinstance(player, dict):
+                    raise RuntimeError("Sorare returned no verified player for slug " + slug)
+                if player.get("__typename") != "Player":
+                    raise RuntimeError("Sorare slug does not identify a football player")
+                scores = player.get("allPlayerGameScores")
+                if not isinstance(scores, dict) or not isinstance(scores.get("nodes"), list):
+                    raise RuntimeError("Sorare response has no game scores list")
+                player["collection_detail"] = query_label
+                return player
+            except HTTPError as error:
+                if error.code in (401, 403):
+                    raise RuntimeError(
+                        "Sorare HTTP %s: verify SORARE_API_KEY and optional "
+                        "SORARE_ACCESS_TOKEN authentication" % error.code) from None
+                if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+                    raise RuntimeError("Sorare API HTTP %s" % error.code) from None
+                delay = error.headers.get("Retry-After", "")
+                time.sleep(min(int(delay), 60) if delay.isdigit() else 3 * (attempt + 1))
+            except (URLError, TimeoutError):
+                if attempt == 2:
+                    raise RuntimeError("Sorare network unavailable after retries") from None
+                time.sleep(3 * (attempt + 1))
+    raise RuntimeError("Sorare performance queries were rejected")
 
 
 def normalize_game(node):
@@ -184,6 +222,7 @@ def normalize_player(catalogue_player, api_player, count):
         "name": catalogue_player["name"],
         "source_url": "https://sorare.com/football/players/" + catalogue_player["sorare_slug"],
         "requested_games": count,
+        "collection_detail": api_player.get("collection_detail", "detailed"),
         "games": games,
         "summary": summarize(games),
     }
@@ -191,8 +230,8 @@ def normalize_player(catalogue_player, api_player, count):
 
 def run(limit=0, games=15, check=False, request_func=request_player):
     key = os.environ.get("SORARE_API_KEY", "").strip()
-    if not key:
-        raise RuntimeError("Missing SORARE_API_KEY repository secret")
+    if not key and not os.environ.get("SORARE_ACCESS_TOKEN", "").strip():
+        raise RuntimeError("Missing Sorare credentials: SORARE_API_KEY or SORARE_ACCESS_TOKEN")
     players = json.loads(CATALOGUE.read_text(encoding="utf-8"))["players"]
     verified = [p for p in players if p.get("sorare_slug") and p.get("id")]
     if not verified:
@@ -213,7 +252,10 @@ def run(limit=0, games=15, check=False, request_func=request_player):
                 return result
             # Keep the old history only when this request returns no scores.
             # A valid empty dataset is still reported, not filled with fabricated games.
-            records[p["id"]] = result
+            if not result["games"] and records.get(p["id"], {}).get("games"):
+                print("%s: no new scores; preserving previous confirmed matches" % p["name"])
+            else:
+                records[p["id"]] = result
             success += 1
             print("%s: %s matches played / %s game scores" %
                   (p["name"], result["summary"]["matches_played"], len(result["games"])))
@@ -224,7 +266,8 @@ def run(limit=0, games=15, check=False, request_func=request_player):
                 raise
         time.sleep(0.5)
     if success == 0:
-        raise RuntimeError("No player performance could be verified; previous snapshot kept")
+        raise RuntimeError("No player performance could be verified; previous snapshot kept. "
+                           + (failures[0]["reason"] if failures else "Sorare returned no players"))
     output = {
         "generated_at": date.today().isoformat(),
         "source": "Sorare football GraphQL",
