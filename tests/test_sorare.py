@@ -40,6 +40,43 @@ class SorareTests(unittest.TestCase):
                      "birthDate": "1991-12-07", "activeClub": {"name": "Club B"}}
         self.assertEqual(sorare.match_identity(player, candidate), "confirmed")
 
+    def test_full_first_name_variants_find_paulsen(self):
+        player = {"id": "wd:Q107558242", "name": "Alex Paulsen",
+                  "birth_date": "2002-07-04", "sorare_slug": None}
+        searched = []
+        def fake_request(query, vars, key):
+            searched.append(vars["name"])
+            if vars["name"] == "Alexander Paulsen":
+                return [{"slug": "alexander-paulsen", "displayName": "Alexander Paulsen",
+                         "birthDate": "2002-07-04"}]
+            return []
+        with patch.object(sorare.time, "sleep"):
+            result = sorare.lookup_player(player, "test", request_func=fake_request)
+        self.assertEqual(result["status"], "confirmed")
+        self.assertEqual(result["candidate"]["slug"], "alexander-paulsen")
+        self.assertIn("Alexander Paulsen", searched)
+
+    def test_middle_name_slug_not_required(self):
+        player = {"id": "wd:Q106939313", "name": "Ben Old",
+                  "birth_date": "2002-08-13", "sorare_slug": None}
+        result = sorare.lookup_player(player, "test", request_func=lambda *args: [{
+            "slug": "benjamin-craig-old", "displayName": "Benjamin Old",
+            "birthDate": "2002-08-13"
+        }])
+        self.assertEqual(result["status"], "confirmed")
+
+    def test_name_variant_requires_matching_dob(self):
+        player = {"name": "Kosta Barbarouses", "birth_date": "1990-02-19"}
+        wrong = {"slug": "kosta", "displayName": "Konstantinos Barbarouses",
+                 "birthDate": "1991-02-19"}
+        self.assertEqual(sorare.match_identity(player, wrong), "needs_review")
+
+    def test_different_family_name_never_confirms(self):
+        player = {"name": "Alex Paulsen", "birth_date": "2002-07-04"}
+        wrong = {"slug": "alexander-petersen", "displayName": "Alexander Petersen",
+                 "birthDate": "2002-07-04"}
+        self.assertEqual(sorare.match_identity(player, wrong), "needs_review")
+
     def test_lookup_not_found(self):
         with patch.object(sorare.time, "sleep"):
             result = sorare.lookup_player(self.wood, "not-a-real-key",
