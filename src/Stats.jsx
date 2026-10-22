@@ -39,8 +39,12 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
       clubsMissing: players.filter(p => !p.club).length,
     }
   }, [players])
+  const visibleIds = new Set(players.map(p => p.id))
   const linked = players.filter(p => p.sorare_slug).length
-  const shotPlayers = Object.values(understat?.players || {})
+  const shotPlayers = Object.entries(understat?.players || {})
+    .filter(([id]) => visibleIds.has(id)).map(([, player]) => player)
+  const reviewMatches = (sorare?.matches || [])
+    .filter(row => row.status === 'needs_review' && visibleIds.has(row.player_id))
   const shots = shotPlayers.reduce((sum, p) => sum + (p.stats?.shots || 0), 0)
   return <section className="scout-dashboard">
     <div className="directory-heading"><span className="eyebrow">03 / SCOUTING INTELLIGENCE</span>
@@ -51,7 +55,7 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
     <div className="scout-stats-grid">
       <Metric label="PLAYER PROFILES" value={players.length.toLocaleString('en-NZ')} note="Source-linked catalogue"/>
       <Metric label="SORARE IDENTITIES" value={linked.toLocaleString('en-NZ')} note={players.length ? (100 * linked / players.length).toFixed(1) + '% of catalogue' : '—'}/>
-      <Metric label="SORARE MATCH DATA" value={Object.values(performance?.players || {}).filter(p => p.games?.length > 0).length} note="Players with verified game scores"/>
+      <Metric label="SORARE MATCH DATA" value={Object.entries(performance?.players || {}).filter(([id, p]) => visibleIds.has(id) && p.games?.length > 0).length} note="Players with verified game scores"/>
       <Metric label="UNDERSTAT PLAYERS" value={shotPlayers.length} note="Verified Understat IDs"/>
       <Metric label="SHOT EVENTS" value={shots.toLocaleString('en-NZ')} note="Imported X/Y locations"/>
       <Metric label="OVERSEAS CLUBS" value={counts.abroad} note="Club location documented"/>
@@ -74,8 +78,8 @@ export function ScoutingDashboard({ players, sorare, understat, performance }) {
     {sorare && <div className="scout-audit">
       <div><span className="eyebrow">SORARE / MATCHING AUDIT</span><h2>Who needs a second look?</h2>
         <p>{sorare.checked_so_far ?? sorare.matches?.length ?? 0} players checked · {sorare.confirmed ?? 0} confirmed · {sorare.rejected ?? 0} false matches excluded · {sorare.needs_review ?? 0} to review</p></div>
-      {Array.isArray(sorare.matches) && sorare.matches.some(r => r.status === 'needs_review')
-        ? <div className="scout-review-list">{sorare.matches.filter(r => r.status === 'needs_review').slice(0, 15).map(r =>
+      {reviewMatches.length > 0
+        ? <div className="scout-review-list">{reviewMatches.slice(0, 15).map(r =>
           <div key={r.player_id} className="scout-review-row">
             <strong>{r.name}</strong><span>{r.sorare_name || 'Name missing'} · {r.sorare_birth_date || 'Date unknown'}</span>
             {r.sorare_slug ? <a href={'https://sorare.com/football/players/' + encodeURIComponent(r.sorare_slug)} target="_blank" rel="noreferrer">Check identity ↗</a> : <span>Needs verification</span>}
