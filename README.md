@@ -73,7 +73,19 @@ Approved: Bill Tuiloma, Elijah Just, Joe Bell, Luke Brooke-Smith, Matthew Garbet
 
 The script now performs an incremental **second pass** over people previously missed: first-name variants (Ben/Benjamin, Alex/Alexander, Kosta/Konstantinos), simplified first/last names, and exact date-of-birth checks. Recent footballers with club or national-team records are prioritised. It automatically links only **one unique compatible name + matching full DOB**; unclear candidates stay unlinked for human review.
 
-A successful first-pass search does not mean complete coverage: players can appear on Sorare under different display names or middle-name slugs. Use `data/sorare/identity_reviews.csv` for carefully checked external profiles, so manual research is preserved across automatic updates. This file currently contains 35 decisions (including the initial four homonym rejections). `public/data/sorare_matches.json` reports `lookup_version` and `second_pass_remaining` to track the additional scan.
+A successful first-pass search does not mean complete coverage: players can appear on Sorare under different display names or middle-name slugs. Use `data/sorare/identity_reviews.csv` for carefully checked external profiles, so manual research is preserved across automatic updates. This file currently contains 49 decisions (including the initial four homonym rejections). `public/data/sorare_matches.json` reports `lookup_version` and `second_pass_remaining` to track the additional scan.
+
+## Sorare roster cross-check — 22 October 2026
+
+The second discovery method cross-checks Sorare's **New Zealand national-team roster** and its **Auckland City / Wellington Phoenix / Cavalry FC** player lists with the NZ Talent Radar database. This reveals player slugs with middle names that text search can miss, without relying on an unverified guess.
+
+As of this audit: **1111 NZ-linked player records, 62 verified Sorare identities, 4 rejected homonyms, 0 manual identity reviews outstanding**. Source-backed additions include Jake Gleeson, Nikko Boxall, Jay Herdman, Matthew Foord, Jeremy Foo, Fergus Gillion, Dylan Manickum, Angus Kilkolly, Tommy Smith, Tim Payne, Max Crocombe, Lukas Kelly-Heald, Isaac Hughes and Matthew Sheridan.
+
+Two useful data quality findings:
+- **Max Crocombe** (Wikidata Q6794678) was already in the catalogue. Sorare calls him **Maxime Crocombe**; we linked his existing identity rather than creating a duplicate.
+- **Isaac Hughes** (Wikidata Q125791559) had a one-day birth-date discrepancy. Independently sourced football records identify **25 March 2004** rather than **24 March 2004**; the correction is stored in `data/manual_players.csv`.
+
+Decisions are retained in `data/sorare/identity_reviews.csv` and written into both player and audit JSON. Profiles without adequate identity evidence remain unlinked. This manual source work is separate from the automated second-pass workflow; its next run and tests must still be checked in Actions.
 
 ## Spatial scouting and Understat
 
