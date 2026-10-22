@@ -51,6 +51,8 @@ class PerformanceTests(unittest.TestCase):
         self.assertEqual(result["summary"]["minutes"], 295)
         self.assertEqual(result["summary"]["scored_matches"], 2)
         self.assertEqual(result["summary"]["average_score"], 63.0)
+        self.assertEqual(result["period_start"], "2026-09-18")
+        self.assertEqual(result["period_end"], "2026-10-20")
         self.assertEqual(result["summary"]["totals"]["goals"], 1)
         self.assertIsNone(result["summary"]["totals"]["goalAssist"])
 
@@ -96,6 +98,9 @@ class PerformanceTests(unittest.TestCase):
             self.assertEqual(result["coverage"]["players_updated"], 1)
             self.assertEqual(result["coverage"]["game_scores"], 5)
             self.assertEqual(result["players"][self.player["id"]]["summary"]["average_score"], 63)
+            self.assertIn("+00:00", result["players"][self.player["id"]]["retrieved_at"])
+            self.assertEqual(result["players"][self.player["id"]]["period_end"], "2026-10-20")
+            self.assertIn("+00:00", result["generated_at_utc"])
             self.assertTrue(output.exists())
 
 
@@ -144,13 +149,19 @@ class PerformanceTests(unittest.TestCase):
             catalogue.write_text(json.dumps({"players": [self.player]}), encoding="utf-8")
             previous = {"players": {self.player["id"]: {
                 "games": [{"id": "old-score"}],
-                "summary": {"matches_played": 1}}}}
+                "summary": {"matches_played": 1},
+                "retrieved_at": "2026-10-01T10:00:00+00:00",
+                "period_start": "2026-09-01", "period_end": "2026-09-30"}}}
             output.write_text(json.dumps(previous), encoding="utf-8")
             no_scores = {**player_result(), "allPlayerGameScores": {"nodes": []}}
             with patch.object(perf, "CATALOGUE", catalogue), patch.object(perf, "OUTPUT", output), \
                  patch.object(perf.time, "sleep"), patch.dict("os.environ", {"SORARE_API_KEY": "test"}):
                 result = perf.run(request_func=lambda *args: no_scores)
-            self.assertEqual(result["players"][self.player["id"]]["games"], [{"id": "old-score"}])
+            record = result["players"][self.player["id"]]
+            self.assertEqual(record["games"], [{"id": "old-score"}])
+            self.assertEqual(record["retrieved_at"], "2026-10-01T10:00:00+00:00")
+            self.assertEqual(record["period_end"], "2026-09-30")
+            self.assertIn("+00:00", record["last_checked_at"])
 
 
 if __name__ == "__main__":
