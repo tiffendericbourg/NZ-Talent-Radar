@@ -10619,7 +10619,7 @@
     {
       "id": "wd:Q125791559",
       "name": "Isaac Hughes",
-      "birth_date": "2004-03-24",
+      "birth_date": "2004-03-25",
       "age": 22,
       "nationalities": [
         "United Kingdom",
@@ -10637,9 +10637,11 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q125791559",
-      "sorare_slug": null,
+      "sorare_slug": "isaac-robert-hughes",
       "sources": [
-        "https://www.wikidata.org/wiki/Q125791559"
+        "https://www.wikidata.org/wiki/Q125791559",
+        "https://www.transfermarkt.com/isaac-hughes/profil/spieler/953953",
+        "https://sorare.com/football/teams/wellington-phoenix-wellington/team"
       ],
       "updated_at": "2026-10-22"
     },
@@ -16257,9 +16259,10 @@
       "eligibility_status": "confirmed_international",
       "gender": "Men",
       "wikidata_id": "Q124963162",
-      "sorare_slug": null,
+      "sorare_slug": "lukas-eric-kelly-heald",
       "sources": [
-        "https://www.wikidata.org/wiki/Q124963162"
+        "https://www.wikidata.org/wiki/Q124963162",
+        "https://sorare.com/football/players/lukas-eric-kelly-heald"
       ],
       "updated_at": "2026-10-22"
     },
@@ -17669,9 +17672,10 @@
       "eligibility_status": "nz_nationality",
       "gender": "Men",
       "wikidata_id": "Q125973758",
-      "sorare_slug": null,
+      "sorare_slug": "matthew-benjamin-sheridan",
       "sources": [
-        "https://www.wikidata.org/wiki/Q125973758"
+        "https://www.wikidata.org/wiki/Q125973758",
+        "https://sorare.com/football/players/matthew-benjamin-sheridan/history"
       ],
       "updated_at": "2026-10-22"
     },
