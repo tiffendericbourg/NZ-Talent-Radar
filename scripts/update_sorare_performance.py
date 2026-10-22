@@ -199,6 +199,22 @@ def summarize(games):
     }
 
 
+def merge_games(new_games, old_games):
+    """Keep previously verified match history across weekly API snapshots."""
+    merged = {game["id"]: game for game in old_games if game.get("id")}
+    # Newest API result takes precedence when Sorare corrects a score.
+    merged.update({game["id"]: game for game in new_games if game.get("id")})
+    return sorted(merged.values(), key=lambda game: game.get("date") or "", reverse=True)
+
+
+def played_period(games):
+    dates = sorted(str(g["date"])[:10] for g in games
+                   if g.get("score_status") == "FINAL"
+                   and g.get("stats", {}).get("playedInGame") is True
+                   and (g.get("stats", {}).get("minsPlayed") or 0) > 0)
+    return (dates[0], dates[-1]) if dates else (None, None)
+
+
 def normalize_player(catalogue_player, api_player, count):
     expected = catalogue_player.get("birth_date")
     actual = str(api_player.get("birthDate") or "")[:10]
@@ -218,10 +234,7 @@ def normalize_player(catalogue_player, api_player, count):
             games.append(game)
     games.sort(key=lambda x: x["date"], reverse=True)
     # The stats period covers finalized matches actually played, not DNP entries.
-    played_dates = sorted(g["date"][:10] for g in games
-                          if g["score_status"] == "FINAL"
-                          and g["stats"].get("playedInGame") is True
-                          and (g["stats"].get("minsPlayed") or 0) > 0)
+    period_start, period_end = played_period(games)
     return {
         "sorare_slug": catalogue_player["sorare_slug"],
         "name": catalogue_player["name"],
@@ -229,13 +242,13 @@ def normalize_player(catalogue_player, api_player, count):
         "requested_games": count,
         "collection_detail": api_player.get("collection_detail", "detailed"),
         "games": games,
-        "period_start": played_dates[0] if played_dates else None,
-        "period_end": played_dates[-1] if played_dates else None,
+        "period_start": period_start,
+        "period_end": period_end,
         "summary": summarize(games),
     }
 
 
-def run(limit=0, games=15, check=False, request_func=request_player):
+def run(limit=0, games=50, check=False, request_func=request_player):
     key = os.environ.get("SORARE_API_KEY", "").strip()
     if not key and not os.environ.get("SORARE_ACCESS_TOKEN", "").strip():
         raise RuntimeError("Missing Sorare credentials: SORARE_API_KEY or SORARE_ACCESS_TOKEN")
@@ -261,12 +274,15 @@ def run(limit=0, games=15, check=False, request_func=request_player):
             if check:
                 print("Sorare performance query accepted for a verified player")
                 return result
-            # Keep the old history only when this request returns no scores.
-            # A valid empty dataset is still reported, not filled with fabricated games.
-            if not result["games"] and records.get(p["id"], {}).get("games"):
-                records[p["id"]]["last_checked_at"] = checked_at
+            old = records.get(p["id"], {})
+            if not result["games"] and old.get("games"):
+                old["last_checked_at"] = checked_at
                 print("%s: no new scores; preserving previous confirmed matches" % p["name"])
             else:
+                if old.get("sorare_slug") == result["sorare_slug"] and old.get("games"):
+                    result["games"] = merge_games(result["games"], old["games"])
+                    result["summary"] = summarize(result["games"])
+                    result["period_start"], result["period_end"] = played_period(result["games"])
                 records[p["id"]] = result
             success += 1
             print("%s: %s matches played / %s game scores" %
@@ -285,7 +301,7 @@ def run(limit=0, games=15, check=False, request_func=request_player):
         "generated_at": generated_at.date().isoformat(),
         "generated_at_utc": generated_at.isoformat(timespec="seconds"),
         "source": "Sorare football GraphQL",
-        "sample": "Up to %s most recent player game scores; not necessarily current season" % games,
+        "sample": "Latest %s game scores per request, with previously verified match history retained" % games,
         "players": records,
         "coverage": {
             "confirmed_identities": len(verified),
@@ -308,7 +324,7 @@ def run(limit=0, games=15, check=False, request_func=request_player):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="0 = all confirmed identities")
-    parser.add_argument("--games", type=int, default=15, help="Number of recent matches per player")
+    parser.add_argument("--games", type=int, default=50, help="Recent match scores per player (max 50); retains earlier imports")
     parser.add_argument("--check", action="store_true", help="Validate one live GraphQL request")
     args = parser.parse_args()
     if args.limit < 0 or not 1 <= args.games <= 50:
