@@ -25,8 +25,8 @@ function Summary({ report, onOpen, compact = false }) {
     </p>
     <div className="research-numbers">
       <div><strong>{fmt(report.minutes)}</strong><small>minutes</small></div>
-      <div><strong>{report.games}</strong><small>scored games</small></div>
-      <div><strong>{report.average == null ? '—' : report.average.toFixed(1)}</strong><small>Sorare avg.</small></div>
+      <div><strong>{report.games}</strong><small>played games</small></div>
+      <div><strong>{report.index == null ? '—' : report.index}</strong><small>NZ Impact / 100</small></div>
     </div>
     <p className="research-observation">{report.observations[0]}</p>
     {!compact && <p className="research-next">{report.nextAction}</p>}
@@ -48,8 +48,8 @@ export function ScoutingReport({ player, players, performance, season }) {
     <div className="research-facts">
       <div><small>DOCUMENTED MINUTES</small><strong>{fmt(report.minutes)}</strong></div>
       <div><small>COMPARABLE MATCHES</small><strong>{fmt(report.games)}</strong></div>
-      <div><small>SORARE SCORE AVG.</small><strong>{report.average == null ? '—' : report.average.toFixed(1)}</strong></div>
-      <div><small>PEER MEDIAN</small><strong>{report.peerMedian == null ? '—' : report.peerMedian.toFixed(1)}</strong></div>
+      <div><small>NZ IMPACT INDEX</small><strong>{report.index == null ? '—' : report.index + '/100'}</strong></div>
+      <div><small>ROLE REFERENCE</small><strong>{report.referenceSize || 0} players</strong></div>
     </div>
     <div className="research-insight-layout">
       <article className="research-insights">
@@ -61,7 +61,7 @@ export function ScoutingReport({ player, players, performance, season }) {
         <span className="eyebrow">ROLE METRICS / PER 90</span>
         <h3>{report.group ? report.group.charAt(0).toUpperCase() + report.group.slice(1) : 'Role not documented'}</h3>
         {report.metrics.length ? report.metrics.map(metric => <div className="research-metric" key={metric.field}>
-          <span>{metric.label}<small>{metric.observed} / {metric.possible} scored games covered</small></span>
+          <span>{metric.label}<small>{metric.observed} / {metric.possible} played games · {metric.referenceCount ?? 0} reference players</small></span>
           <strong>{metric.per90 == null ? '—' : metric.per90.toFixed(1)}</strong>
         </div>) : <p>Role-specific comparisons unavailable until the position is verified.</p>}
         <p className="research-disclaimer">Per-90 values use only matches reporting each statistic. No missing statistic is treated as zero.</p>
@@ -69,12 +69,12 @@ export function ScoutingReport({ player, players, performance, season }) {
     </div>
     <p className="research-source-line">
       MATCH WINDOW {dateText(report.matchStart)} → {dateText(report.matchEnd)}
-      {' · '}SORARE SCORING VERSION {report.version || 'not available'}
+      {' · '}NZ IMPACT SIGNALS {report.usableSignals || 0} / 3
       {' · '}RETRIEVED {dateText(report.retrievedAt)}
-      {' · '}{report.peerMedian == null ? 'No usable peer median' : report.peerCount + ' NZ role peers'}
+      {' · '}{report.index == null ? 'Insufficient role benchmarks' : 'NZ role reference: ' + report.referenceSize + ' players'}
     </p>
     <p className="research-disclaimer">
-      Comparison groups share gender, broad position and Sorare scoring version but are not adjusted for league strength, team role or opposition. Sorare ratings are fantasy scoring outputs, not independent talent measurements.
+      NZ Impact is an exploratory relative index based on real football actions. Groups share gender and broad position, not league strength or tactical role. Missing values never count as zero. This is not an ability prediction or selection recommendation.
       {player.sorare_slug && <> <a href={'https://sorare.com/football/players/' + encodeURIComponent(player.sorare_slug)} target="_blank" rel="noreferrer">Sorare source ↗</a></>}
     </p>
   </section>
@@ -109,11 +109,11 @@ export function U23CaseStudy({ cataloguePlayers, performance, season, onOpen }) 
       <div><small>NZ U23 PROFILES</small><strong>{fmt(result.total)}</strong></div>
       <div><small>DOCUMENTED ABROAD</small><strong>{fmt(result.abroad)}</strong></div>
       <div><small>CLUB COUNTRY UNKNOWN</small><strong>{fmt(result.unknownClub)}</strong></div>
-      <div><small>WITH SCORED MATCHES</small><strong>{fmt(result.withMatches)}</strong></div>
+      <div><small>WITH PLAYED MATCHES</small><strong>{fmt(result.withMatches)}</strong></div>
     </div>
     <div className="research-section-head">
       <div><span className="eyebrow">01 / VIDEO REVIEW QUEUE</span><h2>Three cases, when the data supports them.</h2>
-        <p>{result.ready} U23 players currently meet the preliminary threshold (3 scored matches and 180 minutes). Ordered by documented minutes, with broad-position variety — never by a cross-league Sorare score.</p></div>
+        <p>{result.ready} U23 players meet the preliminary threshold (3 played matches and 180 minutes). These video-review leads are ordered by minutes, with role variety, not by a cross-league index.</p></div>
     </div>
     {result.selected.length ? <div className="research-cases">{result.selected.map(report =>
       <Summary key={report.player.id} report={report} onOpen={onOpen}/>)}</div>
@@ -130,10 +130,10 @@ export function U23CaseStudy({ cataloguePlayers, performance, season, onOpen }) 
     {result.pending.length > 0 && <><div className="research-section-head"><div>
       <span className="eyebrow">03 / DATA TO COLLECT</span><h2>Not enough match evidence yet</h2></div></div>
       <div className="research-pending">{result.pending.map(r => <div key={r.player.id}>
-        <strong>{r.player.name}</strong><span>{r.games} scored matches · {r.minutes} minutes</span>
+        <strong>{r.player.name}</strong><span>{r.games} played matches · {r.minutes} minutes</span>
         <small>Verify playing time, position and match coverage before interpretation.</small>
       </div>)}</div></>}
-    <p className="research-disclaimer">Research criteria: documented NZ nationality or senior team link, age under 23, verified Sorare match score and minutes, consistent score version. Names are not selected based on an unvalidated talent score. Competition quality, video, medical data and international eligibility require separate checks.</p>
+    <p className="research-disclaimer">Research criteria: documented NZ nationality or senior team link, age under 23, played minutes from sourced match events. Names are not selected solely by a derived index. Competition quality, video, medical data and international eligibility require separate checks.</p>
   </section>
 }
 
@@ -142,7 +142,7 @@ export function MethodologyPage({ cataloguePlayers, performance, understat, onCa
   const scored = Object.values(performance?.players || {}).filter(p =>
     (p.games || []).some(g => g.score_status === 'FINAL' &&
       g.stats?.playedInGame === true && Number(g.stats?.minsPlayed) > 0 &&
-      typeof g.score === 'number' && g.low_coverage === false)).length
+      g.low_coverage === false)).length
   const importedShots = Object.values(understat?.players || {}).reduce((sum, record) => sum + (record.shots?.length || 0), 0)
   return <section className="research-page methodology-page">
     <div className="directory-heading"><span className="eyebrow">ABOUT / THE ANALYST'S APPROACH</span>
@@ -158,16 +158,16 @@ export function MethodologyPage({ cataloguePlayers, performance, understat, onCa
     <div className="research-facts">
       <div><small>CATALOGUE PROFILES</small><strong>{fmt(cataloguePlayers.length)}</strong></div>
       <div><small>SORARE IDENTITIES</small><strong>{fmt(linked)}</strong></div>
-      <div><small>PLAYERS WITH SCORES</small><strong>{fmt(scored)}</strong></div>
+      <div><small>PLAYERS WITH MATCH EVENTS</small><strong>{fmt(scored)}</strong></div>
       <div><small>UNDERSTAT XY EVENTS</small><strong>{fmt(importedShots)}</strong></div>
     </div>
     <div className="methodology-columns">
       <article><span className="eyebrow">DATA ENGINEERING</span><h3>Reproducible before impressive</h3>
         <p>Python imports discover possible players and connect sources. Reviewed CSV corrections and identity decisions survive automated updates. React reads published JSON snapshots; API secrets remain in GitHub Actions.</p>
-        <p>Source dates, match dates, season grouping and sampling rules are documented separately. No synthetic performances, shots or percentiles are published.</p>
+        <p>Source dates, match dates, season grouping and sampling rules are documented separately. Index percentiles are calculated from sourced event rates; no synthetic matches or shot locations are published.</p>
       </article>
       <article><span className="eyebrow">FOOTBALL ANALYSIS</span><h3>Context before ranking</h3>
-        <p>Performance observations are grouped by gender, broad playing role and Sorare scoring version. Per-90 values use the minutes of observed matches only. A small sample leads to a data-collection action rather than a verdict.</p>
+        <p>NZ Impact Index compares three football actions per 90 minutes within each gender and broad playing role, using transparent weighted rank percentiles. Missing observations block the index rather than become zeros. A small sample leads to a video/data review, never an automatic verdict.</p>
         <p>Comparisons do not yet correct for opposition, league standard or tactical duties. These missing controls are visible in every report.</p>
       </article>
       <article><span className="eyebrow">WHAT COMES NEXT</span><h3>Video, benchmarking, validation</h3>
@@ -200,86 +200,64 @@ export function RoleComparisonStudy({ cataloguePlayers, performance, season, onO
       seasonEndDate(season), seasonStartDate(season)))
     .filter(r => r.games >= 3 && r.minutes >= 180)
     .sort((a, b) => b.minutes - a.minutes || a.player.name.localeCompare(b.player.name)),
-  [cataloguePlayers, performance, season, gender, group])
-  // Do not compare players whose Sorare scores use different scoring versions.
-  const versions = [...new Set(reports.map(r => r.version))]
-    .map(v => ({ version: v, count: reports.filter(r => r.version === v).length }))
-    .sort((a, b) => b.count - a.count)
-  const [selectedVersion, setSelectedVersion] = useState(null)
-  const version = versions.some(v => v.version === selectedVersion) ?
-    selectedVersion : versions[0]?.version || null
-  const compatible = reports.filter(r => r.version === version)
-  const left = compatible.find(r => r.player.id === leftId) || compatible[0]
-  const right = compatible.find(r => r.player.id === rightId && r.player.id !== left?.player.id) ||
-    compatible.find(r => r.player.id !== left?.player.id)
+    [cataloguePlayers, performance, season, gender, group])
+  const left = reports.find(r => r.player.id === leftId) || reports[0]
+  const right = reports.find(r => r.player.id === rightId && r.player.id !== left?.player.id) ||
+    reports.find(r => r.player.id !== left?.player.id)
   const fields = (left?.metrics || []).map(m => m.field)
-  const sameField = (report, field) => report?.metrics.find(m => m.field === field)
-  const valid = (m, report) => m?.per90 != null && m.observed === report.games
-  const maxFor = field => Math.max(1, ...[left, right].map(r => {
-    const metric = sameField(r, field)
-    return r && valid(metric, r) ? metric.per90 : 0
-  }))
+  const get = (r, field) => r?.metrics.find(m => m.field === field)
+  const usable = (metric, report) => metric?.per90 != null &&
+    metric.observed / report.games >= 0.8
   return <section className="research-page">
     <div className="directory-heading"><span className="eyebrow">CASE STUDY 02 / COMPARABLE ROLES</span>
       <h1>What changes by position<span className="green">?</span></h1>
-      <p>Two players, the same documented broad role, gender and scoring version. Look past the headline fantasy rating: compare role-specific events per 90 and their coverage before deciding what to watch on video.</p></div>
+      <p>Compare documented role-specific football events, not fantasy scores. The NZ Impact Index is a transparent relative activity signal, not a cross-league talent rating.</p></div>
     <div className="research-toolbar comparison-controls">
-      <label>Competition group<select value={gender} onChange={event => { setGender(event.target.value); setLeftId(''); setRightId(''); setSelectedVersion(null) }}>
+      <label>Group<select value={gender} onChange={e => { setGender(e.target.value); setLeftId(''); setRightId('') }}>
         <option value="Men">Men</option><option value="Women">Women</option></select></label>
-      <label>Position<select value={group} onChange={event => { setGroup(event.target.value); setLeftId(''); setRightId(''); setSelectedVersion(null) }}>
-        {GROUP_OPTIONS.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-      {versions.length > 1 && <label>Score version<select value={version || ''} onChange={event => { setSelectedVersion(event.target.value); setLeftId(''); setRightId('') }}>
-        {versions.map(v => <option key={v.version} value={v.version}>{v.version} · {v.count} players</option>)}</select></label>}
-      <span>{compatible.length} comparable profiles · {season === 'all' ? 'past 365 days' : seasonLabel(season)}</span>
+      <label>Position<select value={group} onChange={e => { setGroup(e.target.value); setLeftId(''); setRightId('') }}>
+        {GROUP_OPTIONS.map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label>
+      <span>{reports.length} profiles with documented minutes · {season === 'all' ? 'past 365 days' : seasonLabel(season)}</span>
     </div>
-    {compatible.length < 2 ? <div className="research-empty">
-      <h3>A two-player comparison is not available for this cohort.</h3>
-      <p>At least two documented players need 3 scored, completed, non-low-coverage matches and 180 minutes in the same Sorare scoring version. Try a different position or period.</p>
+    {reports.length < 2 ? <div className="research-empty"><h3>Not enough player evidence.</h3>
+      <p>This comparison needs two players of the same group and role with at least three matches and 180 minutes. Try another cohort or season.</p>
     </div> : <>
       <div className="comparison-players">
-        <label>Player A<select value={left.player.id} onChange={event => setLeftId(event.target.value)}>
-          {compatible.filter(r => r.player.id !== right?.player.id).map(r =>
-            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}
-        </select></label>
-        <label>Player B<select value={right.player.id} onChange={event => setRightId(event.target.value)}>
-          {compatible.filter(r => r.player.id !== left?.player.id).map(r =>
-            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}
-        </select></label>
+        <label>Player A<select value={left.player.id} onChange={e => setLeftId(e.target.value)}>
+          {reports.filter(r => r.player.id !== right?.player.id).map(r =>
+            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}</select></label>
+        <label>Player B<select value={right.player.id} onChange={e => setRightId(e.target.value)}>
+          {reports.filter(r => r.player.id !== left?.player.id).map(r =>
+            <option key={r.player.id} value={r.player.id}>{r.player.name}</option>)}</select></label>
       </div>
-      <div className="comparison-cards">
-        {[left, right].map(r => <article key={r.player.id} className="research-case">
-          <span className="eyebrow">{r.player.club_country || 'CLUB COUNTRY UNKNOWN'}</span>
-          <h3>{r.player.name}</h3><p>{r.player.club || 'Club not confirmed'}</p>
-          <div className="research-numbers">
-            <div><strong>{fmt(r.minutes)}</strong><small>minutes</small></div>
-            <div><strong>{r.games}</strong><small>matches</small></div>
-            <div><strong>{r.average?.toFixed(1)}</strong><small>Sorare</small></div>
-          </div>
-          <p className="research-observation">{r.nextAction}</p>
-          <button type="button" className="research-link" onClick={() => onOpen(r.player)}>Read player report ↗</button>
-        </article>)}
-      </div>
+      <div className="comparison-cards">{[left, right].map(r => <article key={r.player.id} className="research-case">
+        <span className="eyebrow">{r.player.club_country || 'CLUB COUNTRY UNKNOWN'}</span>
+        <h3>{r.player.name}</h3><p>{r.player.club || 'Club not confirmed'}</p>
+        <div className="research-numbers">
+          <div><strong>{fmt(r.minutes)}</strong><small>minutes</small></div>
+          <div><strong>{r.games}</strong><small>games</small></div>
+          <div><strong>{r.index ?? '—'}</strong><small>NZ Impact /100</small></div>
+        </div>
+        <p className="research-observation">{r.nextAction}</p>
+        <button type="button" className="research-link" onClick={() => onOpen(r.player)}>Read player report ↗</button>
+      </article>)}</div>
       <div className="comparison-metrics">
-        <div className="comparison-metrics-head"><h2>Role-specific events / 90</h2><span>Only fully covered metrics are plotted</span></div>
+        <div className="comparison-metrics-head"><h2>Recorded actions per 90</h2><span>Missing statistics are not zero</span></div>
         {fields.map(field => {
-          const a = sameField(left, field), b = sameField(right, field)
-          const comparable = valid(a, left) && valid(b, right)
-          const upper = maxFor(field)
+          const a = get(left, field), b = get(right, field)
+          const comparable = usable(a, left) && usable(b, right)
+          const max = Math.max(1, a?.per90 || 0, b?.per90 || 0)
           return <div className="comparison-metric-row" key={field}>
             <strong>{a?.label || field}</strong>
-            <div className="comparison-bar">
-              <span>Player A {comparable ? a.per90.toFixed(1) : 'Not comparable'}</span>
-              <div className="comparison-track">{comparable && <i style={{ width: 100 * a.per90 / upper + '%' }}/>}</div>
-            </div>
-            <div className="comparison-bar">
-              <span>Player B {comparable ? b.per90.toFixed(1) : 'Not comparable'}</span>
-              <div className="comparison-track alt">{comparable && <i style={{ width: 100 * b.per90 / upper + '%' }}/>}</div>
-            </div>
+            <div className="comparison-bar"><span>A: {comparable ? a.per90.toFixed(1) : 'Not comparable'}</span>
+              <div className="comparison-track">{comparable && <i style={{ width: a.per90 / max * 100 + '%' }}/>}</div></div>
+            <div className="comparison-bar"><span>B: {comparable ? b.per90.toFixed(1) : 'Not comparable'}</span>
+              <div className="comparison-track alt">{comparable && <i style={{ width: b.per90 / max * 100 + '%' }}/>}</div></div>
           </div>
         })}</div>
-      <p className="research-caution">These differences describe recorded match events, not talent. A higher count can reflect team style or match context. Do not infer who is better without video, opposition and competition-strength adjustments.</p>
+      <p className="research-caution">Higher counts do not necessarily mean better performance: team tactics, opponents and playing time affect these events. Watch the video before making a selection decision.</p>
     </>}
-    <p className="research-disclaimer">Scoring periods and versions are shared, but leagues and tactical jobs are not necessarily equivalent. No cross-league performance score or percentile is computed here. Missing stats remain unavailable, not zero.</p>
+    <p className="research-disclaimer">Source: documented match-event statistics. Player comparisons do not correct for league strength, tactical responsibilities or opponent quality.</p>
   </section>
 }
 
@@ -287,7 +265,7 @@ export function CoverageStudy({ cataloguePlayers, performance, season }) {
   const sources = performance?.players || {}
   const played = p => (sources[p.id]?.games || []).some(g => g.score_status === 'FINAL' &&
     g.low_coverage === false && g.stats?.playedInGame === true &&
-    Number(g.stats?.minsPlayed) > 0 && typeof g.score === 'number')
+    Number(g.stats?.minsPlayed) > 0)
   const women = cataloguePlayers.filter(p => p.gender === 'Women')
   const men = cataloguePlayers.filter(p => p.gender === 'Men')
   const youth = cataloguePlayers.filter(p => {
@@ -320,7 +298,7 @@ export function CoverageStudy({ cataloguePlayers, performance, season }) {
         const scored = group.filter(played).length
         const share = group.length ? 100 * scored / group.length : 0
         return <div key={label} className="coverage-audit-row">
-          <div><strong>{label}</strong><span>{scored} / {group.length} have scored games</span><strong>{share.toFixed(1)}%</strong></div>
+          <div><strong>{label}</strong><span>{scored} / {group.length} have played games</span><strong>{share.toFixed(1)}%</strong></div>
           <div className="comparison-track"><i style={{ width: share + '%' }}/></div>
         </div>
       })}</div>
