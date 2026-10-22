@@ -32,8 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Test offline calculations
@@ -41,10 +41,14 @@ jobs:
       - name: Validate Sorare performance API
         env:
           SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
+          SORARE_ACCESS_TOKEN: ${{ secrets.SORARE_ACCESS_TOKEN }}
+          SORARE_JWT_AUD: ${{ secrets.SORARE_JWT_AUD }}
         run: python scripts/update_sorare_performance.py --check
       - name: Collect recent NZ player performances
         env:
           SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
+          SORARE_ACCESS_TOKEN: ${{ secrets.SORARE_ACCESS_TOKEN }}
+          SORARE_JWT_AUD: ${{ secrets.SORARE_JWT_AUD }}
           MATCH_LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '0' }}
           MATCHES_PER_PLAYER: ${{ github.event_name == 'workflow_dispatch' && inputs.games || '15' }}
         run: python scripts/update_sorare_performance.py --limit "$MATCH_LIMIT" --games "$MATCHES_PER_PLAYER"
