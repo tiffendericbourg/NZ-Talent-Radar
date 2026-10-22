@@ -126,3 +126,11 @@ test('historical rankings use the entire July-June period even on leap years', (
   assert.equal(row.matches, 3)
   assert.equal(row.average, 50)
 })
+
+test('J.League switch in 2026 respects the confirmed August-June season', () => {
+  assert.equal(gameSeasonKey({ competition: 'J1 League', date: '2025-11-14' }), 'calendar:2025')
+  assert.equal(gameSeasonKey({ competition: 'J1 League', date: '2026-04-16' }), 'unclassified:2026')
+  assert.equal(gameSeasonKey({ competition: 'J1 League', date: '2026-08-07' }), 'split:2026')
+  assert.equal(gameSeasonKey({ competition: 'J1 League', date: '2027-04-07' }), 'split:2026')
+  assert.equal(gameSeasonKey({ competition: 'MLS', date: '2027-04-07' }), 'calendar:2027')
+})
