@@ -1,0 +1,5 @@
+player_id,player_name,league,season_start,season_end,status,context
+wd:Q47544166,Liberato Cacace,Serie_A,2021,2024,needs_understat_id,Empoli
+wd:Q28800473,Sarpreet Singh,Bundesliga,2019,2019,needs_understat_id,Bayern Munich
+wd:Q5728588,Bill Tuiloma,Ligue_1,2014,2016,needs_understat_id,Marseille
+wd:Q106939313,Ben Old,Ligue_1,2024,2024,needs_understat_id,Saint-Etienne
