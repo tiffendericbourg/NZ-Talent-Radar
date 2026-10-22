@@ -1,3 +1,7 @@
 player_id,understat_id,status,evidence_url
 wd:Q74548,4456,confirmed,https://github.com/vaastav/Fantasy-Premier-League/blob/9779cdbc0c07f6c900c2d0c181ddf6bb9c800f88/data/2022-23/id_dict.csv
 wd:Q150289,529,confirmed,https://github.com/vaastav/Fantasy-Premier-League/blob/9779cdbc0c07f6c900c2d0c181ddf6bb9c800f88/data/2021-22/id_dict.csv
+wd:Q47544166,10385,confirmed,https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/9dc2c5dc6844977a0e9b113f97bfbccd479b681e/understat_data/Players_Cleaned/player_seasons/Liberato_Cacace_10385.csv
+wd:Q28800473,7777,confirmed,https://github.com/eddwebster/football_analytics/blob/47cac1ba5c9748b057b7cfa366dd3d7a21d73575/data/understat/raw/metadata/bundesliga/metadata_bundesliga_1920.csv
+wd:Q5728588,3807,confirmed,https://github.com/eddwebster/football_analytics/blob/47cac1ba5c9748b057b7cfa366dd3d7a21d73575/data/understat/raw/metadata/ligue-1/metadata_ligue1_1415_.csv
+wd:Q106939313,12809,confirmed,https://github.com/Beautiful-Game-Oracle/The-Beautiful-Game-Oracle/blob/9dc2c5dc6844977a0e9b113f97bfbccd479b681e/understat_data/Players_Cleaned/player_seasons/Ben_Old_12809.csv
