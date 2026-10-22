@@ -6,7 +6,7 @@ on:
       limit:
         description: 'Maximum unmatched players to check (0 = all)'
         required: false
-        default: '10'
+        default: '30'
   schedule:
     - cron: '10 6 * * 1'
   push:
@@ -41,7 +41,7 @@ jobs:
       - name: Match player identities
         env:
           SORARE_API_KEY: ${{ secrets.SORARE_API_KEY }}
-          MATCH_LIMIT: ${{ github.event_name == 'schedule' && '200' || (inputs.limit || '10') }}
+          MATCH_LIMIT: ${{ github.event_name == 'schedule' && '150' || (github.event_name == 'push' && '100' || (inputs.limit || '30')) }}
         run: python scripts/update_sorare.py --limit "$MATCH_LIMIT"
       - name: Summarize the results
         run: |
@@ -52,7 +52,7 @@ jobs:
           data = json.loads(path.read_text(encoding="utf-8"))
           with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
               out.write("## Sorare player matching\n\n")
-              for key in ("scanned", "checked_so_far", "remaining", "confirmed", "already_matched", "needs_review", "not_found"):
+              for key in ("scanned", "second_pass_remaining", "checked_so_far", "remaining", "confirmed", "already_matched", "needs_review", "rejected", "not_found"):
                   out.write(f"- {key.replace('_', ' ').title()}: **{data[key]}**\n")
               out.write("\nMatches are confirmed only by identity checks.\n")
           PY
