@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22",
+  "generated_at": "2026-10-26",
   "discovery_queries": 6,
   "query_hits": [
     1090,
@@ -21,7 +21,7 @@
   "with_club": 217,
   "women": 303,
   "men": 808,
-  "under_23": 46,
+  "under_23": 45,
   "abroad_with_known_club": 87,
   "potential_to_verify": 13
 }
