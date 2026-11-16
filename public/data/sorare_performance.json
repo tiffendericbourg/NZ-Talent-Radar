@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-09",
-  "generated_at_utc": "2026-11-09T16:51:22+00:00",
+  "generated_at": "2026-11-16",
+  "generated_at_utc": "2026-11-16T16:24:26+00:00",
   "source": "Sorare football GraphQL",
   "sample": "Up to 4 Sorare pages of 50 scores; older verified match history retained",
   "players": {
@@ -206,8 +206,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:19+00:00",
-      "last_checked_at": "2026-11-09T16:50:19+00:00"
+      "retrieved_at": "2026-11-16T16:23:24+00:00",
+      "last_checked_at": "2026-11-16T16:23:24+00:00"
     },
     "wd:Q24239357": {
       "sorare_slug": "adam-thomas-mitchell",
@@ -411,8 +411,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:20+00:00",
-      "last_checked_at": "2026-11-09T16:50:20+00:00"
+      "retrieved_at": "2026-11-16T16:23:25+00:00",
+      "last_checked_at": "2026-11-16T16:23:25+00:00"
     },
     "wd:Q110616470": {
       "sorare_slug": "alexander-greive",
@@ -2772,8 +2772,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:21+00:00",
-      "last_checked_at": "2026-11-09T16:50:21+00:00"
+      "retrieved_at": "2026-11-16T16:23:26+00:00",
+      "last_checked_at": "2026-11-16T16:23:26+00:00"
     },
     "wd:Q107558242": {
       "sorare_slug": "alexander-paulsen",
@@ -2792,7 +2792,7 @@
           "competition": "Premiership",
           "position": "Goalkeeper",
           "score": 49.9,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 14.9,
           "low_coverage": false,
@@ -4747,15 +4747,15 @@
         }
       ],
       "period_start": "2024-07-24",
-      "period_end": "2026-10-31",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 20,
-        "minutes": 1671,
-        "scored_matches": 20,
+        "matches_played": 21,
+        "minutes": 1761,
+        "scored_matches": 21,
         "scoring_version": 7,
         "average_score": 48.3,
         "totals": {
-          "minsPlayed": 1671,
+          "minsPlayed": 1761,
           "goals": null,
           "goalAssist": null,
           "totalScoringAtt": null,
@@ -4763,35 +4763,35 @@
           "bigChanceCreated": null,
           "bigChanceMissed": null,
           "penAreaEntries": 5,
-          "totalPass": 778,
-          "accuratePass": 620,
-          "successfulFinalThirdPasses": 22,
-          "accurateLongBalls": 99,
-          "duelWon": 14,
+          "totalPass": 824,
+          "accuratePass": 656,
+          "successfulFinalThirdPasses": 26,
+          "accurateLongBalls": 108,
+          "duelWon": 16,
           "duelLost": 4,
           "wonContest": null,
           "totalTackle": 1,
           "wonTackle": null,
           "interceptionWon": null,
           "possWon": 31,
-          "possLostCtrl": 165,
-          "effectiveClearance": 22,
+          "possLostCtrl": 175,
+          "effectiveClearance": 24,
           "errorLeadToShot": 5,
           "errorLeadToGoal": 1,
           "fouls": null,
           "yellowCard": null,
           "redCard": null,
-          "saves": 75,
-          "goalsConceded": 37,
-          "goodHighClaim": 15,
+          "saves": 79,
+          "goalsConceded": 38,
+          "goodHighClaim": 17,
           "accurateKeeperSweeper": 9,
           "penaltiesSaved": null,
           "cleanSheet": 3
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:22+00:00",
-      "last_checked_at": "2026-11-09T16:50:22+00:00"
+      "retrieved_at": "2026-11-16T16:23:27+00:00",
+      "last_checked_at": "2026-11-16T16:23:27+00:00"
     },
     "wd:Q16239766": {
       "sorare_slug": "alex-arthur-rufer",
@@ -5779,8 +5779,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:22+00:00",
-      "last_checked_at": "2026-11-09T16:50:22+00:00"
+      "retrieved_at": "2026-11-16T16:23:27+00:00",
+      "last_checked_at": "2026-11-16T16:23:27+00:00"
     },
     "wd:Q18719698": {
       "sorare_slug": "andre-ernest-de-jong",
@@ -6131,8 +6131,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:23+00:00",
-      "last_checked_at": "2026-11-09T16:50:23+00:00"
+      "retrieved_at": "2026-11-16T16:23:28+00:00",
+      "last_checked_at": "2026-11-16T16:23:28+00:00"
     },
     "wd:Q53773340": {
       "sorare_slug": "angus-kilkolly",
@@ -6336,8 +6336,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:24+00:00",
-      "last_checked_at": "2026-11-09T16:50:24+00:00"
+      "retrieved_at": "2026-11-16T16:23:29+00:00",
+      "last_checked_at": "2026-11-16T16:23:29+00:00"
     },
     "wd:Q106939313": {
       "sorare_slug": "benjamin-craig-old",
@@ -6355,10 +6355,10 @@
           "date": "2026-11-07T19:00:00Z",
           "competition": "Ligue 2",
           "position": "Defender",
-          "score": 41.24,
-          "score_status": "REVIEWING",
+          "score": 40.24,
+          "score_status": "FINAL",
           "scoring_version": 7,
-          "all_around_score": 6.24,
+          "all_around_score": 5.24,
           "low_coverage": false,
           "stats": {
             "minsPlayed": 90,
@@ -6382,7 +6382,7 @@
             "totalTackle": 1,
             "wonTackle": 1,
             "interceptionWon": null,
-            "possWon": 2,
+            "possWon": 1,
             "possLostCtrl": 9,
             "effectiveClearance": null,
             "errorLeadToShot": null,
@@ -11398,38 +11398,38 @@
         }
       ],
       "period_start": "2024-08-17",
-      "period_end": "2026-10-31",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 58,
-        "minutes": 3205,
-        "scored_matches": 58,
+        "matches_played": 59,
+        "minutes": 3295,
+        "scored_matches": 59,
         "scoring_version": 7,
         "average_score": 41.8,
         "totals": {
-          "minsPlayed": 3205,
+          "minsPlayed": 3295,
           "goals": 1,
           "goalAssist": 2,
-          "totalScoringAtt": 32,
+          "totalScoringAtt": 33,
           "ontargetScoringAtt": 12,
           "bigChanceCreated": 2,
           "bigChanceMissed": 4,
           "penAreaEntries": 109,
-          "totalPass": 1601,
-          "accuratePass": 1356,
-          "successfulFinalThirdPasses": 353,
-          "accurateLongBalls": 25,
-          "duelWon": 163,
-          "duelLost": 166,
+          "totalPass": 1642,
+          "accuratePass": 1394,
+          "successfulFinalThirdPasses": 361,
+          "accurateLongBalls": 26,
+          "duelWon": 165,
+          "duelLost": 171,
           "wonContest": 29,
-          "totalTackle": 52,
-          "wonTackle": 34,
+          "totalTackle": 53,
+          "wonTackle": 35,
           "interceptionWon": 35,
-          "possWon": 153,
-          "possLostCtrl": 506,
+          "possWon": 154,
+          "possLostCtrl": 515,
           "effectiveClearance": 65,
           "errorLeadToShot": 3,
           "errorLeadToGoal": null,
-          "fouls": 21,
+          "fouls": 23,
           "yellowCard": 3,
           "redCard": null,
           "saves": null,
@@ -11437,12 +11437,12 @@
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
-          "cleanSheet": 14
+          "cleanSheet": 15
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:26+00:00",
-      "last_checked_at": "2026-11-09T16:50:26+00:00"
+      "retrieved_at": "2026-11-16T16:23:30+00:00",
+      "last_checked_at": "2026-11-16T16:23:30+00:00"
     },
     "wd:Q62629839": {
       "sorare_slug": "ben-waine",
@@ -15125,8 +15125,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:27+00:00",
-      "last_checked_at": "2026-11-09T16:50:27+00:00"
+      "retrieved_at": "2026-11-16T16:23:32+00:00",
+      "last_checked_at": "2026-11-16T16:23:32+00:00"
     },
     "wd:Q5728588": {
       "sorare_slug": "bill-tuiloma",
@@ -21553,8 +21553,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:28+00:00",
-      "last_checked_at": "2026-11-09T16:50:28+00:00"
+      "retrieved_at": "2026-11-16T16:23:33+00:00",
+      "last_checked_at": "2026-11-16T16:23:33+00:00"
     },
     "wd:Q62006806": {
       "sorare_slug": "callan-elliot",
@@ -23179,8 +23179,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:29+00:00",
-      "last_checked_at": "2026-11-09T16:50:29+00:00"
+      "retrieved_at": "2026-11-16T16:23:34+00:00",
+      "last_checked_at": "2026-11-16T16:23:34+00:00"
     },
     "wd:Q50829202": {
       "sorare_slug": "callum-mccowatt",
@@ -23199,7 +23199,7 @@
           "competition": "Superliga",
           "position": "Midfielder",
           "score": 73.4,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 13.4,
           "low_coverage": false,
@@ -30250,38 +30250,38 @@
         }
       ],
       "period_start": "2023-07-23",
-      "period_end": "2026-11-05",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 112,
-        "minutes": 6906,
-        "scored_matches": 112,
+        "matches_played": 113,
+        "minutes": 6984,
+        "scored_matches": 113,
         "scoring_version": 7,
-        "average_score": 49.2,
+        "average_score": 49.4,
         "totals": {
-          "minsPlayed": 6906,
+          "minsPlayed": 6984,
           "goals": 26,
-          "goalAssist": 11,
-          "totalScoringAtt": 213,
+          "goalAssist": 12,
+          "totalScoringAtt": 215,
           "ontargetScoringAtt": 91,
           "bigChanceCreated": 19,
           "bigChanceMissed": 19,
-          "penAreaEntries": 300,
-          "totalPass": 3381,
-          "accuratePass": 2721,
-          "successfulFinalThirdPasses": 986,
-          "accurateLongBalls": 154,
-          "duelWon": 355,
-          "duelLost": 425,
+          "penAreaEntries": 306,
+          "totalPass": 3417,
+          "accuratePass": 2753,
+          "successfulFinalThirdPasses": 1000,
+          "accurateLongBalls": 157,
+          "duelWon": 357,
+          "duelLost": 428,
           "wonContest": 89,
-          "totalTackle": 124,
-          "wonTackle": 83,
+          "totalTackle": 125,
+          "wonTackle": 84,
           "interceptionWon": 40,
-          "possWon": 308,
-          "possLostCtrl": 1151,
-          "effectiveClearance": 53,
+          "possWon": 313,
+          "possLostCtrl": 1163,
+          "effectiveClearance": 54,
           "errorLeadToShot": 2,
           "errorLeadToGoal": null,
-          "fouls": 100,
+          "fouls": 101,
           "yellowCard": 9,
           "redCard": null,
           "saves": null,
@@ -30289,12 +30289,12 @@
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
-          "cleanSheet": 17
+          "cleanSheet": 18
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:31+00:00",
-      "last_checked_at": "2026-11-09T16:50:31+00:00"
+      "retrieved_at": "2026-11-16T16:23:36+00:00",
+      "last_checked_at": "2026-11-16T16:23:36+00:00"
     },
     "wd:Q595599": {
       "sorare_slug": "cameron-howieson",
@@ -30449,8 +30449,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:32+00:00",
-      "last_checked_at": "2026-11-09T16:50:32+00:00"
+      "retrieved_at": "2026-11-16T16:23:37+00:00",
+      "last_checked_at": "2026-11-16T16:23:37+00:00"
     },
     "wd:Q74548": {
       "sorare_slug": "chris-wood",
@@ -38984,8 +38984,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:34+00:00",
-      "last_checked_at": "2026-11-09T16:50:34+00:00"
+      "retrieved_at": "2026-11-16T16:23:39+00:00",
+      "last_checked_at": "2026-11-16T16:23:39+00:00"
     },
     "wd:Q20046896": {
       "sorare_slug": "clayton-lewis",
@@ -39385,8 +39385,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:34+00:00",
-      "last_checked_at": "2026-11-09T16:50:34+00:00"
+      "retrieved_at": "2026-11-16T16:23:40+00:00",
+      "last_checked_at": "2026-11-16T16:23:40+00:00"
     },
     "wd:Q124789400": {
       "sorare_slug": "dylan-manickum",
@@ -39590,8 +39590,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:35+00:00",
-      "last_checked_at": "2026-11-09T16:50:35+00:00"
+      "retrieved_at": "2026-11-16T16:23:40+00:00",
+      "last_checked_at": "2026-11-16T16:23:40+00:00"
     },
     "wd:Q64031850": {
       "sorare_slug": "elijah-henry-just",
@@ -39610,7 +39610,7 @@
           "competition": "Championship",
           "position": "Midfielder",
           "score": 32.2,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": -2.8,
           "low_coverage": false,
@@ -44113,15 +44113,15 @@
         }
       ],
       "period_start": "2023-02-19",
-      "period_end": "2026-11-03",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 70,
-        "minutes": 4533,
-        "scored_matches": 70,
+        "matches_played": 71,
+        "minutes": 4564,
+        "scored_matches": 71,
         "scoring_version": 7,
-        "average_score": 48.4,
+        "average_score": 48.2,
         "totals": {
-          "minsPlayed": 4533,
+          "minsPlayed": 4564,
           "goals": 11,
           "goalAssist": 8,
           "totalScoringAtt": 105,
@@ -44129,26 +44129,26 @@
           "bigChanceCreated": 12,
           "bigChanceMissed": 8,
           "penAreaEntries": 191,
-          "totalPass": 1814,
-          "accuratePass": 1420,
-          "successfulFinalThirdPasses": 676,
+          "totalPass": 1825,
+          "accuratePass": 1428,
+          "successfulFinalThirdPasses": 679,
           "accurateLongBalls": 56,
-          "duelWon": 279,
-          "duelLost": 319,
+          "duelWon": 280,
+          "duelLost": 322,
           "wonContest": 69,
-          "totalTackle": 82,
+          "totalTackle": 83,
           "wonTackle": 49,
           "interceptionWon": 34,
-          "possWon": 224,
-          "possLostCtrl": 768,
+          "possWon": 225,
+          "possLostCtrl": 771,
           "effectiveClearance": 30,
           "errorLeadToShot": null,
           "errorLeadToGoal": null,
-          "fouls": 68,
+          "fouls": 69,
           "yellowCard": 7,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 73,
+          "goalsConceded": 74,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -44156,8 +44156,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:36+00:00",
-      "last_checked_at": "2026-11-09T16:50:36+00:00"
+      "retrieved_at": "2026-11-16T16:23:41+00:00",
+      "last_checked_at": "2026-11-16T16:23:41+00:00"
     },
     "wd:Q126924680": {
       "sorare_slug": "fergus-william-gillion",
@@ -44213,8 +44213,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:37+00:00",
-      "last_checked_at": "2026-11-09T16:50:37+00:00"
+      "retrieved_at": "2026-11-16T16:23:42+00:00",
+      "last_checked_at": "2026-11-16T16:23:42+00:00"
     },
     "wd:Q123473457": {
       "sorare_slug": "fin-ngahina-roa-conchie",
@@ -44418,8 +44418,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:38+00:00",
-      "last_checked_at": "2026-11-09T16:50:38+00:00"
+      "retrieved_at": "2026-11-16T16:23:43+00:00",
+      "last_checked_at": "2026-11-16T16:23:43+00:00"
     },
     "wd:Q109968695": {
       "sorare_slug": "finn-surman",
@@ -44438,7 +44438,7 @@
           "competition": "MLS",
           "position": "Defender",
           "score": 47.64,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 12.64,
           "low_coverage": false,
@@ -50068,15 +50068,15 @@
         }
       ],
       "period_start": "2024-07-24",
-      "period_end": "2026-11-02",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 80,
-        "minutes": 6833,
-        "scored_matches": 80,
+        "matches_played": 81,
+        "minutes": 6923,
+        "scored_matches": 81,
         "scoring_version": 7,
         "average_score": 52.0,
         "totals": {
-          "minsPlayed": 6833,
+          "minsPlayed": 6923,
           "goals": 2,
           "goalAssist": 1,
           "totalScoringAtt": 24,
@@ -50084,22 +50084,22 @@
           "bigChanceCreated": null,
           "bigChanceMissed": 2,
           "penAreaEntries": 20,
-          "totalPass": 4022,
-          "accuratePass": 3673,
-          "successfulFinalThirdPasses": 257,
+          "totalPass": 4067,
+          "accuratePass": 3716,
+          "successfulFinalThirdPasses": 259,
           "accurateLongBalls": 134,
           "duelWon": 287,
-          "duelLost": 158,
+          "duelLost": 161,
           "wonContest": 2,
           "totalTackle": 99,
           "wonTackle": 56,
           "interceptionWon": 101,
-          "possWon": 235,
-          "possLostCtrl": 394,
-          "effectiveClearance": 494,
+          "possWon": 238,
+          "possLostCtrl": 396,
+          "effectiveClearance": 501,
           "errorLeadToShot": 5,
           "errorLeadToGoal": 2,
-          "fouls": 36,
+          "fouls": 38,
           "yellowCard": 4,
           "redCard": null,
           "saves": null,
@@ -50107,12 +50107,12 @@
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
-          "cleanSheet": 7
+          "cleanSheet": 8
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:39+00:00",
-      "last_checked_at": "2026-11-09T16:50:39+00:00"
+      "retrieved_at": "2026-11-16T16:23:45+00:00",
+      "last_checked_at": "2026-11-16T16:23:45+00:00"
     },
     "wd:Q29113776": {
       "sorare_slug": "francis-de-vries",
@@ -51002,8 +51002,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:40+00:00",
-      "last_checked_at": "2026-11-09T16:50:40+00:00"
+      "retrieved_at": "2026-11-16T16:23:45+00:00",
+      "last_checked_at": "2026-11-16T16:23:45+00:00"
     },
     "wd:Q64031856": {
       "sorare_slug": "george-stanger",
@@ -51022,7 +51022,7 @@
           "competition": "Premiership",
           "position": "Defender",
           "score": 51.18,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 16.18,
           "low_coverage": false,
@@ -53712,15 +53712,15 @@
         }
       ],
       "period_start": "2025-08-02",
-      "period_end": "2026-10-31",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 32,
-        "minutes": 2754,
-        "scored_matches": 32,
+        "matches_played": 33,
+        "minutes": 2844,
+        "scored_matches": 33,
         "scoring_version": 7,
-        "average_score": 44.6,
+        "average_score": 44.8,
         "totals": {
-          "minsPlayed": 2754,
+          "minsPlayed": 2844,
           "goals": 3,
           "goalAssist": null,
           "totalScoringAtt": 10,
@@ -53728,26 +53728,26 @@
           "bigChanceCreated": null,
           "bigChanceMissed": null,
           "penAreaEntries": 29,
-          "totalPass": 1151,
-          "accuratePass": 919,
-          "successfulFinalThirdPasses": 88,
-          "accurateLongBalls": 58,
-          "duelWon": 136,
-          "duelLost": 110,
+          "totalPass": 1196,
+          "accuratePass": 960,
+          "successfulFinalThirdPasses": 92,
+          "accurateLongBalls": 59,
+          "duelWon": 140,
+          "duelLost": 111,
           "wonContest": 7,
-          "totalTackle": 37,
-          "wonTackle": 26,
-          "interceptionWon": 29,
-          "possWon": 98,
-          "possLostCtrl": 267,
-          "effectiveClearance": 229,
+          "totalTackle": 40,
+          "wonTackle": 27,
+          "interceptionWon": 30,
+          "possWon": 101,
+          "possLostCtrl": 271,
+          "effectiveClearance": 235,
           "errorLeadToShot": null,
           "errorLeadToGoal": 1,
           "fouls": 29,
           "yellowCard": 9,
           "redCard": 1,
           "saves": null,
-          "goalsConceded": 53,
+          "goalsConceded": 54,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -53755,8 +53755,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:41+00:00",
-      "last_checked_at": "2026-11-09T16:50:41+00:00"
+      "retrieved_at": "2026-11-16T16:23:47+00:00",
+      "last_checked_at": "2026-11-16T16:23:47+00:00"
     },
     "wd:Q62017452": {
       "sorare_slug": "gianni-stensness",
@@ -53775,7 +53775,7 @@
           "competition": "Eliteserien",
           "position": "Defender",
           "score": 65.78,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 30.78,
           "low_coverage": false,
@@ -60091,42 +60091,42 @@
         }
       ],
       "period_start": "2023-04-15",
-      "period_end": "2026-11-04",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 69,
-        "minutes": 5481,
-        "scored_matches": 69,
+        "matches_played": 70,
+        "minutes": 5571,
+        "scored_matches": 70,
         "scoring_version": 7,
-        "average_score": 51.2,
+        "average_score": 51.5,
         "totals": {
-          "minsPlayed": 5481,
+          "minsPlayed": 5571,
           "goals": 8,
           "goalAssist": 1,
-          "totalScoringAtt": 51,
+          "totalScoringAtt": 52,
           "ontargetScoringAtt": 18,
           "bigChanceCreated": 1,
           "bigChanceMissed": 4,
           "penAreaEntries": 97,
-          "totalPass": 3945,
-          "accuratePass": 3407,
-          "successfulFinalThirdPasses": 572,
-          "accurateLongBalls": 263,
-          "duelWon": 268,
+          "totalPass": 4016,
+          "accuratePass": 3468,
+          "successfulFinalThirdPasses": 582,
+          "accurateLongBalls": 265,
+          "duelWon": 275,
           "duelLost": 188,
-          "wonContest": 10,
-          "totalTackle": 54,
+          "wonContest": 12,
+          "totalTackle": 55,
           "wonTackle": 36,
-          "interceptionWon": 53,
-          "possWon": 267,
-          "possLostCtrl": 603,
-          "effectiveClearance": 289,
+          "interceptionWon": 56,
+          "possWon": 273,
+          "possLostCtrl": 614,
+          "effectiveClearance": 291,
           "errorLeadToShot": 2,
           "errorLeadToGoal": 1,
           "fouls": 64,
           "yellowCard": 11,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 90,
+          "goalsConceded": 91,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -60134,8 +60134,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:43+00:00",
-      "last_checked_at": "2026-11-09T16:50:43+00:00"
+      "retrieved_at": "2026-11-16T16:23:48+00:00",
+      "last_checked_at": "2026-11-16T16:23:48+00:00"
     },
     "wd:Q125791559": {
       "sorare_slug": "isaac-robert-hughes",
@@ -60339,8 +60339,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:43+00:00",
-      "last_checked_at": "2026-11-09T16:50:43+00:00"
+      "retrieved_at": "2026-11-16T16:23:49+00:00",
+      "last_checked_at": "2026-11-16T16:23:49+00:00"
     },
     "wd:Q1568728": {
       "sorare_slug": "jake-gleeson",
@@ -60396,8 +60396,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:44+00:00",
-      "last_checked_at": "2026-11-09T16:50:44+00:00"
+      "retrieved_at": "2026-11-16T16:23:50+00:00",
+      "last_checked_at": "2026-11-16T16:23:50+00:00"
     },
     "wd:Q20963030": {
       "sorare_slug": "james-robert-mcgarry",
@@ -64129,8 +64129,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:45+00:00",
-      "last_checked_at": "2026-11-09T16:50:45+00:00"
+      "retrieved_at": "2026-11-16T16:23:51+00:00",
+      "last_checked_at": "2026-11-16T16:23:51+00:00"
     },
     "wd:Q111512710": {
       "sorare_slug": "jay-joshua-herdman",
@@ -66000,8 +66000,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:46+00:00",
-      "last_checked_at": "2026-11-09T16:50:46+00:00"
+      "retrieved_at": "2026-11-16T16:23:51+00:00",
+      "last_checked_at": "2026-11-16T16:23:51+00:00"
     },
     "wd:Q134931872": {
       "sorare_slug": "jeremy-foo",
@@ -66205,8 +66205,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:47+00:00",
-      "last_checked_at": "2026-11-09T16:50:47+00:00"
+      "retrieved_at": "2026-11-16T16:23:52+00:00",
+      "last_checked_at": "2026-11-16T16:23:52+00:00"
     },
     "wd:Q118287620": {
       "sorare_slug": "jesse-randall",
@@ -66225,7 +66225,7 @@
           "competition": "Premiership",
           "position": "Forward",
           "score": 83.9,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 23.9,
           "low_coverage": false,
@@ -67543,42 +67543,42 @@
         }
       ],
       "period_start": "2024-07-27",
-      "period_end": "2026-10-28",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 19,
-        "minutes": 1058,
-        "scored_matches": 19,
+        "matches_played": 20,
+        "minutes": 1148,
+        "scored_matches": 20,
         "scoring_version": 7,
-        "average_score": 51.1,
+        "average_score": 52.7,
         "totals": {
-          "minsPlayed": 1058,
-          "goals": 4,
+          "minsPlayed": 1148,
+          "goals": 5,
           "goalAssist": 3,
-          "totalScoringAtt": 29,
-          "ontargetScoringAtt": 12,
-          "bigChanceCreated": 3,
+          "totalScoringAtt": 35,
+          "ontargetScoringAtt": 13,
+          "bigChanceCreated": 4,
           "bigChanceMissed": 3,
-          "penAreaEntries": 69,
-          "totalPass": 256,
-          "accuratePass": 183,
-          "successfulFinalThirdPasses": 72,
+          "penAreaEntries": 78,
+          "totalPass": 283,
+          "accuratePass": 205,
+          "successfulFinalThirdPasses": 81,
           "accurateLongBalls": 5,
-          "duelWon": 42,
-          "duelLost": 49,
+          "duelWon": 46,
+          "duelLost": 52,
           "wonContest": 14,
-          "totalTackle": 12,
+          "totalTackle": 13,
           "wonTackle": 2,
           "interceptionWon": 7,
-          "possWon": 39,
-          "possLostCtrl": 188,
-          "effectiveClearance": 13,
+          "possWon": 42,
+          "possLostCtrl": 205,
+          "effectiveClearance": 14,
           "errorLeadToShot": null,
           "errorLeadToGoal": null,
           "fouls": 5,
           "yellowCard": null,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 21,
+          "goalsConceded": 22,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -67586,8 +67586,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:48+00:00",
-      "last_checked_at": "2026-11-09T16:50:48+00:00"
+      "retrieved_at": "2026-11-16T16:23:53+00:00",
+      "last_checked_at": "2026-11-16T16:23:53+00:00"
     },
     "wd:Q64433070": {
       "sorare_slug": "joe-bell",
@@ -67606,7 +67606,7 @@
           "competition": "Eliteserien",
           "position": "Midfielder",
           "score": 86.4,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 26.4,
           "low_coverage": false,
@@ -75000,42 +75000,42 @@
         }
       ],
       "period_start": "2023-02-19",
-      "period_end": "2026-10-30",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 111,
-        "minutes": 8583,
-        "scored_matches": 111,
+        "matches_played": 112,
+        "minutes": 8660,
+        "scored_matches": 112,
         "scoring_version": 7,
-        "average_score": 52.1,
+        "average_score": 52.4,
         "totals": {
-          "minsPlayed": 8583,
+          "minsPlayed": 8660,
           "goals": 3,
-          "goalAssist": 11,
+          "goalAssist": 12,
           "totalScoringAtt": 84,
           "ontargetScoringAtt": 19,
           "bigChanceCreated": 11,
           "bigChanceMissed": 4,
-          "penAreaEntries": 416,
-          "totalPass": 5826,
-          "accuratePass": 5044,
-          "successfulFinalThirdPasses": 1419,
-          "accurateLongBalls": 247,
-          "duelWon": 419,
-          "duelLost": 394,
-          "wonContest": 50,
-          "totalTackle": 192,
-          "wonTackle": 131,
-          "interceptionWon": 118,
-          "possWon": 511,
-          "possLostCtrl": 1112,
-          "effectiveClearance": 162,
+          "penAreaEntries": 424,
+          "totalPass": 5881,
+          "accuratePass": 5096,
+          "successfulFinalThirdPasses": 1439,
+          "accurateLongBalls": 249,
+          "duelWon": 423,
+          "duelLost": 401,
+          "wonContest": 51,
+          "totalTackle": 193,
+          "wonTackle": 132,
+          "interceptionWon": 121,
+          "possWon": 517,
+          "possLostCtrl": 1118,
+          "effectiveClearance": 163,
           "errorLeadToShot": 1,
           "errorLeadToGoal": null,
-          "fouls": 120,
+          "fouls": 123,
           "yellowCard": 20,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 137,
+          "goalsConceded": 138,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -75043,8 +75043,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:50+00:00",
-      "last_checked_at": "2026-11-09T16:50:50+00:00"
+      "retrieved_at": "2026-11-16T16:23:55+00:00",
+      "last_checked_at": "2026-11-16T16:23:55+00:00"
     },
     "wd:Q118463931": {
       "sorare_slug": "kees-sims",
@@ -75444,8 +75444,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:51+00:00",
-      "last_checked_at": "2026-11-09T16:50:51+00:00"
+      "retrieved_at": "2026-11-16T16:23:55+00:00",
+      "last_checked_at": "2026-11-16T16:23:55+00:00"
     },
     "wd:Q771396": {
       "sorare_slug": "kosta-barbarouses",
@@ -76335,8 +76335,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:51+00:00",
-      "last_checked_at": "2026-11-09T16:50:51+00:00"
+      "retrieved_at": "2026-11-16T16:23:56+00:00",
+      "last_checked_at": "2026-11-16T16:23:56+00:00"
     },
     "wd:Q123571870": {
       "sorare_slug": "lachlan-bayliss",
@@ -76883,8 +76883,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:52+00:00",
-      "last_checked_at": "2026-11-09T16:50:52+00:00"
+      "retrieved_at": "2026-11-16T16:23:57+00:00",
+      "last_checked_at": "2026-11-16T16:23:57+00:00"
     },
     "wd:Q47544166": {
       "sorare_slug": "liberato-gianpaolo-cacace",
@@ -85467,8 +85467,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:55+00:00",
-      "last_checked_at": "2026-11-09T16:50:55+00:00"
+      "retrieved_at": "2026-11-16T16:23:59+00:00",
+      "last_checked_at": "2026-11-16T16:23:59+00:00"
     },
     "wd:Q20963029": {
       "sorare_slug": "logan-tipene-rogerson",
@@ -86162,8 +86162,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:55+00:00",
-      "last_checked_at": "2026-11-09T16:50:55+00:00"
+      "retrieved_at": "2026-11-16T16:24:00+00:00",
+      "last_checked_at": "2026-11-16T16:24:00+00:00"
     },
     "wd:Q124963162": {
       "sorare_slug": "lukas-eric-kelly-heald",
@@ -86563,8 +86563,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:56+00:00",
-      "last_checked_at": "2026-11-09T16:50:56+00:00"
+      "retrieved_at": "2026-11-16T16:24:01+00:00",
+      "last_checked_at": "2026-11-16T16:24:01+00:00"
     },
     "wd:Q132200431": {
       "sorare_slug": "luke-brooke-smith",
@@ -87454,8 +87454,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:57+00:00",
-      "last_checked_at": "2026-11-09T16:50:57+00:00"
+      "retrieved_at": "2026-11-16T16:24:01+00:00",
+      "last_checked_at": "2026-11-16T16:24:01+00:00"
     },
     "wd:Q1851874": {
       "sorare_slug": "marco-rojas",
@@ -88737,8 +88737,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:58+00:00",
-      "last_checked_at": "2026-11-09T16:50:58+00:00"
+      "retrieved_at": "2026-11-16T16:24:02+00:00",
+      "last_checked_at": "2026-11-16T16:24:02+00:00"
     },
     "wd:Q102257634": {
       "sorare_slug": "marko-stamenic",
@@ -88757,7 +88757,7 @@
           "competition": "Championship",
           "position": "Midfielder",
           "score": 8.8,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": -6.2,
           "low_coverage": false,
@@ -94338,15 +94338,15 @@
         }
       ],
       "period_start": "2023-02-19",
-      "period_end": "2026-11-03",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 69,
-        "minutes": 4500,
-        "scored_matches": 69,
+        "matches_played": 70,
+        "minutes": 4526,
+        "scored_matches": 70,
         "scoring_version": 7,
-        "average_score": 42.8,
+        "average_score": 42.3,
         "totals": {
-          "minsPlayed": 4500,
+          "minsPlayed": 4526,
           "goals": 4,
           "goalAssist": 2,
           "totalScoringAtt": 41,
@@ -94354,24 +94354,24 @@
           "bigChanceCreated": 5,
           "bigChanceMissed": 4,
           "penAreaEntries": 62,
-          "totalPass": 2444,
-          "accuratePass": 2113,
-          "successfulFinalThirdPasses": 340,
+          "totalPass": 2450,
+          "accuratePass": 2118,
+          "successfulFinalThirdPasses": 342,
           "accurateLongBalls": 115,
           "duelWon": 195,
-          "duelLost": 232,
+          "duelLost": 237,
           "wonContest": 19,
           "totalTackle": 77,
           "wonTackle": 43,
           "interceptionWon": 70,
           "possWon": 212,
-          "possLostCtrl": 435,
+          "possLostCtrl": 437,
           "effectiveClearance": 109,
           "errorLeadToShot": 1,
           "errorLeadToGoal": 1,
-          "fouls": 86,
+          "fouls": 88,
           "yellowCard": 19,
-          "redCard": null,
+          "redCard": 1,
           "saves": null,
           "goalsConceded": 70,
           "goodHighClaim": null,
@@ -94381,8 +94381,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:50:59+00:00",
-      "last_checked_at": "2026-11-09T16:50:59+00:00"
+      "retrieved_at": "2026-11-16T16:24:04+00:00",
+      "last_checked_at": "2026-11-16T16:24:04+00:00"
     },
     "wd:Q139971019": {
       "sorare_slug": "matthew-george-foord",
@@ -94438,8 +94438,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:00+00:00",
-      "last_checked_at": "2026-11-09T16:51:00+00:00"
+      "retrieved_at": "2026-11-16T16:24:04+00:00",
+      "last_checked_at": "2026-11-16T16:24:04+00:00"
     },
     "wd:Q96091702": {
       "sorare_slug": "matthew-garbett",
@@ -97289,8 +97289,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:01+00:00",
-      "last_checked_at": "2026-11-09T16:51:01+00:00"
+      "retrieved_at": "2026-11-16T16:24:05+00:00",
+      "last_checked_at": "2026-11-16T16:24:05+00:00"
     },
     "wd:Q125973758": {
       "sorare_slug": "matthew-benjamin-sheridan",
@@ -97494,8 +97494,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:02+00:00",
-      "last_checked_at": "2026-11-09T16:51:02+00:00"
+      "retrieved_at": "2026-11-16T16:24:06+00:00",
+      "last_checked_at": "2026-11-16T16:24:06+00:00"
     },
     "wd:Q6794678": {
       "sorare_slug": "maxime-teremoana-crocombe",
@@ -97514,7 +97514,7 @@
           "competition": "Championship",
           "position": "Goalkeeper",
           "score": 11.9,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": -3.1,
           "low_coverage": false,
@@ -101674,51 +101674,51 @@
         }
       ],
       "period_start": "2025-10-18",
-      "period_end": "2026-11-03",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 37,
-        "minutes": 3279,
-        "scored_matches": 37,
+        "matches_played": 38,
+        "minutes": 3369,
+        "scored_matches": 38,
         "scoring_version": 7,
-        "average_score": 44.6,
+        "average_score": 43.7,
         "totals": {
-          "minsPlayed": 3279,
+          "minsPlayed": 3369,
           "goals": null,
           "goalAssist": null,
           "totalScoringAtt": null,
           "ontargetScoringAtt": null,
           "bigChanceCreated": null,
           "bigChanceMissed": null,
-          "penAreaEntries": 28,
-          "totalPass": 1072,
-          "accuratePass": 507,
-          "successfulFinalThirdPasses": 62,
-          "accurateLongBalls": 249,
+          "penAreaEntries": 29,
+          "totalPass": 1119,
+          "accuratePass": 530,
+          "successfulFinalThirdPasses": 67,
+          "accurateLongBalls": 265,
           "duelWon": 18,
-          "duelLost": 3,
+          "duelLost": 5,
           "wonContest": null,
           "totalTackle": 2,
           "wonTackle": 2,
           "interceptionWon": null,
           "possWon": 53,
-          "possLostCtrl": 579,
+          "possLostCtrl": 605,
           "effectiveClearance": 30,
           "errorLeadToShot": 1,
-          "errorLeadToGoal": 1,
+          "errorLeadToGoal": 2,
           "fouls": null,
           "yellowCard": null,
           "redCard": null,
-          "saves": 116,
-          "goalsConceded": 57,
-          "goodHighClaim": 16,
-          "accurateKeeperSweeper": 13,
+          "saves": 119,
+          "goalsConceded": 60,
+          "goodHighClaim": 17,
+          "accurateKeeperSweeper": 14,
           "penaltiesSaved": null,
           "cleanSheet": 10
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:03+00:00",
-      "last_checked_at": "2026-11-09T16:51:03+00:00"
+      "retrieved_at": "2026-11-16T16:24:07+00:00",
+      "last_checked_at": "2026-11-16T16:24:07+00:00"
     },
     "wd:Q64260656": {
       "sorare_slug": "max-mata",
@@ -102216,8 +102216,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:04+00:00",
-      "last_checked_at": "2026-11-09T16:51:04+00:00"
+      "retrieved_at": "2026-11-16T16:24:08+00:00",
+      "last_checked_at": "2026-11-16T16:24:08+00:00"
     },
     "wd:Q524730": {
       "sorare_slug": "michael-boxall",
@@ -111241,8 +111241,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:06+00:00",
-      "last_checked_at": "2026-11-09T16:51:06+00:00"
+      "retrieved_at": "2026-11-16T16:24:10+00:00",
+      "last_checked_at": "2026-11-16T16:24:10+00:00"
     },
     "wd:Q54862548": {
       "sorare_slug": "michael-cornelis-woud",
@@ -113455,8 +113455,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:07+00:00",
-      "last_checked_at": "2026-11-09T16:51:07+00:00"
+      "retrieved_at": "2026-11-16T16:24:11+00:00",
+      "last_checked_at": "2026-11-16T16:24:11+00:00"
     },
     "wd:Q64031855": {
       "sorare_slug": "nando-pijnaker",
@@ -114346,8 +114346,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:08+00:00",
-      "last_checked_at": "2026-11-09T16:51:08+00:00"
+      "retrieved_at": "2026-11-16T16:24:12+00:00",
+      "last_checked_at": "2026-11-16T16:24:12+00:00"
     },
     "wd:Q131405893": {
       "sorare_slug": "nathan-garrow",
@@ -114551,8 +114551,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:08+00:00",
-      "last_checked_at": "2026-11-09T16:51:08+00:00"
+      "retrieved_at": "2026-11-16T16:24:12+00:00",
+      "last_checked_at": "2026-11-16T16:24:12+00:00"
     },
     "wd:Q20916837": {
       "sorare_slug": "nikko-boxall",
@@ -114756,8 +114756,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:09+00:00",
-      "last_checked_at": "2026-11-09T16:51:09+00:00"
+      "retrieved_at": "2026-11-16T16:24:13+00:00",
+      "last_checked_at": "2026-11-16T16:24:13+00:00"
     },
     "wd:Q50672661": {
       "sorare_slug": "niko-kirwan",
@@ -114912,8 +114912,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:10+00:00",
-      "last_checked_at": "2026-11-09T16:51:10+00:00"
+      "retrieved_at": "2026-11-16T16:24:14+00:00",
+      "last_checked_at": "2026-11-16T16:24:14+00:00"
     },
     "wd:Q20993947": {
       "sorare_slug": "noah-billingsley",
@@ -114969,8 +114969,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:10+00:00",
-      "last_checked_at": "2026-11-09T16:51:10+00:00"
+      "retrieved_at": "2026-11-16T16:24:14+00:00",
+      "last_checked_at": "2026-11-16T16:24:14+00:00"
     },
     "wd:Q109968702": {
       "sorare_slug": "oskar-van-hattum",
@@ -115174,8 +115174,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:11+00:00",
-      "last_checked_at": "2026-11-09T16:51:11+00:00"
+      "retrieved_at": "2026-11-16T16:24:15+00:00",
+      "last_checked_at": "2026-11-16T16:24:15+00:00"
     },
     "wd:Q9071500": {
       "sorare_slug": "ryan-de-vries",
@@ -115379,8 +115379,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:12+00:00",
-      "last_checked_at": "2026-11-09T16:51:12+00:00"
+      "retrieved_at": "2026-11-16T16:24:16+00:00",
+      "last_checked_at": "2026-11-16T16:24:16+00:00"
     },
     "wd:Q3943100": {
       "sorare_slug": "ryan-thomas",
@@ -115399,7 +115399,7 @@
           "competition": "Eredivisie",
           "position": "Midfielder",
           "score": 63.8,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 28.8,
           "low_coverage": false,
@@ -121519,42 +121519,42 @@
         }
       ],
       "period_start": "2023-10-22",
-      "period_end": "2026-11-01",
+      "period_end": "2026-11-06",
       "summary": {
-        "matches_played": 65,
-        "minutes": 4296,
-        "scored_matches": 65,
+        "matches_played": 66,
+        "minutes": 4381,
+        "scored_matches": 66,
         "scoring_version": 7,
-        "average_score": 48.6,
+        "average_score": 48.8,
         "totals": {
-          "minsPlayed": 4296,
+          "minsPlayed": 4381,
           "goals": 1,
           "goalAssist": 3,
           "totalScoringAtt": 26,
           "ontargetScoringAtt": 6,
-          "bigChanceCreated": 2,
+          "bigChanceCreated": 3,
           "bigChanceMissed": null,
-          "penAreaEntries": 89,
-          "totalPass": 2070,
-          "accuratePass": 1644,
-          "successfulFinalThirdPasses": 381,
-          "accurateLongBalls": 124,
-          "duelWon": 299,
-          "duelLost": 242,
-          "wonContest": 31,
-          "totalTackle": 130,
-          "wonTackle": 80,
-          "interceptionWon": 103,
-          "possWon": 266,
-          "possLostCtrl": 589,
-          "effectiveClearance": 178,
+          "penAreaEntries": 91,
+          "totalPass": 2132,
+          "accuratePass": 1694,
+          "successfulFinalThirdPasses": 395,
+          "accurateLongBalls": 125,
+          "duelWon": 306,
+          "duelLost": 245,
+          "wonContest": 32,
+          "totalTackle": 132,
+          "wonTackle": 81,
+          "interceptionWon": 105,
+          "possWon": 276,
+          "possLostCtrl": 601,
+          "effectiveClearance": 179,
           "errorLeadToShot": 7,
           "errorLeadToGoal": 1,
           "fouls": 70,
           "yellowCard": 13,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 77,
+          "goalsConceded": 78,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -121562,8 +121562,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:14+00:00",
-      "last_checked_at": "2026-11-09T16:51:14+00:00"
+      "retrieved_at": "2026-11-16T16:24:17+00:00",
+      "last_checked_at": "2026-11-16T16:24:17+00:00"
     },
     "wd:Q79378939": {
       "sorare_slug": "sam-sutton",
@@ -121767,8 +121767,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:14+00:00",
-      "last_checked_at": "2026-11-09T16:51:14+00:00"
+      "retrieved_at": "2026-11-16T16:24:18+00:00",
+      "last_checked_at": "2026-11-16T16:24:18+00:00"
     },
     "wd:Q28800473": {
       "sorare_slug": "sarpeet-singh",
@@ -125353,8 +125353,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:15+00:00",
-      "last_checked_at": "2026-11-09T16:51:15+00:00"
+      "retrieved_at": "2026-11-16T16:24:19+00:00",
+      "last_checked_at": "2026-11-16T16:24:19+00:00"
     },
     "wd:Q131676093": {
       "sorare_slug": "stipe-josip-ukich",
@@ -125373,7 +125373,7 @@
           "competition": "HNL",
           "position": "Midfielder",
           "score": 34.8,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": -0.2,
           "low_coverage": false,
@@ -128014,24 +128014,24 @@
         }
       ],
       "period_start": "2026-08-15",
-      "period_end": "2026-10-30",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 4,
-        "minutes": 53,
-        "scored_matches": 4,
+        "matches_played": 5,
+        "minutes": 54,
+        "scored_matches": 5,
         "scoring_version": 7,
-        "average_score": 33.6,
+        "average_score": 33.9,
         "totals": {
-          "minsPlayed": 53,
+          "minsPlayed": 54,
           "goals": null,
           "goalAssist": null,
           "totalScoringAtt": 1,
           "ontargetScoringAtt": 1,
           "bigChanceCreated": 1,
           "bigChanceMissed": null,
-          "penAreaEntries": 4,
-          "totalPass": 19,
-          "accuratePass": 12,
+          "penAreaEntries": 5,
+          "totalPass": 21,
+          "accuratePass": 13,
           "successfulFinalThirdPasses": 6,
           "accurateLongBalls": null,
           "duelWon": 7,
@@ -128041,7 +128041,7 @@
           "wonTackle": 1,
           "interceptionWon": null,
           "possWon": 2,
-          "possLostCtrl": 19,
+          "possLostCtrl": 20,
           "effectiveClearance": null,
           "errorLeadToShot": null,
           "errorLeadToGoal": null,
@@ -128057,8 +128057,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:17+00:00",
-      "last_checked_at": "2026-11-09T16:51:17+00:00"
+      "retrieved_at": "2026-11-16T16:24:20+00:00",
+      "last_checked_at": "2026-11-16T16:24:20+00:00"
     },
     "wd:Q7620171": {
       "sorare_slug": "storm-roux",
@@ -128605,8 +128605,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:17+00:00",
-      "last_checked_at": "2026-11-09T16:51:17+00:00"
+      "retrieved_at": "2026-11-16T16:24:21+00:00",
+      "last_checked_at": "2026-11-16T16:24:21+00:00"
     },
     "wd:Q2642525": {
       "sorare_slug": "tim-payne",
@@ -129594,8 +129594,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:18+00:00",
-      "last_checked_at": "2026-11-09T16:51:18+00:00"
+      "retrieved_at": "2026-11-16T16:24:22+00:00",
+      "last_checked_at": "2026-11-16T16:24:22+00:00"
     },
     "wd:Q462503": {
       "sorare_slug": "tommy-smith-1990-03-31",
@@ -130534,8 +130534,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:19+00:00",
-      "last_checked_at": "2026-11-09T16:51:19+00:00"
+      "retrieved_at": "2026-11-16T16:24:22+00:00",
+      "last_checked_at": "2026-11-16T16:24:22+00:00"
     },
     "wd:Q121353909": {
       "sorare_slug": "tyler-grant-bindon",
@@ -130554,7 +130554,7 @@
           "competition": "Championship",
           "position": "Defender",
           "score": 41.58,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 6.58,
           "low_coverage": false,
@@ -134616,42 +134616,42 @@
         }
       ],
       "period_start": "2024-07-24",
-      "period_end": "2026-10-31",
+      "period_end": "2026-11-07",
       "summary": {
-        "matches_played": 41,
-        "minutes": 3134,
-        "scored_matches": 41,
+        "matches_played": 42,
+        "minutes": 3224,
+        "scored_matches": 42,
         "scoring_version": 7,
-        "average_score": 48.6,
+        "average_score": 48.5,
         "totals": {
-          "minsPlayed": 3134,
+          "minsPlayed": 3224,
           "goals": 1,
           "goalAssist": 1,
           "totalScoringAtt": 22,
           "ontargetScoringAtt": 5,
           "bigChanceCreated": 2,
           "bigChanceMissed": 4,
-          "penAreaEntries": 37,
-          "totalPass": 1872,
-          "accuratePass": 1597,
+          "penAreaEntries": 38,
+          "totalPass": 1915,
+          "accuratePass": 1628,
           "successfulFinalThirdPasses": 143,
           "accurateLongBalls": 84,
-          "duelWon": 197,
-          "duelLost": 129,
+          "duelWon": 207,
+          "duelLost": 133,
           "wonContest": 10,
-          "totalTackle": 52,
-          "wonTackle": 38,
-          "interceptionWon": 53,
-          "possWon": 140,
-          "possLostCtrl": 340,
-          "effectiveClearance": 244,
+          "totalTackle": 53,
+          "wonTackle": 39,
+          "interceptionWon": 54,
+          "possWon": 144,
+          "possLostCtrl": 355,
+          "effectiveClearance": 262,
           "errorLeadToShot": 2,
           "errorLeadToGoal": null,
-          "fouls": 40,
-          "yellowCard": 3,
+          "fouls": 42,
+          "yellowCard": 4,
           "redCard": null,
           "saves": null,
-          "goalsConceded": 57,
+          "goalsConceded": 58,
           "goodHighClaim": null,
           "accurateKeeperSweeper": null,
           "penaltiesSaved": null,
@@ -134659,8 +134659,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:20+00:00",
-      "last_checked_at": "2026-11-09T16:51:20+00:00"
+      "retrieved_at": "2026-11-16T16:24:24+00:00",
+      "last_checked_at": "2026-11-16T16:24:24+00:00"
     },
     "wd:Q7859955": {
       "sorare_slug": "tyler-boyd",
@@ -134679,7 +134679,7 @@
           "competition": "MLS",
           "position": "Forward",
           "score": 37.8,
-          "score_status": "REVIEWING",
+          "score_status": "FINAL",
           "scoring_version": 7,
           "all_around_score": 2.8,
           "low_coverage": false,
@@ -142416,26 +142416,26 @@
         }
       ],
       "period_start": "2023-03-05",
-      "period_end": "2026-11-02",
+      "period_end": "2026-11-08",
       "summary": {
-        "matches_played": 97,
-        "minutes": 5016,
-        "scored_matches": 97,
+        "matches_played": 98,
+        "minutes": 5027,
+        "scored_matches": 98,
         "scoring_version": 7,
-        "average_score": 45.8,
+        "average_score": 45.7,
         "totals": {
-          "minsPlayed": 5016,
+          "minsPlayed": 5027,
           "goals": 11,
           "goalAssist": 9,
-          "totalScoringAtt": 122,
+          "totalScoringAtt": 123,
           "ontargetScoringAtt": 48,
           "bigChanceCreated": 18,
           "bigChanceMissed": 6,
-          "penAreaEntries": 207,
-          "totalPass": 1529,
-          "accuratePass": 1241,
-          "successfulFinalThirdPasses": 523,
-          "accurateLongBalls": 73,
+          "penAreaEntries": 211,
+          "totalPass": 1535,
+          "accuratePass": 1247,
+          "successfulFinalThirdPasses": 528,
+          "accurateLongBalls": 74,
           "duelWon": 250,
           "duelLost": 382,
           "wonContest": 79,
@@ -142443,7 +142443,7 @@
           "wonTackle": 45,
           "interceptionWon": 23,
           "possWon": 206,
-          "possLostCtrl": 811,
+          "possLostCtrl": 814,
           "effectiveClearance": 23,
           "errorLeadToShot": null,
           "errorLeadToGoal": null,
@@ -142459,8 +142459,8 @@
         },
         "scope": "last retrieved game scores; finalized played matches; totals only where reported"
       },
-      "retrieved_at": "2026-11-09T16:51:22+00:00",
-      "last_checked_at": "2026-11-09T16:51:22+00:00"
+      "retrieved_at": "2026-11-16T16:24:26+00:00",
+      "last_checked_at": "2026-11-16T16:24:26+00:00"
     }
   },
   "coverage": {
