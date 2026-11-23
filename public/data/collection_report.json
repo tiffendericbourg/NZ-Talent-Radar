@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-26",
+  "generated_at": "2026-11-23",
   "discovery_queries": 6,
   "query_hits": [
-    1090,
+    1091,
     222,
     683,
     327,
@@ -10,18 +10,18 @@
     347
   ],
   "failed_queries": [],
-  "discovered_wikidata_ids": 1111,
-  "fetched_wikidata_players": 1111,
+  "discovered_wikidata_ids": 1112,
+  "fetched_wikidata_players": 1112,
   "missing_wikidata_entities": 0,
-  "total_players": 1111,
-  "new_players": 0,
+  "total_players": 1112,
+  "new_players": 1,
   "manual_rows": 20,
-  "with_birth_date": 825,
+  "with_birth_date": 826,
   "with_position": 800,
-  "with_club": 217,
-  "women": 303,
+  "with_club": 211,
+  "women": 304,
   "men": 808,
-  "under_23": 45,
-  "abroad_with_known_club": 87,
+  "under_23": 46,
+  "abroad_with_known_club": 86,
   "potential_to_verify": 13
 }
